@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://brvfegihfap42"]
+
+[ext_resource type="Script" uid="uid://b0xwe3hn5icav" path="res://node_2d.gd" id="1_wtcfe"]
+[ext_resource type="Script" uid="uid://ctrgu3qcae3u3" path="res://label.gd" id="2_0e48y"]
+[ext_resource type="PackedScene" uid="uid://dsa80bbmp0gad" path="res://Scenes/deck.tscn" id="2_epypp"]
+[ext_resource type="Script" uid="uid://cnwlpicev6046" path="res://car_value_total.gd" id="4_0hol4"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(592, 301)
+script = ExtResource("1_wtcfe")
+
+[node name="Deck" parent="." instance=ExtResource("2_epypp")]
+position = Vector2(1189, 648)
+
+[node name="OpponentsDeck" parent="." instance=ExtResource("2_epypp")]
+position = Vector2(364, 645)
+metadata/PlayerDeck = true
+
+[node name="BetAmount" type="Label" parent="."]
+offset_left = -99.0
+offset_top = -100.0
+offset_right = 151.0
+offset_bottom = -52.0
+script = ExtResource("2_0e48y")
+
+[node name="CardValueTotal" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("4_0hol4")
