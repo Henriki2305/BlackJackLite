@@ -145,3 +145,7 @@ func _isAce() -> bool:
 
 func _isFaceCard() -> bool:
 	return rank == Enums.Jack || rank == Enums.Queen || rank == Enums.King
+	
+func _discard() -> void:
+	location = discard
+	visible = false

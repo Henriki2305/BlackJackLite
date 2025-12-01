@@ -7,6 +7,7 @@ var i = 0
 var cardsInDeck: Array[card]
 var drawableCards: Array[card]
 var cardsInHand: Array[card]
+var multiplier = 0.4
 var suits = {
 	"h": Enums.hearts,
 	"d": Enums.diamonds,
@@ -111,9 +112,13 @@ func _hasHand(handName) -> bool:
 		"normal":
 			return _cardValuesSum()<=21
 		"BlackJack":
-			return len(cardsInHand) == 2 && (cardsInHand[0]._isAce() && cardsInHand[1]._worth() == 10) || (cardsInHand[1]._isAce() && cardsInHand[0]._worth() == 10)
+			if len(cardsInHand) == 2:
+				return (cardsInHand[0]._isAce() && cardsInHand[1]._worth() == 10) || (cardsInHand[1]._isAce() && cardsInHand[0]._worth() == 10)
+			return false
 		"pair" :
-			return len(cardsInHand) == 2 && cardsInHand[0].rank == cardsInHand[1].rank
+			if len(cardsInHand) == 2:
+				return cardsInHand[0].rank == cardsInHand[1].rank
+			return false
 		"LuckySevens":
 			if len(cardsInHand) < 2:
 				return false
@@ -128,4 +133,18 @@ func _hasHand(handName) -> bool:
 			return true
 		"neutrality":
 			return _cardValuesSum() == 0
+		"27":
+			if len(cardsInHand) == 2:
+				return (cardsInHand[0].rank == Enums.two && cardsInHand[1].rank == Enums.seven) || (cardsInHand[1].rank == Enums.two && cardsInHand[0].rank == Enums.seven)
+			return false
+		"none":
+			return true
 	return false
+
+func _clearHand() -> void:
+	for c in cardsInHand:
+		c._discard()
+	cardsInHand.clear()
+
+func _increaseMult() -> void:
+	multiplier *= 1.35

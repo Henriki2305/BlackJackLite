@@ -1,0 +1,23 @@
+63f7b34db8d8cdea90c76aacccf841ec
+::res://::1764604134
+Card base.png::CompressedTexture2D::9001891305807095697::1763938354::1763938354::1::::<><><>0<>0<>10c248f0a3d6650c96ba5d673ab3a30d<>res://.godot/imported/Card base.png-7ee45016787bdd8ae3a3f0e8d8cef024.ctex::
+card.gd::GDScript::2197063780363540581::1764441009::0::1::::card<>Node2D<><>0<>0<><>::
+car_value_total.gd::GDScript::5731407742586405797::1764374402::0::1::::<>Label<><>0<>0<><>::
+deck.gd::GDScript::7048969890779029262::1764509035::0::1::::deck<>Node2D<><>0<>0<><>::
+ee.png::CompressedTexture2D::1599501396111751129::1763589356::1763589357::1::::<><><>0<>0<>763ff9853489db2973090ea47e8ec7d9<>res://.godot/imported/ee.png-1d3590b689316c267a8bd06c48788893.ctex::
+Enums.gd::GDScript::931357664109958027::1764193989::0::1::::Enums<>Node<><>0<>0<><>::
+Game.gd::GDScript::15019890018368315::1764540364::0::1::::<>Node2D<><>0<>0<><>::
+Global.gd::GDScript::4179804236373241661::1764362997::0::1::::<>Node<><>0<>0<><>::
+icon.svg::CompressedTexture2D::489901101934867993::1763560532::1763560542::1::::<><><>0<>0<>a62ad09f6c5d71e6245994d7959c216d<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+label.gd::GDScript::6141925331624266132::1763592920::0::1::::<>Label<><>0<>0<><>::
+memory.gd::GDScript::6471190608337380448::1764480914::0::1::::memory<>Node2D<><>0<>0<><>::
+memory.tscn::PackedScene::4884358109258469174::1764507378::0::1::::<><><>0<>0<><>::uid://cygxtf3hffrrc::::res://memory.gd
+node_2d.gd::GDScript::712503286640992703::1764509190::0::1::::<>Node2D<><>0<>0<><>::
+node_2d.tscn::PackedScene::3623294014337642977::1764540374::0::1::::<><><>0<>0<><>::uid://hjm07q0ihj4::::res://Game.gd<>uid://ctrgu3qcae3u3::::res://label.gd<>uid://dsa80bbmp0gad::::res://Scenes/deck.tscn<>uid://cnwlpicev6046::::res://car_value_total.gd
+soul_node.gd::GDScript::7711118792470487090::1764540436::0::1::::<>Node2D<><>0<>0<><>::
+soul_node.tscn::PackedScene::8510779096320918880::1764478599::0::1::::<><><>0<>0<><>::uid://dh4k885g7qfkk::::res://soul_node.gd
+Testcards.png::CompressedTexture2D::2698877741566571180::1763945050::1763945044::1::::<><><>0<>0<>982cecd443f457a3343e7638d4519e24<>res://.godot/imported/Testcards.png-7b57367233dac58e71f538301bb1ac27.ctex::
+::res://Scenes/::1764571256
+button.tscn::PackedScene::3124182796386084690::1763737322::0::1::::<><><>0<>0<><>::
+card.tscn::PackedScene::1565316781239863345::1764353634::0::1::::<><><>0<>0<><>::uid://6kjk4kl8xauv::::res://card.gd<>uid://d1it3m2ws05yb::::res://Card base.png<>uid://bepmefey1l17m::::res://Testcards.png
+deck.tscn::PackedScene::8424709596807216019::1764353706::0::1::::<><><>0<>0<><>::uid://c7otre5nx2pde::::res://deck.gd<>uid://d1it3m2ws05yb::::res://Card base.png
