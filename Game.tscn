@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cbw3rje7ff5n5"]
+[gd_scene load_steps=10 format=3 uid="uid://cbw3rje7ff5n5"]
 
-[ext_resource type="Script" uid="uid://hjm07q0ihj4" path="res://Game.gd" id="1_sb48q"]
+[ext_resource type="Script" uid="uid://uec3cmkw456i" path="res://MEslot_machine.gd" id="1_t88pq"]
 [ext_resource type="PackedScene" uid="uid://dsa80bbmp0gad" path="res://Scenes/deck.tscn" id="2_t88pq"]
 [ext_resource type="Script" uid="uid://ctrgu3qcae3u3" path="res://label.gd" id="3_r0x5m"]
 [ext_resource type="Script" uid="uid://cnwlpicev6046" path="res://car_value_total.gd" id="4_3mrqo"]
+[ext_resource type="PackedScene" uid="uid://d3nwhup02d3ph" path="res://mslot_machine.tscn" id="5_r0x5m"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0hol4"]
 font_size = 32
@@ -19,7 +20,7 @@ font_size = 64
 
 [node name="Game" type="Node2D"]
 position = Vector2(592, 301)
-script = ExtResource("1_sb48q")
+script = ExtResource("1_t88pq")
 
 [node name="Deck" parent="." instance=ExtResource("2_t88pq")]
 position = Vector2(1189, 648)
@@ -80,3 +81,5 @@ offset_right = 655.0
 offset_bottom = 50.0
 text = "AA"
 label_settings = SubResource("LabelSettings_d21ai")
+
+[node name="Mslot_machine" parent="." instance=ExtResource("5_r0x5m")]

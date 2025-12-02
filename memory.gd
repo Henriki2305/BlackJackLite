@@ -1,17 +1,29 @@
 extends Node2D
 
 class_name memory
-# Called when the node enters the scene tree for the first time.
+
+var triggerType : String: #card, normal, none
+	set = _setType
+	
+var game: Game = get_parent()
+
+func _setType(typ : String) -> void:
+	triggerType = typ
+
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
 	pass
+	
+func _getGame() -> Game:
+	return game
 
-func _memoryTrigger() -> bool:
+func _memoryTriggerCard(c : card, likelihoodmultiplier = 1) -> bool:
 	return false
 
-func _memoryEffect() -> void: #String?
+func _memoryTrigger(likelihoodmultiplier) -> bool:
+	return false	
+
+func _memoryEffectCard(c : card, likelihoodmultiplier = 1) -> void: #String?
+	pass
+
+func _memoryEffect() -> void:
 	pass

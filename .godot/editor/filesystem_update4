@@ -1,1 +1,4 @@
 res://Game.tscn
+res://memory.gd
+res://MEslot_machine.gd
+res://Game.gd

@@ -1,4 +1,4 @@
-extends Node2D
+class_name Game extends Node2D
 
 var souls = 4
 var playerDeck
@@ -7,12 +7,13 @@ var SoulPower = 0
 var HandPower = 0
 var Multiplier = 1
 var MemoriesMax = 5
-var Memories = []
+var Memories = [$Mslot_machine]
 var MaxSouls = 2
 var MajorSouls = 0
 var TotalPower = 0
 var AvailableHands = ["pair","BlackJack","normal","none"]
 var CurrentHand = "none"
+var MemoriesInGame : Array[memory] = []
 
 var DeckStrings : Dictionary = {
 	"normalDeck" : "noha.noh2.noh3.noha.nod10.noc7.noda.noha.noha.nosa.nohj",
@@ -52,6 +53,17 @@ func _playHand() -> void:
 	await get_tree().create_timer(0.85).timeout
 	print(str("opponent's hand: ", opponentDeck._cardValuesSum()))
 	print(str("opponent's score: ", opponentDeck._cardValuesSum()*opponentDeck.multiplier))
+	for c in playerDeck.cardsInHand:
+		for m in Memories:
+			if(m.typ == "card" || m.typ == "hybrid"):
+				if m._memoryTriggerCard(c):
+					m._memoryEffectCard(c)
+					await get_tree().create_timer(0.5).timeout
+	for m in Memories:
+		if(m.typ == "normal" || m.typ == "hybrid"):
+			if m._memoryTrigger():
+				m._memoryEffect()
+				await get_tree().create_timer(1).timeout
 	if(opponentDeck._cardValuesSum()*opponentDeck.multiplier > TotalPower):
 		print("you lost!")
 		souls -= Global.bet
@@ -137,6 +149,24 @@ func _updateHand(HandName) -> void:
 	CurrentHand = HandName
 	_updateHandPower(HandPowers[CurrentHand]*playerDeck._cardValuesSum())
 	
+func _increaseHandPower(amount) -> void:
+	_updateHandPower(HandPower + amount)
+	
+func _increaseSoulPower(amount) -> void:
+	_updateSoulPower(SoulPower + amount)
+	
+func _increasemultiplier(amount) -> void:
+	_updatemultiplier(Multiplier + amount)
+	
+func _multiplyHandPower(amount) -> void:
+	_updateHandPower(HandPower*amount)
+	
+func _multiplySoulPower(amount) -> void:
+	_updateSoulPower(SoulPower*amount)
+	
+func _multiplyMultiplier(amount) -> void:
+	_updatemultiplier(Multiplier*amount)
+	
 func _updateHandPower(amount) -> void:
 	HandPower = amount
 	$HandPowerText.text = str("Handpower: ",HandPower)
@@ -147,6 +177,11 @@ func _updateSoulPower(amount) -> void:
 	$SoulPowerText.text = str("Soulpower: ", SoulPower)
 	_updatePower()
 
+func _updatemultiplier(amount) -> void:
+	Multiplier = amount
+	$HandPowerText.text = str("Handpower: ",HandPower)
+	_updatePower()
+	
 func _updatePower() -> void:
 	TotalPower = SoulPower*HandPower*Multiplier
 	$TotalPowerText.text = str("Total power: ", TotalPower)
