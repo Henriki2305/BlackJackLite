@@ -14,6 +14,8 @@ var TotalPower = 0
 var AvailableHands = ["pair","BlackJack","normal","none"]
 var CurrentHand = "none"
 var MemoriesInGame : Array[memory] = []
+var roundsPassed = 0
+var level = 1
 
 var DeckStrings : Dictionary = {
 	"normalDeck" : "noh7.noh7.noh7.noh7.nod7.noc7.nod7.noha.noh7.nos7.noh7",
@@ -43,6 +45,15 @@ func _drawcard() -> void:
 			_updateHand(hand)
 			break
 
+func _discardCard() -> void:
+	playerDeck._discardCard()
+	$CardValueTotal.text = str(playerDeck._cardValuesSum())
+	for hand in AvailableHands:
+		if playerDeck._hasHand(hand):
+			print(hand)
+			_updateHand(hand)
+			break
+
 func _playHand() -> void:
 	$hitButton.visible = false
 	$standButton.visible = false
@@ -51,30 +62,33 @@ func _playHand() -> void:
 		opponentDeck._drawCard()
 		$CardValueTotal2.text = str(opponentDeck._cardValuesSum())
 	await get_tree().create_timer(0.85).timeout
+	var opponentDeckMultiplier = 0.4
 	print(str("opponent's hand: ", opponentDeck._cardValuesSum()))
-	print(str("opponent's score: ", opponentDeck._cardValuesSum()*opponentDeck.multiplier))
+	print(str("opponent's score: ", opponentDeck._cardValuesSum()*opponentDeckMultiplier))
 	for c in playerDeck.cardsInHand:
 		for m in Memories:
 			if(m._GetType() == "card" || m._GetType() == "hybrid"):
 				if m._memoryTriggerCard(c):
 					var tween = get_tree().create_tween()
-					tween.tween_property(c,"rotation_degrees", 30,0.05)
-					tween.tween_property(c,"rotation_degrees", -30,0.1)
-					tween.tween_property(c,"rotation_degrees", 0,0.05)
+					tween.tween_property(c,"rotation_degrees", 15,0.02)
+					tween.tween_property(c,"rotation_degrees", -15,0.04)
+					tween.tween_property(c,"rotation_degrees", 0,0.02)
 					m._memoryEffectCard(c)
 					await get_tree().create_timer(2).timeout
 	for m in Memories:
-		print(m)
 		if(m._GetType() == "normal" || m._GetType() == "hybrid"):
 			if m._memoryTrigger():
 				m._memoryEffect()
 				await get_tree().create_timer(1).timeout
-	if(opponentDeck._cardValuesSum()*opponentDeck.multiplier > TotalPower):
+	if(opponentDeck._cardValuesSum()*opponentDeckMultiplier > TotalPower):
 		print("you lost!")
 		souls -= Global.bet
 	else:
 		print("you won!")
-		opponentDeck._increaseMult()
+		roundsPassed += 1
+		if roundsPassed == 3:
+			roundsPassed = 0
+			_betweenRounds()
 	await get_tree().create_timer(2.5).timeout
 	Global.bet = 0
 	playerDeck._clearHand()
@@ -85,6 +99,8 @@ func _playHand() -> void:
 	$decrease.visible = true
 	$placebet.visible = true
 	
+func _betweenRounds() -> void:
+	pass
 
 func _increase() -> void:
 	if Global.bet < souls:
@@ -99,6 +115,7 @@ func _placeBet() -> void:
 	_updateSoulPower(Global.bet)
 	$hitButton.visible = true
 	$standButton.visible = true
+	$discardButton.visible = true
 	$increase.visible = false
 	$decrease.visible = false
 	$placebet.visible = false
@@ -115,18 +132,25 @@ func _ready() -> void:
 	var PlaceBetButton = Button.new()
 	var HitButton = Button.new()
 	var StandButton = Button.new()
+	var DiscardButton = Button.new()
 	HitButton.text = "hit"
 	StandButton.text = "Stand"
+	DiscardButton.text = "Discard"
 	add_child(HitButton)
 	add_child(StandButton)
+	add_child(DiscardButton)
 	HitButton.position = Vector2(400,300)
 	HitButton.pressed.connect(_drawcard)
 	HitButton.name = "hitButton"
 	StandButton.position = Vector2(450,300)
 	StandButton.pressed.connect(_playHand)
 	StandButton.name = "standButton"
+	DiscardButton.position = Vector2(500,300)
+	DiscardButton.pressed.connect(_discardCard)
+	DiscardButton.name = "discardButton"
 	HitButton.visible = false
 	StandButton.visible = false
+	DiscardButton.visible = false
 	Increasebutton.name = "increase"
 	Decreasebutton.name = "decrease"
 	PlaceBetButton.name = "placebet"

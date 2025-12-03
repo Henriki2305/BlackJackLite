@@ -1,11 +1,4 @@
 res://Game.tscn
 res://Game.gd
 res://deck.gd
-res://memory.gd
-res://MEslot_machine.gd
-res://Jokers/mslot_machine.tscn
-res://memory.tscn
-res://Memories/memory.gd
-res://MEhumility.gd
-res://Memories/MEslot_machine.gd
-res://Scenes/card.tscn
+res://card.gd

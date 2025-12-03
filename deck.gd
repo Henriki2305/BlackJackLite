@@ -7,7 +7,6 @@ var i = 0
 var cardsInDeck: Array[card]
 var drawableCards: Array[card]
 var cardsInHand: Array[card]
-var multiplier = 0.4
 var suits = {
 	"h": Enums.hearts,
 	"d": Enums.diamonds,
@@ -85,6 +84,20 @@ func _drawCard() -> void:
 	drawableCards = drawableCards.filter(func(c):return c._inDeck())
 	if(drawableCards.is_empty()):
 		$Sprite2D.visible = false
+		
+func _discardCard() -> void:
+	if !cardsInHand.is_empty():
+		var c = cardsInHand[-1]
+		var cT = c.transform.get_scale()
+		var tween = get_tree().create_tween()
+		tween.tween_property(c,"scale",cT*1.1,0.1)
+		tween.tween_property(c,"position", Vector2(-800+(150*(len(cardsInHand)-1)),-400),0.5)
+		tween.tween_property(c,"position", Vector2(4000,300),0.3)
+		await get_tree().create_timer(0.8).timeout
+		tween.tween_property(c,"scale",cT,0.5)
+		await get_tree().create_timer(0.6).timeout
+		c._discardCard()
+		cardsInHand.remove_at(-1)
 
 func sum(accum : int, number: int):
 	return accum + number
@@ -145,6 +158,3 @@ func _clearHand() -> void:
 	for c in cardsInHand:
 		c._discard()
 	cardsInHand.clear()
-
-func _increaseMult() -> void:
-	multiplier *= 1.35

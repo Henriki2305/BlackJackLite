@@ -122,6 +122,10 @@ func _drawCard() -> void:
 	location = hand
 	visible = true
 
+func _discardCard() -> void:
+	location = discard
+	visible = false
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
