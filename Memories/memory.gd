@@ -1,25 +1,22 @@
-extends Node2D
 
-class_name memory
+class_name memory extends Node2D
 
-var triggerType : String: #card, normal, none
+var triggerType : String: #card, normal, hybrid, none
 	set = _setType
-	
-var game: Game = get_parent()
 
 func _setType(typ : String) -> void:
 	triggerType = typ
 
 func _ready() -> void:
 	pass
-	
-func _getGame() -> Game:
-	return game
+
+func _getType() -> String:
+	return triggerType
 
 func _memoryTriggerCard(c : card, likelihoodmultiplier = 1) -> bool:
 	return false
 
-func _memoryTrigger(likelihoodmultiplier) -> bool:
+func _memoryTrigger(likelihoodmultiplier = 1) -> bool:
 	return false	
 
 func _memoryEffectCard(c : card, likelihoodmultiplier = 1) -> void: #String?

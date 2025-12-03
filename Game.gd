@@ -7,7 +7,7 @@ var SoulPower = 0
 var HandPower = 0
 var Multiplier = 1
 var MemoriesMax = 5
-var Memories = [$Mslot_machine]
+var Memories = []
 var MaxSouls = 2
 var MajorSouls = 0
 var TotalPower = 0
@@ -16,7 +16,7 @@ var CurrentHand = "none"
 var MemoriesInGame : Array[memory] = []
 
 var DeckStrings : Dictionary = {
-	"normalDeck" : "noha.noh2.noh3.noha.nod10.noc7.noda.noha.noha.nosa.nohj",
+	"normalDeck" : "noh7.noh7.noh7.noh7.nod7.noc7.nod7.noha.noh7.nos7.noh7",
 	"opposingDeck" : "noha.noh2.noh3.noh4.noh5.noh6.noh7.noh8.noh9.noh10.nohj.nohq.nohk"
 }
 
@@ -55,12 +55,17 @@ func _playHand() -> void:
 	print(str("opponent's score: ", opponentDeck._cardValuesSum()*opponentDeck.multiplier))
 	for c in playerDeck.cardsInHand:
 		for m in Memories:
-			if(m.typ == "card" || m.typ == "hybrid"):
+			if(m._GetType() == "card" || m._GetType() == "hybrid"):
 				if m._memoryTriggerCard(c):
+					var tween = get_tree().create_tween()
+					tween.tween_property(c,"rotation_degrees", 30,0.05)
+					tween.tween_property(c,"rotation_degrees", -30,0.1)
+					tween.tween_property(c,"rotation_degrees", 0,0.05)
 					m._memoryEffectCard(c)
-					await get_tree().create_timer(0.5).timeout
+					await get_tree().create_timer(2).timeout
 	for m in Memories:
-		if(m.typ == "normal" || m.typ == "hybrid"):
+		print(m)
+		if(m._GetType() == "normal" || m._GetType() == "hybrid"):
 			if m._memoryTrigger():
 				m._memoryEffect()
 				await get_tree().create_timer(1).timeout
@@ -103,6 +108,8 @@ func _placeBet() -> void:
 func _ready() -> void:
 	playerDeck = $Deck
 	opponentDeck = $OpponentsDeck
+	Memories.append($Mslot_machine)
+	MemoriesInGame.append($Mslot_machine)
 	var Increasebutton = Button.new()
 	var Decreasebutton = Button.new()
 	var PlaceBetButton = Button.new()

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dsa80bbmp0gad" path="res://Scenes/deck.tscn" id="2_t88pq"]
 [ext_resource type="Script" uid="uid://ctrgu3qcae3u3" path="res://label.gd" id="3_r0x5m"]
 [ext_resource type="Script" uid="uid://cnwlpicev6046" path="res://car_value_total.gd" id="4_3mrqo"]
-[ext_resource type="PackedScene" uid="uid://d3nwhup02d3ph" path="res://Memories/mslot_machine.tscn" id="5_r0x5m"]
+[ext_resource type="PackedScene" uid="uid://d3nwhup02d3ph" path="res://mslot_machine.tscn" id="5_r0x5m"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0hol4"]
 font_size = 32

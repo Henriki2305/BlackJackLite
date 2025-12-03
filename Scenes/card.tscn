@@ -13,12 +13,13 @@ region = Rect2(0, 0, 648, 904)
 script = ExtResource("1_brehn")
 
 [node name="card base" type="Sprite2D" parent="."]
-position = Vector2(64, 90)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_eumee")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 128.0
-offset_bottom = 180.0
+offset_left = -64.0
+offset_top = -91.0
+offset_right = 64.0
+offset_bottom = 89.0
 texture = SubResource("AtlasTexture_brehn")
 expand_mode = 1
