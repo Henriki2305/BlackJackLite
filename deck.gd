@@ -45,7 +45,10 @@ var ranks = {
 	"j": Enums.Jack,
 	"q": Enums.Queen,
 	"k": Enums.King,
-	"a": Enums.Ace
+	"a": Enums.Ace,
+	"pi": Enums.pi,
+	"e": Enums.e,
+	"12": Enums.twelwe
 	}
 
 

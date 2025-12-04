@@ -1,6 +1,4 @@
 res://Game.tscn
-res://Store.tscn
-res://store.gd
-res://Game.gd
-res://card.gd
+res://Enums.gd
 res://deck.gd
+res://Game.gd
