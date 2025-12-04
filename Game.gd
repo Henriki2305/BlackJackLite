@@ -16,6 +16,8 @@ var CurrentHand = "none"
 var MemoriesInGame : Array[memory] = []
 var roundsPassed = 0
 var level = 1
+var storeScene = preload("res://Store.tscn")
+
 
 var DeckStrings : Dictionary = {
 	"normalDeck" : "noh7.noh7.noh7.noh7.nod7.noc7.nod7.noha.noh7.nos7.noh7",
@@ -86,9 +88,6 @@ func _playHand() -> void:
 	else:
 		print("you won!")
 		roundsPassed += 1
-		if roundsPassed == 3:
-			roundsPassed = 0
-			_betweenRounds()
 	await get_tree().create_timer(2.5).timeout
 	Global.bet = 0
 	playerDeck._clearHand()
@@ -98,9 +97,27 @@ func _playHand() -> void:
 	$increase.visible = true
 	$decrease.visible = true
 	$placebet.visible = true
+	if roundsPassed == 3:
+		roundsPassed = 0
+		_betweenRounds()
 	
 func _betweenRounds() -> void:
-	pass
+	$increase.visible = false
+	$decrease.visible = false
+	$placebet.visible = false
+	var store = storeScene.instantiate()
+	store.set_name("store")
+	add_child(store)
+	store.position = Vector2(0,0)
+	playerDeck._restoreDeck()
+	opponentDeck._restoreDeck()
+	
+func _advance() -> void:
+	level+=1
+	$store.queue_free()
+	$increase.visible = true
+	$decrease.visible = true
+	$placebet.visible = true
 
 func _increase() -> void:
 	if Global.bet < souls:

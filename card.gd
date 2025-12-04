@@ -130,6 +130,9 @@ func _discardCard() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func _returnToDeck() -> void:
+	location = deck
+
 func _inDeck() -> bool:
 	return location == deck
 	

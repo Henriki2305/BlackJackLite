@@ -98,6 +98,12 @@ func _discardCard() -> void:
 		await get_tree().create_timer(0.6).timeout
 		c._discardCard()
 		cardsInHand.remove_at(-1)
+		
+func _restoreDeck() -> void:
+	for c in cardsInDeck:
+		c._returnToDeck()
+	drawableCards = cardsInDeck.duplicate()
+		
 
 func sum(accum : int, number: int):
 	return accum + number
