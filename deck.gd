@@ -71,7 +71,7 @@ func _ready() -> void:
 	var rng = RandomNumberGenerator.new()
 	var DeckString = get_parent()._determineDeck(self)
 	_createDeck(DeckString)
-		
+
 func _drawCard() -> void:
 	if(drawableCards.is_empty()):
 		print("no cards left")
@@ -79,6 +79,8 @@ func _drawCard() -> void:
 	drawableCards = drawableCards.filter(func(c):return c._inDeck())
 	var newCard = drawableCards.pick_random()
 	newCard._drawCard()
+	print(newCard._getName())
+	print(newCard.visible)
 	var new_position = Vector2(-800+(150*len(cardsInHand)),-350)
 	var tween = get_tree().create_tween()
 	tween.tween_property(newCard,"position", new_position,0.25)
@@ -93,20 +95,25 @@ func _discardCard() -> void:
 		var c = cardsInHand[-1]
 		var cT = c.transform.get_scale()
 		var tween = get_tree().create_tween()
-		tween.tween_property(c,"scale",cT*1.1,0.1)
+		var scaleTween = get_tree().create_tween()
+		scaleTween.tween_property(c,"scale",cT*1.1,0.1)
 		tween.tween_property(c,"position", Vector2(-800+(150*(len(cardsInHand)-1)),-400),0.5)
 		tween.tween_property(c,"position", Vector2(4000,300),0.3)
-		await get_tree().create_timer(0.8).timeout
-		tween.tween_property(c,"scale",cT,0.5)
+		await get_tree().create_timer(0.3).timeout
+		scaleTween.tween_property(c,"scale",cT,0.25)
 		await get_tree().create_timer(0.6).timeout
 		c._discardCard()
 		cardsInHand.remove_at(-1)
+		print(cardsInHand)
+		c.position = Vector2(0,0)
 		
 func _restoreDeck() -> void:
 	for c in cardsInDeck:
 		c._returnToDeck()
+		c.position = Vector2(0,0)
+		c.scale = Vector2(1,1)
+		c.global_position = global_position
 	drawableCards = cardsInDeck.duplicate()
-		
 
 func sum(accum : int, number: int):
 	return accum + number
@@ -163,7 +170,14 @@ func _hasHand(handName) -> bool:
 			return true
 	return false
 
+func _addToDeck(c: card) -> void :
+	cardsInDeck.append(c)
+	c.position = Vector2(0,0)
+	add_child(c)
+	c.location = deck
+
 func _clearHand() -> void:
 	for c in cardsInHand:
 		c._discard()
+		c.position = Vector2(0,0)
 	cardsInHand.clear()

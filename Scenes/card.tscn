@@ -1,8 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://wkiskyyxdtc0"]
+[gd_scene load_steps=8 format=3 uid="uid://wkiskyyxdtc0"]
 
 [ext_resource type="Script" uid="uid://6kjk4kl8xauv" path="res://card.gd" id="1_brehn"]
+[ext_resource type="Shader" uid="uid://bwiaemdgyalvy" path="res://Shaders/unholyShader.gdshader" id="2_e6po8"]
 [ext_resource type="Texture2D" uid="uid://d1it3m2ws05yb" path="res://Card base.png" id="2_eumee"]
 [ext_resource type="Texture2D" uid="uid://bepmefey1l17m" path="res://Testcards.png" id="3_e6po8"]
+[ext_resource type="Script" uid="uid://bhmnot27ncsjg" path="res://card_base.gd" id="4_e6po8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eumee"]
+resource_local_to_scene = true
+shader = ExtResource("2_e6po8")
+shader_parameter/cursed = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_brehn"]
 resource_local_to_scene = true
@@ -13,8 +20,10 @@ region = Rect2(0, 0, 648, 904)
 script = ExtResource("1_brehn")
 
 [node name="card base" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_eumee")
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_eumee")
+script = ExtResource("4_e6po8")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -64.0

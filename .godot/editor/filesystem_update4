@@ -1,4 +1,9 @@
 res://Game.tscn
-res://Enums.gd
-res://deck.gd
 res://Game.gd
+res://Scenes/card.tscn
+res://Shaders/unholyShader.gdshader
+res://card.gd
+res://deck.gd
+res://store.gd
+res://card_base.gd
+res://between_round.gd

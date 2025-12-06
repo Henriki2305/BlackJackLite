@@ -1,31 +1,32 @@
-extends Node2D
+class_name store extends Node2D
 
+var cardScene = preload("res://Scenes/card.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var StoreButton = Button.new()
-	var AdvanceButton = Button.new()
-	StoreButton.name = "store"
-	AdvanceButton.text = "advance"
-	StoreButton.text = "store"
-	AdvanceButton.text = "advance"
-	StoreButton.pressed.connect(_EnterStore)
-	AdvanceButton.pressed.connect(_Advance)
-	add_child(StoreButton)
-	add_child(AdvanceButton)
-	StoreButton.position = Vector2(200,200)
-	AdvanceButton.position = Vector2(0,200)
-	pass # Replace with function body.
-
-func _Advance() -> void:
-	var g : Game = get_parent()
-	g._advance()
-
-func _EnterStore() -> void:
 	pass
-	
-func _EnterSoulSmit() -> void:
-	pass
+
+var g: Game
+
+func _createCards() -> void:
+	g = get_parent().get_parent()
+	for i in range(2):
+		for j in range(4):
+			var card_instance = cardScene.instantiate()
+			card_instance.setValues(g._getRandomCard())
+			add_child(card_instance)
+			card_instance.visible = true
+			card_instance._unpacked()
+			card_instance.scale = Vector2(0,0)
+			card_instance.position = Vector2(200+j*300,i*500)
+			var tween = get_tree().create_tween()
+			var rotTween = get_tree().create_tween()
+			rotTween.tween_property(card_instance,"rotation_degrees", 1080,0.75)
+			tween.tween_property(card_instance,"scale", Vector2(1,1),0.65)
+
+func _resetPos(c:card) -> void:
+	c.position = Vector2(0,0)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

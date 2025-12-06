@@ -18,8 +18,10 @@ var CurrentHand = "none"
 var MemoriesInGame : Array[memory] = []
 var roundsPassed = 0
 var level = 1
-var storeScene = preload("res://Store.tscn")
-
+var unlockedCardRanks : Array[String] = ["2","3","4","5","6","7","8","9","10","j","q","k","a"]
+var unlockedSuits : Array[String] = ["h","s","d","c"]
+var unlockedEnchantments : Array[String] = ["no","cu"]
+var  BetweenRoundsScene = preload("res://BetweenRound.tscn")
 
 var DeckStrings : Dictionary = {
 	"normalDeck" : "noh7.noh7.noh7.noh7.nod7.noc7.nod7.noha.noh7.nos7.noh7",
@@ -32,6 +34,12 @@ var HandPowers = {
 	"pair" = 2,
 	"none" = 0
 }
+
+func _getPlayerDeck() -> deck:
+	return playerDeck
+
+func _getRandomCard() -> String:
+	return str(unlockedEnchantments.pick_random(),unlockedSuits.pick_random(),unlockedCardRanks.pick_random())
 
 func _determineDeck(GivenDeck) -> String:
 	if GivenDeck == $Deck:
@@ -49,6 +57,12 @@ func _drawcard() -> void:
 			_updateHand(hand)
 			break
 
+func _getUnlockedRanks() -> Array[String]:
+	return unlockedCardRanks
+	
+func _unlockRank(r : String) -> void:
+	unlockedCardRanks.append(r)
+
 func _discardCard() -> void:
 	playerDeck._discardCard()
 	$CardValueTotal.text = str(playerDeck._cardValuesSum())
@@ -61,6 +75,7 @@ func _discardCard() -> void:
 func _playHand() -> void:
 	$hitButton.visible = false
 	$standButton.visible = false
+	$discardButton.visible = false
 	while opponentDeck._cardValuesSum() < 17:
 		await get_tree().create_timer(1.5).timeout
 		opponentDeck._drawCard()
@@ -107,16 +122,15 @@ func _betweenRounds() -> void:
 	$increase.visible = false
 	$decrease.visible = false
 	$placebet.visible = false
-	var store = storeScene.instantiate()
-	store.set_name("store")
-	add_child(store)
-	store.position = Vector2(0,0)
+	var betweenRounds = BetweenRoundsScene.instantiate()
+	betweenRounds.set_name("betweenRounds")
+	add_child(betweenRounds)
+	betweenRounds.position = Vector2(0,0)
 	playerDeck._restoreDeck()
 	opponentDeck._restoreDeck()
 	
 func _advance() -> void:
 	level+=1
-	$store.queue_free()
 	$increase.visible = true
 	$decrease.visible = true
 	$placebet.visible = true
@@ -187,7 +201,7 @@ func _ready() -> void:
 	PlaceBetButton.position = Vector2(400,200)
 	$SoulPowerText.text = "Soulpower: 0"
 	$HandPowerText.text = "HandPower: 0"
-	$MultiplierText.text = "Multiplier: 0"
+	$MultiplierText.text = "Multiplier: 1"
 	$TotalPowerText.text = "Total power: 0"
 	
 	

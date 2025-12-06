@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dblsxdrbh3un1"]
+
+[ext_resource type="Script" uid="uid://d0y8w5beygrtg" path="res://between_round.gd" id="1_go6qk"]
+
+[node name="BetweenRound" type="Node2D"]
+script = ExtResource("1_go6qk")

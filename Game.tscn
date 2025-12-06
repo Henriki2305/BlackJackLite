@@ -35,6 +35,7 @@ offset_top = -100.0
 offset_right = 151.0
 offset_bottom = -52.0
 script = ExtResource("3_r0x5m")
+metadata/_edit_use_anchors_ = true
 
 [node name="CardValueTotal" type="Label" parent="."]
 offset_left = 566.0
@@ -42,6 +43,7 @@ offset_top = 96.0
 offset_right = 606.0
 offset_bottom = 119.0
 script = ExtResource("4_3mrqo")
+metadata/_edit_use_anchors_ = true
 
 [node name="CardValueTotal2" type="Label" parent="."]
 offset_left = -130.0
@@ -49,6 +51,7 @@ offset_top = 73.0
 offset_right = -90.0
 offset_bottom = 96.0
 script = ExtResource("4_3mrqo")
+metadata/_edit_use_anchors_ = true
 
 [node name="SoulPowerText" type="Label" parent="."]
 offset_left = 1043.0
@@ -57,6 +60,7 @@ offset_right = 1085.0
 offset_bottom = -15.0
 text = "AA"
 label_settings = SubResource("LabelSettings_0hol4")
+metadata/_edit_use_anchors_ = true
 
 [node name="HandPowerText" type="Label" parent="."]
 offset_left = 1044.0
@@ -65,6 +69,7 @@ offset_right = 1086.0
 offset_bottom = 33.0
 text = "AA"
 label_settings = SubResource("LabelSettings_q6r6c")
+metadata/_edit_use_anchors_ = true
 
 [node name="MultiplierText" type="Label" parent="."]
 offset_left = 1044.0
@@ -73,6 +78,7 @@ offset_right = 1086.0
 offset_bottom = 78.0
 text = "AA"
 label_settings = SubResource("LabelSettings_kdubu")
+metadata/_edit_use_anchors_ = true
 
 [node name="TotalPowerText" type="Label" parent="."]
 offset_left = 570.0
@@ -81,5 +87,6 @@ offset_right = 655.0
 offset_bottom = 50.0
 text = "AA"
 label_settings = SubResource("LabelSettings_d21ai")
+metadata/_edit_use_anchors_ = true
 
 [node name="Mslot_machine" parent="." instance=ExtResource("5_r0x5m")]

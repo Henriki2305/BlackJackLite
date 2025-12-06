@@ -1,5 +1,4 @@
-extends Node2D
-class_name card
+class_name card extends Node2D
 const Enums = preload("res://Enums.gd")
 var location
 var suits = {
@@ -94,7 +93,15 @@ var locationsy = {
 enum {
 	deck,
 	hand,
-	discard
+	discard,
+	pack
+}
+
+var suitNames = {
+	Enums.hearts : "hearts",
+	Enums.spades : "spades",
+	Enums.diamonds : "diamonds",
+	Enums.clubs : "clubs"
 }
 
 var rank = Enums.zero
@@ -104,6 +111,8 @@ var enchantment = Enums.normal
 func _ready() -> void:
 	pass
 
+func _getName() -> String:
+	return str(rank, " of ", suitNames[suit])
 
 func setValues(cValues : String) -> void:
 	var texture: TextureRect = $TextureRect
@@ -117,6 +126,11 @@ func setValues(cValues : String) -> void:
 	texture.texture.set_region(Rect2(Vector2(xind*w,yind*h),Vector2(w,h)))
 	visible = false
 	location = deck
+	match enchantment:
+		Enums.cursed:
+			$"card base".material.set_shader_parameter("cursed", true)
+		Enums.normal:
+			pass
 	
 func _drawCard() -> void:
 	location = hand
@@ -156,3 +170,37 @@ func _isFaceCard() -> bool:
 func _discard() -> void:
 	location = discard
 	visible = false
+
+func _mouse_enter() -> void:
+	print("enter")
+	if location == pack:
+		var sTween = get_tree().create_tween()
+		sTween.tween_property(self,"scale",Vector2(1.2,1.2),0.2)
+	
+func _mouse_exit() -> void:
+	print("exit")
+	if location == pack:
+		var sTween = get_tree().create_tween()
+		sTween.tween_property(self,"scale",Vector2(1,1),0.1)
+
+func _mouse_click():
+	print("a")
+	if location == pack:
+		print("b")
+		_takeCard()
+
+func _unpacked() -> void:
+	location = pack
+
+func _takeCard() -> void:
+	location = deck
+	var tween = get_tree().create_tween()
+	var rotTween = get_tree().create_tween()
+	rotTween.tween_property(self,"rotation_degrees", -1080,0.35)
+	tween.tween_property(self,"scale", Vector2(0,0),0.35)
+	await get_tree().create_timer(0.71).timeout
+	var sto: store = get_parent()
+	var d: deck =  sto.g._getPlayerDeck()
+	sto._resetPos(self)
+	sto.remove_child(self)
+	d._addToDeck(self)
