@@ -23,4 +23,11 @@ func _memoryTrigger(likelihoodmultiplier = 1) -> bool:
 func _memoryEffectCard(c : card, likelihoodMultiplier = 1) -> void:
 	mod += 3
 func _memoryEffect(likelihoodMultiplier = 1) -> void:	
-	get_parent()._increaseHandPower(mod)
+	get_parent().get_parent()._increaseHandPower(mod)
+
+func _createInfoBox() -> void:
+	$InfoBox/InfoText.text = (str("[b] Slot Machine [/b]\n [color=#0000FF] +", mod, " hand power[/color]\n Every [color=#FF0000] played 7[/color] has [color=#FFFF00] 1 in 2 chance [/color] to increase it by 3."))
+	$InfoBox.visible = true
+	
+func _removeInfoBox() -> void:
+	$InfoBox.visible = false

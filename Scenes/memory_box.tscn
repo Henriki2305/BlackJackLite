@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cw7kr0gn3r6oq"]
+
+[ext_resource type="Script" uid="uid://b5tk4mw0f3rpa" path="res://memory_box.gd" id="1_85pcq"]
+[ext_resource type="PackedScene" uid="uid://cbuawudm5kgfe" path="res://Memories/memory.tscn" id="2_tvpnd"]
+
+[node name="MemoryBox" type="Node2D"]
+script = ExtResource("1_85pcq")
+
+[node name="memory2" parent="." instance=ExtResource("2_tvpnd")]
+position = Vector2(410, 795)
+scale = Vector2(0.1, 0.1)
+
+[node name="memory" parent="." instance=ExtResource("2_tvpnd")]
+position = Vector2(235.99998, 350.99997)
+scale = Vector2(0.1, 0.1)

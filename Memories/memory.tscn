@@ -1,6 +1,44 @@
-[gd_scene load_steps=2 format=3 uid="uid://cbuawudm5kgfe"]
+[gd_scene load_steps=7 format=3 uid="uid://cbuawudm5kgfe"]
 
 [ext_resource type="Script" uid="uid://cygxtf3hffrrc" path="res://Memories/memory.gd" id="1_kh0cx"]
+[ext_resource type="Texture2D" uid="uid://cuyfegcc6eif3" path="res://Memories/images/SlotMachine.jpg" id="2_386u0"]
+[ext_resource type="Script" uid="uid://d3xmr2v40ekvh" path="res://Memories/memoryHover.gd" id="3_dsgf2"]
+[ext_resource type="Texture2D" uid="uid://d1it3m2ws05yb" path="res://Card base.png" id="4_fuocr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pqpdt"]
+size = Vector2(1026, 1026)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_tx3s3"]
+resource_local_to_scene = true
+diffuse_texture = ExtResource("4_fuocr")
 
 [node name="memory" type="Node2D"]
 script = ExtResource("1_kh0cx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_386u0")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+script = ExtResource("3_dsgf2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_pqpdt")
+
+[node name="InfoBox" type="MarginContainer" parent="."]
+offset_left = 600.0
+offset_top = -1515.0
+offset_right = 3815.0
+offset_bottom = 1515.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="InfoBox"]
+layout_mode = 2
+texture = SubResource("CanvasTexture_tx3s3")
+
+[node name="InfoText" type="RichTextLabel" parent="InfoBox"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 128
+theme_override_font_sizes/bold_font_size = 256
+bbcode_enabled = true
+scroll_active = false
+horizontal_alignment = 1

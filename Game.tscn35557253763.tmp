@@ -1,0 +1,92 @@
+[gd_scene load_steps=10 format=3 uid="uid://cbw3rje7ff5n5"]
+
+[ext_resource type="Script" uid="uid://hjm07q0ihj4" path="res://Game.gd" id="1_t88pq"]
+[ext_resource type="PackedScene" uid="uid://dsa80bbmp0gad" path="res://Scenes/deck.tscn" id="2_t88pq"]
+[ext_resource type="Script" uid="uid://ctrgu3qcae3u3" path="res://label.gd" id="3_r0x5m"]
+[ext_resource type="Script" uid="uid://cnwlpicev6046" path="res://car_value_total.gd" id="4_3mrqo"]
+[ext_resource type="PackedScene" uid="uid://d3nwhup02d3ph" path="res://Memories/mslot_machine.tscn" id="5_r0x5m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0hol4"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_q6r6c"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_kdubu"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_d21ai"]
+font_size = 64
+
+[node name="Game" type="Node2D"]
+position = Vector2(592, 301)
+script = ExtResource("1_t88pq")
+
+[node name="Deck" parent="." instance=ExtResource("2_t88pq")]
+position = Vector2(1189, 648)
+
+[node name="OpponentsDeck" parent="." instance=ExtResource("2_t88pq")]
+position = Vector2(364, 645)
+metadata/PlayerDeck = true
+
+[node name="BetAmount" type="Label" parent="."]
+offset_left = -99.0
+offset_top = -100.0
+offset_right = 151.0
+offset_bottom = -52.0
+script = ExtResource("3_r0x5m")
+metadata/_edit_use_anchors_ = true
+
+[node name="CardValueTotal" type="Label" parent="."]
+offset_left = 566.0
+offset_top = 96.0
+offset_right = 606.0
+offset_bottom = 119.0
+script = ExtResource("4_3mrqo")
+metadata/_edit_use_anchors_ = true
+
+[node name="CardValueTotal2" type="Label" parent="."]
+offset_left = -130.0
+offset_top = 73.0
+offset_right = -90.0
+offset_bottom = 96.0
+script = ExtResource("4_3mrqo")
+metadata/_edit_use_anchors_ = true
+
+[node name="SoulPowerText" type="Label" parent="."]
+offset_left = 1043.0
+offset_top = -60.0
+offset_right = 1085.0
+offset_bottom = -15.0
+text = "AA"
+label_settings = SubResource("LabelSettings_0hol4")
+metadata/_edit_use_anchors_ = true
+
+[node name="HandPowerText" type="Label" parent="."]
+offset_left = 1044.0
+offset_top = -12.0
+offset_right = 1086.0
+offset_bottom = 33.0
+text = "AA"
+label_settings = SubResource("LabelSettings_q6r6c")
+metadata/_edit_use_anchors_ = true
+
+[node name="MultiplierText" type="Label" parent="."]
+offset_left = 1044.0
+offset_top = 33.0
+offset_right = 1086.0
+offset_bottom = 78.0
+text = "AA"
+label_settings = SubResource("LabelSettings_kdubu")
+metadata/_edit_use_anchors_ = true
+
+[node name="TotalPowerText" type="Label" parent="."]
+offset_left = 570.0
+offset_top = -38.0
+offset_right = 655.0
+offset_bottom = 50.0
+text = "AA"
+label_settings = SubResource("LabelSettings_d21ai")
+metadata/_edit_use_anchors_ = true
+
+[node name="Mslot_machine" parent="." instance=ExtResource("5_r0x5m")]

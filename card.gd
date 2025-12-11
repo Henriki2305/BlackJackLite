@@ -91,7 +91,7 @@ var locationsy = {
 }
 
 enum {
-	deck,
+	ddeck,
 	hand,
 	discard,
 	pack
@@ -123,9 +123,9 @@ func setValues(cValues : String) -> void:
 	var yind = locationsy[suit]
 	var w  = 648
 	var h = 904
-	texture.texture.set_region(Rect2(Vector2(xind*w,yind*h),Vector2(w,h)))
+	texture.texture.set_region(Rect2(Vector2(xind*(w-20),yind*h),Vector2(w,h)))
 	visible = false
-	location = deck
+	location = ddeck
 	match enchantment:
 		Enums.cursed:
 			$"card base".material.set_shader_parameter("cursed", true)
@@ -138,20 +138,22 @@ func _drawCard() -> void:
 
 func _discardCard() -> void:
 	location = discard
-	visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
 func _returnToDeck() -> void:
-	location = deck
+	location = ddeck
 
 func _inDeck() -> bool:
-	return location == deck
+	return location == ddeck
 	
 func _inHand() -> bool:
 	return location == hand
+	
+func _inStore() -> bool:
+	return location == pack
 	
 func _worth() -> int:
 	return values[rank]
@@ -166,34 +168,27 @@ func _isAce() -> bool:
 
 func _isFaceCard() -> bool:
 	return rank == Enums.Jack || rank == Enums.Queen || rank == Enums.King
-	
-func _discard() -> void:
-	location = discard
-	visible = false
+
 
 func _mouse_enter() -> void:
-	print("enter")
 	if location == pack:
 		var sTween = get_tree().create_tween()
 		sTween.tween_property(self,"scale",Vector2(1.2,1.2),0.2)
 	
 func _mouse_exit() -> void:
-	print("exit")
 	if location == pack:
 		var sTween = get_tree().create_tween()
 		sTween.tween_property(self,"scale",Vector2(1,1),0.1)
 
 func _mouse_click():
-	print("a")
 	if location == pack:
-		print("b")
 		_takeCard()
 
 func _unpacked() -> void:
 	location = pack
 
 func _takeCard() -> void:
-	location = deck
+	location = ddeck
 	var tween = get_tree().create_tween()
 	var rotTween = get_tree().create_tween()
 	rotTween.tween_property(self,"rotation_degrees", -1080,0.35)

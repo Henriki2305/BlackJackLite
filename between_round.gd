@@ -20,7 +20,8 @@ func _ready() -> void:
 
 func _Advance() -> void:
 	var g : Game = get_parent()
-	$store.queue_free()
+	$storeInstance._emptyStore()
+	$storeInstance.queue_free()
 	g._advance()
 	g._getPlayerDeck()._restoreDeck()
 	g.opponentDeck._restoreDeck()
@@ -29,6 +30,7 @@ func _EnterStore() -> void:
 	var store = storeScene.instantiate()
 	store.position = Vector2(0,0)
 	add_child(store)
+	store.name = "storeInstance"
 	store._createCards()
 	
 func _EnterSoulSmit() -> void:

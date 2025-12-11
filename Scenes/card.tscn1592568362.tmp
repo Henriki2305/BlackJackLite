@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://wkiskyyxdtc0"]
+
+[ext_resource type="Script" uid="uid://6kjk4kl8xauv" path="res://card.gd" id="1_brehn"]
+[ext_resource type="Shader" uid="uid://bwiaemdgyalvy" path="res://Shaders/unholyShader.gdshader" id="2_e6po8"]
+[ext_resource type="Texture2D" uid="uid://d1it3m2ws05yb" path="res://Card base.png" id="2_eumee"]
+[ext_resource type="Texture2D" uid="uid://bepmefey1l17m" path="res://Testcards.png" id="3_e6po8"]
+[ext_resource type="Script" uid="uid://ddq24i8jhwo01" path="res://cardAreaHover.gd" id="4_e6po8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eumee"]
+resource_local_to_scene = true
+shader = ExtResource("2_e6po8")
+shader_parameter/cursed = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bnspj"]
+size = Vector2(640, 890.00006)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brehn"]
+resource_local_to_scene = true
+atlas = ExtResource("3_e6po8")
+region = Rect2(0, 0, 648, 904)
+
+[node name="Card" type="Node2D"]
+script = ExtResource("1_brehn")
+
+[node name="card base" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_eumee")
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_eumee")
+
+[node name="Area2D" type="Area2D" parent="card base"]
+script = ExtResource("4_e6po8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="card base/Area2D"]
+position = Vector2(5.3495158e-05, 6.869434e-05)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_bnspj")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -64.0
+offset_top = -91.0
+offset_right = 64.0
+offset_bottom = 89.0
+texture = SubResource("AtlasTexture_brehn")
+expand_mode = 1

@@ -52,7 +52,6 @@ var ranks = {
 	}
 
 
-
 func _createDeck(cardstring) -> void:
 	cardsInDeck = []
 	var cards = cardstring.split(".")
@@ -80,7 +79,6 @@ func _drawCard() -> void:
 	var newCard = drawableCards.pick_random()
 	newCard._drawCard()
 	print(newCard._getName())
-	print(newCard.visible)
 	var new_position = Vector2(-800+(150*len(cardsInHand)),-350)
 	var tween = get_tree().create_tween()
 	tween.tween_property(newCard,"position", new_position,0.25)
@@ -93,18 +91,17 @@ func _drawCard() -> void:
 func _discardCard() -> void:
 	if !cardsInHand.is_empty():
 		var c = cardsInHand[-1]
+		c._discardCard()
+		cardsInHand.remove_at(-1)
 		var cT = c.transform.get_scale()
 		var tween = get_tree().create_tween()
 		var scaleTween = get_tree().create_tween()
 		scaleTween.tween_property(c,"scale",cT*1.1,0.1)
-		tween.tween_property(c,"position", Vector2(-800+(150*(len(cardsInHand)-1)),-400),0.5)
+		tween.tween_property(c,"position", Vector2(-800+(150*(len(cardsInHand))),-400),0.5)
 		tween.tween_property(c,"position", Vector2(4000,300),0.3)
-		await get_tree().create_timer(0.3).timeout
-		scaleTween.tween_property(c,"scale",cT,0.25)
-		await get_tree().create_timer(0.6).timeout
-		c._discardCard()
-		cardsInHand.remove_at(-1)
-		print(cardsInHand)
+		await get_tree().create_timer(0.8).timeout
+		c.scale = cT
+		c.visible = false
 		c.position = Vector2(0,0)
 		
 func _restoreDeck() -> void:
@@ -174,10 +171,11 @@ func _addToDeck(c: card) -> void :
 	cardsInDeck.append(c)
 	c.position = Vector2(0,0)
 	add_child(c)
-	c.location = deck
+	c._inDeck()
 
 func _clearHand() -> void:
 	for c in cardsInHand:
-		c._discard()
+		c._discardCard()
+		c.visible = false
 		c.position = Vector2(0,0)
 	cardsInHand.clear()

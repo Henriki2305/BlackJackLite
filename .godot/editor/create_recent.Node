@@ -1,11 +1,14 @@
-Area2D
+RichTextLabel
+NinePatchRect
+MarginContainer
 CollisionShape2D
+Area2D
+Sprite2D
 WorldEnvironment
 Node2D
 Label      - Matches the "text" keyword.
 Label
 TextureRect
-Sprite2D
 Button
 TileMapLayer
 GridMap

@@ -7,10 +7,10 @@ var SoulPower = 0
 var HandPower = 0
 var Multiplier = 1
 var MemoriesMax = 5
-var Memories = []
 var MaxSouls = 2
 var MajorSouls = 0
 var TotalPower = 0
+var playPhase = true
 var AllHands = ["pair", "BlackJack","normal","lovelyFaces","neutrality","27","none",]
 var AvailableHands = ["pair","BlackJack","normal","none"]
 var choices = ["hit","stand","discard","doubleDown","surrender","burn","clone"]
@@ -22,6 +22,7 @@ var unlockedCardRanks : Array[String] = ["2","3","4","5","6","7","8","9","10","j
 var unlockedSuits : Array[String] = ["h","s","d","c"]
 var unlockedEnchantments : Array[String] = ["no","cu"]
 var  BetweenRoundsScene = preload("res://BetweenRound.tscn")
+var reward = 3
 
 var DeckStrings : Dictionary = {
 	"normalDeck" : "noh7.noh7.noh7.noh7.nod7.noc7.nod7.noha.noh7.nos7.noh7",
@@ -73,6 +74,7 @@ func _discardCard() -> void:
 			break
 
 func _playHand() -> void:
+	playPhase = false
 	$hitButton.visible = false
 	$standButton.visible = false
 	$discardButton.visible = false
@@ -85,19 +87,27 @@ func _playHand() -> void:
 	print(str("opponent's hand: ", opponentDeck._cardValuesSum()))
 	print(str("opponent's score: ", opponentDeck._cardValuesSum()*opponentDeckMultiplier))
 	for c in playerDeck.cardsInHand:
-		for m in Memories:
-			if(m._GetType() == "card" || m._GetType() == "hybrid"):
+		for m in $MemoryBox._getMemories():
+			if(m._getType() == "card" || m._getType() == "hybrid"):
 				if m._memoryTriggerCard(c):
 					var tween = get_tree().create_tween()
+					var mTween = get_tree().create_tween()
+					var cs = m.transform.get_scale()
 					tween.tween_property(c,"rotation_degrees", 15,0.02)
 					tween.tween_property(c,"rotation_degrees", -15,0.04)
 					tween.tween_property(c,"rotation_degrees", 0,0.02)
+					mTween.tween_property(m,"scale",cs*1.2,0.02)
+					mTween.tween_property(m,"scale",cs,0.03)
 					m._memoryEffectCard(c)
 					await get_tree().create_timer(2).timeout
-	for m in Memories:
-		if(m._GetType() == "normal" || m._GetType() == "hybrid"):
+	for m in $MemoryBox.Memories:
+		if(m._getType() == "normal" || m._getType() == "hybrid"):
 			if m._memoryTrigger():
 				m._memoryEffect()
+				var cs = m.transform.get_scale()
+				var mTween = get_tree().create_tween()
+				mTween.tween_property(m,"scale",cs*1.2,0.02)
+				mTween.tween_property(m,"scale",cs,0.03)
 				await get_tree().create_timer(1).timeout
 	if(opponentDeck._cardValuesSum()*opponentDeckMultiplier > TotalPower):
 		print("you lost!")
@@ -105,6 +115,16 @@ func _playHand() -> void:
 	else:
 		print("you won!")
 		roundsPassed += 1
+		reward+=1
+		playPhase = true
+		if TotalPower > 2*opponentDeckMultiplier:
+			reward+=1
+		if TotalPower > 10*opponentDeckMultiplier:
+			reward+=1
+		if TotalPower > 50*opponentDeckMultiplier:
+			reward+=1
+		if TotalPower > 1000*opponentDeckMultiplier:
+			reward+=3
 	await get_tree().create_timer(2.5).timeout
 	Global.bet = 0
 	playerDeck._clearHand()
@@ -116,6 +136,8 @@ func _playHand() -> void:
 	$placebet.visible = true
 	if roundsPassed == 3:
 		roundsPassed = 0
+		souls+=reward
+		reward=3
 		_betweenRounds()
 	
 func _betweenRounds() -> void:
@@ -134,6 +156,7 @@ func _advance() -> void:
 	$increase.visible = true
 	$decrease.visible = true
 	$placebet.visible = true
+	$betweenRounds.queue_free()
 
 func _increase() -> void:
 	if Global.bet < souls:
@@ -158,8 +181,6 @@ func _placeBet() -> void:
 func _ready() -> void:
 	playerDeck = $Deck
 	opponentDeck = $OpponentsDeck
-	Memories.append($Mslot_machine)
-	MemoriesInGame.append($Mslot_machine)
 	var Increasebutton = Button.new()
 	var Decreasebutton = Button.new()
 	var PlaceBetButton = Button.new()
