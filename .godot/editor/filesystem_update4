@@ -1,9 +1,0 @@
-res://Memories/memory.tscn
-res://Shaders/unholyShader.gdshader
-res://Memories/memory.gd
-res://Game.tscn
-res://Game.gd
-res://memory_box.gd
-res://Scenes/memory_box.tscn
-res://Memories/MEslot_machine.gd
-res://Memories/mslot_machine.tscn

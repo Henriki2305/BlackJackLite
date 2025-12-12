@@ -1,15 +1,15 @@
+ColorRect
+Sprite2D
+SubViewport
+SubViewportContainer
+Camera2D
+Node2D
+CanvasLayer
+Control
+Node
 RichTextLabel
 NinePatchRect
 MarginContainer
 CollisionShape2D
 Area2D
-Sprite2D
 WorldEnvironment
-Node2D
-Label      - Matches the "text" keyword.
-Label
-TextureRect
-Button
-TileMapLayer
-GridMap
-CharacterBody2D

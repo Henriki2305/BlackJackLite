@@ -19,75 +19,74 @@ font_size = 32
 font_size = 64
 
 [node name="Game" type="Node2D"]
-position = Vector2(592, 301)
 script = ExtResource("1_t88pq")
 
 [node name="MemoryBox" parent="." instance=ExtResource("2_r0x5m")]
-position = Vector2(1000, 1)
+position = Vector2(121, 85)
 
 [node name="Deck" parent="." instance=ExtResource("2_t88pq")]
-position = Vector2(1189, 648)
+position = Vector2(1817, 953)
 
 [node name="OpponentsDeck" parent="." instance=ExtResource("2_t88pq")]
-position = Vector2(364, 645)
+position = Vector2(768, 977)
 metadata/PlayerDeck = true
 
 [node name="BetAmount" type="Label" parent="."]
-offset_left = -99.0
-offset_top = -100.0
-offset_right = 151.0
-offset_bottom = -52.0
+offset_left = 869.0
+offset_top = 420.0
+offset_right = 1119.0
+offset_bottom = 468.0
 script = ExtResource("3_r0x5m")
 metadata/_edit_use_anchors_ = true
 
 [node name="CardValueTotal" type="Label" parent="."]
-offset_left = 566.0
-offset_top = 96.0
-offset_right = 606.0
-offset_bottom = 119.0
+offset_left = 1258.0
+offset_top = 409.0
+offset_right = 1298.0
+offset_bottom = 432.0
 script = ExtResource("4_3mrqo")
 metadata/_edit_use_anchors_ = true
 
 [node name="CardValueTotal2" type="Label" parent="."]
-offset_left = -130.0
-offset_top = 73.0
-offset_right = -90.0
-offset_bottom = 96.0
+offset_left = 211.0
+offset_top = 343.0
+offset_right = 251.0
+offset_bottom = 366.0
 script = ExtResource("4_3mrqo")
 metadata/_edit_use_anchors_ = true
 
 [node name="SoulPowerText" type="Label" parent="."]
-offset_left = 1043.0
-offset_top = -60.0
-offset_right = 1085.0
-offset_bottom = -15.0
+offset_left = 1639.0
+offset_top = 514.0
+offset_right = 1681.0
+offset_bottom = 559.0
 text = "AA"
 label_settings = SubResource("LabelSettings_0hol4")
 metadata/_edit_use_anchors_ = true
 
 [node name="HandPowerText" type="Label" parent="."]
-offset_left = 1044.0
-offset_top = -12.0
-offset_right = 1086.0
-offset_bottom = 33.0
+offset_left = 1640.0
+offset_top = 568.0
+offset_right = 1682.0
+offset_bottom = 613.0
 text = "AA"
 label_settings = SubResource("LabelSettings_q6r6c")
 metadata/_edit_use_anchors_ = true
 
 [node name="MultiplierText" type="Label" parent="."]
-offset_left = 1044.0
-offset_top = 33.0
-offset_right = 1086.0
-offset_bottom = 78.0
+offset_left = 1636.0
+offset_top = 622.0
+offset_right = 1678.0
+offset_bottom = 667.0
 text = "AA"
 label_settings = SubResource("LabelSettings_kdubu")
 metadata/_edit_use_anchors_ = true
 
 [node name="TotalPowerText" type="Label" parent="."]
-offset_left = 570.0
-offset_top = -38.0
-offset_right = 655.0
-offset_bottom = 50.0
+offset_left = 1293.0
+offset_top = 534.0
+offset_right = 1378.0
+offset_bottom = 622.0
 text = "AA"
 label_settings = SubResource("LabelSettings_d21ai")
 metadata/_edit_use_anchors_ = true

@@ -193,13 +193,13 @@ func _ready() -> void:
 	add_child(HitButton)
 	add_child(StandButton)
 	add_child(DiscardButton)
-	HitButton.position = Vector2(400,300)
+	HitButton.position = Vector2(900,700)
 	HitButton.pressed.connect(_drawcard)
 	HitButton.name = "hitButton"
-	StandButton.position = Vector2(450,300)
+	StandButton.position = Vector2(950,700)
 	StandButton.pressed.connect(_playHand)
 	StandButton.name = "standButton"
-	DiscardButton.position = Vector2(500,300)
+	DiscardButton.position = Vector2(1000,700)
 	DiscardButton.pressed.connect(_discardCard)
 	DiscardButton.name = "discardButton"
 	HitButton.visible = false
@@ -217,9 +217,9 @@ func _ready() -> void:
 	add_child(Increasebutton)
 	add_child(Decreasebutton)
 	add_child(PlaceBetButton)
-	Increasebutton.position = Vector2(200,200)
-	Decreasebutton.position = Vector2(300,200)
-	PlaceBetButton.position = Vector2(400,200)
+	Increasebutton.position = Vector2(700,600)
+	Decreasebutton.position = Vector2(800,600)
+	PlaceBetButton.position = Vector2(900,600)
 	$SoulPowerText.text = "Soulpower: 0"
 	$HandPowerText.text = "HandPower: 0"
 	$MultiplierText.text = "Multiplier: 1"
