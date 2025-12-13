@@ -99,6 +99,7 @@ label_settings = SubResource("LabelSettings_d21ai")
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_3mrqo")
 offset_right = 1920.0
 offset_bottom = 1080.0

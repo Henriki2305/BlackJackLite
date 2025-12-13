@@ -27,6 +27,15 @@ var opponentPower = 0
 var ripple : bool = false
 
 
+var soulRules : Dictionary = {
+	"Demented" : false, #memories in store are free but only last 6 rounds
+	"Forgiving" : false, #You cannot bust if you fulfill the requirements of at least 1 hand,
+	"Vengeful" : false, #Losing a bet gives twice its amount in soul power to your next hand,
+	"Eccentric" : false, #You cannot gain bonus soul shards from rounds, at the end of round get a new memory if you have space for it
+	"chaotic" : false, #All your memories trigger twice, but have 1 in 2 chance to not trigger at all
+	"destructive" : false #After beating third level of a layer, get a round of destruction 
+}
+
 var handReqTexts : Dictionary = {
 	"testhand1" : "testReq1",
 	"testhand2" : "testReq2",
