@@ -23,6 +23,21 @@ var unlockedSuits : Array[String] = ["h","s","d","c"]
 var unlockedEnchantments : Array[String] = ["no","cu"]
 var  BetweenRoundsScene = preload("res://BetweenRound.tscn")
 var reward = 3
+var opponentPower = 0
+var ripple : bool = false
+
+
+var handReqTexts : Dictionary = {
+	"testhand1" : "testReq1",
+	"testhand2" : "testReq2",
+	"testhand3" : "testReq3"
+}
+
+var handRewardTexts : Dictionary = {
+	"testhand1" : "testRew1",
+	"testhand2" : "testRew2",
+	"testhand3" : "testRew3"
+}
 
 var DeckStrings : Dictionary = {
 	"normalDeck" : "noh7.noh7.noh7.noh7.nod7.noc7.nod7.noha.noh7.nos7.noh7",
@@ -85,7 +100,8 @@ func _playHand() -> void:
 	await get_tree().create_timer(0.85).timeout
 	var opponentDeckMultiplier = 0.4
 	print(str("opponent's hand: ", opponentDeck._cardValuesSum()))
-	print(str("opponent's score: ", opponentDeck._cardValuesSum()*opponentDeckMultiplier))
+	opponentPower = opponentDeck._cardValuesSum()*opponentDeckMultiplier
+	print(str("opponent's score: ", opponentPower))
 	for c in playerDeck.cardsInHand:
 		for m in $MemoryBox._getMemories():
 			if(m._getType() == "card" || m._getType() == "hybrid"):
@@ -109,7 +125,7 @@ func _playHand() -> void:
 				mTween.tween_property(m,"scale",cs*1.2,0.02)
 				mTween.tween_property(m,"scale",cs,0.03)
 				await get_tree().create_timer(1).timeout
-	if(opponentDeck._cardValuesSum()*opponentDeckMultiplier > TotalPower):
+	if(opponentPower > TotalPower):
 		print("you lost!")
 		souls -= Global.bet
 	else:
@@ -117,13 +133,13 @@ func _playHand() -> void:
 		roundsPassed += 1
 		reward+=1
 		playPhase = true
-		if TotalPower > 2*opponentDeckMultiplier:
+		if TotalPower > 2*opponentPower:
 			reward+=1
-		if TotalPower > 10*opponentDeckMultiplier:
+		if TotalPower > 10*opponentPower:
 			reward+=1
-		if TotalPower > 50*opponentDeckMultiplier:
+		if TotalPower > 50*opponentPower:
 			reward+=1
-		if TotalPower > 1000*opponentDeckMultiplier:
+		if TotalPower > 1000*opponentPower:
 			reward+=3
 	await get_tree().create_timer(2.5).timeout
 	Global.bet = 0
@@ -134,6 +150,7 @@ func _playHand() -> void:
 	$increase.visible = true
 	$decrease.visible = true
 	$placebet.visible = true
+	opponentPower = 0
 	if roundsPassed == 3:
 		roundsPassed = 0
 		souls+=reward
@@ -224,11 +241,20 @@ func _ready() -> void:
 	$HandPowerText.text = "HandPower: 0"
 	$MultiplierText.text = "Multiplier: 1"
 	$TotalPowerText.text = "Total power: 0"
+	$ColorRect.material.set_shader_parameter("width",0.0)
+	$ColorRect.material.set_shader_parameter("spot",0.0)
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if ripple:
+		var s = $ColorRect.material.get_shader_parameter("spot")
+		if s > 0.50:
+			$ColorRect.material.set_shader_parameter("spot",0.0)
+			$ColorRect.material.set_shader_parameter("width",0.0)
+			ripple = false
+		else:
+			$ColorRect.material.set_shader_parameter("spot", s+0.005)
 
 func _updateHand(HandName) -> void:
 	CurrentHand = HandName
@@ -270,3 +296,8 @@ func _updatemultiplier(amount) -> void:
 func _updatePower() -> void:
 	TotalPower = SoulPower*HandPower*Multiplier
 	$TotalPowerText.text = str("Total power: ", TotalPower)
+	#if TotalPower > 20*opponentPower:
+	#	$ColorRect.material.set_shader_parameter("width",0.0125)
+	#	$ColorRect.material.set_shader_parameter("spot",0.03)
+	#	ripple = true
+	

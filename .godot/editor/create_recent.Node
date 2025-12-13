@@ -1,5 +1,8 @@
-ColorRect
+RichTextLabel
+CollisionShape2D
+Area2D
 Sprite2D
+ColorRect
 SubViewport
 SubViewportContainer
 Camera2D
@@ -7,9 +10,5 @@ Node2D
 CanvasLayer
 Control
 Node
-RichTextLabel
 NinePatchRect
 MarginContainer
-CollisionShape2D
-Area2D
-WorldEnvironment

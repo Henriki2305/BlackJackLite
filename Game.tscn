@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://cbw3rje7ff5n5"]
+[gd_scene load_steps=13 format=3 uid="uid://cbw3rje7ff5n5"]
 
 [ext_resource type="Script" uid="uid://hjm07q0ihj4" path="res://Game.gd" id="1_t88pq"]
 [ext_resource type="PackedScene" uid="uid://cw7kr0gn3r6oq" path="res://Scenes/memory_box.tscn" id="2_r0x5m"]
 [ext_resource type="PackedScene" uid="uid://dsa80bbmp0gad" path="res://Scenes/deck.tscn" id="2_t88pq"]
 [ext_resource type="Script" uid="uid://ctrgu3qcae3u3" path="res://label.gd" id="3_r0x5m"]
 [ext_resource type="Script" uid="uid://cnwlpicev6046" path="res://car_value_total.gd" id="4_3mrqo"]
+[ext_resource type="Shader" uid="uid://bv50m4ytbyiqf" path="res://Shaders/RippleEffectShader.gdshader" id="6_r0x5m"]
+[ext_resource type="Texture2D" uid="uid://8x4mrmdu76pf" path="res://Memories/images/check.jpg" id="7_3mrqo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0hol4"]
 font_size = 32
@@ -17,6 +19,11 @@ font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_d21ai"]
 font_size = 64
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3mrqo"]
+shader = ExtResource("6_r0x5m")
+shader_parameter/width = 0.05
+shader_parameter/spot = 0.2
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_t88pq")
@@ -90,3 +97,16 @@ offset_bottom = 622.0
 text = "AA"
 label_settings = SubResource("LabelSettings_d21ai")
 metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_3mrqo")
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 1
+
+[node name="TestBackGround" type="Sprite2D" parent="."]
+visible = false
+z_index = -17
+position = Vector2(928, 559)
+scale = Vector2(5, 5)
+texture = ExtResource("7_3mrqo")
