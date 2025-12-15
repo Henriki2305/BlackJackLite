@@ -23,6 +23,7 @@ var unlockedSuits : Array[String] = ["h","s","d","c"]
 var unlockedEnchantments : Array[String] = ["no","cu"]
 var  BetweenRoundsScene = preload("res://BetweenRound.tscn")
 var reward = 3
+var opponentDeckMultiplier = 0.4
 var opponentPower = 0
 var ripple : bool = false
 
@@ -97,7 +98,7 @@ func _discardCard() -> void:
 			_updateHand(hand)
 			break
 
-func _playHand() -> void:
+func _drawDealerHand() -> void:
 	playPhase = false
 	$hitButton.visible = false
 	$standButton.visible = false
@@ -106,11 +107,19 @@ func _playHand() -> void:
 		await get_tree().create_timer(1.5).timeout
 		opponentDeck._drawCard()
 		$CardValueTotal2.text = str(opponentDeck._cardValuesSum())
-	await get_tree().create_timer(0.85).timeout
-	var opponentDeckMultiplier = 0.4
-	print(str("opponent's hand: ", opponentDeck._cardValuesSum()))
-	opponentPower = opponentDeck._cardValuesSum()*opponentDeckMultiplier
-	print(str("opponent's score: ", opponentPower))
+		opponentPower = opponentDeck._cardValuesSum()*opponentDeckMultiplier
+		$OpponentScore.text = str("Score to beat: [color=#0000FF]",opponentPower,"[/color]")
+	await get_tree().create_timer(0.35).timeout
+	playPhase = true
+	$hitButton.visible = true
+	$standButton.visible = true
+	$discardButton.visible = true
+
+func _playHand() -> void:
+	playPhase = false
+	$hitButton.visible = false
+	$standButton.visible = false
+	$discardButton.visible = false
 	for c in playerDeck.cardsInHand:
 		for m in $MemoryBox._getMemories():
 			if(m._getType() == "card" || m._getType() == "hybrid"):
@@ -141,6 +150,7 @@ func _playHand() -> void:
 		print("you won!")
 		roundsPassed += 1
 		reward+=1
+		opponentDeckMultiplier*=1.1
 		playPhase = true
 		if TotalPower > 2*opponentPower:
 			reward+=1
@@ -160,6 +170,7 @@ func _playHand() -> void:
 	$decrease.visible = true
 	$placebet.visible = true
 	opponentPower = 0
+	$OpponentScore.text = str("Score to beat: [color=#0000FF]0[/color]")
 	if roundsPassed == 3:
 		roundsPassed = 0
 		souls+=reward
@@ -195,18 +206,18 @@ func _decrease() -> void:
 
 func _placeBet() -> void:
 	_updateSoulPower(Global.bet)
-	$hitButton.visible = true
-	$standButton.visible = true
-	$discardButton.visible = true
 	$increase.visible = false
 	$decrease.visible = false
 	$placebet.visible = false
+	_drawDealerHand()
 	
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	playerDeck = $Deck
 	opponentDeck = $OpponentsDeck
+	playerDeck._setSide(false)
+	opponentDeck._setSide(true)
 	var Increasebutton = Button.new()
 	var Decreasebutton = Button.new()
 	var PlaceBetButton = Button.new()
@@ -305,7 +316,7 @@ func _updatemultiplier(amount) -> void:
 func _updatePower() -> void:
 	TotalPower = SoulPower*HandPower*Multiplier
 	$TotalPowerText.text = str("Total power: ", TotalPower)
-	#if TotalPower > 20*opponentPower:
+	#if TotalPower > 10*opponentPower:
 	#	$ColorRect.material.set_shader_parameter("width",0.0125)
 	#	$ColorRect.material.set_shader_parameter("spot",0.03)
 	#	ripple = true

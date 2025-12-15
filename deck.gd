@@ -7,6 +7,8 @@ var i = 0
 var cardsInDeck: Array[card]
 var drawableCards: Array[card]
 var cardsInHand: Array[card]
+var opponent : bool
+
 var suits = {
 	"h": Enums.hearts,
 	"d": Enums.diamonds,
@@ -52,6 +54,9 @@ var ranks = {
 	}
 
 
+func _setSide(s : bool) -> void:
+	opponent = s
+
 func _createDeck(cardstring) -> void:
 	cardsInDeck = []
 	var cards = cardstring.split(".")
@@ -81,7 +86,11 @@ func _drawCard() -> void:
 	print(newCard._getName())
 	var new_position = Vector2(-800+(150*len(cardsInHand)),-350)
 	var tween = get_tree().create_tween()
-	tween.tween_property(newCard,"position", new_position,0.25)
+	if opponent:
+		new_position = Vector2(800+150*len(cardsInHand),400)
+		tween.tween_property(newCard,"global_position", new_position,0.25)
+	else:
+		tween.tween_property(newCard,"position", new_position,0.25)
 	cardsInHand.append(newCard)
 	drawableCards = drawableCards.filter(func(c):return c._inDeck())
 	drawableCards = drawableCards.filter(func(c):return c._inDeck())
