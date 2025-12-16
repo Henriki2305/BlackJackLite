@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://wkiskyyxdtc0"]
+[gd_scene load_steps=12 format=3 uid="uid://wkiskyyxdtc0"]
 
 [ext_resource type="Script" uid="uid://6kjk4kl8xauv" path="res://card.gd" id="1_brehn"]
 [ext_resource type="Shader" uid="uid://bwiaemdgyalvy" path="res://Shaders/unholyShader.gdshader" id="2_e6po8"]
@@ -6,14 +6,21 @@
 [ext_resource type="Texture2D" uid="uid://bepmefey1l17m" path="res://Testcards.png" id="3_e6po8"]
 [ext_resource type="Script" uid="uid://bhmnot27ncsjg" path="res://card_base.gd" id="4_e6po8"]
 [ext_resource type="Script" uid="uid://ddq24i8jhwo01" path="res://cardAreaHover.gd" id="5_bnspj"]
+[ext_resource type="Shader" uid="uid://bfd61dbt44b5j" path="res://Shaders/cardTextShader.gdshader" id="6_xnv4g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eumee"]
 resource_local_to_scene = true
 shader = ExtResource("2_e6po8")
+shader_parameter/shadow = false
 shader_parameter/cursed = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bnspj"]
 size = Vector2(640, 890.00006)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u5wvb"]
+resource_local_to_scene = true
+shader = ExtResource("6_xnv4g")
+shader_parameter/rare = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_brehn"]
 resource_local_to_scene = true
@@ -38,9 +45,10 @@ scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_bnspj")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_u5wvb")
 offset_left = -64.0
-offset_top = -91.0
-offset_right = 64.0
+offset_top = -89.0
+offset_right = 63.0
 offset_bottom = 89.0
 texture = SubResource("AtlasTexture_brehn")
 expand_mode = 1

@@ -42,6 +42,17 @@ var ranks = {
 	"a": Enums.Ace
 	}
 	
+var rarities = {
+	"co": Enums.common,
+	"un": Enums.uncommon,
+	"ra": Enums.rare,
+	"ul": Enums.ultraRare,
+	"go": Enums.goldenRare,
+	"gh": Enums.ghostRare,
+	"ne": Enums.negative,
+	"sh": Enums.shadowRare
+}
+	
 var values = {
 	Enums.zero: 0,
 	Enums.one: 1,
@@ -107,6 +118,7 @@ var suitNames = {
 var rank = Enums.zero
 var suit = Enums.none
 var enchantment = Enums.normal
+var rarity = Enums.common
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -118,7 +130,8 @@ func setValues(cValues : String) -> void:
 	var texture: TextureRect = $TextureRect
 	enchantment = enchantments[cValues.left(2)]
 	suit = suits[cValues[2]]
-	rank = ranks[cValues.right(-3)]
+	rarity = rarities[str(cValues[3],cValues[4])]
+	rank = ranks[cValues.right(-5)]
 	var xind = locationsx[rank]
 	var yind = locationsy[suit]
 	var w  = 648
@@ -130,6 +143,13 @@ func setValues(cValues : String) -> void:
 		Enums.cursed:
 			$"card base".material.set_shader_parameter("cursed", true)
 		Enums.normal:
+			pass
+	match rarity:
+		Enums.rare:
+			$TextureRect.material.set_shader_parameter("rare",true)
+		Enums.shadowRare:
+			$"card base".material.set_shader_parameter("shadow", true)
+		Enums.common:
 			pass
 	
 func _drawCard() -> void:

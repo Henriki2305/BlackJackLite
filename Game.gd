@@ -50,8 +50,8 @@ var handRewardTexts : Dictionary = {
 }
 
 var DeckStrings : Dictionary = {
-	"normalDeck" : "noh7.noh7.noh7.noh7.nod7.noc7.nod7.noha.noh7.nos7.noh7",
-	"opposingDeck" : "noha.noh2.noh3.noh4.noh5.noh6.noh7.noh8.noh9.noh10.nohj.nohq.nohk"
+	"normalDeck" : "nohsh7.cuhco7.cuhsh7.nohco7.nodra7.nocco7.nodco7.nohcoa.nohco7.nosco7.nohco7",
+	"opposingDeck" : "nohcoa.nohco2.nohco3.nohco4.nohco5.nohco6.nohco7.nohco8.nohco9.nohco10.nohcoj.nohcoq.nohcok"
 }
 
 var HandPowers = {

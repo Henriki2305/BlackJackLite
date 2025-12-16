@@ -25,6 +25,10 @@ func _setName(s : String) -> void:
 func _setInfo() -> void:
 	memInfo = ""
 	match memName:
+		"HelpingHand":
+			memInfo = "+10 hand power"
+		"Solitude":
+			memInfo = "double your multiplier for each empty soul slot"
 		"SlotMachine":
 			memInfo = str("[b] Slot Machine [/b]\n [color=#0000FF] +", Dat1, " hand power[/color]\n Every [color=#FF0000] played 7[/color] has [color=#FFFF00] 1 in 2 chance [/color] to increase it by 3.")
 		"Humility":
@@ -67,6 +71,17 @@ func _setInfo() -> void:
 			memInfo = "played holy cards are turned into unholy cards of 1 level higher"
 		"ColorTelevision":
 			memInfo = "+0.1 multiplier for every suit in hand"
+		"Ora":
+			memInfo = "convert 20% of your soul power to hand power. Convert it back after all effects have resolved"
+		"Labora":
+			memInfo = "Convert 20% of your hand power to soul power. Convert it back after all effects have resolved"
+		"Purification":
+			memInfo = "All played cards lose their cursed enchantments. this memory gains x0.1 multiplication for each enchantment removed"
+		"Canonization":
+			memInfo = "All played face cards have 1 in 4 card to turn holy"
+		"Outdoors":
+			memInfo = "This memory gains + 0.5 soulpower for each played card under value of 7 and lose 1 soulpower for each played face card"
+		
 
 func _setType() -> void:
 	match memName:
@@ -132,6 +147,8 @@ func _memoryEffect(likelihoodmultiplier = 1) -> void:
 		"Sacrifice":
 			g._increaseSoulPower(Global.bet * 2)
 	
+func _memoryReset() -> void:
+	pass
 
 func _createInfoBox() -> void:
 	if box :
