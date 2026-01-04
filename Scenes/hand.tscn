@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://fv4fstgriixi"]
+
+[ext_resource type="Script" uid="uid://daoctn6otdln2" path="res://hand.gd" id="1_f6hnx"]
+[ext_resource type="Texture2D" uid="uid://uj7pxk2p61vv" path="res://Memories/images/HandGray.png" id="2_u7o8q"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vumah"]
+radius = 83.99999
+height = 382.0
+
+[node name="Hand" type="Node2D"]
+script = ExtResource("1_f6hnx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_u7o8q")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_vumah")
+
+[node name="NameText" type="RichTextLabel" parent="."]
+offset_left = -141.0
+offset_top = -82.0
+offset_right = 161.0
+offset_bottom = 85.0
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcu6sc0ekj50j"
-path="res://.godot/imported/humility.jpg-326356255fbfe4c345d07f0c78c31d46.ctex"
+uid="uid://uj7pxk2p61vv"
+path="res://.godot/imported/HandGray.png-f93fa979c483286d0c88f097638de9c0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Memories/images/humility.jpg"
-dest_files=["res://.godot/imported/humility.jpg-326356255fbfe4c345d07f0c78c31d46.ctex"]
+source_file="res://Memories/images/HandGray.png"
+dest_files=["res://.godot/imported/HandGray.png-f93fa979c483286d0c88f097638de9c0.ctex"]
 
 [params]
 

@@ -8,12 +8,37 @@ var memInfo : String = ""
 var memName : String = ""
 var Dat1
 var Dat2
-var Dat3
+var psoulP
+var msoulP
+var phandP
+var mhandP
+var pmult
+var mmult
+var mpower
 var g: Game
 var box: memory_box
+var inStore = false
 
 func _setBox(b:memory_box) -> void:
 	box = b
+
+func upModText() -> void:
+	var tex : String = ""
+	if psoulP != null:
+		tex = str("[color=#FF00FF]+",psoulP,"soul power[/color]")
+	if msoulP != null:
+		tex = str("[color=#FF00FF]x",msoulP,"soul power[/color]")
+	if phandP != null:
+		tex = str("[color=#FF0000]+",phandP,"hand power[/color]")
+	if mhandP != null:
+		tex = str("[color=#FF0000]x",mhandP,"hand power[/color]")
+	if pmult != null:
+		tex = str("[color=#0000FF]+",pmult,"multiplier[/color]")
+	if mmult != null:
+		tex = str("[color=#0000FF]x",mmult,"multiplier[/color]")
+	if mpower != null:
+		tex = str("[color=#00FF00]+",mpower,"power of multiplier[/color]")	
+	$modifierText.text = tex
 
 func _setName(s : String) -> void:
 	memName = s
@@ -30,7 +55,7 @@ func _setInfo() -> void:
 		"Solitude":
 			memInfo = "double your multiplier for each empty soul slot"
 		"SlotMachine":
-			memInfo = str("[b] Slot Machine [/b]\n [color=#0000FF] +", Dat1, " hand power[/color]\n Every [color=#FF0000] played 7[/color] has [color=#FFFF00] 1 in 2 chance [/color] to increase it by 3.")
+			memInfo = str("[b] Slot Machine [/b]\n [color=#0000FF] +", phandP, " hand power[/color]\n Every [color=#FF0000] played 7[/color] has [color=#FFFF00] 1 in 2 chance [/color] to increase it by 3.")
 		"Humility":
 			memInfo = "Each card with value of less than 5 give 2x their value in soul power"
 		"Sacrifice":
@@ -91,16 +116,23 @@ func _setType() -> void:
 			triggerType = "card"
 		"Sacrifice":
 			triggerType = "normal"
-		
+		"HelpingHand":
+			triggerType = "normal"
 			
 func _setDat() -> void:
 	match memName:
 		"SlotMachine":
-			Dat1 = 0
+			phandP = 0
+		"HelpingHand":
+			phandP = 0
+	upModText()
 
 func _ready() -> void:
 	$InfoBox.visible = false
-	g = get_parent().get_parent()
+	if get_parent() is memory_box:
+		g = get_parent().get_parent()
+	else:
+		g = get_parent().get_parent().get_parent()
 
 func _getType() -> String:
 	return triggerType
@@ -131,21 +163,26 @@ func _memoryTrigger(likelihoodmultiplier = 1) -> bool:
 			return true
 		"Sacrifice":
 			return true
+		"HelpingHand":
+			return true
 	return false
 
 func _memoryEffectCard(c : card = null, likelihoodmultiplier = 1) -> void:
 	match memName:
 		"SlotMachine":
-			Dat1 +=3
+			phandP +=3
+			upModText()
 		"Humility":
 			g._increaseSoulPower(c._worth()*2)
 
 func _memoryEffect(likelihoodmultiplier = 1) -> void:
 	match memName:
 		"SlotMachine":
-			g._increaseHandPower(Dat1)
+			g._increaseHandPower(phandP)
 		"Sacrifice":
 			g._increaseSoulPower(Global.bet * 2)
+		"HelpingHand":
+			g._increaseHandPower(phandP)
 	
 func _memoryReset() -> void:
 	pass
@@ -164,3 +201,9 @@ func _createInfoBox() -> void:
 	
 func _removeInfoBox() -> void:
 	$InfoBox.visible = false
+
+func _removeModText() -> void:
+	$modifierText.visible = false
+	
+func _addModText() -> void:
+	$modifierText.visible = true

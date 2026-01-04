@@ -1,6 +1,7 @@
 class_name store extends Node2D
 
 var cardScene = preload("res://Scenes/card.tscn")
+var memScene = preload("res://Memories/memory.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,6 +10,28 @@ func _ready() -> void:
 var g: Game
 
 var cards : Array[card] = []
+
+func _hasMem(n: String, a: Array) -> bool:
+	for m in a:
+		if m.memName == n:
+			return true
+	return false
+
+func _createStore() -> void:
+	g = get_parent().get_parent()
+	var mems = g._getMemsInGame()
+	var usedMems = g.mb.Memories
+	var usableMems = mems.filter(func(a): return !_hasMem(a,usedMems))
+	for i in range(min(3,len(usableMems))):
+		var n: String = usableMems.pick_random()
+		var m : memory = memScene.instantiate()
+		m._setName(n)
+		m.scale = Vector2(0.2,0.2)
+		add_child(m)
+		m.inStore = true
+		m.global_position = Vector2(1000+i*200,500)
+		print(n)
+	pass
 
 func _createCards() -> void:
 	g = get_parent().get_parent()

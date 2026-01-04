@@ -43,6 +43,7 @@ func _input(event):
 				if m is memory:
 					movedMemory = m
 					movedMemory._removeInfoBox()
+					movedMemory._removeModText()
 			else:
 				if movedMemory:
 					var tween = get_tree().create_tween()
@@ -50,6 +51,7 @@ func _input(event):
 					var m = movedMemory
 					movedMemory = null
 					m._createInfoBox()
+					m._addModText()
 
 func raycast_check_mem():
 	var sState = get_world_2d().direct_space_state
@@ -59,7 +61,10 @@ func raycast_check_mem():
 	par.collision_mask = 1
 	var res = sState.intersect_point(par)
 	if res.size() >0:
-		return res[0].collider.get_parent().get_parent()
+		if res[0].collider.get_parent().get_parent() is memory:
+			var m : memory = res[0].collider.get_parent().get_parent()
+			if !m.inStore:
+				return m
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 

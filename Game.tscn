@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cbw3rje7ff5n5"]
+[gd_scene load_steps=14 format=3 uid="uid://cbw3rje7ff5n5"]
 
 [ext_resource type="Script" uid="uid://hjm07q0ihj4" path="res://Game.gd" id="1_t88pq"]
 [ext_resource type="PackedScene" uid="uid://cw7kr0gn3r6oq" path="res://Scenes/memory_box.tscn" id="2_r0x5m"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cnwlpicev6046" path="res://car_value_total.gd" id="4_3mrqo"]
 [ext_resource type="Shader" uid="uid://bv50m4ytbyiqf" path="res://Shaders/RippleEffectShader.gdshader" id="6_r0x5m"]
 [ext_resource type="Texture2D" uid="uid://8x4mrmdu76pf" path="res://Memories/images/check.jpg" id="7_3mrqo"]
+[ext_resource type="Script" uid="uid://dho0otp1p22kp" path="res://hand_box.gd" id="8_joorw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0hol4"]
 font_size = 32
@@ -119,3 +120,9 @@ offset_right = 1121.0
 offset_bottom = 366.0
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
+
+[node name="hand_box" type="Node2D" parent="."]
+position = Vector2(122, 314)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("8_joorw")
+metadata/_custom_type_script = "uid://dho0otp1p22kp"

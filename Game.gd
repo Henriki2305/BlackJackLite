@@ -11,11 +11,12 @@ var MaxSouls = 2
 var MajorSouls = 0
 var TotalPower = 0
 var playPhase = true
+var mb: memory_box
 var AllHands = ["pair", "BlackJack","normal","lovelyFaces","neutrality","27","none",]
 var AvailableHands = ["pair","BlackJack","normal","none"]
 var choices = ["hit","stand","discard","doubleDown","surrender","burn","clone"]
 var CurrentHand = "none"
-var MemoriesInGame : Array[memory] = []
+var MemoriesInGame : Array[String] = ["HelpingHand","SlotMachine","Humility","Skepticism","Credulity"]
 var roundsPassed = 0
 var level = 1
 var unlockedCardRanks : Array[String] = ["2","3","4","5","6","7","8","9","10","j","q","k","a"]
@@ -65,7 +66,7 @@ func _getPlayerDeck() -> deck:
 	return playerDeck
 
 func _getRandomCard() -> String:
-	return str(unlockedEnchantments.pick_random(),unlockedSuits.pick_random(),unlockedCardRanks.pick_random())
+	return str(unlockedEnchantments.pick_random(),unlockedSuits.pick_random(),"co",unlockedCardRanks.pick_random())
 
 func _determineDeck(GivenDeck) -> String:
 	if GivenDeck == $Deck:
@@ -98,6 +99,9 @@ func _discardCard() -> void:
 			_updateHand(hand)
 			break
 
+func _getMemsInGame() -> Array:
+	return MemoriesInGame
+
 func _drawDealerHand() -> void:
 	playPhase = false
 	$hitButton.visible = false
@@ -121,7 +125,7 @@ func _playHand() -> void:
 	$standButton.visible = false
 	$discardButton.visible = false
 	for c in playerDeck.cardsInHand:
-		for m in $MemoryBox._getMemories():
+		for m in mb._getMemories():
 			if(m._getType() == "card" || m._getType() == "hybrid"):
 				if m._memoryTriggerCard(c):
 					var tween = get_tree().create_tween()
@@ -134,7 +138,7 @@ func _playHand() -> void:
 					mTween.tween_property(m,"scale",cs,0.03)
 					m._memoryEffectCard(c)
 					await get_tree().create_timer(2).timeout
-	for m in $MemoryBox.Memories:
+	for m in mb.Memories:
 		if(m._getType() == "normal" || m._getType() == "hybrid"):
 			if m._memoryTrigger():
 				m._memoryEffect()
@@ -216,6 +220,7 @@ func _placeBet() -> void:
 func _ready() -> void:
 	playerDeck = $Deck
 	opponentDeck = $OpponentsDeck
+	mb = $MemoryBox
 	playerDeck._setSide(false)
 	opponentDeck._setSide(true)
 	var Increasebutton = Button.new()
@@ -264,6 +269,9 @@ func _ready() -> void:
 	$ColorRect.material.set_shader_parameter("width",0.0)
 	$ColorRect.material.set_shader_parameter("spot",0.0)
 	
+func _input(event):
+	if Input.is_key_pressed(KEY_ESCAPE):
+		get_tree().quit()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

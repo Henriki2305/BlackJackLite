@@ -127,6 +127,8 @@ func _getName() -> String:
 	return str(rank, " of ", suitNames[suit])
 
 func setValues(cValues : String) -> void:
+	$TakeButton.visible = false
+	$BurnButton.visible = false
 	var texture: TextureRect = $TextureRect
 	enchantment = enchantments[cValues.left(2)]
 	suit = suits[cValues[2]]
@@ -206,16 +208,27 @@ func _mouse_click():
 
 func _unpacked() -> void:
 	location = pack
+	$TakeButton.visible = true
+	$BurnButton.visible = true
+
+func _burnCard() -> void:
+	var b : boosterPack = get_parent()
+	b._createCard()
+	queue_free()
 
 func _takeCard() -> void:
 	location = ddeck
+	$TakeButton.visible = false
+	$BurnButton.visible = false
 	var tween = get_tree().create_tween()
 	var rotTween = get_tree().create_tween()
 	rotTween.tween_property(self,"rotation_degrees", -1080,0.35)
 	tween.tween_property(self,"scale", Vector2(0,0),0.35)
 	await get_tree().create_timer(0.71).timeout
-	var sto: store = get_parent()
+	var b : boosterPack = get_parent()
+	var sto: store = b.get_parent()
 	var d: deck =  sto.g._getPlayerDeck()
-	sto._resetPos(self)
-	sto.remove_child(self)
+	b._createCard()
+	b._resetPos(self)
+	b.remove_child(self)
 	d._addToDeck(self)

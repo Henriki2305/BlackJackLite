@@ -38,7 +38,7 @@ func _EnterStore() -> void:
 	store.global_position = Vector2(0,0)
 	add_child(store)
 	store.name = "storeInstance"
-	store._createCards()
+	store._createStore()
 	
 func _EnterHandDemon() -> void:
 	print("e")
