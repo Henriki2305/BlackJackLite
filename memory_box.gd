@@ -21,6 +21,11 @@ func _getMemories() -> Array:
 func getMovedMemory() -> memory:
 	return movedMemory
 
+func _addMemory(m : memory) -> void:
+	Memories.append(m)
+	m.global_position = Vector2(400,500+((len(Memories)-1)*120))
+	add_child(m)
+
 func _process(delta: float) -> void:
 	if movedMemory:
 		var mPos = get_global_mouse_position()

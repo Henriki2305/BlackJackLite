@@ -22,7 +22,7 @@ var level = 1
 var unlockedCardRanks : Array[String] = ["2","3","4","5","6","7","8","9","10","j","q","k","a"]
 var unlockedSuits : Array[String] = ["h","s","d","c"]
 var unlockedEnchantments : Array[String] = ["no","cu"]
-var  BetweenRoundsScene = preload("res://BetweenRound.tscn")
+var BetweenRoundsScene = preload("res://BetweenRound.tscn")
 var reward = 3
 var opponentDeckMultiplier = 0.4
 var opponentPower = 0
@@ -328,4 +328,3 @@ func _updatePower() -> void:
 	#	$ColorRect.material.set_shader_parameter("width",0.0125)
 	#	$ColorRect.material.set_shader_parameter("spot",0.03)
 	#	ripple = true
-	
