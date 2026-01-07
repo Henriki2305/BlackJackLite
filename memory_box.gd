@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 				if (m._getPosition() > movedMemory._getPosition() && m.global_position[1] < movedMemory.global_position[1] )|| (m._getPosition() < movedMemory._getPosition() && m.global_position[1] > movedMemory.global_position[1]):
 					_swapMemPos(i,movedMemory._getPosition())
 					var tween = get_tree().create_tween()
-					tween.tween_property(m,"global_position", Vector2(400,500+(m._getPosition()*120)),0.1)
+					tween.tween_property(m,"global_position", Vector2(600,500+(m._getPosition()*120)),0.1)
 					
 				
 
@@ -47,7 +47,7 @@ func _input(event):
 			else:
 				if movedMemory:
 					var tween = get_tree().create_tween()
-					tween.tween_property(movedMemory,"global_position", Vector2(400,500+(movedMemory._getPosition()*120)),0.1)
+					tween.tween_property(movedMemory,"global_position", Vector2(600,500+(movedMemory._getPosition()*120)),0.1)
 					var m = movedMemory
 					movedMemory = null
 					m._createInfoBox()

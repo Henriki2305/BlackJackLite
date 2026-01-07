@@ -3,6 +3,10 @@ class_name Game extends Node2D
 var souls = 4
 var playerDeck
 var opponentDeck
+var SoulPowerNew : Scoring = Scoring.new()
+var HandPowerNew : Scoring = Scoring.new()
+var MultiplierNew : Scoring = Scoring.new()
+var TotalPowerNew : Scoring = Scoring.new()
 var SoulPower = 0
 var HandPower = 0
 var Multiplier = 1
@@ -12,6 +16,7 @@ var MajorSouls = 0
 var TotalPower = 0
 var playPhase = true
 var mb: memory_box
+var hb: hand_box
 var AllHands = ["pair", "BlackJack","normal","lovelyFaces","neutrality","27","none",]
 var AvailableHands = ["pair","BlackJack","normal","none"]
 var choices = ["hit","stand","discard","doubleDown","surrender","burn","clone"]
@@ -78,11 +83,7 @@ func _determineDeck(GivenDeck) -> String:
 func _drawcard() -> void:
 	playerDeck._drawCard()
 	$CardValueTotal.text = str(playerDeck._cardValuesSum())
-	for hand in AvailableHands:
-		if playerDeck._hasHand(hand):
-			print(hand)
-			_updateHand(hand)
-			break
+	_updateHand()
 
 func _getUnlockedRanks() -> Array[String]:
 	return unlockedCardRanks
@@ -93,11 +94,7 @@ func _unlockRank(r : String) -> void:
 func _discardCard() -> void:
 	playerDeck._discardCard()
 	$CardValueTotal.text = str(playerDeck._cardValuesSum())
-	for hand in AvailableHands:
-		if playerDeck._hasHand(hand):
-			print(hand)
-			_updateHand(hand)
-			break
+	_updateHand()
 
 func _getMemsInGame() -> Array:
 	return MemoriesInGame
@@ -124,6 +121,19 @@ func _playHand() -> void:
 	$hitButton.visible = false
 	$standButton.visible = false
 	$discardButton.visible = false
+	for h in hb.hands:
+		if h._checkReq(playerDeck._getCardsInHand()):
+			var tween = get_tree().create_tween()
+			var mTween = get_tree().create_tween()
+			var cs = h.transform.get_scale()
+			tween.tween_property(h,"rotation_degrees", 15,0.02)
+			tween.tween_property(h,"rotation_degrees", -15,0.04)
+			tween.tween_property(h,"rotation_degrees", 0,0.02)
+			mTween.tween_property(h,"scale",cs*1.2,0.02)
+			mTween.tween_property(h,"scale",cs,0.03)
+			h._effect()
+			await get_tree().create_timer(2).timeout
+			
 	for c in playerDeck.cardsInHand:
 		for m in mb._getMemories():
 			if(m._getType() == "card" || m._getType() == "hybrid"):
@@ -168,7 +178,7 @@ func _playHand() -> void:
 	Global.bet = 0
 	playerDeck._clearHand()
 	opponentDeck._clearHand()
-	_updateHand("none")
+	_updateHand()
 	_updateSoulPower(0)
 	$increase.visible = true
 	$decrease.visible = true
@@ -218,9 +228,14 @@ func _placeBet() -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	HandPowerNew.Vals = [0.0,0]
+	SoulPowerNew.Vals = [0.0,0]
+	MultiplierNew.Vals = [1.0,0]
+	TotalPowerNew.Vals = [0.0,0]
 	playerDeck = $Deck
 	opponentDeck = $OpponentsDeck
 	mb = $MemoryBox
+	hb = $hand_box
 	playerDeck._setSide(false)
 	opponentDeck._setSide(true)
 	var Increasebutton = Button.new()
@@ -284,48 +299,53 @@ func _process(delta: float) -> void:
 		else:
 			$ColorRect.material.set_shader_parameter("spot", s+0.005)
 
-func _updateHand(HandName) -> void:
-	CurrentHand = HandName
-	_updateHandPower(HandPowers[CurrentHand]*playerDeck._cardValuesSum())
+func _updateHand() -> void:
+	var cards : Array[card] = playerDeck._getCardsInHand()
+	for h in hb.hands:
+		if h._checkReq(cards):
+			h._setTrigger(true)
+		else:
+			h._setTrigger(false)
+	_updateHandPower(playerDeck._cardValuesSum())
 	
 func _increaseHandPower(amount) -> void:
-	_updateHandPower(HandPower + amount)
+	_updateHandPower(HandPowerNew.Vals[0] + amount)
 	
 func _increaseSoulPower(amount) -> void:
-	_updateSoulPower(SoulPower + amount)
+	_updateSoulPower(SoulPowerNew.Vals[0] + amount)
 	
 func _increasemultiplier(amount) -> void:
-	_updatemultiplier(Multiplier + amount)
+	_updatemultiplier(MultiplierNew.Vals[0] + amount)
 	
 func _multiplyHandPower(amount) -> void:
-	_updateHandPower(HandPower*amount)
+	_updateHandPower(HandPowerNew.Vals[0]*amount)
 	
 func _multiplySoulPower(amount) -> void:
-	_updateSoulPower(SoulPower*amount)
+	_updateSoulPower(SoulPowerNew.Vals[0]*amount)
 	
 func _multiplyMultiplier(amount) -> void:
-	_updatemultiplier(Multiplier*amount)
+	_updatemultiplier(MultiplierNew.Vals[0]*amount)
 	
 func _updateHandPower(amount) -> void:
-	HandPower = amount
-	$HandPowerText.text = str("Handpower: ",HandPower)
+	HandPowerNew._setVal(amount)
+	$HandPowerText.text = str("Handpower: ",HandPowerNew._IntoText())
 	_updatePower()
 
 func _updateSoulPower(amount) -> void:
-	SoulPower = amount
-	$SoulPowerText.text = str("Soulpower: ", SoulPower)
+	SoulPowerNew._setVal(amount)
+	$SoulPowerText.text = str("Soulpower: ", SoulPowerNew._IntoText())
 	_updatePower()
 
 func _updatemultiplier(amount) -> void:
-	Multiplier = amount
-	$HandPowerText.text = str("Handpower: ",HandPower)
+	MultiplierNew._setVal(amount)
+	$HandPowerText.text = str("Handpower: ",HandPowerNew._IntoText())
 	_updatePower()
 	
 func _updatePower() -> void:
-	TotalPower = SoulPower*HandPower*Multiplier
-	$TotalPowerText.text = str("Total power: ", TotalPower)
-	#if TotalPower > 10*opponentPower:
-	#	$ColorRect.material.set_shader_parameter("width",0.0125)
-	#	$ColorRect.material.set_shader_parameter("spot",0.03)
-	#	ripple = true
+	TotalPowerNew.Vals = TotalPowerNew._ValMult(SoulPowerNew.Vals,TotalPowerNew._ValMult(HandPowerNew.Vals,MultiplierNew.Vals))
+	$TotalPowerText.text = str("Total power: ", TotalPowerNew._IntoText())
+#	if TotalPower > 10*opponentPower:
+#		$ColorRect.material.set_shader_parameter("width",0.0125)
+#		$ColorRect.material.set_shader_parameter("spot",0.03)
+#		ripple = true
 	

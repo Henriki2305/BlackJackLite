@@ -84,13 +84,11 @@ func _drawCard() -> void:
 	var newCard = drawableCards.pick_random()
 	newCard._drawCard()
 	print(newCard._getName())
-	var new_position = Vector2(-800+(150*len(cardsInHand)),-350)
+	var new_position = Vector2(800+150*len(cardsInHand),750)
 	var tween = get_tree().create_tween()
 	if opponent:
-		new_position = Vector2(800+150*len(cardsInHand),400)
-		tween.tween_property(newCard,"global_position", new_position,0.25)
-	else:
-		tween.tween_property(newCard,"position", new_position,0.25)
+		new_position = Vector2(800+150*len(cardsInHand),200)
+	tween.tween_property(newCard,"global_position", new_position,0.25)
 	cardsInHand.append(newCard)
 	drawableCards = drawableCards.filter(func(c):return c._inDeck())
 	drawableCards = drawableCards.filter(func(c):return c._inDeck())
@@ -188,3 +186,6 @@ func _clearHand() -> void:
 		c.visible = false
 		c.position = Vector2(0,0)
 	cardsInHand.clear()
+
+func _getCardsInHand() -> Array[card]:
+	return cardsInHand

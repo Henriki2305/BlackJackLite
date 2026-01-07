@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cx7bx53liah2" path="res://booster_pack.gd" id="1_4wff1"]
 [ext_resource type="Texture2D" uid="uid://d0gi8q8584bf2" path="res://Memories/images/blackmössö.png" id="2_bgjx5"]
 [ext_resource type="Script" uid="uid://bd3yqf3jngbfa" path="res://BoosterMouseHandler.gd" id="3_7md1r"]
-[ext_resource type="Script" uid="uid://bglpxyedwcjoy" path="res://Scenes/boosterArea.gd" id="4_y10c5"]
+[ext_resource type="Script" uid="uid://bglpxyedwcjoy" path="res://Scenes/BoosterArea.gd" id="4_y10c5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y10c5"]
 radius = 192.41

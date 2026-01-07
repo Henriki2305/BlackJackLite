@@ -1,7 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://fv4fstgriixi"]
+[gd_scene load_steps=7 format=3 uid="uid://fv4fstgriixi"]
 
 [ext_resource type="Script" uid="uid://daoctn6otdln2" path="res://hand.gd" id="1_f6hnx"]
 [ext_resource type="Texture2D" uid="uid://uj7pxk2p61vv" path="res://Memories/images/HandGray.png" id="2_u7o8q"]
+[ext_resource type="Shader" uid="uid://bo78vhwy3tyv2" path="res://Shaders/handbaseshader.gdshader" id="2_vumah"]
+[ext_resource type="Script" uid="uid://b5nipnfydru0a" path="res://Scenes/HandHover.gd" id="4_jrln0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jrln0"]
+resource_local_to_scene = true
+shader = ExtResource("2_vumah")
+shader_parameter/colorness = 0.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vumah"]
 radius = 83.99999
@@ -10,19 +17,48 @@ height = 382.0
 [node name="Hand" type="Node2D"]
 script = ExtResource("1_f6hnx")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="HandBase" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_jrln0")
 texture = ExtResource("2_u7o8q")
 
-[node name="Area2D" type="Area2D" parent="Sprite2D"]
+[node name="Area2D" type="Area2D" parent="HandBase"]
+script = ExtResource("4_jrln0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HandBase/Area2D"]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_vumah")
+
+[node name="Req" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_jrln0")
+position = Vector2(500, 0)
+texture = ExtResource("2_u7o8q")
+
+[node name="ReqText" type="RichTextLabel" parent="Req"]
+offset_left = -141.0
+offset_top = -82.0
+offset_right = 161.0
+offset_bottom = 85.0
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+
+[node name="Rew" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_jrln0")
+position = Vector2(-500, 0)
+texture = ExtResource("2_u7o8q")
+
+[node name="RewText" type="RichTextLabel" parent="Rew"]
+offset_left = -141.0
+offset_top = -82.0
+offset_right = 161.0
+offset_bottom = 85.0
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
 
 [node name="NameText" type="RichTextLabel" parent="."]
 offset_left = -141.0
 offset_top = -82.0
 offset_right = 161.0
 offset_bottom = 85.0
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true

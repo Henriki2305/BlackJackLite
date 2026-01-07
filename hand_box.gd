@@ -16,11 +16,13 @@ func _ready() -> void:
 	add_child(h1)
 	h1._handInfo("BlackJack")
 	h1.position = Vector2(0,0)
+	h1.global_position = Vector2(200,500)
 	var h2 = handScene.instantiate()
 	add_child(h2)
-	h2._handInfo("Jack Black")
+	h2._handInfo("pair")
 	h2.position = Vector2(0,200)
 	h2._setPosition(1)
+	h2.global_position = Vector2(200,620)
 	hands.append(h1)
 	hands.append(h2)
 
@@ -35,7 +37,7 @@ func _process(delta: float) -> void:
 				if (h._getPosition() > movedHand._getPosition() && h.global_position[1] < movedHand.global_position[1] )|| (h._getPosition() < movedHand._getPosition() && h.global_position[1] > movedHand.global_position[1]):
 					_swapHandPos(i,movedHand._getPosition())
 					var tween = get_tree().create_tween()
-					tween.tween_property(h,"global_position", Vector2(400,500+(h._getPosition()*120)),0.1)
+					tween.tween_property(h,"global_position", Vector2(200,500+(h._getPosition()*120)),0.1)
 
 func _input(event):
 	if get_parent().playPhase:
@@ -50,6 +52,9 @@ func _input(event):
 					tween.tween_property(movedHand,"global_position", Vector2(200,500+(movedHand._getPosition()*120)),0.1)
 					var h = movedHand
 					movedHand = null
+
+func _getMovedHand() -> hand:
+	return movedHand
 
 func raycast_check_mem():
 	var sState = get_world_2d().direct_space_state
