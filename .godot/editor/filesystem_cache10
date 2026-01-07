@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1767778917
+::res://::1767798822
 BetweenRound.tscn::PackedScene::7253293213029241428::1765012124::0::1::::<><><>0<>0<><>::uid://d0y8w5beygrtg::::res://between_round.gd
 between_round.gd::GDScript::8965572733814127040::1767563656::0::1::::<>Node2D<><>0<>0<><>::
 BoosterMouseHandler.gd::GDScript::2656275878547548110::1765810382::0::1::::<>Sprite2D<><>0<>0<><>::
@@ -16,8 +16,8 @@ demon_of_hands.gd::GDScript::1702935809393975781::1765606818::0::1::::<>Node2D<>
 ee.png::CompressedTexture2D::1599501396111751129::1763589356::1763589357::1::::<><><>0<>0<>763ff9853489db2973090ea47e8ec7d9<>res://.godot/imported/ee.png-1d3590b689316c267a8bd06c48788893.ctex::
 Enums.gd::GDScript::931357664109958027::1765308775::0::1::::Enums<>Node<><>0<>0<><>::
 export_presets.cfg::TextFile::-1::1765155329::0::1::::<><><>0<>0<><>::
-Game.gd::GDScript::15019890018368315::1767736022::0::1::::Game<>Node2D<><>0<>0<><>::
-Game.tscn::PackedScene::4890177436257609672::1767741278::0::1::::<><><>0<>0<><>::uid://hjm07q0ihj4::::res://Game.gd<>uid://cw7kr0gn3r6oq::::res://Scenes/memory_box.tscn<>uid://dsa80bbmp0gad::::res://Scenes/deck.tscn<>uid://ctrgu3qcae3u3::::res://label.gd<>uid://cnwlpicev6046::::res://car_value_total.gd<>uid://bv50m4ytbyiqf::::res://Shaders/RippleEffectShader.gdshader<>uid://8x4mrmdu76pf::::res://Memories/images/check.jpg<>uid://dho0otp1p22kp::::res://hand_box.gd
+Game.gd::GDScript::15019890018368315::1767798222::0::1::::Game<>Node2D<><>0<>0<><>::
+Game.tscn::PackedScene::4890177436257609672::1767798222::0::1::::<><><>0<>0<><>::uid://hjm07q0ihj4::::res://Game.gd<>uid://cw7kr0gn3r6oq::::res://Scenes/memory_box.tscn<>uid://dsa80bbmp0gad::::res://Scenes/deck.tscn<>uid://ctrgu3qcae3u3::::res://label.gd<>uid://cnwlpicev6046::::res://car_value_total.gd<>uid://bv50m4ytbyiqf::::res://Shaders/RippleEffectShader.gdshader<>uid://8x4mrmdu76pf::::res://Memories/images/check.jpg<>uid://dho0otp1p22kp::::res://hand_box.gd
 Global.gd::GDScript::4179804236373241661::1764362997::0::1::::<>Node<><>0<>0<><>::
 graytest.jpg::CompressedTexture2D::7544316960807934584::1765209439::1765209439::1::::<><><>0<>0<>c59d467b4508eb7886641e8ab584b60f<>res://.godot/imported/graytest.jpg-68ebbb97d50fd97c9334a81802fe9557.ctex::
 hand.gd::GDScript::7188319435059972169::1767713428::0::1::::hand<>Node2D<><>0<>0<><>::
@@ -27,15 +27,15 @@ hand_box.gd::GDScript::7681029193354374679::1767710058::0::1::::hand_box<>Node2D
 hand_holder.gd::GDScript::4099964951514395093::1765600707::0::1::::handHolder<>Node2D<><>0<>0<><>::
 icon.svg::CompressedTexture2D::489901101934867993::1763560532::1767563705::1::::<><><>0<>0<>a62ad09f6c5d71e6245994d7959c216d<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 label.gd::GDScript::6141925331624266132::1763592920::0::1::::<>Label<><>0<>0<><>::
-memory_box.gd::GDScript::4531968793521701778::1767702954::0::1::::memory_box<>Node2D<><>0<>0<><>::
-ScoreStruct.gd::GDScript::892405906503705262::1767741278::0::1::::Scoring<>Resource<><>0<>0<><>::
+memory_box.gd::GDScript::4531968793521701778::1767784350::0::1::::memory_box<>Node2D<><>0<>0<><>::
+ScoreStruct.gd::GDScript::892405906503705262::1767783366::0::1::::Scoring<>Resource<><>0<>0<><>::
 soul_node.gd::GDScript::7711118792470487090::1765104554::0::1::::soul<>Node2D<><>0<>0<><>::
 soul_node.tscn::PackedScene::8510779096320918880::1765104556::0::1::::<><><>0<>0<><>::uid://dh4k885g7qfkk::::res://soul_node.gd
 store.gd::GDScript::6921715833288725225::1767563656::0::1::::store<>Node2D<><>0<>0<><>::
 Store.tscn::PackedScene::1531025962864358946::1765011654::0::1::::<><><>0<>0<><>::uid://c5u6wbwupwto8::::res://store.gd
 Testcards.png::CompressedTexture2D::2698877741566571180::1763945050::1763945044::1::::<><><>0<>0<>982cecd443f457a3343e7638d4519e24<>res://.godot/imported/Testcards.png-7b57367233dac58e71f538301bb1ac27.ctex::
-::res://Memories/::1767712914
-memory.gd::GDScript::6471190608337380448::1767563656::0::1::::memory<>Node2D<><>0<>0<><>::
+::res://Memories/::1767784350
+memory.gd::GDScript::6471190608337380448::1767784350::0::1::::memory<>Node2D<><>0<>0<><>::
 memory.tscn::PackedScene::4884358109258469174::1767712914::0::1::::<><><>0<>0<><>::uid://cygxtf3hffrrc::::res://Memories/memory.gd<>uid://cuyfegcc6eif3::::res://Memories/images/SlotMachine.jpg<>uid://d3xmr2v40ekvh::::res://Memories/memoryHover.gd<>uid://d1it3m2ws05yb::::res://Card base.png
 memoryHover.gd::GDScript::9172790775619717385::1767712914::0::1::::<>Area2D<><>0<>0<><>::
 ::res://Memories/code/::1765207554
@@ -59,8 +59,8 @@ Handtype.tscn::PackedScene::9036416950520739796::1765527132::0::1::::<><><>0<>0<
 hand_box.tscn::PackedScene::1107623528007370927::1767563656::0::1::::<><><>0<>0<><>::uid://dho0otp1p22kp::::res://hand_box.gd
 hand_holder.tscn::PackedScene::4651425620297225627::1767712804::0::1::::<><><>0<>0<><>::uid://byob3aiify3kb::::res://hand_holder.gd<>uid://d0gi8q8584bf2::::res://Memories/images/blackmössö.png<>uid://bisy8edfv72cp::::res://handHolderHover.gd
 memory_box.tscn::PackedScene::6383694866958237776::1765868080::0::1::::<><><>0<>0<><>::uid://b5tk4mw0f3rpa::::res://memory_box.gd<>uid://cbuawudm5kgfe::::res://Memories/memory.tscn
-::res://Shaders/::1767735688
-cardTextShader.gdshader::Shader::2745486852580753633::1767735688::0::1::::<><><>0<>0<><>::
-handbaseshader.gdshader::Shader::3437166147966554397::1767735688::0::1::::<><><>0<>0<><>::
-RippleEffectShader.gdshader::Shader::3923858648177617397::1767735688::0::1::::<><><>0<>0<><>::
-unholyShader.gdshader::Shader::3947098044157224334::1767735688::0::1::::<><><>0<>0<><>::
+::res://Shaders/::1767798222
+cardTextShader.gdshader::Shader::2745486852580753633::1767798222::0::1::::<><><>0<>0<><>::
+handbaseshader.gdshader::Shader::3437166147966554397::1767798222::0::1::::<><><>0<>0<><>::
+RippleEffectShader.gdshader::Shader::3923858648177617397::1767798222::0::1::::<><><>0<>0<><>::
+unholyShader.gdshader::Shader::3947098044157224334::1767798222::0::1::::<><><>0<>0<><>::

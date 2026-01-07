@@ -207,3 +207,6 @@ func _removeModText() -> void:
 	
 func _addModText() -> void:
 	$modifierText.visible = true
+	
+func _takeMemory() -> void:
+	g.mb
