@@ -4,11 +4,11 @@ var Vals : Array = []
 
 func _updateValue() -> void:
 	var n : int = len(str(Vals[0]).split(".")[0])
-	if n > 10:
-		var x = n - 10
+	if n > 6:
+		var x = n - 1
 		Vals[0] = Vals[0] / pow(10,x)
 		Vals[1] += x
-	if n > 1 && Vals[1] > 1:
+	elif n > 1 && Vals[1] > 1:
 		Vals[0] = Vals[0] / pow(10,n-1)
 		Vals[1] += (n-1)
 
@@ -21,12 +21,18 @@ func _setVal(n) -> void:
 	_updateValue()
 
 func _AddNum(n) -> void:
-	Vals[0] = Vals[0] + n
+	Vals[0] = Vals[0] + ( n / pow(10,Vals[1]))
 	_updateValue()
 
-func _MultipliedByNum(n) -> void:
+func _MultiplyByNum(n) -> void:
 	Vals[0] = Vals[0] * n
 	_updateValue()
+
+func _MultipliedByNum(n) -> Scoring:
+	var s = Scoring.new()
+	s.Vals = [Vals[0]*n,Vals[1]]
+	s._updateValue()
+	return s
 
 func _GreaterThan(s : Scoring) -> bool:
 	if Vals[1] > s.Vals[1]:

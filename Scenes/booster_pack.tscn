@@ -1,26 +1,32 @@
-[gd_scene load_steps=6 format=3 uid="uid://de16dx35h18la"]
+[gd_scene load_steps=7 format=3 uid="uid://de16dx35h18la"]
 
 [ext_resource type="Script" uid="uid://cx7bx53liah2" path="res://booster_pack.gd" id="1_4wff1"]
-[ext_resource type="Texture2D" uid="uid://d0gi8q8584bf2" path="res://Memories/images/blackmössö.png" id="2_bgjx5"]
+[ext_resource type="Texture2D" uid="uid://citsjc03dvii2" path="res://Memories/images/Booster.png" id="2_7md1r"]
 [ext_resource type="Script" uid="uid://bd3yqf3jngbfa" path="res://BoosterMouseHandler.gd" id="3_7md1r"]
 [ext_resource type="Script" uid="uid://bglpxyedwcjoy" path="res://Scenes/BoosterArea.gd" id="4_y10c5"]
+[ext_resource type="Texture2D" uid="uid://fv6fvhp82qdu" path="res://Memories/images/Deck.png" id="5_y10c5"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y10c5"]
-radius = 192.41
-height = 741.35
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y10c5"]
+size = Vector2(300.00006, 500.00012)
 
 [node name="BoosterPack" type="Node2D"]
 script = ExtResource("1_4wff1")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_bgjx5")
+[node name="PackSprite" type="Sprite2D" parent="."]
+z_index = 2
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_7md1r")
 script = ExtResource("3_7md1r")
 
-[node name="Area2D" type="Area2D" parent="Sprite2D"]
+[node name="Area2D" type="Area2D" parent="PackSprite"]
 script = ExtResource("4_y10c5")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
-position = Vector2(-25, 50)
-rotation = 1.5446163
-shape = SubResource("CapsuleShape2D_y10c5")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PackSprite/Area2D"]
+position = Vector2(9.536741e-06, 2.2888176e-05)
+scale = Vector2(0.99999964, 0.99999964)
+shape = SubResource("RectangleShape2D_y10c5")
+
+[node name="CardBack" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_y10c5")

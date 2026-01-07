@@ -2,11 +2,12 @@ class_name Game extends Node2D
 
 var souls = 4
 var playerDeck
-var opponentDeck
+var opponentDeck : deck
 var SoulPowerNew : Scoring = Scoring.new()
 var HandPowerNew : Scoring = Scoring.new()
 var MultiplierNew : Scoring = Scoring.new()
 var TotalPowerNew : Scoring = Scoring.new()
+var OpponentScoring : Scoring = Scoring.new()
 var SoulPower = 0
 var HandPower = 0
 var Multiplier = 1
@@ -14,6 +15,8 @@ var MemoriesMax = 5
 var MaxSouls = 2
 var MajorSouls = 0
 var TotalPower = 0
+var a : float = 0.1
+var e = 0.0
 var playPhase = true
 var mb: memory_box
 var hb: hand_box
@@ -107,9 +110,10 @@ func _drawDealerHand() -> void:
 	while opponentDeck._cardValuesSum() < 17:
 		await get_tree().create_timer(1.5).timeout
 		opponentDeck._drawCard()
+		OpponentScoring._setVal(opponentDeck._cardValuesSum())
 		$CardValueTotal2.text = str(opponentDeck._cardValuesSum())
-		opponentPower = opponentDeck._cardValuesSum()*opponentDeckMultiplier
-		$OpponentScore.text = str("Score to beat: [color=#0000FF]",opponentPower,"[/color]")
+		OpponentScoring._MultiplyByNum(opponentDeckMultiplier)
+		$OpponentScore.text = str("Score to beat: [color=#0000FF]",OpponentScoring._IntoText(),"[/color]")
 	await get_tree().create_timer(0.35).timeout
 	playPhase = true
 	$hitButton.visible = true
@@ -157,7 +161,7 @@ func _playHand() -> void:
 				mTween.tween_property(m,"scale",cs*1.2,0.02)
 				mTween.tween_property(m,"scale",cs,0.03)
 				await get_tree().create_timer(1).timeout
-	if(opponentPower > TotalPower):
+	if(OpponentScoring._GreaterThan(TotalPowerNew)):
 		print("you lost!")
 		souls -= Global.bet
 	else:
@@ -166,13 +170,13 @@ func _playHand() -> void:
 		reward+=1
 		opponentDeckMultiplier*=1.1
 		playPhase = true
-		if TotalPower > 2*opponentPower:
+		if TotalPowerNew._GreaterThan(OpponentScoring._MultipliedByNum(2)):
 			reward+=1
-		if TotalPower > 10*opponentPower:
+		if TotalPowerNew._GreaterThan(OpponentScoring._MultipliedByNum(10)):
 			reward+=1
-		if TotalPower > 50*opponentPower:
+		if TotalPowerNew._GreaterThan(OpponentScoring._MultipliedByNum(50)):
 			reward+=1
-		if TotalPower > 1000*opponentPower:
+		if TotalPowerNew._GreaterThan(OpponentScoring._MultipliedByNum(1000)):
 			reward+=3
 	await get_tree().create_timer(2.5).timeout
 	Global.bet = 0
@@ -232,6 +236,7 @@ func _ready() -> void:
 	SoulPowerNew.Vals = [0.0,0]
 	MultiplierNew.Vals = [1.0,0]
 	TotalPowerNew.Vals = [0.0,0]
+	OpponentScoring.Vals = [0.0,0]
 	playerDeck = $Deck
 	opponentDeck = $OpponentsDeck
 	mb = $MemoryBox
@@ -309,13 +314,16 @@ func _updateHand() -> void:
 	_updateHandPower(playerDeck._cardValuesSum())
 	
 func _increaseHandPower(amount) -> void:
-	_updateHandPower(HandPowerNew.Vals[0] + amount)
+	HandPowerNew._AddNum(amount)
+	_updatePower()
 	
 func _increaseSoulPower(amount) -> void:
-	_updateSoulPower(SoulPowerNew.Vals[0] + amount)
+	SoulPowerNew._AddNum(amount)
+	_updatePower()
 	
 func _increasemultiplier(amount) -> void:
-	_updatemultiplier(MultiplierNew.Vals[0] + amount)
+	MultiplierNew._AddNum(amount)
+	_updatePower()
 	
 func _multiplyHandPower(amount) -> void:
 	_updateHandPower(HandPowerNew.Vals[0]*amount)
@@ -342,9 +350,13 @@ func _updatemultiplier(amount) -> void:
 	_updatePower()
 	
 func _updatePower() -> void:
+	$HandPowerText.text = str("Handpower: ",HandPowerNew._IntoText())
+	$SoulPowerText.text = str("Soulpower: ", SoulPowerNew._IntoText())
+	$HandPowerText.text = str("Handpower: ",HandPowerNew._IntoText())
 	TotalPowerNew.Vals = TotalPowerNew._ValMult(SoulPowerNew.Vals,TotalPowerNew._ValMult(HandPowerNew.Vals,MultiplierNew.Vals))
+	TotalPowerNew._updateValue()
 	$TotalPowerText.text = str("Total power: ", TotalPowerNew._IntoText())
-#	if TotalPower > 10*opponentPower:
+#	if TotalPowerNew > 10*opponentPower:
 #		$ColorRect.material.set_shader_parameter("width",0.0125)
 #		$ColorRect.material.set_shader_parameter("spot",0.03)
 #		ripple = true

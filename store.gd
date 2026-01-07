@@ -2,6 +2,7 @@ class_name store extends Node2D
 
 var cardScene = preload("res://Scenes/card.tscn")
 var memScene = preload("res://Memories/memory.tscn")
+var BoosterScene = preload("res://Scenes/booster_pack.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -31,7 +32,10 @@ func _createStore() -> void:
 		m.inStore = true
 		m.global_position = Vector2(1000+i*200,500)
 		print(n)
-	pass
+	for i in range(2):
+		var bp : boosterPack = BoosterScene.instantiate()
+		add_child(bp)
+		bp.global_position = Vector2(1000+i*200,750)
 
 func _createCards() -> void:
 	g = get_parent().get_parent()

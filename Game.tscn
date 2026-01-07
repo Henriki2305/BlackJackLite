@@ -64,10 +64,10 @@ script = ExtResource("4_3mrqo")
 metadata/_edit_use_anchors_ = true
 
 [node name="SoulPowerText" type="Label" parent="."]
-offset_left = 698.0
-offset_top = 500.0
-offset_right = 740.0
-offset_bottom = 545.0
+offset_left = 928.0
+offset_top = 548.0
+offset_right = 970.0
+offset_bottom = 593.0
 text = "AA"
 label_settings = SubResource("LabelSettings_0hol4")
 metadata/_edit_use_anchors_ = true
@@ -82,19 +82,19 @@ label_settings = SubResource("LabelSettings_q6r6c")
 metadata/_edit_use_anchors_ = true
 
 [node name="MultiplierText" type="Label" parent="."]
-offset_left = 1141.0
-offset_top = 497.0
-offset_right = 1183.0
-offset_bottom = 542.0
+offset_left = 929.0
+offset_top = 459.0
+offset_right = 971.0
+offset_bottom = 504.0
 text = "AA"
 label_settings = SubResource("LabelSettings_kdubu")
 metadata/_edit_use_anchors_ = true
 
 [node name="TotalPowerText" type="Label" parent="."]
-offset_left = 905.0
-offset_top = 383.0
-offset_right = 990.0
-offset_bottom = 471.0
+offset_left = 909.0
+offset_top = 332.0
+offset_right = 994.0
+offset_bottom = 420.0
 text = "AA"
 label_settings = SubResource("LabelSettings_d21ai")
 metadata/_edit_use_anchors_ = true

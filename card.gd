@@ -229,6 +229,5 @@ func _takeCard() -> void:
 	var sto: store = b.get_parent()
 	var d: deck =  sto.g._getPlayerDeck()
 	b._createCard()
-	b._resetPos(self)
 	b.remove_child(self)
 	d._addToDeck(self)
