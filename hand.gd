@@ -76,9 +76,8 @@ func _effect() -> void:
 
 	
 func _createInfoBox() -> void:
-	print("test")
 	if box :
-		if !box.getMovedHand():
+		if !box._getMovedHand():
 			$Req/ReqText.text = reqTexts[handName][reqLevel-1]
 			$Rew/RewText.text = rewTexts[handName][rewLevel-1]
 			$Req.visible = true

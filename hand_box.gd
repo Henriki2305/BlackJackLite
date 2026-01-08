@@ -12,12 +12,12 @@ func _swapHandPos(i: int, j: int) -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var h1 = handScene.instantiate()
+	var h1 : hand = handScene.instantiate()
 	add_child(h1)
 	h1._handInfo("BlackJack")
 	h1.position = Vector2(0,0)
 	h1.global_position = Vector2(200,500)
-	var h2 = handScene.instantiate()
+	var h2 : hand = handScene.instantiate()
 	add_child(h2)
 	h2._handInfo("pair")
 	h2.position = Vector2(0,200)
@@ -25,9 +25,11 @@ func _ready() -> void:
 	h2.global_position = Vector2(200,620)
 	hands.append(h1)
 	hands.append(h2)
+	h1._setBox(self)
+	h2._setBox(self)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if movedHand:
 		var mPos = get_global_mouse_position()
 		movedHand.global_position = mPos
@@ -46,12 +48,14 @@ func _input(event):
 				var h = raycast_check_mem()
 				if h is hand:
 					movedHand = h
+					movedHand._removeInfoBox()
 			else:
 				if movedHand:
 					var tween = get_tree().create_tween()
 					tween.tween_property(movedHand,"global_position", Vector2(200,500+(movedHand._getPosition()*120)),0.1)
 					var h = movedHand
 					movedHand = null
+					h._createInfoBox()
 
 func _getMovedHand() -> hand:
 	return movedHand

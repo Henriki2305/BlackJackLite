@@ -209,4 +209,4 @@ func _addModText() -> void:
 	$modifierText.visible = true
 	
 func _takeMemory() -> void:
-	g.mb
+	g.mb._addMemory(self)

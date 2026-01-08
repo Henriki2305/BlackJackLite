@@ -4,10 +4,23 @@
 [ext_resource type="PackedScene" uid="uid://cw7kr0gn3r6oq" path="res://Scenes/memory_box.tscn" id="2_r0x5m"]
 [ext_resource type="PackedScene" uid="uid://dsa80bbmp0gad" path="res://Scenes/deck.tscn" id="2_t88pq"]
 [ext_resource type="Script" uid="uid://ctrgu3qcae3u3" path="res://label.gd" id="3_r0x5m"]
-[ext_resource type="Script" uid="uid://cnwlpicev6046" path="res://car_value_total.gd" id="4_3mrqo"]
 [ext_resource type="Shader" uid="uid://bv50m4ytbyiqf" path="res://Shaders/RippleEffectShader.gdshader" id="6_r0x5m"]
 [ext_resource type="Texture2D" uid="uid://8x4mrmdu76pf" path="res://Memories/images/check.jpg" id="7_3mrqo"]
 [ext_resource type="Script" uid="uid://dho0otp1p22kp" path="res://hand_box.gd" id="8_joorw"]
+
+[sub_resource type="GDScript" id="GDScript_3mrqo"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	self.text = \"0\"
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	pass
+"
 
 [sub_resource type="LabelSettings" id="LabelSettings_0hol4"]
 font_size = 32
@@ -52,7 +65,7 @@ offset_left = 1258.0
 offset_top = 409.0
 offset_right = 1298.0
 offset_bottom = 432.0
-script = ExtResource("4_3mrqo")
+script = SubResource("GDScript_3mrqo")
 metadata/_edit_use_anchors_ = true
 
 [node name="CardValueTotal2" type="Label" parent="."]
@@ -60,7 +73,7 @@ offset_left = 211.0
 offset_top = 343.0
 offset_right = 251.0
 offset_bottom = 366.0
-script = ExtResource("4_3mrqo")
+script = SubResource("GDScript_3mrqo")
 metadata/_edit_use_anchors_ = true
 
 [node name="SoulPowerText" type="Label" parent="."]

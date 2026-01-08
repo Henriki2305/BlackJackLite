@@ -1,6 +1,6 @@
 class_name boosterPack extends Node2D
 var cardSets : Dictionary = {
-	"FaceOfHearts" : [["nohcoa",250],["nohco2",250],["nohco3",250],["nohco4",250]]
+	"FaceOfHearts" : [["nohcoa",90],["nohco2",90],["nohco3",90],["nohco4",90],["nohco5",90],["nohco6",90],["nohco7",90],["nohco8",90],["nosraa",70],["nosra3",70],["nosra2",70],["nosrak",70]]
 }
 var cardSetsRare : Dictionary = {
 	"FaceOfHearts" : [["nohsha",100],["nohra2",300],["nohra3",300],["nohra4",300]]
@@ -16,7 +16,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 	
 func _center() -> void:
@@ -24,9 +24,9 @@ func _center() -> void:
 	var b = get_tree().create_tween()
 	var s = self.scale
 	a.tween_property(self,"scale",s*1.5,0.5)
-	a.tween_property(self,"global_position",Vector2(960,540),0.5)
+	b.tween_property(self,"global_position",Vector2(960,540),0.5)
 	await get_tree().create_timer(2.25).timeout
-	_openPackAnimation()	
+	_openPackAnimation()
 
 func _openPackAnimation() -> void:
 	var t = get_tree().create_tween()

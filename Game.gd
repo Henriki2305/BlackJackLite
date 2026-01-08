@@ -199,10 +199,14 @@ func _betweenRounds() -> void:
 	$increase.visible = false
 	$decrease.visible = false
 	$placebet.visible = false
+	$SoulPowerText.visible = false
+	$HandPowerText.visible = false
+	$MultiplierText.visible = false
+	$TotalPowerText.visible = false
 	var betweenRounds = BetweenRoundsScene.instantiate()
 	betweenRounds.set_name("betweenRounds")
 	add_child(betweenRounds)
-	betweenRounds.position = Vector2(0,0)
+	betweenRounds.global_position = Vector2(700,400)
 	playerDeck._restoreDeck()
 	opponentDeck._restoreDeck()
 	
@@ -211,6 +215,10 @@ func _advance() -> void:
 	$increase.visible = true
 	$decrease.visible = true
 	$placebet.visible = true
+	$SoulPowerText.visible = true
+	$HandPowerText.visible = true
+	$MultiplierText.visible = true
+	$TotalPowerText.visible = true
 	$betweenRounds.queue_free()
 
 func _increase() -> void:
@@ -289,12 +297,12 @@ func _ready() -> void:
 	$ColorRect.material.set_shader_parameter("width",0.0)
 	$ColorRect.material.set_shader_parameter("spot",0.0)
 	
-func _input(event):
+func _input(_event):
 	if Input.is_key_pressed(KEY_ESCAPE):
 		get_tree().quit()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if ripple:
 		var s = $ColorRect.material.get_shader_parameter("spot")
 		if s > 0.50:
