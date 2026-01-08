@@ -4,7 +4,7 @@ var Vals : Array = []
 
 func _updateValue() -> void:
 	var n : int = len(str(Vals[0]).split(".")[0])
-	if n > 6:
+	if n > 10:
 		var x = n - 1
 		Vals[0] = Vals[0] / pow(10,x)
 		Vals[1] += x

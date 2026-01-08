@@ -353,6 +353,7 @@ func _updatePower() -> void:
 	$HandPowerText.text = str("Handpower: ",HandPowerNew._IntoText())
 	$SoulPowerText.text = str("Soulpower: ", SoulPowerNew._IntoText())
 	$HandPowerText.text = str("Handpower: ",HandPowerNew._IntoText())
+	$MultiplierText.text = str("Multiplier: ",MultiplierNew._IntoText())
 	TotalPowerNew.Vals = TotalPowerNew._ValMult(SoulPowerNew.Vals,TotalPowerNew._ValMult(HandPowerNew.Vals,MultiplierNew.Vals))
 	TotalPowerNew._updateValue()
 	$TotalPowerText.text = str("Total power: ", TotalPowerNew._IntoText())
