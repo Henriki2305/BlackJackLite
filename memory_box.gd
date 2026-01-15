@@ -13,7 +13,7 @@ func _ready() -> void:
 	Memories.append($memory2)
 	for i in len(Memories):
 		Memories[i]._setPosition(i)
-		Memories[i].global_position = Vector2(400,500+(i*120))
+		Memories[i].global_position = Vector2(600,500+(i*120))
 
 func _getMemories() -> Array:
 	return Memories
@@ -23,10 +23,10 @@ func getMovedMemory() -> memory:
 
 func _addMemory(m : memory) -> void:
 	Memories.append(m)
-	m.global_position = Vector2(400,500+((len(Memories)-1)*120))
+	m.global_position = Vector2(600,500+((len(Memories)-1)*120))
 	add_child(m)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if movedMemory:
 		var mPos = get_global_mouse_position()
 		movedMemory.position = mPos

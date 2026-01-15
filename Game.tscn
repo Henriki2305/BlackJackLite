@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cbw3rje7ff5n5"]
+[gd_scene load_steps=16 format=3 uid="uid://cbw3rje7ff5n5"]
 
 [ext_resource type="Script" uid="uid://hjm07q0ihj4" path="res://Game.gd" id="1_t88pq"]
 [ext_resource type="PackedScene" uid="uid://cw7kr0gn3r6oq" path="res://Scenes/memory_box.tscn" id="2_r0x5m"]
@@ -6,7 +6,9 @@
 [ext_resource type="Script" uid="uid://ctrgu3qcae3u3" path="res://label.gd" id="3_r0x5m"]
 [ext_resource type="Shader" uid="uid://bv50m4ytbyiqf" path="res://Shaders/RippleEffectShader.gdshader" id="6_r0x5m"]
 [ext_resource type="Texture2D" uid="uid://8x4mrmdu76pf" path="res://Memories/images/check.jpg" id="7_3mrqo"]
+[ext_resource type="PackedScene" uid="uid://v2v1kwi0i7co" path="res://Scenes/Store.tscn" id="8_2vekm"]
 [ext_resource type="Script" uid="uid://dho0otp1p22kp" path="res://hand_box.gd" id="8_joorw"]
+[ext_resource type="Texture2D" uid="uid://cqn0gsfru4cqf" path="res://images/purple.png" id="9_2vekm"]
 
 [sub_resource type="GDScript" id="GDScript_3mrqo"]
 script/source = "extends Label
@@ -77,18 +79,18 @@ script = SubResource("GDScript_3mrqo")
 metadata/_edit_use_anchors_ = true
 
 [node name="SoulPowerText" type="Label" parent="."]
-offset_left = 928.0
-offset_top = 548.0
-offset_right = 970.0
-offset_bottom = 593.0
+offset_left = 929.0
+offset_top = 539.0
+offset_right = 971.0
+offset_bottom = 584.0
 text = "AA"
 label_settings = SubResource("LabelSettings_0hol4")
 metadata/_edit_use_anchors_ = true
 
 [node name="HandPowerText" type="Label" parent="."]
-offset_left = 926.0
+offset_left = 929.0
 offset_top = 499.0
-offset_right = 968.0
+offset_right = 971.0
 offset_bottom = 544.0
 text = "AA"
 label_settings = SubResource("LabelSettings_q6r6c")
@@ -139,3 +141,24 @@ position = Vector2(122, 314)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("8_joorw")
 metadata/_custom_type_script = "uid://dho0otp1p22kp"
+
+[node name="Store" parent="." instance=ExtResource("8_2vekm")]
+visible = false
+
+[node name="SoulTrackerPurple" type="Sprite2D" parent="."]
+position = Vector2(1850, 1025)
+texture = ExtResource("9_2vekm")
+
+[node name="SoulsText" type="RichTextLabel" parent="."]
+offset_left = 1774.0
+offset_top = 1001.0
+offset_right = 1819.0
+offset_bottom = 1029.0
+text = "Souls"
+
+[node name="SoulsCounter" type="RichTextLabel" parent="."]
+offset_left = 1828.0
+offset_top = 1001.0
+offset_right = 1873.0
+offset_bottom = 1029.0
+text = "Souls"

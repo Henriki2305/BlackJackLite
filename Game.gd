@@ -15,8 +15,11 @@ var MemoriesMax = 5
 var MaxSouls = 2
 var MajorSouls = 0
 var TotalPower = 0
+var LikeliHoodModifier = 1
 var a : float = 0.1
 var e = 0.0
+var playerBust = 21
+var dealerBust = 21
 var playPhase = true
 var mb: memory_box
 var hb: hand_box
@@ -24,7 +27,7 @@ var AllHands = ["pair", "BlackJack","normal","lovelyFaces","neutrality","27","no
 var AvailableHands = ["pair","BlackJack","normal","none"]
 var choices = ["hit","stand","discard","doubleDown","surrender","burn","clone"]
 var CurrentHand = "none"
-var MemoriesInGame : Array[String] = ["HelpingHand","SlotMachine","Humility","Skepticism","Credulity"]
+var MemoriesInGame : Array[String] = ["HelpingHand","SlotMachine","Humility","Skepticism","Credulity","x"]
 var roundsPassed = 0
 var level = 1
 var unlockedCardRanks : Array[String] = ["2","3","4","5","6","7","8","9","10","j","q","k","a"]
@@ -35,6 +38,8 @@ var reward = 3
 var opponentDeckMultiplier = 0.4
 var opponentPower = 0
 var ripple : bool = false
+var layerLevel = 0
+var layer = ""
 
 
 var soulRules : Dictionary = {
@@ -59,7 +64,8 @@ var handRewardTexts : Dictionary = {
 }
 
 var DeckStrings : Dictionary = {
-	"normalDeck" : "nohsh7.cuhco7.cuhsh7.nohco7.nodra7.nocco7.nodco7.nohcoa.nohco7.nosco7.nohco7",
+#	"normalDeck" : "nohsh7.cuhco7.cuhsh7.nohco7.nodra7.nocco7.nodco7.nohcoa.nohco7.nosco7.nohco7",
+	"normalDeck" : "nohsh7.nohco7.nohsh7.nohco7.nodra7.nocco7.nodco7.nohcoa.nohco7.nosco7.nohco7",
 	"opposingDeck" : "nohcoa.nohco2.nohco3.nohco4.nohco5.nohco6.nohco7.nohco8.nohco9.nohco10.nohcoj.nohcoq.nohcok"
 }
 
@@ -99,6 +105,13 @@ func _discardCard() -> void:
 	$CardValueTotal.text = str(playerDeck._cardValuesSum())
 	_updateHand()
 
+func _updateSoulShards() -> void:
+	$SoulsCounter.text = str(souls)
+	var tween = get_tree().create_tween()
+	var tween2 = get_tree().create_tween()
+	tween.tween_property($SoulTrackerPurple,"scale:y", souls*0.1,0.4)
+	tween2.tween_property($SoulTrackerPurple,"global_position", Vector2(1850,1045-(souls*2.5)),0.4)
+
 func _getMemsInGame() -> Array:
 	return MemoriesInGame
 
@@ -110,10 +123,14 @@ func _drawDealerHand() -> void:
 	while opponentDeck._cardValuesSum() < 17:
 		await get_tree().create_timer(1.5).timeout
 		opponentDeck._drawCard()
-		OpponentScoring._setVal(opponentDeck._cardValuesSum())
+		OpponentScoring._setVal(opponentDeck._cardValuesSum(),0)
 		$CardValueTotal2.text = str(opponentDeck._cardValuesSum())
 		OpponentScoring._MultiplyByNum(opponentDeckMultiplier)
 		$OpponentScore.text = str("Score to beat: [color=#0000FF]",OpponentScoring._IntoText(),"[/color]")
+		if len(opponentDeck.cardsInHand) > 1 && opponentDeck._cardValuesSum() == 0:
+			break
+	OpponentScoring._AddNum(pow(layerLevel,3)*(4+level))
+	$OpponentScore.text = str("Score to beat: [color=#0000FF]",OpponentScoring._IntoText(),"[/color]")
 	await get_tree().create_timer(0.35).timeout
 	playPhase = true
 	$hitButton.visible = true
@@ -137,21 +154,38 @@ func _playHand() -> void:
 			mTween.tween_property(h,"scale",cs,0.03)
 			h._effect()
 			await get_tree().create_timer(2).timeout
-			
-	for c in playerDeck.cardsInHand:
-		for m in mb._getMemories():
-			if(m._getType() == "card" || m._getType() == "hybrid"):
-				if m._memoryTriggerCard(c):
-					var tween = get_tree().create_tween()
-					var mTween = get_tree().create_tween()
-					var cs = m.transform.get_scale()
-					tween.tween_property(c,"rotation_degrees", 15,0.02)
-					tween.tween_property(c,"rotation_degrees", -15,0.04)
-					tween.tween_property(c,"rotation_degrees", 0,0.02)
-					mTween.tween_property(m,"scale",cs*1.2,0.02)
-					mTween.tween_property(m,"scale",cs,0.03)
-					m._memoryEffectCard(c)
-					await get_tree().create_timer(2).timeout
+	_updateSoulShards()
+	if !playerDeck.bust:
+		for c in playerDeck.cardsInHand:
+			if c.rarity == Enums.shadowRare:
+				c._increaseTriggers(2)
+			for i in range(c._getTriggers()):
+				_increaseHandPower(c._worth())
+				var ttween = get_tree().create_tween()
+				if c.enchantment != Enums.normal:
+					c._enchantmentEffect()
+					ttween.tween_property(c,"rotation_degrees", 15,0.02)
+					ttween.tween_property(c,"rotation_degrees", -15,0.04)
+					ttween.tween_property(c,"rotation_degrees", 0,0.02)
+					await get_tree().create_timer(0.2).timeout
+				ttween.tween_property(c,"rotation_degrees", 15,0.02)
+				ttween.tween_property(c,"rotation_degrees", -15,0.04)
+				ttween.tween_property(c,"rotation_degrees", 0,0.02)
+				await get_tree().create_timer(0.2).timeout
+				for m in mb._getMemories():
+					if(m._getType() == "card" || m._getType() == "hybrid"):
+						if m._memoryTriggerCard(c):
+							var tween = get_tree().create_tween()
+							var mTween = get_tree().create_tween()
+							var cs = m.transform.get_scale()
+							tween.tween_property(c,"rotation_degrees", 15,0.02)
+							tween.tween_property(c,"rotation_degrees", -15,0.04)
+							tween.tween_property(c,"rotation_degrees", 0,0.02)
+							mTween.tween_property(m,"scale",cs*1.2,0.02)
+							mTween.tween_property(m,"scale",cs,0.03)
+							m._memoryEffectCard(c)
+							await get_tree().create_timer(2).timeout
+				await get_tree().create_timer(1).timeout
 	for m in mb.Memories:
 		if(m._getType() == "normal" || m._getType() == "hybrid"):
 			if m._memoryTrigger():
@@ -163,7 +197,7 @@ func _playHand() -> void:
 				await get_tree().create_timer(1).timeout
 	if(OpponentScoring._GreaterThan(TotalPowerNew)):
 		print("you lost!")
-		souls -= Global.bet
+		_addToSouls(Global.bet)
 	else:
 		print("you won!")
 		roundsPassed += 1
@@ -183,15 +217,17 @@ func _playHand() -> void:
 	playerDeck._clearHand()
 	opponentDeck._clearHand()
 	_updateHand()
-	_updateSoulPower(0)
+	_updateSoulPower(0,0)
+	_updateHandPower(0,0)
+	_updatemultiplier(1,0)
 	$increase.visible = true
 	$decrease.visible = true
 	$placebet.visible = true
 	opponentPower = 0
 	$OpponentScore.text = str("Score to beat: [color=#0000FF]0[/color]")
-	if roundsPassed == 3:
+	if roundsPassed == 1:
 		roundsPassed = 0
-		souls+=reward
+		_addToSouls(reward)
 		reward=3
 		_betweenRounds()
 	
@@ -231,7 +267,7 @@ func _decrease() -> void:
 
 
 func _placeBet() -> void:
-	_updateSoulPower(Global.bet)
+	_updateSoulPower(Global.bet,0)
 	$increase.visible = false
 	$decrease.visible = false
 	$placebet.visible = false
@@ -296,6 +332,7 @@ func _ready() -> void:
 	$TotalPowerText.text = "Total power: 0"
 	$ColorRect.material.set_shader_parameter("width",0.0)
 	$ColorRect.material.set_shader_parameter("spot",0.0)
+	_updateSoulShards()
 	
 func _input(_event):
 	if Input.is_key_pressed(KEY_ESCAPE):
@@ -312,6 +349,10 @@ func _process(_delta: float) -> void:
 		else:
 			$ColorRect.material.set_shader_parameter("spot", s+0.005)
 
+func _addToSouls(i : int) -> void:
+	souls += i
+	_updateSoulShards()
+
 func _updateHand() -> void:
 	var cards : Array[card] = playerDeck._getCardsInHand()
 	for h in hb.hands:
@@ -319,7 +360,6 @@ func _updateHand() -> void:
 			h._setTrigger(true)
 		else:
 			h._setTrigger(false)
-	_updateHandPower(playerDeck._cardValuesSum())
 	
 func _increaseHandPower(amount) -> void:
 	HandPowerNew._AddNum(amount)
@@ -334,38 +374,37 @@ func _increasemultiplier(amount) -> void:
 	_updatePower()
 	
 func _multiplyHandPower(amount) -> void:
-	_updateHandPower(HandPowerNew.Vals[0]*amount)
+	_updateHandPower(HandPowerNew.Vals[0]*amount,HandPowerNew.Vals[1])
 	
 func _multiplySoulPower(amount) -> void:
-	_updateSoulPower(SoulPowerNew.Vals[0]*amount)
+	_updateSoulPower(SoulPowerNew.Vals[0]*amount,SoulPowerNew.Vals[1])
 	
 func _multiplyMultiplier(amount) -> void:
-	_updatemultiplier(MultiplierNew.Vals[0]*amount)
+	_updatemultiplier(MultiplierNew.Vals[0]*amount,MultiplierNew.Vals[1])
 	
-func _updateHandPower(amount) -> void:
-	HandPowerNew._setVal(amount)
+func _updateHandPower(amount,b) -> void:
+	HandPowerNew._setVal(amount,b)
 	$HandPowerText.text = str("Handpower: ",HandPowerNew._IntoText())
 	_updatePower()
 
-func _updateSoulPower(amount) -> void:
-	SoulPowerNew._setVal(amount)
+func _updateSoulPower(amount,b) -> void:
+	SoulPowerNew._setVal(amount,b)
 	$SoulPowerText.text = str("Soulpower: ", SoulPowerNew._IntoText())
 	_updatePower()
 
-func _updatemultiplier(amount) -> void:
-	MultiplierNew._setVal(amount)
+func _updatemultiplier(amount,b) -> void:
+	MultiplierNew._setVal(amount,b)
 	$HandPowerText.text = str("Handpower: ",HandPowerNew._IntoText())
 	_updatePower()
 	
 func _updatePower() -> void:
 	$HandPowerText.text = str("Handpower: ",HandPowerNew._IntoText())
 	$SoulPowerText.text = str("Soulpower: ", SoulPowerNew._IntoText())
-	$HandPowerText.text = str("Handpower: ",HandPowerNew._IntoText())
 	$MultiplierText.text = str("Multiplier: ",MultiplierNew._IntoText())
 	TotalPowerNew.Vals = TotalPowerNew._ValMult(SoulPowerNew.Vals,TotalPowerNew._ValMult(HandPowerNew.Vals,MultiplierNew.Vals))
 	TotalPowerNew._updateValue()
 	$TotalPowerText.text = str("Total power: ", TotalPowerNew._IntoText())
-#	if TotalPowerNew > 10*opponentPower:
+#	if TotalPowerNew._GreaterThan(OpponentScoring._MultipliedByNum(10)):
 #		$ColorRect.material.set_shader_parameter("width",0.0125)
 #		$ColorRect.material.set_shader_parameter("spot",0.03)
 #		ripple = true

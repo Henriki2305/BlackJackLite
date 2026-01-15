@@ -1,6 +1,6 @@
 class_name card extends Node2D
-const Enums = preload("res://Enums.gd")
 var location
+var g: Game
 var suits = {
 	"h": Enums.hearts,
 	"d": Enums.diamonds,
@@ -15,7 +15,7 @@ var enchantments = {
 	"en": Enums.enchanted,
 	"ma": Enums.magical,
 	"my": Enums.mythical,
-	"bl": Enums.mythical,
+	"bl": Enums.blessed,
 	"ho": Enums.holy,
 	"di": Enums.divine,
 	"cu": Enums.cursed,
@@ -50,7 +50,8 @@ var rarities = {
 	"go": Enums.goldenRare,
 	"gh": Enums.ghostRare,
 	"ne": Enums.negative,
-	"sh": Enums.shadowRare
+	"sh": Enums.shadowRare,
+	"so": Enums.soulRare
 }
 	
 var values = {
@@ -105,7 +106,8 @@ enum {
 	ddeck,
 	hand,
 	discard,
-	pack
+	pack,
+	sidehand
 }
 
 var suitNames = {
@@ -115,13 +117,27 @@ var suitNames = {
 	Enums.clubs : "clubs"
 }
 
+var triggers = 1
 var rank = Enums.zero
 var suit = Enums.none
 var enchantment = Enums.normal
 var rarity = Enums.common
 # Called when the node enters the scene tree for the first time.
+
+func _setTriggers(nu : int) -> void:
+	triggers = nu
+	
+func _getTriggers() -> int:
+	return triggers
+	
+func _increaseTriggers(nu : int ) -> void:
+	triggers += nu
+
 func _ready() -> void:
-	pass
+	if location == ddeck:
+		g = get_parent().g
+	else:
+		g = get_parent().get_parent().get_parent().get_parent()
 
 func _getName() -> String:
 	return str(rank, " of ", suitNames[suit])
@@ -153,8 +169,9 @@ func setValues(cValues : String) -> void:
 			$"card base".material.set_shader_parameter("shadow", true)
 		Enums.common:
 			pass
-	
+			
 func _drawCard() -> void:
+	triggers = 1
 	location = hand
 	visible = true
 
@@ -167,6 +184,7 @@ func _process(_delta: float) -> void:
 
 func _returnToDeck() -> void:
 	location = ddeck
+	triggers = 1
 
 func _inDeck() -> bool:
 	return location == ddeck
@@ -191,7 +209,36 @@ func _isAce() -> bool:
 func _isFaceCard() -> bool:
 	return rank == Enums.Jack || rank == Enums.Queen || rank == Enums.King
 
+func _rarityEffect() -> void:
+	match rarities:
+		Enums.uncommon :
+			g._increaseHandPower(_worth())
+			if rank == Enums.Ace:
+				g._increaseHandPower(10)
+		Enums.rare :
+			if randi_range(1,100) < 21*g.LikeliHoodModifier:
+				g._multiplyMultiplier(2.5)
 
+func _enchantmentEffect() -> void:
+	match enchantment:
+		Enums.enchanted : g._increaseHandPower(5)
+		Enums.magical : g._increaseHandPower(20)
+		Enums.mythical : g._multiplyHandPower(2)
+		Enums.blessed : g._increasemultiplier(0.35)
+		Enums.holy : g._increaseSoulPower(1)
+		Enums.divine : g._multiplySoulPower(2.5)
+		Enums.cursed :
+			g._addToSouls(-1)
+			g._increaseSoulPower(10)
+		Enums.unholy :
+			g._addToSouls(-2)
+			g._multiplySoulPower(2)
+		Enums.devilish:
+			g._addToSouls(-5)
+			g._increaseSoulPower(25)
+			g._multiplySoulPower(5)
+			
+			
 func _mouse_enter() -> void:
 	if location == pack:
 		var sTween = get_tree().create_tween()
@@ -202,9 +249,9 @@ func _mouse_exit() -> void:
 		var sTween = get_tree().create_tween()
 		sTween.tween_property(self,"scale",Vector2(1,1),0.1)
 
-func _mouse_click():
-	if location == pack:
-		_takeCard()
+#func _mouse_click():
+#	if location == pack:
+#		_takeCard()
 
 func _unpacked() -> void:
 	location = pack
@@ -225,6 +272,7 @@ func _takeCard() -> void:
 	rotTween.tween_property(self,"rotation_degrees", -1080,0.35)
 	tween.tween_property(self,"scale", Vector2(0,0),0.35)
 	await get_tree().create_timer(0.71).timeout
+	visible = false
 	var b : boosterPack = get_parent()
 	var sto: store = b.get_parent()
 	var d: deck =  sto.g._getPlayerDeck()

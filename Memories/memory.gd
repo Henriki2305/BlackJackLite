@@ -106,12 +106,18 @@ func _setInfo() -> void:
 			memInfo = "All played face cards have 1 in 4 card to turn holy"
 		"Outdoors":
 			memInfo = "This memory gains + 0.5 soulpower for each played card under value of 7 and lose 1 soulpower for each played face card"
+		"Temperance":
+			memInfo = "If total worth is between 10 and 15, do x"
+		"x":
+			memInfo = "Increase bust limit by 3"
 		
 
 func _setType() -> void:
 	match memName:
 		"SlotMachine":
 			triggerType = "hybrid"
+		"Sacrifice":
+			triggerType = "normal"
 		"Humility":
 			triggerType = "card"
 		"Sacrifice":
@@ -142,6 +148,18 @@ func _setPosition(i: int) -> void:
 	
 func _getPosition() -> int:
 	return memPos
+
+func _memoryEffectAdded() -> void:
+	match memName:
+		"Credulity" : g.LikeliHoodModifier *= 2
+		"Skepticism": g.LikeliHoodModifier /= 2
+		"x": g.playerBust+=3
+		
+func _memoryEffectRemoved() -> void:
+	match memName:
+		"Credulity" : g.LikeliHoodModifier /= 2
+		"Skepticism": g.LikeliHoodModifier *= 2
+		"x": g.playerBust-=3
 
 func _memoryTriggerCard(c : card, likelihoodmultiplier = 1) -> bool:
 	match memName:
@@ -210,3 +228,4 @@ func _addModText() -> void:
 	
 func _takeMemory() -> void:
 	g.mb._addMemory(self)
+	_memoryEffectAdded()

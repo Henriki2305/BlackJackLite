@@ -1,6 +1,5 @@
 extends Node2D
 class_name deck
-const Enums = preload("res://Enums.gd")
 var cardScene = preload("res://Scenes/card.tscn")
 var cardsdrawn = 0
 var i = 0
@@ -8,6 +7,8 @@ var cardsInDeck: Array[card]
 var drawableCards: Array[card]
 var cardsInHand: Array[card]
 var opponent : bool
+var bust = false
+var g : Game
 
 var suits = {
 	"h": Enums.hearts,
@@ -53,6 +54,12 @@ var ranks = {
 	"12": Enums.twelwe
 	}
 
+func _doesBust(j : int) -> bool:
+	if opponent:
+		return j > g.dealerBust
+	else:
+		return j > g.playerBust
+
 
 func _setSide(s : bool) -> void:
 	opponent = s
@@ -72,8 +79,8 @@ func _createDeck(cardstring) -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var rng = RandomNumberGenerator.new()
-	var DeckString = get_parent()._determineDeck(self)
+	g = get_parent()
+	var DeckString = g._determineDeck(self)
 	_createDeck(DeckString)
 
 func _drawCard() -> void:
@@ -118,6 +125,7 @@ func _restoreDeck() -> void:
 		c.scale = Vector2(1,1)
 		c.global_position = global_position
 	drawableCards = cardsInDeck.duplicate()
+	$Sprite2D.visible = true
 
 func sum(accum : int, number: int):
 	return accum + number
@@ -128,16 +136,18 @@ func _cardValuesSum() -> int:
 		return 0
 	var card_values = cardsInHand.map(func(c): return c._worth())
 	var tot = card_values.reduce(sum,0)
-	if tot > Global.PlayerNumberMax:
-		return tot
-	else:
+	if !_doesBust(tot):
 		var Aces = cardsInHand.map(func(c): if c._isAce(): return 1 else: return 0).reduce(sum,0)
 		while Aces > 0:
 			Aces -= 1
-			if tot + 10 <= Global.PlayerNumberMax:
+			if !_doesBust(tot + 10):
 				tot += 10
 			else:
-				return tot
+				break
+	if _doesBust(tot):
+		bust = true
+		return 0
+	bust = false
 	return tot
 	
 func _hasHand(handName) -> bool:
@@ -176,6 +186,7 @@ func _hasHand(handName) -> bool:
 
 func _addToDeck(c: card) -> void :
 	cardsInDeck.append(c)
+	print(cardsInDeck)
 	c.position = Vector2(0,0)
 	add_child(c)
 	c._inDeck()
@@ -186,6 +197,7 @@ func _clearHand() -> void:
 		c.visible = false
 		c.position = Vector2(0,0)
 	cardsInHand.clear()
+	bust = false
 
 func _getCardsInHand() -> Array[card]:
 	return cardsInHand

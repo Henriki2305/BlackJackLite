@@ -19,6 +19,7 @@ func _hasMem(n: String, a: Array) -> bool:
 	return false
 
 func _createStore() -> void:
+	global_position = Vector2(0,0)
 	g = get_parent().get_parent()
 	var mems = g._getMemsInGame()
 	var usedMems = g.mb.Memories
@@ -30,12 +31,12 @@ func _createStore() -> void:
 		m.scale = Vector2(0.2,0.2)
 		add_child(m)
 		m.inStore = true
-		m.global_position = Vector2(1000+i*200,500)
+		m.global_position = Vector2(-625+i*200,-40)
 		print(n)
 	for i in range(2):
 		var bp : boosterPack = BoosterScene.instantiate()
 		add_child(bp)
-		bp.global_position = Vector2(1000+i*200,750)
+		bp.global_position = Vector2(-625+i*200,160)
 
 func _createCards() -> void:
 	g = get_parent().get_parent()
@@ -61,8 +62,3 @@ func _emptyStore() -> void:
 	for c in cards:
 		if c._inStore():
 			c.queue_free()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

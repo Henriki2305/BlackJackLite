@@ -1,0 +1,144 @@
+[gd_scene load_steps=15 format=3 uid="uid://cbw3rje7ff5n5"]
+
+[ext_resource type="Script" uid="uid://hjm07q0ihj4" path="res://Game.gd" id="1_t88pq"]
+[ext_resource type="PackedScene" uid="uid://cw7kr0gn3r6oq" path="res://Scenes/memory_box.tscn" id="2_r0x5m"]
+[ext_resource type="PackedScene" uid="uid://dsa80bbmp0gad" path="res://Scenes/deck.tscn" id="2_t88pq"]
+[ext_resource type="Script" uid="uid://ctrgu3qcae3u3" path="res://label.gd" id="3_r0x5m"]
+[ext_resource type="Shader" uid="uid://bv50m4ytbyiqf" path="res://Shaders/RippleEffectShader.gdshader" id="6_r0x5m"]
+[ext_resource type="Texture2D" uid="uid://8x4mrmdu76pf" path="res://Memories/images/check.jpg" id="7_3mrqo"]
+[ext_resource type="PackedScene" uid="uid://v2v1kwi0i7co" path="res://Scenes/Store.tscn" id="8_2vekm"]
+[ext_resource type="Script" uid="uid://dho0otp1p22kp" path="res://hand_box.gd" id="8_joorw"]
+
+[sub_resource type="GDScript" id="GDScript_3mrqo"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	self.text = \"0\"
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	pass
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_0hol4"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_q6r6c"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_kdubu"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_d21ai"]
+font_size = 64
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3mrqo"]
+shader = ExtResource("6_r0x5m")
+shader_parameter/width = 0.05
+shader_parameter/spot = 0.2
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_t88pq")
+
+[node name="MemoryBox" parent="." instance=ExtResource("2_r0x5m")]
+position = Vector2(253, 70)
+
+[node name="Deck" parent="." instance=ExtResource("2_t88pq")]
+position = Vector2(1462, 952)
+
+[node name="OpponentsDeck" parent="." instance=ExtResource("2_t88pq")]
+position = Vector2(991, -155)
+metadata/PlayerDeck = true
+
+[node name="BetAmount" type="Label" parent="."]
+offset_left = 869.0
+offset_top = 420.0
+offset_right = 1119.0
+offset_bottom = 468.0
+script = ExtResource("3_r0x5m")
+metadata/_edit_use_anchors_ = true
+
+[node name="CardValueTotal" type="Label" parent="."]
+offset_left = 1258.0
+offset_top = 409.0
+offset_right = 1298.0
+offset_bottom = 432.0
+script = SubResource("GDScript_3mrqo")
+metadata/_edit_use_anchors_ = true
+
+[node name="CardValueTotal2" type="Label" parent="."]
+offset_left = 211.0
+offset_top = 343.0
+offset_right = 251.0
+offset_bottom = 366.0
+script = SubResource("GDScript_3mrqo")
+metadata/_edit_use_anchors_ = true
+
+[node name="SoulPowerText" type="Label" parent="."]
+offset_left = 928.0
+offset_top = 548.0
+offset_right = 970.0
+offset_bottom = 593.0
+text = "AA"
+label_settings = SubResource("LabelSettings_0hol4")
+metadata/_edit_use_anchors_ = true
+
+[node name="HandPowerText" type="Label" parent="."]
+offset_left = 926.0
+offset_top = 499.0
+offset_right = 968.0
+offset_bottom = 544.0
+text = "AA"
+label_settings = SubResource("LabelSettings_q6r6c")
+metadata/_edit_use_anchors_ = true
+
+[node name="MultiplierText" type="Label" parent="."]
+offset_left = 929.0
+offset_top = 459.0
+offset_right = 971.0
+offset_bottom = 504.0
+text = "AA"
+label_settings = SubResource("LabelSettings_kdubu")
+metadata/_edit_use_anchors_ = true
+
+[node name="TotalPowerText" type="Label" parent="."]
+offset_left = 909.0
+offset_top = 332.0
+offset_right = 994.0
+offset_bottom = 420.0
+text = "AA"
+label_settings = SubResource("LabelSettings_d21ai")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_3mrqo")
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 1
+
+[node name="TestBackGround" type="Sprite2D" parent="."]
+visible = false
+z_index = -17
+position = Vector2(928, 559)
+scale = Vector2(5, 5)
+texture = ExtResource("7_3mrqo")
+
+[node name="OpponentScore" type="RichTextLabel" parent="."]
+offset_left = 834.0
+offset_top = 284.0
+offset_right = 1121.0
+offset_bottom = 366.0
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+
+[node name="hand_box" type="Node2D" parent="."]
+position = Vector2(122, 314)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("8_joorw")
+metadata/_custom_type_script = "uid://dho0otp1p22kp"
+
+[node name="Store" parent="." instance=ExtResource("8_2vekm")]
