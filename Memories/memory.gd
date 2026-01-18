@@ -18,6 +18,11 @@ var mpower
 var g: Game
 var box: memory_box
 var inStore = false
+var price : int = 0
+var Prices : Dictionary = {
+	"HelpingHand" : 3,
+	"SlotMachine" : 5
+}
 
 func _setBox(b:memory_box) -> void:
 	box = b
@@ -40,12 +45,20 @@ func upModText() -> void:
 		tex = str("[color=#00FF00]+",mpower,"power of multiplier[/color]")	
 	$modifierText.text = tex
 
+func _buyMemory() -> void:
+	if g.souls >= price:
+		g.souls -= price
+		inStore = false
+		g.mb._addMemory(self)
+		
+
 func _setName(s : String) -> void:
 	memName = s
 	_setDat()
 	$Sprite2D.texture = load(str("res://Memories/images/",memName,".jpg"))
 	_setInfo()
 	_setType()
+	price = Prices[s]
 	
 func _setInfo() -> void:
 	memInfo = ""
@@ -139,6 +152,7 @@ func _ready() -> void:
 		g = get_parent().get_parent()
 	else:
 		g = get_parent().get_parent().get_parent()
+	$BuyButton.pressed.connect(_buyMemory)
 
 func _getType() -> String:
 	return triggerType
