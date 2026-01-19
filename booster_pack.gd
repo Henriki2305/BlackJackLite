@@ -52,7 +52,7 @@ func _createCard() -> void:
 		if r < 0:
 			break
 	var ca = cardScene.instantiate()
-	ca.setValues(st)
+	ca.setValues(st, false)
 	add_child(ca)
 	ca.visible = true
 	ca._unpacked()

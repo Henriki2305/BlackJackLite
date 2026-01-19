@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cbuawudm5kgfe" path="res://Memories/memory.tscn" id="2_tvpnd"]
 
 [node name="MemoryBox" type="Node2D"]
+z_index = 10
 script = ExtResource("1_85pcq")
 
 [node name="memory2" parent="." instance=ExtResource("2_tvpnd")]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbuawudm5kgfe"]
+[gd_scene load_steps=8 format=3 uid="uid://cbuawudm5kgfe"]
 
 [ext_resource type="Script" uid="uid://cygxtf3hffrrc" path="res://Memories/memory.gd" id="1_kh0cx"]
 [ext_resource type="Texture2D" uid="uid://cuyfegcc6eif3" path="res://Memories/images/SlotMachine.jpg" id="2_386u0"]
 [ext_resource type="Script" uid="uid://d3xmr2v40ekvh" path="res://Memories/memoryHover.gd" id="3_dsgf2"]
 [ext_resource type="Texture2D" uid="uid://d1it3m2ws05yb" path="res://Card base.png" id="4_fuocr"]
+[ext_resource type="Texture2D" uid="uid://cqn0gsfru4cqf" path="res://images/purple.png" id="5_dsgf2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pqpdt"]
 size = Vector2(1026, 1026)
@@ -57,3 +58,5 @@ offset_left = -505.0
 offset_top = 519.0
 offset_right = 504.0
 offset_bottom = 734.0
+texture_normal = ExtResource("5_dsgf2")
+stretch_mode = 0

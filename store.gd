@@ -6,7 +6,7 @@ var BoosterScene = preload("res://Scenes/booster_pack.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	$ExitButton.pressed.connect(_leaveStore)
 
 var g: Game
 
@@ -54,6 +54,9 @@ func _createCards() -> void:
 			rotTween.tween_property(card_instance,"rotation_degrees", 1080,0.75)
 			tween.tween_property(card_instance,"scale", Vector2(1,1),0.65)
 			cards.append(card_instance)
+
+func _leaveStore() -> void:
+	visible = false
 
 func _resetPos(c:card) -> void:
 	c.position = Vector2(0,0)

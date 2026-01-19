@@ -142,7 +142,7 @@ func _ready() -> void:
 func _getName() -> String:
 	return str(rank, " of ", suitNames[suit])
 
-func setValues(cValues : String) -> void:
+func setValues(cValues : String, b : bool) -> void:
 	$TakeButton.visible = false
 	$BurnButton.visible = false
 	var texture: TextureRect = $TextureRect
@@ -156,7 +156,10 @@ func setValues(cValues : String) -> void:
 	var h = 904
 	texture.texture.set_region(Rect2(Vector2(xind*(w-20),yind*h),Vector2(w,h)))
 	visible = false
-	location = ddeck
+	if b:
+		location = ddeck
+	else:
+		location = pack
 	match enchantment:
 		Enums.cursed:
 			$"card base".material.set_shader_parameter("cursed", true)
@@ -254,7 +257,6 @@ func _mouse_exit() -> void:
 #		_takeCard()
 
 func _unpacked() -> void:
-	location = pack
 	$TakeButton.visible = true
 	$BurnButton.visible = true
 

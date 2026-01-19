@@ -69,7 +69,7 @@ func _createDeck(cardstring) -> void:
 	var cards = cardstring.split(".")
 	for curCard in cards:
 		var card_instance = cardScene.instantiate()
-		card_instance.setValues(curCard)
+		card_instance.setValues(curCard, true)
 		card_instance.set_name(str("card",i))
 		i = i + 1
 		add_child(card_instance)

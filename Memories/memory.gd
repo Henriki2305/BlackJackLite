@@ -21,7 +21,11 @@ var inStore = false
 var price : int = 0
 var Prices : Dictionary = {
 	"HelpingHand" : 3,
-	"SlotMachine" : 5
+	"SlotMachine" : 5,
+	"Humility" : 5,
+	"Skepticism" : 5,
+	"Credulity" : 5,
+	"x" : 6
 }
 
 func _setBox(b:memory_box) -> void:
@@ -241,5 +245,7 @@ func _addModText() -> void:
 	$modifierText.visible = true
 	
 func _takeMemory() -> void:
+	get_parent().remove_child(self)
 	g.mb._addMemory(self)
+	$BuyButton.hide()
 	_memoryEffectAdded()
