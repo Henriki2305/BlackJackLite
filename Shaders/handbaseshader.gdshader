@@ -1,5 +1,6 @@
 shader_type canvas_item;
 uniform float colorness = 0.0;
+uniform bool rare = false;
 void vertex() {
 	// Called for every vertex the material is visible on.
 }

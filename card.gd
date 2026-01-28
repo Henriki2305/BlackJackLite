@@ -51,7 +51,9 @@ var rarities = {
 	"gh": Enums.ghostRare,
 	"ne": Enums.negative,
 	"sh": Enums.shadowRare,
-	"so": Enums.soulRare
+	"so": Enums.soulRare,
+	"re": Enums.recursiveRare,
+	"mi": Enums.midNightRare
 }
 	
 var values = {
@@ -107,7 +109,8 @@ enum {
 	hand,
 	discard,
 	pack,
-	sidehand
+	sidehand,
+	llist
 }
 
 var suitNames = {
@@ -142,6 +145,13 @@ func _ready() -> void:
 func _getName() -> String:
 	return str(rank, " of ", suitNames[suit])
 
+func _burnCardFromDeck() -> void:
+	show()
+	var tw = get_tree().create_tween()
+	tw.tween_property(self,"global_position",Vector2(randi_range(500,1420),randi_range(400,700)),0.75)
+	await get_tree().create_timer(1.0).timeout
+	queue_free()
+	
 func setValues(cValues : String, b : bool) -> void:
 	$TakeButton.visible = false
 	$BurnButton.visible = false
@@ -168,8 +178,11 @@ func setValues(cValues : String, b : bool) -> void:
 	match rarity:
 		Enums.rare:
 			$TextureRect.material.set_shader_parameter("rare",true)
+			$"card base".material.set_shader_parameter("rare",true)
 		Enums.shadowRare:
 			$"card base".material.set_shader_parameter("shadow", true)
+		Enums.goldenRare:
+			$"card base".material.set_shader_parameter("gold", true)
 		Enums.common:
 			pass
 			
@@ -212,8 +225,11 @@ func _isAce() -> bool:
 func _isFaceCard() -> bool:
 	return rank == Enums.Jack || rank == Enums.Queen || rank == Enums.King
 
+func _hasRarityEffect() -> bool:
+	return rarity == Enums.uncommon || rarity == Enums.rare || rarity == Enums.soulRare || Enums.ultraRare
+
 func _rarityEffect() -> void:
-	match rarities:
+	match rarity:
 		Enums.uncommon :
 			g._increaseHandPower(_worth())
 			if rank == Enums.Ace:
@@ -221,6 +237,14 @@ func _rarityEffect() -> void:
 		Enums.rare :
 			if randi_range(1,100) < 21*g.LikeliHoodModifier:
 				g._multiplyMultiplier(2.5)
+		Enums.ultraRare:
+			g._multiplyHandPower(1.25)
+			g._multiplySoulPower(1.25)
+			g._multiplyMultiplier(1.25)
+		Enums.soulRare :
+			g._addToSouls(2)
+		Enums.recursiveRare :
+			g._multiplyMultiplierbyPercent(1.01)
 
 func _enchantmentEffect() -> void:
 	match enchantment:

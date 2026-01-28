@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://de16dx35h18la"]
 
 [ext_resource type="Script" uid="uid://cx7bx53liah2" path="res://booster_pack.gd" id="1_4wff1"]
-[ext_resource type="Texture2D" uid="uid://citsjc03dvii2" path="res://Memories/images/Booster.png" id="2_7md1r"]
+[ext_resource type="Texture2D" uid="uid://citsjc03dvii2" path="res://images/Booster.png" id="2_7md1r"]
 [ext_resource type="Script" uid="uid://bd3yqf3jngbfa" path="res://BoosterMouseHandler.gd" id="3_7md1r"]
 [ext_resource type="Script" uid="uid://bglpxyedwcjoy" path="res://Scenes/BoosterArea.gd" id="4_y10c5"]
-[ext_resource type="Texture2D" uid="uid://fv6fvhp82qdu" path="res://Memories/images/Deck.png" id="5_y10c5"]
+[ext_resource type="Texture2D" uid="uid://fv6fvhp82qdu" path="res://images/Deck.png" id="5_y10c5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y10c5"]
 size = Vector2(300.00006, 500.00012)

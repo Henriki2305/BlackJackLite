@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://fv4fstgriixi"]
 
 [ext_resource type="Script" uid="uid://daoctn6otdln2" path="res://hand.gd" id="1_f6hnx"]
-[ext_resource type="Texture2D" uid="uid://uj7pxk2p61vv" path="res://Memories/images/HandGray.png" id="2_u7o8q"]
+[ext_resource type="Texture2D" uid="uid://uj7pxk2p61vv" path="res://images/HandGray.png" id="2_u7o8q"]
 [ext_resource type="Shader" uid="uid://bo78vhwy3tyv2" path="res://Shaders/handbaseshader.gdshader" id="2_vumah"]
 [ext_resource type="Script" uid="uid://b5nipnfydru0a" path="res://Scenes/HandHover.gd" id="4_jrln0"]
 

@@ -6,6 +6,7 @@ var i = 0
 var cardsInDeck: Array[card]
 var drawableCards: Array[card]
 var cardsInHand: Array[card]
+var cardsInSideHand: Array[card]
 var opponent : bool
 var bust = false
 var g : Game
@@ -91,10 +92,10 @@ func _drawCard() -> void:
 	var newCard = drawableCards.pick_random()
 	newCard._drawCard()
 	print(newCard._getName())
-	var new_position = Vector2(800+150*len(cardsInHand),750)
+	var new_position = Vector2(800+150*len(cardsInHand),850)
 	var tween = get_tree().create_tween()
 	if opponent:
-		new_position = Vector2(800+150*len(cardsInHand),200)
+		new_position = Vector2(800+150*len(cardsInHand),500)
 	tween.tween_property(newCard,"global_position", new_position,0.25)
 	cardsInHand.append(newCard)
 	drawableCards = drawableCards.filter(func(c):return c._inDeck())
@@ -130,7 +131,6 @@ func _restoreDeck() -> void:
 func sum(accum : int, number: int):
 	return accum + number
 
-
 func _cardValuesSum() -> int:
 	if len(cardsInHand) == 0:
 		return 0
@@ -149,6 +149,51 @@ func _cardValuesSum() -> int:
 		return 0
 	bust = false
 	return tot
+	
+func _burnCards(s : String) -> void:
+	match s:
+		"hearts":
+			for c in cardsInDeck:
+				if c.suit == Enums.hearts:
+					cardsInDeck.erase(c)
+					c._burnCardFromDeck()
+		"clubs":
+			for c in cardsInDeck:
+				if c.suit == Enums.clubs:
+					cardsInDeck.erase(c)
+					c._burnCardFromDeck()
+		"diamonds":
+			for c in cardsInDeck:
+				if c.suit == Enums.diamonds:
+					cardsInDeck.erase(c)
+					c._burnCardFromDeck()
+		"spades":
+			for c in cardsInDeck:
+				if c.suit == Enums.spades:
+					cardsInDeck.erase(c)
+					c._burnCardFromDeck()
+		"stars":
+			for c in cardsInDeck:
+				if c.suit == Enums.stars:
+					cardsInDeck.erase(c)
+					c._burnCardFromDeck()
+		"faces":
+			for c in cardsInDeck:
+				if c._isFaceCard():
+					cardsInDeck.erase(c)
+					c._burnCardFromDeck()
+		"big":
+			for c in cardsInDeck:
+				if c._worth() > 5 && !c._isFaceCard():
+					cardsInDeck.erase(c)
+					c._burnCardFromDeck()
+		"small":
+			for c in cardsInDeck:
+				if c._worth() <= 5 || c._isAce():
+					cardsInDeck.erase(c)
+					c._burnCardFromDeck()
+		
+	
 	
 func _hasHand(handName) -> bool:
 	match handName:
@@ -201,3 +246,6 @@ func _clearHand() -> void:
 
 func _getCardsInHand() -> Array[card]:
 	return cardsInHand
+
+func _getCardsInSideHand() -> Array[card]:
+	return cardsInSideHand

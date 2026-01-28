@@ -51,10 +51,12 @@ func upModText() -> void:
 
 func _buyMemory() -> void:
 	if g.souls >= price:
-		g.souls -= price
+		$BuyButton.hide()
+		g._addToSouls(-price)
 		inStore = false
+		get_parent().remove_child(self)
 		g.mb._addMemory(self)
-		
+		_memoryEffectAdded()	
 
 func _setName(s : String) -> void:
 	memName = s
@@ -125,6 +127,8 @@ func _setInfo() -> void:
 			memInfo = "This memory gains + 0.5 soulpower for each played card under value of 7 and lose 1 soulpower for each played face card"
 		"Temperance":
 			memInfo = "If total worth is between 10 and 15, do x"
+		"":
+			memInfo = "Gain a soul shard for every cursed card in hand"
 		"x":
 			memInfo = "Increase bust limit by 3"
 		
@@ -141,6 +145,8 @@ func _setType() -> void:
 			triggerType = "normal"
 		"HelpingHand":
 			triggerType = "normal"
+		"Two-faced":
+			triggerType = "card"
 			
 func _setDat() -> void:
 	match memName:
@@ -157,6 +163,7 @@ func _ready() -> void:
 	else:
 		g = get_parent().get_parent().get_parent()
 	$BuyButton.pressed.connect(_buyMemory)
+	$BuyButton.hide()
 
 func _getType() -> String:
 	return triggerType
@@ -191,6 +198,9 @@ func _memoryTriggerCard(c : card, likelihoodmultiplier = 1) -> bool:
 					return false
 		"Humility":
 			return c.rank == Enums.zero || c.rank == Enums.one || c.rank == Enums.two || c.rank == Enums.three || c.rank == Enums.four
+		"Two-faced":
+			if c._isFaceCard():
+					return true
 	return false
 
 func _memoryTrigger(likelihoodmultiplier = 1) -> bool:
@@ -210,6 +220,11 @@ func _memoryEffectCard(c : card = null, likelihoodmultiplier = 1) -> void:
 			upModText()
 		"Humility":
 			g._increaseSoulPower(c._worth()*2)
+		"Two-faced":
+			if randi_range(1,100) < 10*likelihoodmultiplier:
+				g._multiplyMultiplier(0.5)
+			else:
+				g._multiplyMultiplier(2.0)
 
 func _memoryEffect(likelihoodmultiplier = 1) -> void:
 	match memName:
@@ -243,9 +258,11 @@ func _removeModText() -> void:
 	
 func _addModText() -> void:
 	$modifierText.visible = true
-	
-func _takeMemory() -> void:
-	get_parent().remove_child(self)
-	g.mb._addMemory(self)
+
+func _hideBuyButton() -> void:
 	$BuyButton.hide()
-	_memoryEffectAdded()
+
+func _SelectMemory() -> void:
+	if get_parent() is store:
+		get_parent()._deSelectMems()
+		$BuyButton.show()

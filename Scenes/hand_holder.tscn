@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b7jgkhikvpidn"]
 
 [ext_resource type="Script" uid="uid://byob3aiify3kb" path="res://hand_holder.gd" id="1_08pn0"]
-[ext_resource type="Texture2D" uid="uid://d0gi8q8584bf2" path="res://Memories/images/blackmössö.png" id="2_wuu6r"]
+[ext_resource type="Texture2D" uid="uid://d0gi8q8584bf2" path="res://images/blackmössö.png" id="2_wuu6r"]
 [ext_resource type="Script" uid="uid://bisy8edfv72cp" path="res://handHolderHover.gd" id="3_63wgi"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_162oj"]

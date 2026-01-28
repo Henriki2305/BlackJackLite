@@ -42,6 +42,7 @@ func _Advance() -> void:
 	g._advance()
 	g._getPlayerDeck()._restoreDeck()
 	g.opponentDeck._restoreDeck()
+	queue_free()
 
 func _EnterStore() -> void:
 	$storeInstance.visible = true
@@ -52,7 +53,7 @@ func _EnterHandDemon() -> void:
 	print("e")
 	var dem = demonScene.instantiate()
 	add_child(dem)
-	dem.position = Vector2(300,300)
+	dem.global_position = Vector2(0,0)
 	dem._setHands(["testhand1","testhand2","testhand3"])
 	
 func _EnterCollector() -> void:

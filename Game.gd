@@ -34,6 +34,9 @@ var unlockedCardRanks : Array[String] = ["2","3","4","5","6","7","8","9","10","j
 var unlockedSuits : Array[String] = ["h","s","d","c"]
 var unlockedEnchantments : Array[String] = ["no","cu"]
 var BetweenRoundsScene = preload("res://BetweenRound.tscn")
+var BurnerScene = preload("res://Scenes/burner.tscn")
+var CardListScene = preload("res://Scenes/card_list.tscn")
+var chosenCards : Array[card]
 var reward = 3
 var opponentDeckMultiplier = 0.4
 var opponentPower = 0
@@ -65,7 +68,7 @@ var handRewardTexts : Dictionary = {
 
 var DeckStrings : Dictionary = {
 #	"normalDeck" : "nohsh7.cuhco7.cuhsh7.nohco7.nodra7.nocco7.nodco7.nohcoa.nohco7.nosco7.nohco7",
-	"normalDeck" : "nohsh7.nohco7.nohsh7.nohco7.nodra7.nocco7.nodco7.nohcoa.nohco7.nosco7.nohco7",
+	"normalDeck" : "nohsh7.nohgo7.nohsh7.nohgo7.nodra7.nocco7.nodco7.nohcoa.nohco7.nosco7.nohco7",
 	"opposingDeck" : "nohcoa.nohco2.nohco3.nohco4.nohco5.nohco6.nohco7.nohco8.nohco9.nohco10.nohcoj.nohcoq.nohcok"
 }
 
@@ -225,7 +228,7 @@ func _playHand() -> void:
 	$placebet.visible = true
 	opponentPower = 0
 	$OpponentScore.text = str("Score to beat: [color=#0000FF]0[/color]")
-	if roundsPassed == 1:
+	if roundsPassed == 3:
 		roundsPassed = 0
 		_addToSouls(reward)
 		reward=3
@@ -239,10 +242,16 @@ func _betweenRounds() -> void:
 	$HandPowerText.visible = false
 	$MultiplierText.visible = false
 	$TotalPowerText.visible = false
-	var betweenRounds = BetweenRoundsScene.instantiate()
-	betweenRounds.set_name("betweenRounds")
-	add_child(betweenRounds)
-	betweenRounds.global_position = Vector2(700,400)
+	if level == 3:
+		var burner = BurnerScene.instantiate()
+		burner.set_name("burner")
+		add_child(burner)
+		burner.global_position = Vector2(0,0)
+	else:
+		var betweenRounds = BetweenRoundsScene.instantiate()
+		betweenRounds.set_name("betweenRounds")
+		add_child(betweenRounds)
+		betweenRounds.global_position = Vector2(700,400)
 	playerDeck._restoreDeck()
 	opponentDeck._restoreDeck()
 	
@@ -255,7 +264,6 @@ func _advance() -> void:
 	$HandPowerText.visible = true
 	$MultiplierText.visible = true
 	$TotalPowerText.visible = true
-	$betweenRounds.queue_free()
 
 func _increase() -> void:
 	if Global.bet < souls:
@@ -299,13 +307,13 @@ func _ready() -> void:
 	add_child(HitButton)
 	add_child(StandButton)
 	add_child(DiscardButton)
-	HitButton.position = Vector2(900,700)
+	HitButton.position = Vector2(900,1000)
 	HitButton.pressed.connect(_drawcard)
 	HitButton.name = "hitButton"
-	StandButton.position = Vector2(950,700)
+	StandButton.position = Vector2(950,1000)
 	StandButton.pressed.connect(_playHand)
 	StandButton.name = "standButton"
-	DiscardButton.position = Vector2(1000,700)
+	DiscardButton.position = Vector2(1000,1000)
 	DiscardButton.pressed.connect(_discardCard)
 	DiscardButton.name = "discardButton"
 	HitButton.visible = false
@@ -323,9 +331,9 @@ func _ready() -> void:
 	add_child(Increasebutton)
 	add_child(Decreasebutton)
 	add_child(PlaceBetButton)
-	Increasebutton.position = Vector2(700,600)
-	Decreasebutton.position = Vector2(800,600)
-	PlaceBetButton.position = Vector2(900,600)
+	Increasebutton.position = Vector2(700,1000)
+	Decreasebutton.position = Vector2(800,1000)
+	PlaceBetButton.position = Vector2(900,1000)
 	$SoulPowerText.text = "Soulpower: 0"
 	$HandPowerText.text = "HandPower: 0"
 	$MultiplierText.text = "Multiplier: 1"
@@ -381,6 +389,9 @@ func _multiplySoulPower(amount) -> void:
 	
 func _multiplyMultiplier(amount) -> void:
 	_updatemultiplier(MultiplierNew.Vals[0]*amount,MultiplierNew.Vals[1])
+	
+func _multiplyMultiplierbyPercent(amount) -> void:
+	MultiplierNew.Vals = MultiplierNew._ValMult(MultiplierNew._MultipliedByNum(amount).vals,MultiplierNew.Vals)
 	
 func _updateHandPower(amount,b) -> void:
 	HandPowerNew._setVal(amount,b)

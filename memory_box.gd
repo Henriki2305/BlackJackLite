@@ -22,6 +22,8 @@ func getMovedMemory() -> memory:
 	return movedMemory
 
 func _addMemory(m : memory) -> void:
+	m._setBox(self)
+	m._setPosition(len(Memories))
 	Memories.append(m)
 	m.global_position = Vector2(600,500+((len(Memories)-1)*120))
 	add_child(m)

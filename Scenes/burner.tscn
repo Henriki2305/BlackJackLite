@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=3 uid="uid://djb48n8re46v3"]
+
+[ext_resource type="Texture2D" uid="uid://yk4vxiqq6avn" path="res://images/DiamondSuit.png" id="1_lkh7u"]
+[ext_resource type="Texture2D" uid="uid://cqn0gsfru4cqf" path="res://images/purple.png" id="1_mbunx"]
+[ext_resource type="Script" uid="uid://ci45myekg7amq" path="res://Scenes/burner.gd" id="1_pf5ft"]
+[ext_resource type="Texture2D" uid="uid://bv3pwn3aordnh" path="res://images/tablebase.png" id="2_pf5ft"]
+[ext_resource type="Texture2D" uid="uid://wacmgsvvra3w" path="res://images/SpadeSuit.png" id="2_v3nh0"]
+[ext_resource type="Texture2D" uid="uid://8x4mrmdu76pf" path="res://images/check.jpg" id="3_duo4a"]
+[ext_resource type="Texture2D" uid="uid://jria8qt8t4n" path="res://images/HeartSuit.png" id="3_xlbke"]
+[ext_resource type="Texture2D" uid="uid://bc3jxvnfo4p2e" path="res://images/ClubSuit.png" id="4_mbunx"]
+[ext_resource type="Texture2D" uid="uid://boxdwcayrwx7q" path="res://images/StarSuit.png" id="5_pf5ft"]
+
+[node name="CardBurner" type="Node2D"]
+script = ExtResource("1_pf5ft")
+
+[node name="BurnRankRange" type="TextureButton" parent="."]
+offset_left = 949.0
+offset_top = 442.0
+offset_right = 999.0
+offset_bottom = 492.0
+scale = Vector2(3.265, 3.265)
+texture_normal = ExtResource("1_mbunx")
+
+[node name="BurnSuit" type="TextureButton" parent="."]
+offset_left = 595.0
+offset_top = 447.0
+offset_right = 2395.0
+offset_bottom = 2247.0
+scale = Vector2(0.095, 0.095)
+texture_normal = ExtResource("2_pf5ft")
+
+[node name="SkipBurning" type="TextureButton" parent="."]
+offset_left = 790.0
+offset_top = 665.0
+offset_right = 1814.0
+offset_bottom = 924.0
+scale = Vector2(0.145, 0.58)
+texture_normal = ExtResource("3_duo4a")
+
+[node name="BurnDiamonds" type="TextureButton" parent="."]
+offset_left = 376.0
+offset_top = 316.0
+offset_right = 676.0
+offset_bottom = 716.0
+texture_normal = ExtResource("1_lkh7u")
+
+[node name="BurnSpades" type="TextureButton" parent="."]
+offset_left = 1101.0
+offset_top = 284.0
+offset_right = 1401.0
+offset_bottom = 684.0
+texture_normal = ExtResource("2_v3nh0")
+
+[node name="BurnHearts" type="TextureButton" parent="."]
+offset_left = 943.0
+offset_top = 686.0
+offset_right = 1243.0
+offset_bottom = 1086.0
+texture_normal = ExtResource("3_xlbke")
+
+[node name="BurnClubs" type="TextureButton" parent="."]
+offset_left = 570.0
+offset_top = 701.0
+offset_right = 870.0
+offset_bottom = 1101.0
+texture_normal = ExtResource("4_mbunx")
+
+[node name="BurnStars" type="TextureButton" parent="."]
+offset_left = 750.0
+offset_top = -3.0
+offset_right = 1050.0
+offset_bottom = 397.0
+texture_normal = ExtResource("5_pf5ft")
+
+[node name="BurnFaces" type="TextureButton" parent="."]
+offset_left = 1513.0
+offset_top = 745.0
+offset_right = 1645.0
+offset_bottom = 878.0
+
+[node name="BurnSmall" type="TextureButton" parent="."]
+offset_left = 936.0
+offset_top = 745.0
+offset_right = 1068.0
+offset_bottom = 878.0
+
+[node name="BurnBig" type="TextureButton" parent="."]
+offset_left = 442.0
+offset_top = 748.0
+offset_right = 574.0
+offset_bottom = 881.0
