@@ -103,6 +103,14 @@ func _drawCard() -> void:
 	if(drawableCards.is_empty()):
 		$Sprite2D.visible = false
 		
+func _getDeckCopy() -> Array[card]:
+	var d: Array[card] = []
+	for c in cardsInDeck:
+		var cc = c.duplicate()
+		add_child(cc)
+		d.append(cc)
+	return d
+		
 func _discardCard() -> void:
 	if !cardsInHand.is_empty():
 		var c = cardsInHand[-1]

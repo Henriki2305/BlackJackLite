@@ -4,14 +4,30 @@ class_name soul
 # Called when the node enters the scene tree for the first time.
 
 var soulName : String
+var inInventory : bool
+var g : Game
 
 func _ready() -> void:
-	pass # Replace with function body.
+	$SacrificeButton.hide()
+	inInventory = false
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _setName(name : String) -> void:
+	soulName = name
 
 func _getSoulRule() -> String:
-	return "a"
+	return soulName
+
+func _hideButton() -> void:
+	$SacrificeButton.hide()
+	
+func _showButton() -> void:
+	$SacrificeButton.show()
+
+func _buySoul() -> String:
+	inInventory = true
+	return soulName
+	
+func _sacrificeSoul() -> void:
+	g.soulRules[soulName]=false
+	queue_free()
+	

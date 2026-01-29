@@ -12,7 +12,7 @@ var SoulPower = 0
 var HandPower = 0
 var Multiplier = 1
 var MemoriesMax = 5
-var MaxSouls = 2
+var MaxSouls = 1
 var MajorSouls = 0
 var TotalPower = 0
 var LikeliHoodModifier = 1
@@ -22,7 +22,7 @@ var playerBust = 21
 var dealerBust = 21
 var playPhase = true
 var mb: memory_box
-var hb: hand_box
+var hb: handbox
 var AllHands = ["pair", "BlackJack","normal","lovelyFaces","neutrality","27","none",]
 var AvailableHands = ["pair","BlackJack","normal","none"]
 var choices = ["hit","stand","discard","doubleDown","surrender","burn","clone"]
@@ -36,6 +36,7 @@ var unlockedEnchantments : Array[String] = ["no","cu"]
 var BetweenRoundsScene = preload("res://BetweenRound.tscn")
 var BurnerScene = preload("res://Scenes/burner.tscn")
 var CardListScene = preload("res://Scenes/card_list.tscn")
+var listScene = preload("res://Scenes/card_list.tscn")
 var chosenCards : Array[card]
 var reward = 3
 var opponentDeckMultiplier = 0.4
@@ -43,6 +44,8 @@ var opponentPower = 0
 var ripple : bool = false
 var layerLevel = 0
 var layer = ""
+var currentSouls : Array[soul]
+var clist : cardlist
 
 
 var soulRules : Dictionary = {
@@ -72,12 +75,11 @@ var DeckStrings : Dictionary = {
 	"opposingDeck" : "nohcoa.nohco2.nohco3.nohco4.nohco5.nohco6.nohco7.nohco8.nohco9.nohco10.nohcoj.nohcoq.nohcok"
 }
 
-var HandPowers = {
-	"normal" = 1,
-	"BlackJack" = 1.5,
-	"pair" = 2,
-	"none" = 0
-}
+func _recruitSoul(s : soul) -> void:
+	currentSouls.append(s)
+	add_child(s)
+	soulRules[s._buySoul()] = true
+	s.g = self
 
 func _getPlayerDeck() -> deck:
 	return playerDeck
@@ -243,10 +245,10 @@ func _betweenRounds() -> void:
 	$MultiplierText.visible = false
 	$TotalPowerText.visible = false
 	if level == 3:
-		var burner = BurnerScene.instantiate()
-		burner.set_name("burner")
-		add_child(burner)
-		burner.global_position = Vector2(0,0)
+		var burneri = BurnerScene.instantiate()
+		burneri.set_name("burner")
+		add_child(burneri)
+		burneri.global_position = Vector2(0,0)
 	else:
 		var betweenRounds = BetweenRoundsScene.instantiate()
 		betweenRounds.set_name("betweenRounds")
@@ -419,3 +421,14 @@ func _updatePower() -> void:
 #		$ColorRect.material.set_shader_parameter("width",0.0125)
 #		$ColorRect.material.set_shader_parameter("spot",0.03)
 #		ripple = true
+
+func _createList() -> void:
+	if clist == null:
+		clist = listScene.instantiate()
+		$Control.add_child(clist)
+	
+func _destroyList() -> void:
+	if clist:
+		$Control.remove_child(clist)
+		clist.queue_free()
+		clist = null

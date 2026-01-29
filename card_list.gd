@@ -19,7 +19,7 @@ func _ready() -> void:
 	$Control.size = get_parent().size
 	g = get_parent().get_parent()
 	d = g._getPlayerDeck()
-	cards = d.cardsInDeck
+	cards = d._getDeckCopy()
 	var hearts : Array[card] = []
 	var diamonds : Array[card] = []
 	var spades : Array[card] = []

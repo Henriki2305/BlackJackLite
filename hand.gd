@@ -6,7 +6,7 @@ var reqLevel : int = 1
 var rewLevel : int = 1
 var HandPos : int = 0
 var colorness : float = 0.0
-var box : hand_box
+var box : handbox
 var reqTexts: Dictionary = {
 	"BlackJack" : ["2 cards, one of which is ace and another any card with value of 10"],
 	"pair" : ["2 cards with the same rank"]
@@ -20,7 +20,7 @@ func _ready() -> void:
 	$Req.visible = false
 	$Rew.visible = false
 	
-func _setBox(b:hand_box) -> void:
+func _setBox(b:handbox) -> void:
 	box = b
 	
 func _handInfo(t : String) -> void:

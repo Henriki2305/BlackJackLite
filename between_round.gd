@@ -54,7 +54,7 @@ func _EnterHandDemon() -> void:
 	var dem = demonScene.instantiate()
 	add_child(dem)
 	dem.global_position = Vector2(0,0)
-	dem._setHands(["testhand1","testhand2","testhand3"])
+	dem._setHands(["testhand1","testhand2"])
 	
 func _EnterCollector() -> void:
 	pass

@@ -1,14 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2rgxojqhy2wi"]
+[gd_scene load_steps=3 format=3 uid="uid://d2rgxojqhy2wi"]
 
 [ext_resource type="Script" uid="uid://b1yeyob8l774u" path="res://soul_smith.gd" id="1_c45iv"]
+[ext_resource type="Texture2D" uid="uid://cqn0gsfru4cqf" path="res://images/purple.png" id="2_jf7rs"]
 
 [node name="SoulSmith" type="Node2D"]
 script = ExtResource("1_c45iv")
 
+[node name="BuyButton" type="TextureButton" parent="."]
+offset_left = 56.0
+offset_top = 86.0
+offset_right = 96.0
+offset_bottom = 126.0
+
 [node name="SmithButton" type="TextureButton" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 948.0
+offset_top = 715.0
+offset_right = 1073.0
+offset_bottom = 839.0
+texture_normal = ExtResource("2_jf7rs")
+stretch_mode = 0
 
 [node name="ReturnButton" type="TextureButton" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 56.0
+offset_top = 86.0
+offset_right = 233.0
+offset_bottom = 256.0
+texture_normal = ExtResource("2_jf7rs")
+stretch_mode = 0

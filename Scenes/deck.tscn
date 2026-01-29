@@ -1,11 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsa80bbmp0gad"]
+[gd_scene load_steps=5 format=3 uid="uid://dsa80bbmp0gad"]
 
 [ext_resource type="Script" uid="uid://c7otre5nx2pde" path="res://deck.gd" id="1_nxs2u"]
 [ext_resource type="Texture2D" uid="uid://fv6fvhp82qdu" path="res://images/Deck.png" id="2_io7pv"]
+[ext_resource type="Script" uid="uid://c6jqrgy3jse4p" path="res://deck_sprite.gd" id="3_nlncs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_io7pv"]
+size = Vector2(302.22223, 400.00003)
 
 [node name="Deck" type="Node2D"]
 script = ExtResource("1_nxs2u")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="DeckSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.45, 0.45)
 texture = ExtResource("2_io7pv")
+script = ExtResource("3_nlncs")
+
+[node name="Area2D" type="Area2D" parent="DeckSprite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeckSprite/Area2D"]
+position = Vector2(-7.549922e-06, 2.5431311e-06)
+shape = SubResource("RectangleShape2D_io7pv")

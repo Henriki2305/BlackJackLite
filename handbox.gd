@@ -1,4 +1,4 @@
-class_name hand_box extends Node2D
+class_name handbox extends Node2D
 var handScene = preload("res://Scenes/hand.tscn")
 var hands : Array = []
 var movedHand
@@ -22,7 +22,7 @@ func _ready() -> void:
 	h2._handInfo("pair")
 	h2.position = Vector2(0,200)
 	h2._setPosition(1)
-	h2.global_position = Vector2(200,620)
+	h2.global_position = Vector2(200,575)
 	hands.append(h1)
 	hands.append(h2)
 	h1._setBox(self)
@@ -39,7 +39,7 @@ func _process(_delta: float) -> void:
 				if (h._getPosition() > movedHand._getPosition() && h.global_position[1] < movedHand.global_position[1] )|| (h._getPosition() < movedHand._getPosition() && h.global_position[1] > movedHand.global_position[1]):
 					_swapHandPos(i,movedHand._getPosition())
 					var tween = get_tree().create_tween()
-					tween.tween_property(h,"global_position", Vector2(200,500+(h._getPosition()*120)),0.1)
+					tween.tween_property(h,"global_position", Vector2(200,500+(h._getPosition()*75)),0.1)
 
 func _input(event):
 	if get_parent().playPhase:
@@ -52,7 +52,7 @@ func _input(event):
 			else:
 				if movedHand:
 					var tween = get_tree().create_tween()
-					tween.tween_property(movedHand,"global_position", Vector2(200,500+(movedHand._getPosition()*120)),0.1)
+					tween.tween_property(movedHand,"global_position", Vector2(200,500+(movedHand._getPosition()*75)),0.1)
 					var h = movedHand
 					movedHand = null
 					h._createInfoBox()
