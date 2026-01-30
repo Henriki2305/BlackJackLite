@@ -1,12 +1,12 @@
+Control
+TextureRect
 CollisionShape2D
 Area2D
 TextureButton
 Sprite2D
-TextureRect
 CenterContainer
 HBoxContainer
 Container
-Control
 BoxContainer
 VBoxContainer
 Button

@@ -106,7 +106,11 @@ func _drawCard() -> void:
 func _getDeckCopy() -> Array[card]:
 	var d: Array[card] = []
 	for c in cardsInDeck:
+		var s = c._getString()
 		var cc = c.duplicate()
+		cc.setValues(s,true)
+		cc._setOriginal(c)
+		cc._setListed(true)
 		add_child(cc)
 		d.append(cc)
 	return d

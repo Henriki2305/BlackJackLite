@@ -1,19 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://duigimficalft"]
+[gd_scene format=3 uid="uid://duigimficalft"]
 
 [ext_resource type="Script" uid="uid://deilwqait6sl3" path="res://card_list.gd" id="1_h87do"]
+[ext_resource type="Texture2D" uid="uid://c1pimrotwhchj" path="res://images/Dark.png" id="2_hcnqd"]
+[ext_resource type="Shader" uid="uid://vgpvh3hunria" path="res://Shaders/list.gdshader" id="2_uhr1p"]
 
-[node name="Card list" type="Node2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v0c4e"]
+shader = ExtResource("2_uhr1p")
+
+[node name="Card list" type="Node2D" unique_id=2020890033]
 z_index = 25
 script = ExtResource("1_h87do")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=39261658]
 layout_mode = 3
 anchors_preset = 0
-offset_top = -1.0
-offset_right = 1921.0
-offset_bottom = 1082.0
+offset_left = 125.0
+offset_top = 125.0
+offset_right = 1595.0
+offset_bottom = 755.0
 
-[node name="SuitContainers" type="BoxContainer" parent="Control"]
+[node name="SuitContainers" type="BoxContainer" parent="Control" unique_id=1555529353]
+z_index = 25
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,3 +28,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 vertical = true
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1550051075]
+material = SubResource("ShaderMaterial_v0c4e")
+offset_right = 1720.0
+offset_bottom = 880.0
+texture = ExtResource("2_hcnqd")

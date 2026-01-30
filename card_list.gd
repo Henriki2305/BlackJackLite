@@ -5,16 +5,20 @@ var cards : Array[card]
 var d : deck
 # Called when the node enters the scene tree for the first time.
 
-func fillCont(c : card, cont : HBoxContainer) -> void:
+func fillCont(c : card, cont : TextureRect) -> void:
 	c.show()
-	var box = Container.new()
 	d.remove_child(c)
-	box.add_child(c)
-	box.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	box.size_flags_horizontal = Control.SIZE_EXPAND
-	box.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-	cont.add_child(box)
-	
+	cont.add_child(c)
+		
+func _sortSuit(s: Array[card]) -> Array[card]:
+	var ranks = [Enums.zero,Enums.one,Enums.two,Enums.three,Enums.four,Enums.five,Enums.six,Enums.seven,Enums.eight,Enums.nine,Enums.ten,Enums.eleven,Enums.Jack,Enums.Queen,Enums.King,Enums.Ace]
+	var temp : Array[card] = []
+	for r in ranks:
+		for c in s:
+			if c.rank == r:
+				temp.append(c)
+	return temp
+		
 func _ready() -> void:
 	$Control.size = get_parent().size
 	g = get_parent().get_parent()
@@ -28,6 +32,7 @@ func _ready() -> void:
 	var all : Array[card] = []
 	var none : Array[card] = []
 	for c in cards:
+		c.position = Vector2(0,0)
 		match c.suit:
 			Enums.hearts:
 				hearts.append(c)
@@ -45,7 +50,8 @@ func _ready() -> void:
 				none.append(c)
 	var suits : int = 0
 	if len(hearts) > 0:
-		var Cont = HBoxContainer.new()
+		hearts = _sortSuit(hearts)
+		var Cont = TextureRect.new()
 		Cont.set_name("hearts")
 		$Control/SuitContainers.add_child(Cont)
 		Cont.size_flags_vertical = Control.SIZE_SHRINK_CENTER
@@ -53,8 +59,15 @@ func _ready() -> void:
 		for c in hearts:
 			fillCont(c,Cont)
 		suits += 1
+		var wid = $Control.size.x * min(1.0,0.15 + 0.1*len(hearts))
+		var dis = wid/len(hearts)
+		var i = 0
+		for c in hearts:
+			c.position = Vector2(dis*i,0)
+			i+=1
 	if len(diamonds) > 0:
-		var Cont = HBoxContainer.new()
+		diamonds = _sortSuit(diamonds)
+		var Cont = TextureRect.new()
 		Cont.set_name("diamonds")
 		$Control/SuitContainers.add_child(Cont)
 		Cont.size_flags_vertical = Control.SIZE_SHRINK_CENTER
@@ -62,8 +75,15 @@ func _ready() -> void:
 		for c in diamonds:
 			fillCont(c,Cont)
 		suits += 1
+		var wid = $Control.size.x * min(1.0,0.15 + 0.1*len(diamonds))
+		var dis = wid/len(diamonds)
+		var i = 0
+		for c in diamonds:
+			c.position = Vector2(dis*i,0)
+			i+=1
 	if len(spades) > 0:
-		var Cont = HBoxContainer.new()
+		spades = _sortSuit(spades)
+		var Cont = TextureRect.new()
 		Cont.set_name("spades")
 		$Control/SuitContainers.add_child(Cont)
 		Cont.size_flags_vertical = Control.SIZE_SHRINK_CENTER
@@ -71,8 +91,15 @@ func _ready() -> void:
 		for c in spades:
 			fillCont(c,Cont)
 		suits += 1
+		var wid = $Control.size.x * min(1.0,0.15 + 0.1*len(spades))
+		var dis = wid/len(spades)
+		var i = 0
+		for c in spades:
+			c.position = Vector2(dis*i,0)
+			i+=1
 	if len(clubs) > 0:
-		var Cont = HBoxContainer.new()
+		clubs = _sortSuit(clubs)
+		var Cont = TextureRect.new()
 		Cont.set_name("clubs")
 		$Control/SuitContainers.add_child(Cont)
 		Cont.size_flags_vertical = Control.SIZE_SHRINK_CENTER
@@ -80,8 +107,15 @@ func _ready() -> void:
 		for c in clubs:
 			fillCont(c,Cont)
 		suits += 1
+		var wid = $Control.size.x * min(1.0,0.15 + 0.1*len(clubs))
+		var dis = wid/len(clubs)
+		var i = 0
+		for c in clubs:
+			c.position = Vector2(dis*i,0)
+			i+=1
 	if len(stars) > 0:
-		var Cont = HBoxContainer.new()
+		stars = _sortSuit(stars)
+		var Cont = TextureRect.new()
 		Cont.set_name("stars")
 		$Control/SuitContainers.add_child(Cont)
 		Cont.size_flags_vertical = Control.SIZE_SHRINK_CENTER
@@ -89,8 +123,15 @@ func _ready() -> void:
 		for c in stars:
 			fillCont(c,Cont)
 		suits += 1
+		var wid = $Control.size.x * min(1.0,0.15 + 0.1*len(stars))
+		var dis = wid/len(stars)
+		var i = 0
+		for c in stars:
+			c.position = Vector2(dis*i,0)
+			i+=1
 	if len(all) > 0:
-		var Cont = HBoxContainer.new()
+		all = _sortSuit(all)
+		var Cont = TextureRect.new()
 		Cont.set_name("all")
 		$Control/SuitContainers.add_child(Cont)
 		Cont.size_flags_vertical = Control.SIZE_SHRINK_CENTER
@@ -98,8 +139,15 @@ func _ready() -> void:
 		for c in all:
 			fillCont(c,Cont)
 		suits += 1
+		var wid = $Control.size.x * min(1.0,0.15 + 0.1*len(all))
+		var dis = wid/len(all)
+		var i = 0
+		for c in all:
+			c.position = Vector2(dis*i,0)
+			i+=1
 	if len(none) > 0:
-		var Cont = HBoxContainer.new()
+		none = _sortSuit(none)
+		var Cont = TextureRect.new()
 		Cont.set_name("none")
 		$Control/SuitContainers.add_child(Cont)
 		Cont.size_flags_vertical = Control.SIZE_SHRINK_CENTER
@@ -107,6 +155,12 @@ func _ready() -> void:
 		for c in none:
 			fillCont(c,Cont)
 		suits += 1
+		var wid = $Control.size.x * min(1.0,0.15 + 0.1*len(none))
+		var dis = wid/len(none)
+		var i = 0
+		for c in none:
+			c.position = Vector2(dis*i,0)
+			i+=1
 	
 
 

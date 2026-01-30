@@ -44,6 +44,7 @@ var opponentPower = 0
 var ripple : bool = false
 var layerLevel = 0
 var layer = ""
+var boonLevel = 0
 var currentSouls : Array[soul]
 var clist : cardlist
 
@@ -122,9 +123,7 @@ func _getMemsInGame() -> Array:
 
 func _drawDealerHand() -> void:
 	playPhase = false
-	$hitButton.visible = false
-	$standButton.visible = false
-	$discardButton.visible = false
+	_hidePlayButtons()
 	while opponentDeck._cardValuesSum() < 17:
 		await get_tree().create_timer(1.5).timeout
 		opponentDeck._drawCard()
@@ -138,15 +137,31 @@ func _drawDealerHand() -> void:
 	$OpponentScore.text = str("Score to beat: [color=#0000FF]",OpponentScoring._IntoText(),"[/color]")
 	await get_tree().create_timer(0.35).timeout
 	playPhase = true
-	$hitButton.visible = true
-	$standButton.visible = true
-	$discardButton.visible = true
+	_showPlayButtons()
+
+func _showBetButtons() -> void:
+	$increase.show()
+	$decrease.show()
+	$placebet.show()
+	
+func _hideBetButtons() -> void:
+	$increase.hide()
+	$decrease.hide()
+	$placebet.hide()
+	
+func _showPlayButtons() -> void:
+	$hitButton.show()
+	$standButton.show()
+	$discardButton.show()
+	
+func _hidePlayButtons() -> void:
+	$hitButton.hide()
+	$standButton.hide()
+	$discardButton.hide()
 
 func _playHand() -> void:
 	playPhase = false
-	$hitButton.visible = false
-	$standButton.visible = false
-	$discardButton.visible = false
+	_hidePlayButtons()
 	for h in hb.hands:
 		if h._checkReq(playerDeck._getCardsInHand()):
 			var tween = get_tree().create_tween()
@@ -225,9 +240,7 @@ func _playHand() -> void:
 	_updateSoulPower(0,0)
 	_updateHandPower(0,0)
 	_updatemultiplier(1,0)
-	$increase.visible = true
-	$decrease.visible = true
-	$placebet.visible = true
+	_showBetButtons()
 	opponentPower = 0
 	$OpponentScore.text = str("Score to beat: [color=#0000FF]0[/color]")
 	if roundsPassed == 3:
@@ -237,9 +250,7 @@ func _playHand() -> void:
 		_betweenRounds()
 	
 func _betweenRounds() -> void:
-	$increase.visible = false
-	$decrease.visible = false
-	$placebet.visible = false
+	_hideBetButtons()
 	$SoulPowerText.visible = false
 	$HandPowerText.visible = false
 	$MultiplierText.visible = false
@@ -259,9 +270,7 @@ func _betweenRounds() -> void:
 	
 func _advance() -> void:
 	level+=1
-	$increase.visible = true
-	$decrease.visible = true
-	$placebet.visible = true
+	_showBetButtons()
 	$SoulPowerText.visible = true
 	$HandPowerText.visible = true
 	$MultiplierText.visible = true
@@ -278,9 +287,7 @@ func _decrease() -> void:
 
 func _placeBet() -> void:
 	_updateSoulPower(Global.bet,0)
-	$increase.visible = false
-	$decrease.visible = false
-	$placebet.visible = false
+	_hideBetButtons()
 	_drawDealerHand()
 	
 
@@ -318,9 +325,7 @@ func _ready() -> void:
 	DiscardButton.position = Vector2(1000,1000)
 	DiscardButton.pressed.connect(_discardCard)
 	DiscardButton.name = "discardButton"
-	HitButton.visible = false
-	StandButton.visible = false
-	DiscardButton.visible = false
+	_hidePlayButtons()
 	Increasebutton.name = "increase"
 	Decreasebutton.name = "decrease"
 	PlaceBetButton.name = "placebet"

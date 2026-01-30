@@ -11,8 +11,8 @@ func _ready() -> void:
 	$SacrificeButton.hide()
 	inInventory = false
 
-func _setName(name : String) -> void:
-	soulName = name
+func _setName(nam : String) -> void:
+	soulName = nam
 
 func _getSoulRule() -> String:
 	return soulName

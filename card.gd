@@ -125,10 +125,30 @@ var rank = Enums.zero
 var suit = Enums.none
 var enchantment = Enums.normal
 var rarity = Enums.common
-# Called when the node enters the scene tree for the first time.
+var originalCard : card
+var selected : bool = false
+var listed : bool = false
+
+func _setListed(b : bool) -> void:
+	listed = b
+	
+func _getListed() -> bool:
+	return listed
+
+func _getSelected() -> bool:
+	return selected
+
+func _setSelected(b : bool) -> void:
+	selected = b
 
 func _setTriggers(nu : int) -> void:
 	triggers = nu
+	
+func _setOriginal(c : card) -> void:
+	originalCard = c
+	
+func _getOriginal() -> card:
+	return originalCard
 	
 func _getTriggers() -> int:
 	return triggers
@@ -151,6 +171,11 @@ func _burnCardFromDeck() -> void:
 	tw.tween_property(self,"global_position",Vector2(randi_range(500,1420),randi_range(400,700)),0.75)
 	await get_tree().create_timer(1.0).timeout
 	queue_free()
+	
+func _getString() -> String:
+	var s : String = ""
+	s = s + enchantments.find_key(enchantment) + suits.find_key(suit) + rarities.find_key(rarity) + ranks.find_key(rank)	
+	return s
 	
 func setValues(cValues : String, b : bool) -> void:
 	$TakeButton.visible = false
@@ -276,9 +301,16 @@ func _mouse_exit() -> void:
 		var sTween = get_tree().create_tween()
 		sTween.tween_property(self,"scale",Vector2(1,1),0.1)
 
-#func _mouse_click():
-#	if location == pack:
-#		_takeCard()
+func _mouse_click():
+	if listed:
+		if selected:
+			var tw = get_tree().create_tween()
+			tw.tween_property(self,"position:y",position.y+50,0.15)
+			selected = false
+		else:
+			var tw = get_tree().create_tween()
+			tw.tween_property(self,"position:y",position.y-50,0.15)
+			selected = true
 
 func _unpacked() -> void:
 	$TakeButton.visible = true
