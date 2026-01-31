@@ -1,6 +1,42 @@
-[gd_scene load_steps=2 format=3 uid="uid://dblsxdrbh3un1"]
+[gd_scene format=3 uid="uid://dblsxdrbh3un1"]
 
 [ext_resource type="Script" uid="uid://d0y8w5beygrtg" path="res://between_round.gd" id="1_go6qk"]
 
-[node name="BetweenRound" type="Node2D"]
+[node name="BetweenRound" type="Node2D" unique_id=1339568277]
 script = ExtResource("1_go6qk")
+
+[node name="StoreButton" type="TextureButton" parent="." unique_id=121351787]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AdvanceButton" type="TextureButton" parent="." unique_id=537674325]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DemonButton" type="TextureButton" parent="." unique_id=1438203764]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GuardianButton" type="TextureButton" parent="." unique_id=2055911482]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MagicianButton" type="TextureButton" parent="." unique_id=1953878271]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SoulSmithButton" type="TextureButton" parent="." unique_id=2029886405]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CollectorButton" type="TextureButton" parent="." unique_id=1048783292]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="StoreButton" to="." method="_EnterStore"]
+[connection signal="pressed" from="AdvanceButton" to="." method="_Advance"]
+[connection signal="pressed" from="DemonButton" to="." method="_EnterHandDemon"]
+[connection signal="pressed" from="GuardianButton" to="." method="_ChallengeGuardian"]
+[connection signal="pressed" from="MagicianButton" to="." method="_EnterMagician"]
+[connection signal="pressed" from="SoulSmithButton" to="." method="_EnterSoulSmith"]
+[connection signal="pressed" from="CollectorButton" to="." method="_EnterCollector"]

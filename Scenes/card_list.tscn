@@ -34,3 +34,11 @@ material = SubResource("ShaderMaterial_v0c4e")
 offset_right = 1720.0
 offset_bottom = 880.0
 texture = ExtResource("2_hcnqd")
+
+[node name="ConfirmButton" type="TextureButton" parent="." unique_id=444125916]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CancelButton" type="TextureButton" parent="." unique_id=305552486]
+offset_right = 40.0
+offset_bottom = 40.0

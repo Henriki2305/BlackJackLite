@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://bhmnot27ncsjg" path="res://card_base.gd" id="4_e6po8"]
 [ext_resource type="Script" uid="uid://ddq24i8jhwo01" path="res://cardAreaHover.gd" id="5_bnspj"]
 [ext_resource type="Shader" uid="uid://bfd61dbt44b5j" path="res://Shaders/cardTextShader.gdshader" id="6_xnv4g"]
-[ext_resource type="Script" uid="uid://xqapesjf1ok2" path="res://cardButton.gd" id="8_u5wvb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eumee"]
 resource_local_to_scene = true
@@ -61,30 +60,13 @@ offset_bottom = 89.0
 texture = SubResource("AtlasTexture_brehn")
 expand_mode = 1
 
-[node name="TakeButton" type="Sprite2D" parent="." unique_id=690007737]
-material = SubResource("ShaderMaterial_eumee")
-position = Vector2(30, 120)
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("2_eumee")
-script = ExtResource("8_u5wvb")
+[node name="BurnButton" type="TextureButton" parent="." unique_id=227794178]
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Area2D" type="Area2D" parent="TakeButton" unique_id=2037329124]
+[node name="TakeButton" type="TextureButton" parent="." unique_id=1656365861]
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TakeButton/Area2D" unique_id=1158747487]
-position = Vector2(5.3495158e-05, 6.869434e-05)
-scale = Vector2(0.99999976, 0.99999976)
-shape = SubResource("RectangleShape2D_bnspj")
-
-[node name="BurnButton" type="Sprite2D" parent="." unique_id=1350876918]
-material = SubResource("ShaderMaterial_eumee")
-position = Vector2(-30, 120)
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("2_eumee")
-script = ExtResource("8_u5wvb")
-
-[node name="Area2D" type="Area2D" parent="BurnButton" unique_id=1009468516]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BurnButton/Area2D" unique_id=111910109]
-position = Vector2(5.3495158e-05, 6.869434e-05)
-scale = Vector2(0.99999976, 0.99999976)
-shape = SubResource("RectangleShape2D_bnspj")
+[connection signal="pressed" from="BurnButton" to="." method="_burnCard"]
+[connection signal="pressed" from="TakeButton" to="." method="_takeCard"]

@@ -1,20 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://v2v1kwi0i7co"]
+[gd_scene format=3 uid="uid://v2v1kwi0i7co"]
 
 [ext_resource type="Script" uid="uid://c5u6wbwupwto8" path="res://store.gd" id="1_2s633"]
 [ext_resource type="Texture2D" uid="uid://yf61cm0i1qxu" path="res://images/Store.png" id="2_fy3ub"]
 [ext_resource type="Texture2D" uid="uid://cqn0gsfru4cqf" path="res://images/purple.png" id="3_fy3ub"]
 
-[node name="Store" type="Node2D"]
+[node name="Store" type="Node2D" unique_id=1737560907]
 script = ExtResource("1_2s633")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1643374596]
 scale = Vector2(1.25, 1.055)
 texture = ExtResource("2_fy3ub")
 
-[node name="ExitButton" type="TextureButton" parent="."]
+[node name="ExitButton" type="TextureButton" parent="." unique_id=945592716]
 offset_left = -949.0
 offset_top = -515.0
 offset_right = -727.0
 offset_bottom = -320.0
 texture_normal = ExtResource("3_fy3ub")
 stretch_mode = 0
+
+[connection signal="pressed" from="ExitButton" to="." method="_leaveStore"]

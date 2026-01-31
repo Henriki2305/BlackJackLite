@@ -1,34 +1,18 @@
-extends Node2D
+class_name betweenRound extends Node2D
 
 var storeScene = preload("res://Scenes/Store.tscn")
 var demonScene = preload("res://Scenes/demon_of_hands.tscn")
+var selectedCards : Array[card]
 
 # Called when the node enters the scene tree for the first time.
+
+func _getSelectedCards() -> Array[card]:
+	return selectedCards
+	
+func _setSelectedCards(a : Array[card]) -> void:
+	selectedCards = a
+
 func _ready() -> void:
-	var StoreButton = Button.new()
-	var AdvanceButton = Button.new()
-	var DemonButton = Button.new()
-	var GuardianButton = Button.new()
-	StoreButton.name = "Store"
-	AdvanceButton.name = "Advance"
-	DemonButton.name = "Demon"
-	GuardianButton.name = "Guardian"
-	StoreButton.text = "store"
-	AdvanceButton.text = "advance"
-	DemonButton.text = "Demon of many hands and faces"
-	GuardianButton.text = "Guardian"
-	StoreButton.pressed.connect(_EnterStore)
-	AdvanceButton.pressed.connect(_Advance)
-	DemonButton.pressed.connect(_EnterHandDemon)
-	GuardianButton.pressed.connect(_ChallengeGuardian)
-	add_child(StoreButton)
-	add_child(AdvanceButton)
-	add_child(DemonButton)
-	add_child(GuardianButton)
-	StoreButton.position = Vector2(200,200)
-	AdvanceButton.position = Vector2(0,200)
-	DemonButton.position = Vector2(400,200)
-	GuardianButton.position = Vector2(600,200)
 	var storeIns = storeScene.instantiate()
 	add_child(storeIns)
 	storeIns.name = "storeInstance"

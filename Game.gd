@@ -39,6 +39,7 @@ var CardListScene = preload("res://Scenes/card_list.tscn")
 var listScene = preload("res://Scenes/card_list.tscn")
 var chosenCards : Array[card]
 var reward = 3
+var beatLevels = 0
 var opponentDeckMultiplier = 0.4
 var opponentPower = 0
 var ripple : bool = false
@@ -47,6 +48,8 @@ var layer = ""
 var boonLevel = 0
 var currentSouls : Array[soul]
 var clist : cardlist
+var LayerScores = [20,100,400,1200,3000,6000,10000,20000]
+var LayerMults = [1,4,15,50,100,200,350,500]
 
 
 var soulRules : Dictionary = {
@@ -127,9 +130,8 @@ func _drawDealerHand() -> void:
 	while opponentDeck._cardValuesSum() < 17:
 		await get_tree().create_timer(1.5).timeout
 		opponentDeck._drawCard()
-		OpponentScoring._setVal(opponentDeck._cardValuesSum(),0)
+		OpponentScoring._setVal((LayerScores[layerLevel]+LayerMults[layerLevel]*opponentDeck._cardValuesSum())*(1+(beatLevels*0.1)),0)
 		$CardValueTotal2.text = str(opponentDeck._cardValuesSum())
-		OpponentScoring._MultiplyByNum(opponentDeckMultiplier)
 		$OpponentScore.text = str("Score to beat: [color=#0000FF]",OpponentScoring._IntoText(),"[/color]")
 		if len(opponentDeck.cardsInHand) > 1 && opponentDeck._cardValuesSum() == 0:
 			break

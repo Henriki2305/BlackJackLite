@@ -28,12 +28,7 @@ func _setPossibleSouls(souls : Array[soul]) -> void:
 	possibleSouls = souls
 
 func _ready() -> void:
-	$SmithButton.pressed.connect(_NewSoul)
-	$ReturnButton.pressed.connect(_returnBack)
-	$BuyButton.pressed.connect(_BuySoul)
 	g = get_parent().get_parent()
-		
-	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

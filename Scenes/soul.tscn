@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtixj2invdqii"]
+[gd_scene format=3 uid="uid://dtixj2invdqii"]
 
 [ext_resource type="Script" uid="uid://dh4k885g7qfkk" path="res://soul.gd" id="1_7iwn2"]
 [ext_resource type="Texture2D" uid="uid://mgjyohv0gxe" path="res://images/soul.png" id="2_nq8dp"]
@@ -8,23 +8,25 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q7yo3"]
 size = Vector2(400, 398)
 
-[node name="SoulNode" type="Node2D"]
+[node name="SoulNode" type="Node2D" unique_id=1974215465]
 script = ExtResource("1_7iwn2")
 
-[node name="SouldSprite" type="Sprite2D" parent="."]
+[node name="SouldSprite" type="Sprite2D" parent="." unique_id=896824471]
 texture = ExtResource("2_nq8dp")
 script = ExtResource("3_rjqw3")
 
-[node name="Area2D" type="Area2D" parent="SouldSprite"]
+[node name="Area2D" type="Area2D" parent="SouldSprite" unique_id=672987193]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SouldSprite/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SouldSprite/Area2D" unique_id=322637259]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_q7yo3")
 
-[node name="SacrificeButton" type="TextureButton" parent="."]
+[node name="SacrificeButton" type="TextureButton" parent="." unique_id=674531239]
 offset_left = -199.0
 offset_top = 198.0
 offset_right = 200.0
 offset_bottom = 285.0
 texture_normal = ExtResource("3_ey5r1")
 stretch_mode = 0
+
+[connection signal="pressed" from="SacrificeButton" to="." method="_sacrificeSoul"]

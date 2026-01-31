@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://bkrm3mlxyyyxe"]
-
-[node name="Button" type="Button"]
-offset_left = 18.0
-offset_top = 26.0
-offset_right = 26.0
-offset_bottom = 34.0

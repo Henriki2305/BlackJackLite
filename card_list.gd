@@ -19,6 +19,19 @@ func _sortSuit(s: Array[card]) -> Array[card]:
 				temp.append(c)
 	return temp
 		
+func _cancel() -> void:
+	var g : Game = get_parent().get_parent()
+	g._destroyList()
+	
+func _confirmSelection() -> void:
+	var selec = cards.filter(func(c): return c._getSelected())
+	var ref : Array[card] = []
+	if len(selec) == 5:
+		for c in selec:
+			ref.append(c._getOriginal())
+	var rou : betweenRound = get_parent()
+	rou._setSelectedCards(ref)
+		
 func _ready() -> void:
 	$Control.size = get_parent().size
 	g = get_parent().get_parent()

@@ -1,8 +1,8 @@
+TextureButton
 Control
 TextureRect
 CollisionShape2D
 Area2D
-TextureButton
 Sprite2D
 CenterContainer
 HBoxContainer

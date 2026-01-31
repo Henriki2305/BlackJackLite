@@ -15,14 +15,12 @@ func _ready() -> void:
 	var h1 : hand = handScene.instantiate()
 	add_child(h1)
 	h1._handInfo("BlackJack")
-	h1.position = Vector2(0,0)
-	h1.global_position = Vector2(200,500)
+	h1.position = Vector2(0,-309.5)
 	var h2 : hand = handScene.instantiate()
 	add_child(h2)
 	h2._handInfo("pair")
-	h2.position = Vector2(0,200)
 	h2._setPosition(1)
-	h2.global_position = Vector2(200,575)
+	h2.position = Vector2(0,-157.5)
 	hands.append(h1)
 	hands.append(h2)
 	h1._setBox(self)
@@ -39,7 +37,7 @@ func _process(_delta: float) -> void:
 				if (h._getPosition() > movedHand._getPosition() && h.global_position[1] < movedHand.global_position[1] )|| (h._getPosition() < movedHand._getPosition() && h.global_position[1] > movedHand.global_position[1]):
 					_swapHandPos(i,movedHand._getPosition())
 					var tween = get_tree().create_tween()
-					tween.tween_property(h,"global_position", Vector2(200,500+(h._getPosition()*75)),0.1)
+					tween.tween_property(h,"position", Vector2(0,-309.5+(h._getPosition()*152)),0.1)
 
 func _input(event):
 	if get_parent().playPhase:
@@ -52,7 +50,7 @@ func _input(event):
 			else:
 				if movedHand:
 					var tween = get_tree().create_tween()
-					tween.tween_property(movedHand,"global_position", Vector2(200,500+(movedHand._getPosition()*75)),0.1)
+					tween.tween_property(movedHand,"position", Vector2(0,-309.5+(movedHand._getPosition()*152)),0.1)
 					var h = movedHand
 					movedHand = null
 					h._createInfoBox()

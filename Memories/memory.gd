@@ -157,13 +157,10 @@ func _setDat() -> void:
 	upModText()
 
 func _ready() -> void:
-	$InfoBox.visible = false
 	if get_parent() is memory_box:
 		g = get_parent().get_parent()
 	else:
 		g = get_parent().get_parent().get_parent()
-	$BuyButton.pressed.connect(_buyMemory)
-	$BuyButton.hide()
 
 func _getType() -> String:
 	return triggerType
