@@ -28,6 +28,18 @@ offset_bottom = 256.0
 texture_normal = ExtResource("2_jf7rs")
 stretch_mode = 0
 
+[node name="ButtonA" type="TextureButton" parent="." unique_id=427728715]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ButtonB" type="TextureButton" parent="." unique_id=1295704253]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ButtonC" type="TextureButton" parent="." unique_id=2104390650]
+offset_right = 40.0
+offset_bottom = 40.0
+
 [connection signal="pressed" from="BuyButton" to="." method="_BuySoul"]
 [connection signal="pressed" from="SmithButton" to="." method="_NewSoul"]
 [connection signal="pressed" from="ReturnButton" to="." method="_returnBack"]

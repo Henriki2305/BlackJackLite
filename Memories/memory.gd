@@ -72,7 +72,7 @@ func _setInfo() -> void:
 		"HelpingHand":
 			memInfo = "+10 hand power"
 		"Solitude":
-			memInfo = "double your multiplier for each empty soul slot"
+			memInfo = "x4 multiplier if you have no accompanying soul"
 		"SlotMachine":
 			memInfo = str("[b] Slot Machine [/b]\n [color=#0000FF] +", phandP, " hand power[/color]\n Every [color=#FF0000] played 7[/color] has [color=#FFFF00] 1 in 2 chance [/color] to increase it by 3.")
 		"Humility":
@@ -108,9 +108,9 @@ func _setInfo() -> void:
 		"HelpingHand":
 			memInfo = "+10 hand power"
 		"ShoulderDevil":
-			memInfo = "hitting when your total card value is over 15 gives +20 soul power"
+			memInfo = "hitting when your total card value is over 15 gives +2 soul power"
 		"ShoulderAngel":
-			memInfo = "not hitting when your total card value is over 15 gives +20 soul power"
+			memInfo = "not hitting when your total card value is over 15 gives +2 soul power"
 		"Crusader":
 			memInfo = "played holy cards are turned into unholy cards of 1 level higher"
 		"ColorTelevision":

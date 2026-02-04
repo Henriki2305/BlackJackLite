@@ -16,8 +16,6 @@ var MaxSouls = 1
 var MajorSouls = 0
 var TotalPower = 0
 var LikeliHoodModifier = 1
-var a : float = 0.1
-var e = 0.0
 var playerBust = 21
 var dealerBust = 21
 var playPhase = true
@@ -44,12 +42,14 @@ var opponentDeckMultiplier = 0.4
 var opponentPower = 0
 var ripple : bool = false
 var layerLevel = 0
-var layer = ""
+var layer = "start"
 var boonLevel = 0
 var currentSouls : Array[soul]
 var clist : cardlist
 var LayerScores = [20,100,400,1200,3000,6000,10000,20000]
 var LayerMults = [1,4,15,50,100,200,350,500]
+var layers : Array[String] = ["lust","gluttony","pride","greed","sloth","wrath","envy"]
+var bossRound : bool = false
 
 
 var soulRules : Dictionary = {
@@ -300,6 +300,10 @@ func _ready() -> void:
 	MultiplierNew.Vals = [1.0,0]
 	TotalPowerNew.Vals = [0.0,0]
 	OpponentScoring.Vals = [0.0,0]
+	layers.shuffle()
+	layers[7] = layers[0]
+	layers[0] = "start"
+	layers.append("final")
 	playerDeck = $Deck
 	opponentDeck = $OpponentsDeck
 	mb = $MemoryBox

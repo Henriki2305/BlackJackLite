@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://drqdbm31w6ljt"]
 
-[node name="Magician" type="Node2D"]
+[ext_resource type="Script" uid="uid://hbk4hhue84fd" path="res://magician.gd" id="1_1he70"]
+
+[node name="Magician" type="Node2D" unique_id=844730753]
+script = ExtResource("1_1he70")

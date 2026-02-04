@@ -1,3 +1,4 @@
+RichTextLabel
 TextureButton
 Control
 TextureRect
@@ -10,5 +11,4 @@ Container
 BoxContainer
 VBoxContainer
 Button
-RichTextLabel
 boosterPack

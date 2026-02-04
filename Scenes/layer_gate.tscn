@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://hs1pqbjyk3ht"]
+
+[ext_resource type="Script" uid="uid://mho0kl6sco23" path="res://layer_gate.gd" id="1_qajiy"]
+
+[node name="LayerGate" type="Node2D" unique_id=437813808]
+script = ExtResource("1_qajiy")
+
+[node name="Boon" type="TextureButton" parent="." unique_id=1922014745]
+offset_left = 838.0
+offset_top = 486.0
+offset_right = 960.0
+offset_bottom = 585.0
+
+[node name="Aura" type="TextureButton" parent="." unique_id=2115446146]
+offset_left = 1041.0
+offset_top = 489.0
+offset_right = 1167.0
+offset_bottom = 587.0
+
+[node name="Curse" type="TextureButton" parent="." unique_id=1104356538]
+offset_left = 633.0
+offset_top = 491.0
+offset_right = 750.0
+offset_bottom = 584.0
+
+[node name="BoonText" type="RichTextLabel" parent="." unique_id=28991813]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AuraText" type="RichTextLabel" parent="." unique_id=1458393995]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CurseText" type="RichTextLabel" parent="." unique_id=734690316]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BoonPrice" type="RichTextLabel" parent="." unique_id=420947552]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AuraPrice" type="RichTextLabel" parent="." unique_id=1376612872]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CursePrice" type="RichTextLabel" parent="." unique_id=129175876]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="Boon" to="." method="_chooseBoon"]
+[connection signal="pressed" from="Aura" to="." method="_chooseAura"]
+[connection signal="pressed" from="Curse" to="." method="_chooseCurse"]
