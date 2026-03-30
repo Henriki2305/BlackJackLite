@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bhmnot27ncsjg" path="res://card_base.gd" id="4_e6po8"]
 [ext_resource type="Script" uid="uid://ddq24i8jhwo01" path="res://cardAreaHover.gd" id="5_bnspj"]
 [ext_resource type="Shader" uid="uid://bfd61dbt44b5j" path="res://Shaders/cardTextShader.gdshader" id="6_xnv4g"]
+[ext_resource type="Shader" uid="uid://dd5pi67km5jnh" path="res://Shaders/polychromeshader.gdshader" id="8_u5wvb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eumee"]
 resource_local_to_scene = true
@@ -15,6 +16,7 @@ shader_parameter/rare = false
 shader_parameter/shadow = false
 shader_parameter/cursed = false
 shader_parameter/gold = false
+shader_parameter/used = false
 shader_parameter/linewidth = 0.3
 shader_parameter/linespeed = 2.5
 shader_parameter/linecolor = Vector4(1, 1, 1, 1)
@@ -34,6 +36,11 @@ resource_local_to_scene = true
 atlas = ExtResource("3_e6po8")
 region = Rect2(0, 0, 648, 904)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mm04k"]
+shader = ExtResource("8_u5wvb")
+shader_parameter/strength = 1.0
+shader_parameter/speed = 0.5
+
 [node name="Card" type="Node2D" unique_id=259468577]
 script = ExtResource("1_brehn")
 
@@ -47,6 +54,7 @@ script = ExtResource("4_e6po8")
 script = ExtResource("5_bnspj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="card base/Area2D" unique_id=372720138]
+visible = false
 position = Vector2(5.3495158e-05, 6.869434e-05)
 scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_bnspj")
@@ -67,6 +75,16 @@ offset_bottom = 40.0
 [node name="TakeButton" type="TextureButton" parent="." unique_id=1656365861]
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1192620415]
+visible = false
+material = SubResource("ShaderMaterial_mm04k")
+offset_left = -64.0
+offset_top = -89.0
+offset_right = 571.0
+offset_bottom = 800.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_eumee")
 
 [connection signal="pressed" from="BurnButton" to="." method="_burnCard"]
 [connection signal="pressed" from="TakeButton" to="." method="_takeCard"]

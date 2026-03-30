@@ -1,51 +1,101 @@
 [gd_scene format=3 uid="uid://hs1pqbjyk3ht"]
 
 [ext_resource type="Script" uid="uid://mho0kl6sco23" path="res://layer_gate.gd" id="1_qajiy"]
+[ext_resource type="Texture2D" uid="uid://bvdwtb0u0yvhb" path="res://images/Boon.jpg" id="2_b7n30"]
+[ext_resource type="Texture2D" uid="uid://chbepjnhp8h25" path="res://images/Aura.jpg" id="3_pojy5"]
+[ext_resource type="Texture2D" uid="uid://tuy1thnjlk02" path="res://images/Curse.jpg" id="4_1yp82"]
 
 [node name="LayerGate" type="Node2D" unique_id=437813808]
 script = ExtResource("1_qajiy")
 
 [node name="Boon" type="TextureButton" parent="." unique_id=1922014745]
-offset_left = 838.0
-offset_top = 486.0
-offset_right = 960.0
-offset_bottom = 585.0
+offset_left = 1249.0
+offset_top = 483.0
+offset_right = 1849.0
+offset_bottom = 883.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("2_b7n30")
+
+[node name="BoonText" type="RichTextLabel" parent="Boon" unique_id=28991813]
+layout_mode = 0
+offset_left = 14.0
+offset_top = -232.0
+offset_right = 584.0
+offset_bottom = -10.0
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "Boon test
+"
+
+[node name="BoonPrice" type="RichTextLabel" parent="Boon" unique_id=420947552]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 402.0
+offset_right = 598.0
+offset_bottom = 680.0
+theme_override_font_sizes/normal_font_size = 100
+text = "20"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Aura" type="TextureButton" parent="." unique_id=2115446146]
-offset_left = 1041.0
-offset_top = 489.0
-offset_right = 1167.0
-offset_bottom = 587.0
+offset_left = 878.0
+offset_top = 485.0
+offset_right = 1478.0
+offset_bottom = 885.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("3_pojy5")
+
+[node name="AuraText" type="RichTextLabel" parent="Aura" unique_id=601525755]
+layout_mode = 0
+offset_left = 14.0
+offset_top = -232.0
+offset_right = 584.0
+offset_bottom = -10.0
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "Aura test"
+
+[node name="AuraPrice" type="RichTextLabel" parent="Aura" unique_id=118308170]
+layout_mode = 0
+offset_left = -714.0
+offset_top = 406.0
+offset_right = -126.0
+offset_bottom = 684.0
+theme_override_font_sizes/normal_font_size = 100
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Curse" type="TextureButton" parent="." unique_id=1104356538]
-offset_left = 633.0
-offset_top = 491.0
-offset_right = 750.0
-offset_bottom = 584.0
+offset_left = 516.0
+offset_top = 484.0
+offset_right = 1116.0
+offset_bottom = 884.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("4_1yp82")
 
-[node name="BoonText" type="RichTextLabel" parent="." unique_id=28991813]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="CurseText" type="RichTextLabel" parent="Curse" unique_id=798226509]
+layout_mode = 0
+offset_left = 16.0
+offset_top = -226.0
+offset_right = 586.0
+offset_bottom = -4.0
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "Curse test
+"
 
-[node name="AuraText" type="RichTextLabel" parent="." unique_id=1458393995]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="CurseText" type="RichTextLabel" parent="." unique_id=734690316]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="BoonPrice" type="RichTextLabel" parent="." unique_id=420947552]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="AuraPrice" type="RichTextLabel" parent="." unique_id=1376612872]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="CursePrice" type="RichTextLabel" parent="." unique_id=129175876]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="CursePrice" type="RichTextLabel" parent="Curse" unique_id=2069131295]
+layout_mode = 0
+offset_left = 724.0
+offset_top = 404.0
+offset_right = 1312.0
+offset_bottom = 682.0
+theme_override_font_sizes/normal_font_size = 100
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Boon" to="." method="_chooseBoon"]
 [connection signal="pressed" from="Aura" to="." method="_chooseAura"]

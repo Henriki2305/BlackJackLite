@@ -34,7 +34,7 @@ func _confirmSelection() -> void:
 		
 func _ready() -> void:
 	$Control.size = get_parent().size
-	g = get_parent().get_parent()
+	g = get_parent().get_parent().get_parent()
 	d = g._getPlayerDeck()
 	cards = d._getDeckCopy()
 	var hearts : Array[card] = []

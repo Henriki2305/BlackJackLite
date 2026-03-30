@@ -1,37 +1,69 @@
 [gd_scene format=3 uid="uid://dblsxdrbh3un1"]
 
 [ext_resource type="Script" uid="uid://d0y8w5beygrtg" path="res://between_round.gd" id="1_go6qk"]
+[ext_resource type="Texture2D" uid="uid://b36017ciivept" path="res://images/StoreButton.png" id="2_ohi75"]
+[ext_resource type="Texture2D" uid="uid://cr7ahpden7np5" path="res://images/AdvanceButton.png" id="3_8b78r"]
+[ext_resource type="Texture2D" uid="uid://etat0nmmp45r" path="res://images/DemonButton.png" id="4_r35mt"]
+[ext_resource type="Texture2D" uid="uid://rt1emdi8x63c" path="res://images/GuardianButton.png" id="5_yp314"]
+[ext_resource type="Texture2D" uid="uid://ftcii43j5han" path="res://images/MagicianButton.png" id="6_mqf55"]
+[ext_resource type="Texture2D" uid="uid://by3uvrbno7m8s" path="res://images/SmithButton.png" id="7_m2wrb"]
+[ext_resource type="Texture2D" uid="uid://cb7tfloapuiyn" path="res://images/CollectorButton.png" id="8_ohvdi"]
 
 [node name="BetweenRound" type="Node2D" unique_id=1339568277]
 script = ExtResource("1_go6qk")
 
 [node name="StoreButton" type="TextureButton" parent="." unique_id=121351787]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 66.0
+offset_top = 84.0
+offset_right = 666.0
+offset_bottom = 484.0
+texture_normal = ExtResource("2_ohi75")
 
 [node name="AdvanceButton" type="TextureButton" parent="." unique_id=537674325]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 53.0
+offset_top = 706.0
+offset_right = 653.0
+offset_bottom = 1106.0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("3_8b78r")
 
 [node name="DemonButton" type="TextureButton" parent="." unique_id=1438203764]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 546.0
+offset_top = 700.0
+offset_right = 1146.0
+offset_bottom = 1100.0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("4_r35mt")
 
 [node name="GuardianButton" type="TextureButton" parent="." unique_id=2055911482]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 1016.00006
+offset_top = 692.0
+offset_right = 1616.0
+offset_bottom = 1092.0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("5_yp314")
 
 [node name="MagicianButton" type="TextureButton" parent="." unique_id=1953878271]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 1475.0
+offset_top = 696.0
+offset_right = 2075.0
+offset_bottom = 1096.0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("6_mqf55")
 
 [node name="SoulSmithButton" type="TextureButton" parent="." unique_id=2029886405]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 715.0
+offset_top = 84.0
+offset_right = 1315.0
+offset_bottom = 484.0
+texture_normal = ExtResource("7_m2wrb")
 
 [node name="CollectorButton" type="TextureButton" parent="." unique_id=1048783292]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 1328.0
+offset_top = 86.0
+offset_right = 1928.0
+offset_bottom = 486.0
+texture_normal = ExtResource("8_ohvdi")
 
 [connection signal="pressed" from="StoreButton" to="." method="_EnterStore"]
 [connection signal="pressed" from="AdvanceButton" to="." method="_Advance"]

@@ -7,6 +7,7 @@ var rewLevel : int = 1
 var HandPos : int = 0
 var colorness : float = 0.0
 var box : handbox
+signal info
 var reqTexts: Dictionary = {
 	"BlackJack" : ["2 cards, one of which is ace and another any card with value of 10"],
 	"pair" : ["2 cards with the same rank"]
@@ -17,8 +18,8 @@ var rewTexts: Dictionary = {
 }
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Req.visible = false
-	$Rew.visible = false
+	pass
+	
 	
 func _setBox(b:handbox) -> void:
 	box = b
@@ -74,25 +75,9 @@ func _checkReq(cards: Array) -> bool:
 func _effect() -> void:
 	pass
 
+func _setInfo() -> void:
+	info.emit(reqTexts[handName][reqLevel-1],rewTexts[handName][rewLevel-1])
 	
-func _createInfoBox() -> void:
-	if box :
-		if !box._getMovedHand():
-			$Req/ReqText.text = reqTexts[handName][reqLevel-1]
-			$Rew/RewText.text = rewTexts[handName][rewLevel-1]
-			$Req.visible = true
-			$Rew.visible = true
-	else:
-			$Req/ReqText.text = reqTexts[handName][reqLevel-1]
-			$Rew/RewText.text = rewTexts[handName][rewLevel-1]
-			$Req.visible = true
-			$Rew.visible = true
-		
-	
-func _removeInfoBox() -> void:
-	$Req.visible = false
-	$Rew.visible = false	
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if triggered:

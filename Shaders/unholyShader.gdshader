@@ -8,6 +8,7 @@ void vertex() {
 uniform bool shadow = false;
 uniform bool cursed = false;
 uniform bool gold = false;
+uniform bool used = false;
 uniform float linewidth = 0.30;
 uniform float linespeed = 2.5;
 uniform vec4 linecolor = vec4(1.0,1.0,1.0,1.0);
@@ -70,6 +71,10 @@ void fragment() {
 		COLOR = vec4(rr,gg,bb,pixelColor.a*0.6);
 			}
 		}
+		if (used){
+		vec4 usedColor = vec4(0.07,0.07,0.07,COLOR.a);
+		COLOR = usedColor*COLOR;
+	}
 }
 
 //void light() {

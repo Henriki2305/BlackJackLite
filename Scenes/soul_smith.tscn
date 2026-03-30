@@ -7,24 +7,26 @@
 script = ExtResource("1_c45iv")
 
 [node name="BuyButton" type="TextureButton" parent="." unique_id=1682427045]
-offset_left = 56.0
-offset_top = 86.0
-offset_right = 96.0
-offset_bottom = 126.0
+offset_left = 377.0
+offset_top = 765.0
+offset_right = 556.0
+offset_bottom = 950.0
+texture_normal = ExtResource("2_jf7rs")
+stretch_mode = 0
 
 [node name="SmithButton" type="TextureButton" parent="." unique_id=142321327]
 offset_left = 948.0
 offset_top = 715.0
-offset_right = 1073.0
-offset_bottom = 839.0
+offset_right = 1326.0
+offset_bottom = 1022.0
 texture_normal = ExtResource("2_jf7rs")
 stretch_mode = 0
 
 [node name="ReturnButton" type="TextureButton" parent="." unique_id=7316793]
-offset_left = 56.0
-offset_top = 86.0
-offset_right = 233.0
-offset_bottom = 256.0
+offset_left = 101.0
+offset_top = 103.0
+offset_right = 278.0
+offset_bottom = 273.0
 texture_normal = ExtResource("2_jf7rs")
 stretch_mode = 0
 

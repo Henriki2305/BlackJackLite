@@ -128,6 +128,10 @@ var rarity = Enums.common
 var originalCard : card
 var selected : bool = false
 var listed : bool = false
+var xind
+var yind
+var w  = 648
+var h = 904
 
 func _setListed(b : bool) -> void:
 	listed = b
@@ -156,11 +160,15 @@ func _getTriggers() -> int:
 func _increaseTriggers(nu : int ) -> void:
 	triggers += nu
 
+func _setUsed() -> void:
+	$"card base".material.set_shader_parameter("used",true)
+
 func _ready() -> void:
-	if location == ddeck:
-		g = get_parent().g
-	else:
-		g = get_parent().get_parent().get_parent().get_parent()
+	if name != "test":
+		if location == ddeck:
+			g = get_parent().g
+		else:
+			g = get_parent().get_parent().get_parent().get_parent()
 
 func _getName() -> String:
 	return str(rank, " of ", suitNames[suit])
@@ -185,10 +193,8 @@ func setValues(cValues : String, b : bool) -> void:
 	suit = suits[cValues[2]]
 	rarity = rarities[str(cValues[3],cValues[4])]
 	rank = ranks[cValues.right(-5)]
-	var xind = locationsx[rank]
-	var yind = locationsy[suit]
-	var w  = 648
-	var h = 904
+	xind = locationsx[rank]
+	yind = locationsy[suit]
 	texture.texture.set_region(Rect2(Vector2(xind*(w-20),yind*h),Vector2(w,h)))
 	visible = false
 	if b:
@@ -210,6 +216,20 @@ func setValues(cValues : String, b : bool) -> void:
 			$"card base".material.set_shader_parameter("gold", true)
 		Enums.common:
 			pass
+			
+func changeRank(r : String) -> void:
+	rank = ranks[r]
+	xind = locationsx[rank]
+	updateAppearance()
+	
+func changeSuit(s : String) -> void:
+	suit = suits[s]
+	yind = locationsy[suit]
+	updateAppearance()
+	
+func updateAppearance() -> void:
+	$TextureRect.texture.set_region(Rect2(Vector2(xind*(w-20),yind*h),Vector2(w,h)))
+			
 			
 func _drawCard() -> void:
 	triggers = 1

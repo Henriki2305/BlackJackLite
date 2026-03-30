@@ -34,7 +34,6 @@ var unlockedEnchantments : Array[String] = ["no","cu"]
 var BetweenRoundsScene = preload("res://BetweenRound.tscn")
 var BurnerScene = preload("res://Scenes/burner.tscn")
 var CardListScene = preload("res://Scenes/card_list.tscn")
-var listScene = preload("res://Scenes/card_list.tscn")
 var chosenCards : Array[card]
 var reward = 3
 var beatLevels = 0
@@ -57,8 +56,13 @@ var soulRules : Dictionary = {
 	"Forgiving" : false, #You cannot bust if you fulfill the requirements of at least 1 hand,
 	"Vengeful" : false, #Losing a bet gives twice its amount in soul power to your next hand,
 	"Eccentric" : false, #You cannot gain bonus soul shards from rounds, at the end of round get a new memory if you have space for it
-	"chaotic" : false, #All your memories trigger twice, but have 1 in 2 chance to not trigger at all
-	"destructive" : false #After beating third level of a layer, get a round of destruction 
+	"Chaotic" : false, #All your memories trigger twice, but have 1 in 2 chance to not trigger at all
+	"Destructive" : false, #After beating third level of a layer, get a round of destruction
+	"Thieving" : false, #First purchase of every store is free
+	"Spiritual" : false, #All soulpower effects are 20% more efficient
+	"Content" : false, #machines do not trigger their card pair effects
+	"Resourceful" : false, #cost of pressing buttons is halved
+	"Experienced" : false, #triggering a hand 10 types levels up one of its traits
 }
 
 var handReqTexts : Dictionary = {
@@ -79,11 +83,19 @@ var DeckStrings : Dictionary = {
 	"opposingDeck" : "nohcoa.nohco2.nohco3.nohco4.nohco5.nohco6.nohco7.nohco8.nohco9.nohco10.nohcoj.nohcoq.nohcok"
 }
 
+func _endOfRound() -> void:
+	if soulRules["thieving"] :
+		currentSouls[0]._setValue(1)
+
 func _recruitSoul(s : soul) -> void:
 	currentSouls.append(s)
 	add_child(s)
 	soulRules[s._buySoul()] = true
 	s.g = self
+	s.global_position = Vector2(400,880)
+	
+func _hasSoul(s : String) -> bool:
+	return soulRules[s]
 
 func _getPlayerDeck() -> deck:
 	return playerDeck
@@ -253,10 +265,10 @@ func _playHand() -> void:
 	
 func _betweenRounds() -> void:
 	_hideBetButtons()
-	$SoulPowerText.visible = false
-	$HandPowerText.visible = false
-	$MultiplierText.visible = false
-	$TotalPowerText.visible = false
+	$SoulPowerText.hide()
+	$HandPowerText.hide()
+	$MultiplierText.hide()
+	$TotalPowerText.hide()
 	if level == 3:
 		var burneri = BurnerScene.instantiate()
 		burneri.set_name("burner")
@@ -266,9 +278,11 @@ func _betweenRounds() -> void:
 		var betweenRounds = BetweenRoundsScene.instantiate()
 		betweenRounds.set_name("betweenRounds")
 		add_child(betweenRounds)
-		betweenRounds.global_position = Vector2(700,400)
+		betweenRounds.global_position = Vector2(0,0)
 	playerDeck._restoreDeck()
 	opponentDeck._restoreDeck()
+	$Sprite2D2.hide()
+	$Sprite2D3.hide()
 	
 func _advance() -> void:
 	level+=1
@@ -277,6 +291,8 @@ func _advance() -> void:
 	$HandPowerText.visible = true
 	$MultiplierText.visible = true
 	$TotalPowerText.visible = true
+	$Sprite2D2.show()
+	$Sprite2D3.show()
 
 func _increase() -> void:
 	if Global.bet < souls:
@@ -292,6 +308,29 @@ func _placeBet() -> void:
 	_hideBetButtons()
 	_drawDealerHand()
 	
+func _curse() -> void:
+	boonLevel = 1
+	_nextLayer()
+	
+func _aura() -> void:
+	var price = 5 + 10*layerLevel
+	if(souls >= price):
+		_addToSouls(-price)
+		boonLevel = 2
+	_nextLayer()
+	
+func _boon() -> void:
+	var price = 10 + 20*layerLevel
+	if(souls >= price):
+		_addToSouls(-price)
+		boonLevel = 3
+	_nextLayer()
+	
+func _nextLayer() -> void:
+	layerLevel+=1
+	layer = layers[layerLevel]
+	$LayerNameText.text=layer
+	$LayerGate.hide()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -301,13 +340,17 @@ func _ready() -> void:
 	TotalPowerNew.Vals = [0.0,0]
 	OpponentScoring.Vals = [0.0,0]
 	layers.shuffle()
-	layers[7] = layers[0]
+	layers.append(layers[0])
 	layers[0] = "start"
 	layers.append("final")
+	$LayerGate.aura.connect(_aura)
+	$LayerGate.boon.connect(_boon)
+	$LayerGate.curse.connect(_curse)
 	playerDeck = $Deck
 	opponentDeck = $OpponentsDeck
 	mb = $MemoryBox
 	hb = $hand_box
+	$LayerNameText.text=layer
 	playerDeck._setSide(false)
 	opponentDeck._setSide(true)
 	var Increasebutton = Button.new()
@@ -435,11 +478,20 @@ func _updatePower() -> void:
 
 func _createList() -> void:
 	if clist == null:
-		clist = listScene.instantiate()
-		$Control.add_child(clist)
+		clist = CardListScene.instantiate()
+		$Control2/Control.add_child(clist)
 	
 func _destroyList() -> void:
 	if clist:
-		$Control.remove_child(clist)
+		$Control2/Control.remove_child(clist)
 		clist.queue_free()
 		clist = null
+		
+func _addLikelihood(a) -> void:
+	LikeliHoodModifier +=a
+	
+func _multiplyLikelihood(a) -> void:
+	LikeliHoodModifier *= a
+		
+func _destroyMemory(m) -> void:
+	pass

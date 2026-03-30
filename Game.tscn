@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://bv3pwn3aordnh" path="res://images/tablebase.png" id="10_gwjdr"]
 [ext_resource type="Texture2D" uid="uid://dd1y86sjjtca3" path="res://images/machine.png" id="11_lvtmh"]
 [ext_resource type="PackedScene" uid="uid://p1snryoyi1cd" path="res://Scenes/hand_box.tscn" id="11_yhmtn"]
+[ext_resource type="PackedScene" uid="uid://hs1pqbjyk3ht" path="res://Scenes/layer_gate.tscn" id="12_gwjdr"]
+[ext_resource type="Texture2D" uid="uid://c6uvkhyne74o0" path="res://images/handboxnew.png" id="12_lvtmh"]
 [ext_resource type="Texture2D" uid="uid://c1pimrotwhchj" path="res://images/Dark.png" id="12_yyih5"]
 
 [sub_resource type="GDScript" id="GDScript_3mrqo"]
@@ -47,10 +49,10 @@ shader_parameter/spot = 0.2
 script = ExtResource("1_t88pq")
 
 [node name="MemoryBox" parent="." unique_id=941194543 instance=ExtResource("2_r0x5m")]
-position = Vector2(245, 131)
+position = Vector2(217.84, 318.56)
 
 [node name="Deck" parent="." unique_id=605882964 instance=ExtResource("2_t88pq")]
-position = Vector2(1462, 952)
+position = Vector2(960, 900)
 
 [node name="OpponentsDeck" parent="." unique_id=1404937589 instance=ExtResource("2_t88pq")]
 position = Vector2(991, -155)
@@ -81,37 +83,37 @@ script = SubResource("GDScript_3mrqo")
 metadata/_edit_use_anchors_ = true
 
 [node name="SoulPowerText" type="Label" parent="." unique_id=133551637]
-offset_left = 1146.0
-offset_top = 707.0
-offset_right = 1188.0
-offset_bottom = 752.0
+offset_left = 1781.0
+offset_top = 536.0
+offset_right = 1823.0
+offset_bottom = 581.0
 text = "AA"
 label_settings = SubResource("LabelSettings_0hol4")
 metadata/_edit_use_anchors_ = true
 
 [node name="HandPowerText" type="Label" parent="." unique_id=458913609]
-offset_left = 898.0
-offset_top = 704.0
-offset_right = 940.0
-offset_bottom = 749.0
+offset_left = 1780.0
+offset_top = 483.0
+offset_right = 1822.0
+offset_bottom = 528.0
 text = "AA"
 label_settings = SubResource("LabelSettings_q6r6c")
 metadata/_edit_use_anchors_ = true
 
 [node name="MultiplierText" type="Label" parent="." unique_id=1448019431]
-offset_left = 675.0
-offset_top = 707.0
-offset_right = 717.0
-offset_bottom = 752.0
+offset_left = 1778.0
+offset_top = 431.0
+offset_right = 1820.0
+offset_bottom = 476.0
 text = "AA"
 label_settings = SubResource("LabelSettings_kdubu")
 metadata/_edit_use_anchors_ = true
 
 [node name="TotalPowerText" type="Label" parent="." unique_id=658830593]
-offset_left = 884.0
-offset_top = 589.0
-offset_right = 969.0
-offset_bottom = 677.0
+offset_left = 1657.0
+offset_top = 463.0
+offset_right = 1742.0
+offset_bottom = 551.0
 text = "AA"
 label_settings = SubResource("LabelSettings_d21ai")
 metadata/_edit_use_anchors_ = true
@@ -149,6 +151,15 @@ offset_right = 1819.0
 offset_bottom = 1029.0
 text = "Souls"
 
+[node name="LayerNameText" type="RichTextLabel" parent="." unique_id=1763784259]
+offset_left = 1718.0
+offset_top = 269.0
+offset_right = 1874.0
+offset_bottom = 366.0
+theme_override_font_sizes/normal_font_size = 64
+text = "a
+"
+
 [node name="SoulsCounter" type="RichTextLabel" parent="." unique_id=1969364181]
 offset_left = 1828.0
 offset_top = 1001.0
@@ -174,22 +185,38 @@ position = Vector2(1012, 233.75)
 scale = Vector2(0.95009243, 0.49235183)
 texture = ExtResource("12_yyih5")
 
-[node name="Control" type="Control" parent="." unique_id=954573489]
-clip_contents = true
+[node name="hand_box" parent="." unique_id=1614417977 instance=ExtResource("11_yhmtn")]
+position = Vector2(198, 582)
+
+[node name="Control2" type="Control" parent="." unique_id=1456103767]
+z_index = 16
 layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Control" type="Control" parent="Control2" unique_id=954573489]
+clip_contents = true
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 100.0
-offset_top = 100.0
-offset_right = 1820.0
-offset_bottom = 980.0
+offset_left = -860.0
+offset_top = -440.0
+offset_right = 860.0
+offset_bottom = 440.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="hand_box" parent="." unique_id=1614417977 instance=ExtResource("11_yhmtn")]
-position = Vector2(100, 343)
-scale = Vector2(0.5, 0.5)
+[node name="TextureRect" type="TextureRect" parent="Control2" unique_id=1731461336]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("12_lvtmh")
+
+[node name="LayerGate" parent="." unique_id=437813808 instance=ExtResource("12_gwjdr")]
+visible = false

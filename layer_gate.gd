@@ -1,5 +1,9 @@
 extends Node2D
 
+signal boon
+signal aura
+signal curse
+
 func _chooseBoon() -> void:
 	emit_signal("boon")
 	

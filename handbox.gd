@@ -25,6 +25,8 @@ func _ready() -> void:
 	hands.append(h2)
 	h1._setBox(self)
 	h2._setBox(self)
+	h1.info.connect(_setInfo)
+	h2.info.connect(_setInfo)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -46,17 +48,21 @@ func _input(event):
 				var h = raycast_check_mem()
 				if h is hand:
 					movedHand = h
-					movedHand._removeInfoBox()
 			else:
 				if movedHand:
 					var tween = get_tree().create_tween()
 					tween.tween_property(movedHand,"position", Vector2(0,-309.5+(movedHand._getPosition()*152)),0.1)
 					var h = movedHand
 					movedHand = null
-					h._createInfoBox()
 
 func _getMovedHand() -> hand:
 	return movedHand
+
+func _setInfo(req:String,rew:String) -> void:
+	$ReqText.text = req
+	$RewText.text = rew
+	print(rew)
+	print(req)
 
 func raycast_check_mem():
 	var sState = get_world_2d().direct_space_state

@@ -1,10 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://fv4fstgriixi"]
+[gd_scene format=3 uid="uid://fv4fstgriixi"]
 
 [ext_resource type="Script" uid="uid://daoctn6otdln2" path="res://hand.gd" id="1_f6hnx"]
-[ext_resource type="Texture2D" uid="uid://uj7pxk2p61vv" path="res://images/HandGray.png" id="2_u7o8q"]
 [ext_resource type="Shader" uid="uid://bo78vhwy3tyv2" path="res://Shaders/handbaseshader.gdshader" id="2_vumah"]
 [ext_resource type="Texture2D" uid="uid://d0gi8q8584bf2" path="res://images/blackmössö.png" id="3_3l0qm"]
-[ext_resource type="Script" uid="uid://b5nipnfydru0a" path="res://Scenes/HandHover.gd" id="4_jrln0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jrln0"]
 resource_local_to_scene = true
@@ -16,47 +14,20 @@ shader_parameter/rare = false
 radius = 48.0
 height = 388.0
 
-[node name="Hand" type="Node2D"]
+[node name="Hand" type="Node2D" unique_id=1417134831]
 script = ExtResource("1_f6hnx")
 
-[node name="HandBase" type="Sprite2D" parent="."]
+[node name="HandBase" type="Sprite2D" parent="." unique_id=135523450]
 material = SubResource("ShaderMaterial_jrln0")
 texture = ExtResource("3_3l0qm")
 
-[node name="Area2D" type="Area2D" parent="HandBase"]
-script = ExtResource("4_jrln0")
+[node name="Area2D" type="Area2D" parent="HandBase" unique_id=748725537]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HandBase/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HandBase/Area2D" unique_id=1056060938]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_vumah")
 
-[node name="Req" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_jrln0")
-position = Vector2(500, 0)
-texture = ExtResource("2_u7o8q")
-
-[node name="ReqText" type="RichTextLabel" parent="Req"]
-offset_left = -141.0
-offset_top = -82.0
-offset_right = 161.0
-offset_bottom = 85.0
-theme_override_font_sizes/normal_font_size = 32
-bbcode_enabled = true
-
-[node name="Rew" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_jrln0")
-position = Vector2(-500, 0)
-texture = ExtResource("2_u7o8q")
-
-[node name="RewText" type="RichTextLabel" parent="Rew"]
-offset_left = -141.0
-offset_top = -82.0
-offset_right = 161.0
-offset_bottom = 85.0
-theme_override_font_sizes/normal_font_size = 32
-bbcode_enabled = true
-
-[node name="NameText" type="RichTextLabel" parent="."]
+[node name="NameText" type="RichTextLabel" parent="." unique_id=1563862773]
 offset_left = -164.0
 offset_top = -47.0
 offset_right = 161.0
@@ -64,3 +35,5 @@ offset_bottom = 48.0
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true
+
+[connection signal="mouse_entered" from="HandBase/Area2D" to="." method="_setInfo"]

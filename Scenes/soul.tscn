@@ -1,23 +1,38 @@
 [gd_scene format=3 uid="uid://dtixj2invdqii"]
 
 [ext_resource type="Script" uid="uid://dh4k885g7qfkk" path="res://soul.gd" id="1_7iwn2"]
-[ext_resource type="Texture2D" uid="uid://mgjyohv0gxe" path="res://images/soul.png" id="2_nq8dp"]
+[ext_resource type="Shader" uid="uid://tjbrsxok1eha" path="res://Shaders/soul.gdshader" id="1_q7yo3"]
 [ext_resource type="Texture2D" uid="uid://cqn0gsfru4cqf" path="res://images/purple.png" id="3_ey5r1"]
+[ext_resource type="Texture2D" uid="uid://4vamsdgymrev" path="res://images/Soull.png" id="3_hye4i"]
 [ext_resource type="Script" uid="uid://cd17odnl72vjk" path="res://sould_sprite.gd" id="3_rjqw3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aypje"]
+resource_local_to_scene = true
+shader = ExtResource("1_q7yo3")
+shader_parameter/col1 = Vector3(0, 0, 0)
+shader_parameter/col2 = Vector3(0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q7yo3"]
+resource_local_to_scene = true
+shader = ExtResource("1_q7yo3")
+shader_parameter/col1 = Vector3(0, 0, 0)
+shader_parameter/col2 = Vector3(0, 0, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q7yo3"]
 size = Vector2(400, 398)
 
 [node name="SoulNode" type="Node2D" unique_id=1974215465]
+material = SubResource("ShaderMaterial_aypje")
 script = ExtResource("1_7iwn2")
 
-[node name="SouldSprite" type="Sprite2D" parent="." unique_id=896824471]
-texture = ExtResource("2_nq8dp")
+[node name="SoulSprite" type="Sprite2D" parent="." unique_id=896824471]
+material = SubResource("ShaderMaterial_q7yo3")
+texture = ExtResource("3_hye4i")
 script = ExtResource("3_rjqw3")
 
-[node name="Area2D" type="Area2D" parent="SouldSprite" unique_id=672987193]
+[node name="Area2D" type="Area2D" parent="SoulSprite" unique_id=672987193]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SouldSprite/Area2D" unique_id=322637259]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SoulSprite/Area2D" unique_id=322637259]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_q7yo3")
 
@@ -29,4 +44,17 @@ offset_bottom = 285.0
 texture_normal = ExtResource("3_ey5r1")
 stretch_mode = 0
 
+[node name="SoulDesc" type="RichTextLabel" parent="." unique_id=216953886]
+offset_left = 202.0
+offset_top = -198.0
+offset_right = 547.0
+offset_bottom = 197.0
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "asfgasdgasdg"
+scroll_active = false
+horizontal_alignment = 1
+
+[connection signal="mouse_entered" from="SoulSprite/Area2D" to="." method="_showDesc"]
+[connection signal="mouse_exited" from="SoulSprite/Area2D" to="." method="_hideDesc"]
 [connection signal="pressed" from="SacrificeButton" to="." method="_sacrificeSoul"]

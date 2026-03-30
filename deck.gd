@@ -69,7 +69,7 @@ func _createDeck(cardstring) -> void:
 	cardsInDeck = []
 	var cards = cardstring.split(".")
 	for curCard in cards:
-		var card_instance = cardScene.instantiate()
+		var card_instance : card = cardScene.instantiate()
 		card_instance.setValues(curCard, true)
 		card_instance.set_name(str("card",i))
 		i = i + 1
@@ -92,7 +92,7 @@ func _drawCard() -> void:
 	var newCard = drawableCards.pick_random()
 	newCard._drawCard()
 	print(newCard._getName())
-	var new_position = Vector2(800+150*len(cardsInHand),850)
+	var new_position = Vector2(400+150*len(cardsInHand),850)
 	var tween = get_tree().create_tween()
 	if opponent:
 		new_position = Vector2(800+150*len(cardsInHand),500)
@@ -101,18 +101,40 @@ func _drawCard() -> void:
 	drawableCards = drawableCards.filter(func(c):return c._inDeck())
 	drawableCards = drawableCards.filter(func(c):return c._inDeck())
 	if(drawableCards.is_empty()):
-		$Sprite2D.visible = false
+		$DeckSprite.hide()
+		
+func _drawSideHand() -> void:
+	if(drawableCards.is_empty()):
+		print("no cards left")
+		return
+	drawableCards = drawableCards.filter(func(c):return c._inDeck())
+	var newCard = drawableCards.pick_random()
+	newCard._drawCard()
+	print(newCard._getName())
+	var new_position = Vector2(1000+150*len(cardsInHand),850)
+	var tween = get_tree().create_tween()
+	tween.tween_property(newCard,"global_position", new_position,0.25)
+	cardsInSideHand.append(newCard)
+	drawableCards = drawableCards.filter(func(c):return c._inDeck())
+	drawableCards = drawableCards.filter(func(c):return c._inDeck())
+	if(drawableCards.is_empty()):
+		$DeckSprite.hide()
+		
+		
 		
 func _getDeckCopy() -> Array[card]:
 	var d: Array[card] = []
 	for c in cardsInDeck:
 		var s = c._getString()
-		var cc = c.duplicate()
+		var cc = cardScene.instantiate()
 		cc.setValues(s,true)
 		cc._setOriginal(c)
 		cc._setListed(true)
 		add_child(cc)
 		d.append(cc)
+		if(!c._inDeck()):
+			cc._setUsed()
+			print("rööki")
 	return d
 		
 func _discardCard() -> void:
@@ -138,7 +160,7 @@ func _restoreDeck() -> void:
 		c.scale = Vector2(1,1)
 		c.global_position = global_position
 	drawableCards = cardsInDeck.duplicate()
-	$Sprite2D.visible = true
+	$DeckSprite.show()
 
 func sum(accum : int, number: int):
 	return accum + number

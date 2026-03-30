@@ -1,2 +1,3 @@
+GradientTexture1D
 Shader
 ShaderMaterial

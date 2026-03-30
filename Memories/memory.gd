@@ -50,13 +50,21 @@ func upModText() -> void:
 	$modifierText.text = tex
 
 func _buyMemory() -> void:
-	if g.souls >= price:
+	if g._hasSoul("thieving") && g.currentSouls[0]._getValue() == 1:
+		g.currentSouls[0]._setValue(0)
 		$BuyButton.hide()
-		g._addToSouls(-price)
 		inStore = false
 		get_parent().remove_child(self)
 		g.mb._addMemory(self)
 		_memoryEffectAdded()	
+	else:
+		if g.souls >= price:
+			$BuyButton.hide()
+			g._addToSouls(-price)
+			inStore = false
+			get_parent().remove_child(self)
+			g.mb._addMemory(self)
+			_memoryEffectAdded()	
 
 func _setName(s : String) -> void:
 	memName = s
@@ -105,8 +113,6 @@ func _setInfo() -> void:
 			memInfo = ""
 		"DrawingofS":
 			memInfo = ""
-		"HelpingHand":
-			memInfo = "+10 hand power"
 		"ShoulderDevil":
 			memInfo = "hitting when your total card value is over 15 gives +2 soul power"
 		"ShoulderAngel":
@@ -131,6 +137,7 @@ func _setInfo() -> void:
 			memInfo = "Gain a soul shard for every cursed card in hand"
 		"x":
 			memInfo = "Increase bust limit by 3"
+			
 		
 
 func _setType() -> void:
@@ -153,6 +160,10 @@ func _setDat() -> void:
 		"SlotMachine":
 			phandP = 0
 		"HelpingHand":
+			phandP = 0
+		"Bench":
+			Dat1 = 0
+			Dat2 = 1
 			phandP = 0
 	upModText()
 
@@ -198,6 +209,15 @@ func _memoryTriggerCard(c : card, likelihoodmultiplier = 1) -> bool:
 		"Two-faced":
 			if c._isFaceCard():
 					return true
+		"Outdoors":
+			if c._isFaceCard() || c._worth() < 7:
+				return true
+		"Bench":
+			return true
+		"Crazy8":
+			return c._worth() == 8
+		"Clover":
+			return c._worth() == 4
 	return false
 
 func _memoryTrigger(likelihoodmultiplier = 1) -> bool:
@@ -208,6 +228,16 @@ func _memoryTrigger(likelihoodmultiplier = 1) -> bool:
 			return true
 		"HelpingHand":
 			return true
+		"Outdoors":
+			return true
+	return false
+
+func _memoryTriggerRoundEnd(likelihoodmultiplier = 1) -> bool:
+	match memName:
+		"Rugpull":
+			if randi_range(1,1000) <  4*phandP*likelihoodmultiplier:
+				g._destroyMemory(self)
+			phandP += randi_range(0,25)
 	return false
 
 func _memoryEffectCard(c : card = null, likelihoodmultiplier = 1) -> void:
@@ -218,10 +248,25 @@ func _memoryEffectCard(c : card = null, likelihoodmultiplier = 1) -> void:
 		"Humility":
 			g._increaseSoulPower(c._worth()*2)
 		"Two-faced":
-			if randi_range(1,100) < 10*likelihoodmultiplier:
+			if randi_range(1,1000) < 100*likelihoodmultiplier:
 				g._multiplyMultiplier(0.5)
 			else:
 				g._multiplyMultiplier(2.0)
+		"Outdoors":
+			if c._isFaceCard():
+				psoulP -= 1
+			if c._worth() < 7:
+				psoulP += 0.5
+		"Bench":
+			Dat1+=1
+			if Dat1>=Dat2:
+				phandP+=1
+				Dat1-=Dat2
+				Dat2+=2
+		"Crazy8":
+			c.changeSuit("a")
+		"Clover":
+			g._addLikelihood(0.5)
 
 func _memoryEffect(likelihoodmultiplier = 1) -> void:
 	match memName:
@@ -231,6 +276,13 @@ func _memoryEffect(likelihoodmultiplier = 1) -> void:
 			g._increaseSoulPower(Global.bet * 2)
 		"HelpingHand":
 			g._increaseHandPower(phandP)
+		"Outdoors":
+			g._increaseSoulPower(psoulP)
+		"Bench":
+			g._increaseHandPower(phandP)
+	
+func _memoryEffectRoundEnd(likelihoodmultiplier = 1) -> void:
+	pass
 	
 func _memoryReset() -> void:
 	pass

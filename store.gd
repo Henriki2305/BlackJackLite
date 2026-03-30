@@ -4,6 +4,7 @@ var cardScene = preload("res://Scenes/card.tscn")
 var memScene = preload("res://Memories/memory.tscn")
 var BoosterScene = preload("res://Scenes/booster_pack.tscn")
 var memos : Array[memory]
+signal leave
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -59,6 +60,7 @@ func _createCards() -> void:
 
 func _leaveStore() -> void:
 	visible = false
+	emit_signal("leave")
 
 func _resetPos(c:card) -> void:
 	c.position = Vector2(0,0)
