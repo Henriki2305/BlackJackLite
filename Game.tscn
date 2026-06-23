@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://dd1y86sjjtca3" path="res://images/machine.png" id="11_lvtmh"]
 [ext_resource type="PackedScene" uid="uid://p1snryoyi1cd" path="res://Scenes/hand_box.tscn" id="11_yhmtn"]
 [ext_resource type="PackedScene" uid="uid://hs1pqbjyk3ht" path="res://Scenes/layer_gate.tscn" id="12_gwjdr"]
-[ext_resource type="Texture2D" uid="uid://c6uvkhyne74o0" path="res://images/handboxnew.png" id="12_lvtmh"]
 [ext_resource type="Texture2D" uid="uid://c1pimrotwhchj" path="res://images/Dark.png" id="12_yyih5"]
 
 [sub_resource type="GDScript" id="GDScript_3mrqo"]
@@ -186,7 +185,8 @@ scale = Vector2(0.95009243, 0.49235183)
 texture = ExtResource("12_yyih5")
 
 [node name="hand_box" parent="." unique_id=1614417977 instance=ExtResource("11_yhmtn")]
-position = Vector2(198, 582)
+z_index = 10
+position = Vector2(960, 75)
 
 [node name="Control2" type="Control" parent="." unique_id=1456103767]
 z_index = 16
@@ -194,6 +194,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
+mouse_filter = 1
 
 [node name="Control" type="Control" parent="Control2" unique_id=954573489]
 clip_contents = true
@@ -211,12 +212,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 metadata/_edit_use_anchors_ = true
-
-[node name="TextureRect" type="TextureRect" parent="Control2" unique_id=1731461336]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("12_lvtmh")
 
 [node name="LayerGate" parent="." unique_id=437813808 instance=ExtResource("12_gwjdr")]
 visible = false

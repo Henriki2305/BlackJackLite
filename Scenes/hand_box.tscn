@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://p1snryoyi1cd"]
 
 [ext_resource type="Script" uid="uid://dho0otp1p22kp" path="res://handbox.gd" id="1_4xw7p"]
-[ext_resource type="Texture2D" uid="uid://524qw4nk35wg" path="res://images/handbox.png" id="2_6j1vs"]
+[ext_resource type="Texture2D" uid="uid://c6uvkhyne74o0" path="res://images/handboxnew.png" id="2_6j1vs"]
 
 [node name="Hand_box" type="Node2D" unique_id=1833229199]
 script = ExtResource("1_4xw7p")

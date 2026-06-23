@@ -31,6 +31,7 @@ texture = ExtResource("2_386u0")
 script = SubResource("GDScript_dsgf2")
 
 [node name="Area2D" type="Area2D" parent="Sprite2D" unique_id=1644140773]
+collision_layer = 16777215
 script = ExtResource("3_dsgf2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D" unique_id=1992114730]
