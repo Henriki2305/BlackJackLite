@@ -411,7 +411,7 @@ func _process(_delta: float) -> void:
 			$ColorRect.material.set_shader_parameter("width",0.0)
 			ripple = false
 		else:
-			$ColorRect.material.set_shader_parameter("spot", s+0.005)
+			$ColorRect.material.set_shader_parameter("spot", s+_delta*0.5)
 
 func _addToSouls(i : int) -> void:
 	souls += i
@@ -471,7 +471,7 @@ func _updatePower() -> void:
 	TotalPowerNew.Vals = TotalPowerNew._ValMult(SoulPowerNew.Vals,TotalPowerNew._ValMult(HandPowerNew.Vals,MultiplierNew.Vals))
 	TotalPowerNew._updateValue()
 	$TotalPowerText.text = str("Total power: ", TotalPowerNew._IntoText())
-#	if TotalPowerNew._GreaterThan(OpponentScoring._MultipliedByNum(10)):
+#	if TotalPowerNew._GreaterThan(OpponentScoring._MultipliedByNum(3)):
 #		$ColorRect.material.set_shader_parameter("width",0.0125)
 #		$ColorRect.material.set_shader_parameter("spot",0.03)
 #		ripple = true

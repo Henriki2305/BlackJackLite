@@ -82,37 +82,37 @@ script = SubResource("GDScript_3mrqo")
 metadata/_edit_use_anchors_ = true
 
 [node name="SoulPowerText" type="Label" parent="." unique_id=133551637]
-offset_left = 1781.0
-offset_top = 536.0
-offset_right = 1823.0
-offset_bottom = 581.0
+offset_left = 1496.0
+offset_top = 681.0
+offset_right = 1538.0
+offset_bottom = 726.0
 text = "AA"
 label_settings = SubResource("LabelSettings_0hol4")
 metadata/_edit_use_anchors_ = true
 
 [node name="HandPowerText" type="Label" parent="." unique_id=458913609]
-offset_left = 1780.0
-offset_top = 483.0
-offset_right = 1822.0
-offset_bottom = 528.0
+offset_left = 1495.0
+offset_top = 628.0
+offset_right = 1537.0
+offset_bottom = 673.0
 text = "AA"
 label_settings = SubResource("LabelSettings_q6r6c")
 metadata/_edit_use_anchors_ = true
 
 [node name="MultiplierText" type="Label" parent="." unique_id=1448019431]
-offset_left = 1778.0
-offset_top = 431.0
-offset_right = 1820.0
-offset_bottom = 476.0
+offset_left = 1493.0
+offset_top = 576.0
+offset_right = 1535.0
+offset_bottom = 621.0
 text = "AA"
 label_settings = SubResource("LabelSettings_kdubu")
 metadata/_edit_use_anchors_ = true
 
 [node name="TotalPowerText" type="Label" parent="." unique_id=658830593]
-offset_left = 1657.0
-offset_top = 463.0
-offset_right = 1742.0
-offset_bottom = 551.0
+offset_left = 1052.0
+offset_top = 609.0
+offset_right = 1137.0
+offset_bottom = 697.0
 text = "AA"
 label_settings = SubResource("LabelSettings_d21ai")
 metadata/_edit_use_anchors_ = true
@@ -151,10 +151,10 @@ offset_bottom = 1029.0
 text = "Souls"
 
 [node name="LayerNameText" type="RichTextLabel" parent="." unique_id=1763784259]
-offset_left = 1718.0
-offset_top = 269.0
-offset_right = 1874.0
-offset_bottom = 366.0
+offset_left = 1433.0
+offset_top = 414.0
+offset_right = 1589.0
+offset_bottom = 511.0
 theme_override_font_sizes/normal_font_size = 64
 text = "a
 "
