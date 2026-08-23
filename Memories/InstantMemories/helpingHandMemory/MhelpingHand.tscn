@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://gini1ybi2x7o"]
+
+[ext_resource type="Script" uid="uid://ban4bqeffbeug" path="res://Memories/InstantMemories/helpingHandMemory/mhelping_hand.gd" id="1_b1ly1"]
+[ext_resource type="Script" uid="uid://dmop3gc8orqqv" path="res://memoryData.gd" id="2_e2ddn"]
+
+[sub_resource type="Resource" id="Resource_b1ly1"]
+resource_local_to_scene = true
+script = ExtResource("2_e2ddn")
+display_name = "Helping Hand"
+description = "+10 handPower"
+buy_price = 4
+showHandM = true
+metadata/_custom_type_script = "uid://dmop3gc8orqqv"
+
+[node name="MhelpingHand" type="Node2D" unique_id=806121372]
+script = ExtResource("1_b1ly1")
+memoryStats = SubResource("Resource_b1ly1")

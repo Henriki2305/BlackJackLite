@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://v6tdyngtbm6j"]
+
+[ext_resource type="Script" uid="uid://ce6liml3flm1m" path="res://soul_storage.gd" id="1_cqqp3"]
+
+[node name="SoulStorage" type="Node2D" unique_id=1463965639]
+script = ExtResource("1_cqqp3")

@@ -1,4 +1,3 @@
-
 class_name memory extends Node2D
 
 var triggerType : String #card, normal, hybrid, none
@@ -19,6 +18,7 @@ var g: Game
 var box: memory_box
 var inStore = false
 var price : int = 0
+@export var memoryStats : memoryData
 var Prices : Dictionary = {
 	"HelpingHand" : 3,
 	"SlotMachine" : 5,
@@ -27,6 +27,15 @@ var Prices : Dictionary = {
 	"Credulity" : 5,
 	"x" : 6
 }
+
+func _hasInstantEffect() -> bool:
+	return false
+	
+func _hasPerCardEffect() -> bool:
+	return false
+
+func _hasPassiveEffect() -> bool:
+	return false
 
 func _setBox(b:memory_box) -> void:
 	box = b
@@ -65,6 +74,15 @@ func _buyMemory() -> void:
 			get_parent().remove_child(self)
 			g.mb._addMemory(self)
 			_memoryEffectAdded()	
+
+func _buyEffect() -> void:
+	pass
+	
+func _sellMemory() -> void:
+	pass
+	
+func _sellEffect() -> void:
+	pass
 
 func _setName(s : String) -> void:
 	memName = s

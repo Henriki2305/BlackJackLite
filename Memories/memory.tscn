@@ -1,78 +1,11 @@
 [gd_scene format=3 uid="uid://cbuawudm5kgfe"]
 
-[ext_resource type="Script" uid="uid://cygxtf3hffrrc" path="res://Memories/memory.gd" id="1_kh0cx"]
-[ext_resource type="Texture2D" uid="uid://cuyfegcc6eif3" path="res://Memories/images/SlotMachine.jpg" id="2_386u0"]
-[ext_resource type="Script" uid="uid://d3xmr2v40ekvh" path="res://Memories/memoryHover.gd" id="3_dsgf2"]
-[ext_resource type="Texture2D" uid="uid://d1it3m2ws05yb" path="res://Card base.png" id="4_fuocr"]
-[ext_resource type="Texture2D" uid="uid://cqn0gsfru4cqf" path="res://images/purple.png" id="5_dsgf2"]
-
-[sub_resource type="GDScript" id="GDScript_dsgf2"]
-script/source = "extends Sprite2D
-
-func _input(event):
-	if visible:
-		if event.is_action_pressed(\"click\"):
-			if is_pixel_opaque(get_local_mouse_position()):
-				get_parent()._SelectMemory()
-"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pqpdt"]
-size = Vector2(1026, 1026)
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_tx3s3"]
-resource_local_to_scene = true
-diffuse_texture = ExtResource("4_fuocr")
+[ext_resource type="Script" uid="uid://cygxtf3hffrrc" path="res://Memories/memory.gd" id="1_dsgf2"]
+[ext_resource type="Script" uid="uid://bdbs2l6u45ab7" path="res://memory_2d.gd" id="6_fuocr"]
 
 [node name="memory" type="Node2D" unique_id=809999309]
-script = ExtResource("1_kh0cx")
+script = ExtResource("1_dsgf2")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1056380264]
-texture = ExtResource("2_386u0")
-script = SubResource("GDScript_dsgf2")
-
-[node name="Area2D" type="Area2D" parent="Sprite2D" unique_id=1644140773]
-collision_layer = 16777215
-script = ExtResource("3_dsgf2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D" unique_id=1992114730]
-position = Vector2(1, 0)
-shape = SubResource("RectangleShape2D_pqpdt")
-
-[node name="InfoBox" type="MarginContainer" parent="." unique_id=2063484328]
-visible = false
-offset_left = 600.0
-offset_top = -1515.0
-offset_right = 3815.0
-offset_bottom = 1515.0
-
-[node name="NinePatchRect" type="NinePatchRect" parent="InfoBox" unique_id=1297667379]
-layout_mode = 2
-texture = SubResource("CanvasTexture_tx3s3")
-
-[node name="InfoText" type="RichTextLabel" parent="InfoBox" unique_id=1709647564]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 128
-theme_override_font_sizes/bold_font_size = 256
-bbcode_enabled = true
-scroll_active = false
-horizontal_alignment = 1
-
-[node name="modifierText" type="RichTextLabel" parent="." unique_id=1151901811]
-offset_left = -1693.0
-offset_top = -259.0
-offset_right = -587.0
-offset_bottom = 344.0
-theme_override_font_sizes/normal_font_size = 128
-bbcode_enabled = true
-text = "AAAAA"
-
-[node name="BuyButton" type="TextureButton" parent="." unique_id=709102987]
-visible = false
-offset_left = -505.0
-offset_top = 519.0
-offset_right = 504.0
-offset_bottom = 734.0
-texture_normal = ExtResource("5_dsgf2")
-stretch_mode = 0
-
-[connection signal="pressed" from="BuyButton" to="." method="_buyMemory"]
+[node name="memory2D" type="Node2D" parent="." unique_id=1622464785]
+script = ExtResource("6_fuocr")
+metadata/_custom_type_script = "uid://bdbs2l6u45ab7"

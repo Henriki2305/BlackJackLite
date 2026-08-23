@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://cnyf78tngee0i"]
+
+[ext_resource type="Script" uid="uid://bdbs2l6u45ab7" path="res://memory_2d.gd" id="1_hg017"]
+[ext_resource type="Texture2D" uid="uid://cuyfegcc6eif3" path="res://Memories/images/SlotMachine.jpg" id="2_w11ap"]
+[ext_resource type="Script" uid="uid://d3xmr2v40ekvh" path="res://Memories/memoryHover.gd" id="3_dhoxd"]
+[ext_resource type="Texture2D" uid="uid://d1it3m2ws05yb" path="res://Card base.png" id="4_jrkeq"]
+[ext_resource type="Texture2D" uid="uid://cqn0gsfru4cqf" path="res://images/purple.png" id="5_7dgmm"]
+
+[sub_resource type="GDScript" id="GDScript_jlu3w"]
+script/source = "extends Sprite2D
+
+func _input(event):
+	if visible:
+		if event.is_action_pressed(\"click\"):
+			if is_pixel_opaque(get_local_mouse_position()):
+				get_parent()._SelectMemory()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cn55h"]
+size = Vector2(1026, 1026)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_huylc"]
+resource_local_to_scene = true
+diffuse_texture = ExtResource("4_jrkeq")
+
+[node name="Memory2d" type="Node2D" unique_id=2109284723]
+script = ExtResource("1_hg017")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=295843212]
+texture = ExtResource("2_w11ap")
+script = SubResource("GDScript_jlu3w")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D" unique_id=1333125184]
+collision_layer = 16777215
+script = ExtResource("3_dhoxd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D" unique_id=1447125940]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_cn55h")
+
+[node name="InfoBox" type="MarginContainer" parent="." unique_id=471488472]
+visible = false
+offset_left = 600.0
+offset_top = -1515.0
+offset_right = 3815.0
+offset_bottom = 1515.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="InfoBox" unique_id=1528276900]
+layout_mode = 2
+texture = SubResource("CanvasTexture_huylc")
+
+[node name="InfoText" type="RichTextLabel" parent="InfoBox" unique_id=595293830]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 128
+theme_override_font_sizes/bold_font_size = 256
+bbcode_enabled = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="modifierText" type="RichTextLabel" parent="." unique_id=1146390477]
+offset_left = -1693.0
+offset_top = -259.0
+offset_right = -587.0
+offset_bottom = 344.0
+theme_override_font_sizes/normal_font_size = 128
+bbcode_enabled = true
+text = "AAAAA"
+
+[node name="BuyButton" type="TextureButton" parent="." unique_id=1087759788]
+visible = false
+offset_left = -505.0
+offset_top = 519.0
+offset_right = 504.0
+offset_bottom = 734.0
+texture_normal = ExtResource("5_7dgmm")
+stretch_mode = 0

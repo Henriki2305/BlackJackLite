@@ -138,6 +138,7 @@ offset_right = 1121.0
 offset_bottom = 366.0
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
+metadata/_edit_use_anchors_ = true
 
 [node name="SoulTrackerPurple" type="Sprite2D" parent="." unique_id=2141639459]
 position = Vector2(1850, 1025)
@@ -149,6 +150,7 @@ offset_top = 1001.0
 offset_right = 1819.0
 offset_bottom = 1029.0
 text = "Souls"
+metadata/_edit_use_anchors_ = true
 
 [node name="LayerNameText" type="RichTextLabel" parent="." unique_id=1763784259]
 offset_left = 1433.0
@@ -158,6 +160,7 @@ offset_bottom = 511.0
 theme_override_font_sizes/normal_font_size = 64
 text = "a
 "
+metadata/_edit_use_anchors_ = true
 
 [node name="SoulsCounter" type="RichTextLabel" parent="." unique_id=1969364181]
 offset_left = 1828.0
@@ -165,6 +168,7 @@ offset_top = 1001.0
 offset_right = 1873.0
 offset_bottom = 1029.0
 text = "Souls"
+metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1778156430]
 z_index = -5
@@ -195,6 +199,7 @@ anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Control" type="Control" parent="Control2" unique_id=954573489]
 clip_contents = true

@@ -16,12 +16,15 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="Blackjack roguelike"
 run/main_scene="uid://cbw3rje7ff5n5"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Global="*res://Global.gd"
+RoundLoopEventHandler="*uid://djm150p3hs2w1"
+ScoreSystem="*uid://bku05tvwo01ih"
+SoulStorage="*uid://ce6liml3flm1m"
 
 [display]
 

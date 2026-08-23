@@ -3,14 +3,18 @@ class_name Game extends Node2D
 var souls = 4
 var playerDeck
 var opponentDeck : deck
+var SoulPower : BigNumber = BigNumber.new()
+var HandPower : BigNumber = BigNumber.new()
+var Multiplier : BigNumber = BigNumber.new()
 var SoulPowerNew : Scoring = Scoring.new()
 var HandPowerNew : Scoring = Scoring.new()
 var MultiplierNew : Scoring = Scoring.new()
 var TotalPowerNew : Scoring = Scoring.new()
 var OpponentScoring : Scoring = Scoring.new()
-var SoulPower = 0
-var HandPower = 0
-var Multiplier = 1
+var notationLimit : BigNumber = BigNumber.new()
+#var SoulPower = 0
+#var HandPower = 0
+#var Multiplier = 1
 var MemoriesMax = 5
 var MaxSouls = 1
 var MajorSouls = 0
@@ -49,6 +53,7 @@ var LayerScores = [20,100,400,1200,3000,6000,10000,20000]
 var LayerMults = [1,4,15,50,100,200,350,500]
 var layers : Array[String] = ["lust","gluttony","pride","greed","sloth","wrath","envy"]
 var bossRound : bool = false
+var Emode : bool = true
 
 
 var soulRules : Dictionary = {
@@ -334,6 +339,8 @@ func _nextLayer() -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	notationLimit.mantissa=1
+	notationLimit.exponent=9
 	HandPowerNew.Vals = [0.0,0]
 	SoulPowerNew.Vals = [0.0,0]
 	MultiplierNew.Vals = [1.0,0]
@@ -425,7 +432,9 @@ func _updateHand() -> void:
 		else:
 			h._setTrigger(false)
 	
+
 func _increaseHandPower(amount) -> void:
+	HandPower = HandPower.plus(amount)
 	HandPowerNew._AddNum(amount)
 	_updatePower()
 	
@@ -465,7 +474,10 @@ func _updatemultiplier(amount,b) -> void:
 	_updatePower()
 	
 func _updatePower() -> void:
-	$HandPowerText.text = str("Handpower: ",HandPowerNew._IntoText())
+	if HandPower.is_greater_than(notationLimit) && !Emode:
+		$HandPowerText.text = str("Handpower: ",HandPower.to_metric_name())
+	else:
+		$HandPowerText.text = str("Handpower: ",HandPower.to_scientific())
 	$SoulPowerText.text = str("Soulpower: ", SoulPowerNew._IntoText())
 	$MultiplierText.text = str("Multiplier: ",MultiplierNew._IntoText())
 	TotalPowerNew.Vals = TotalPowerNew._ValMult(SoulPowerNew.Vals,TotalPowerNew._ValMult(HandPowerNew.Vals,MultiplierNew.Vals))
