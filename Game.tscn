@@ -47,9 +47,6 @@ shader_parameter/spot = 0.2
 [node name="Game" type="Node2D" unique_id=1251977003]
 script = ExtResource("1_t88pq")
 
-[node name="MemoryBox" parent="." unique_id=941194543 instance=ExtResource("2_r0x5m")]
-position = Vector2(217.84, 318.56)
-
 [node name="Deck" parent="." unique_id=605882964 instance=ExtResource("2_t88pq")]
 position = Vector2(960, 900)
 
@@ -220,3 +217,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="LayerGate" parent="." unique_id=437813808 instance=ExtResource("12_gwjdr")]
 visible = false
+
+[node name="MemoryBox" parent="." unique_id=302087916 instance=ExtResource("2_r0x5m")]
+position = Vector2(219, 320)

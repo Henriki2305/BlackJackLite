@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bk8p056o42vct"]
+
+[ext_resource type="Script" uid="uid://djm150p3hs2w1" path="res://roundLoopEventHandler.gd" id="1_6sbva"]
+[ext_resource type="PackedScene" uid="uid://dw1qgamf4if5c" path="res://main_hand.tscn" id="2_h1kev"]
+[ext_resource type="PackedScene" uid="uid://tt6xclinds16" path="res://SideHand.tscn" id="3_5byuu"]
+[ext_resource type="PackedScene" uid="uid://cw7kr0gn3r6oq" path="res://Scenes/memory_box.tscn" id="4_eapcb"]
+
+[node name="RoundLoopEventHandler" type="Node2D" unique_id=1953017771 node_paths=PackedStringArray("memorybox", "main", "side")]
+script = ExtResource("1_6sbva")
+memorybox = NodePath("MemoryBox")
+main = NodePath("MainHand")
+side = NodePath("SideHand")
+
+[node name="MainHand" parent="." unique_id=489138791 instance=ExtResource("2_h1kev")]
+
+[node name="SideHand" parent="." unique_id=62003421 instance=ExtResource("3_5byuu")]
+
+[node name="MemoryBox" parent="." unique_id=302087916 instance=ExtResource("4_eapcb")]

@@ -56,6 +56,25 @@ var rarities = {
 	"mi": Enums.midNightRare
 }
 	
+var bustValues = {
+	Enums.zero: 0,
+	Enums.one: 1,
+	Enums.two: 2,
+	Enums.three: 3,
+	Enums.four: 4,
+	Enums.five: 5,
+	Enums.six: 6,
+	Enums.seven: 7,
+	Enums.eight: 8,
+	Enums.nine: 9,
+	Enums.ten: 10,
+	Enums.eleven: 11,
+	Enums.Jack: 10,
+	Enums.Queen: 10,
+	Enums.King: 10,
+	Enums.Ace: 1
+}
+	
 var values = {
 	Enums.zero: 0,
 	Enums.one: 1,
@@ -242,6 +261,10 @@ func _discardCard() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
+
+func _getBustvalue() -> int:
+	return bustValues[rank]
+	
 
 func _returnToDeck() -> void:
 	location = ddeck

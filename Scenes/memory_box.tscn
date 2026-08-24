@@ -1,16 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://cw7kr0gn3r6oq"]
+[gd_scene format=3 uid="uid://cw7kr0gn3r6oq"]
 
 [ext_resource type="Script" uid="uid://b5tk4mw0f3rpa" path="res://memory_box.gd" id="1_85pcq"]
-[ext_resource type="PackedScene" uid="uid://cbuawudm5kgfe" path="res://Memories/memory.tscn" id="2_tvpnd"]
+[ext_resource type="PackedScene" uid="uid://gini1ybi2x7o" path="res://Memories/InstantMemories/helpingHandMemory/MhelpingHand.tscn" id="2_ou3qg"]
+[ext_resource type="Texture2D" uid="uid://cuyfegcc6eif3" path="res://Memories/images/SlotMachine.jpg" id="3_p4vnp"]
+[ext_resource type="Script" uid="uid://dmop3gc8orqqv" path="res://memoryData.gd" id="4_n8ysd"]
 
-[node name="MemoryBox" type="Node2D"]
+[sub_resource type="Resource" id="Resource_r8437"]
+resource_local_to_scene = true
+script = ExtResource("4_n8ysd")
+display_name = "Helping Hand"
+image = ExtResource("3_p4vnp")
+description = "+10 handPower"
+buy_price = 4
+showHandM = true
+metadata/_custom_type_script = "uid://dmop3gc8orqqv"
+
+[sub_resource type="Resource" id="Resource_x267a"]
+resource_local_to_scene = true
+script = ExtResource("4_n8ysd")
+display_name = "Helping Hand"
+image = ExtResource("3_p4vnp")
+description = "+10 handPower"
+buy_price = 4
+showHandM = true
+metadata/_custom_type_script = "uid://dmop3gc8orqqv"
+
+[node name="MemoryBox" type="Node2D" unique_id=302087916]
 z_index = 10
 script = ExtResource("1_85pcq")
 
-[node name="memory2" parent="." instance=ExtResource("2_tvpnd")]
-position = Vector2(410, 795)
+[node name="memory" parent="." unique_id=806121372 instance=ExtResource("2_ou3qg")]
 scale = Vector2(0.1, 0.1)
+memoryStats = SubResource("Resource_r8437")
 
-[node name="memory" parent="." instance=ExtResource("2_tvpnd")]
-position = Vector2(235.99998, 350.99997)
+[node name="memory2" parent="." unique_id=1916908504 instance=ExtResource("2_ou3qg")]
 scale = Vector2(0.1, 0.1)
+memoryStats = SubResource("Resource_x267a")

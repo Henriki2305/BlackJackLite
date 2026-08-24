@@ -20,7 +20,7 @@ func _sortSuit(s: Array[card]) -> Array[card]:
 	return temp
 		
 func _cancel() -> void:
-	var g : Game = get_parent().get_parent()
+	g = get_parent().get_parent()
 	g._destroyList()
 	
 func _confirmSelection() -> void:

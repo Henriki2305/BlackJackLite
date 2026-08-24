@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://tt6xclinds16"]
+
+[ext_resource type="Script" uid="uid://b46y6csb6vpvg" path="res://side_hand.gd" id="1_qo6ml"]
+
+[node name="SideHand" type="Node2D" unique_id=62003421]
+script = ExtResource("1_qo6ml")

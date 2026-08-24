@@ -5,8 +5,6 @@ var movedMemory : memory
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	global_position = Vector2(0,0)
-	$memory._setName("SlotMachine")
-	$memory2._setName("SlotMachine")
 	$memory._setBox(self)
 	$memory2._setBox(self)
 	Memories.append($memory)
@@ -28,10 +26,10 @@ func _addMemory(m : memory) -> void:
 	m.global_position = Vector2(600,500+((len(Memories)-1)*120))
 	add_child(m)
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if movedMemory:
 		var mPos = get_global_mouse_position()
-		movedMemory.position = mPos
+		movedMemory.position = lerp(movedMemory.position,mPos,15*delta )
 		for i in len(Memories):
 			if Memories[i] != movedMemory:
 				var m : memory = Memories[i]
@@ -49,16 +47,19 @@ func _input(event):
 				var m = raycast_check_mem()
 				if m is memory:
 					movedMemory = m
-					movedMemory._removeInfoBox()
-					movedMemory._removeModText()
+					m._startMoving()
+					movedMemory._hideInfo()
+#					movedMemory._removeModText()
 			else:
 				if movedMemory:
 					var tween = get_tree().create_tween()
 					tween.tween_property(movedMemory,"global_position", Vector2(600,500+(movedMemory._getPosition()*120)),0.1)
 					var m = movedMemory
 					movedMemory = null
-					m._createInfoBox()
-					m._addModText()
+					m._createInfo()
+					m._stopMoving()
+#					m._createInfoBox()
+#					m._addModText()
 
 func raycast_check_mem():
 	var sState = get_world_2d().direct_space_state
@@ -68,8 +69,8 @@ func raycast_check_mem():
 	par.collision_mask = 1
 	var res = sState.intersect_point(par)
 	if res.size() >0:
-		if res[0].collider.get_parent().get_parent() is memory:
-			var m : memory = res[0].collider.get_parent().get_parent()
+		if res[0].collider.get_parent().get_parent().get_parent() is memory:
+			var m : memory = res[0].collider.get_parent().get_parent().get_parent()
 			if !m.inStore:
 				return m
 

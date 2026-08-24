@@ -1,17 +1,23 @@
 [gd_scene format=3 uid="uid://gini1ybi2x7o"]
 
 [ext_resource type="Script" uid="uid://ban4bqeffbeug" path="res://Memories/InstantMemories/helpingHandMemory/mhelping_hand.gd" id="1_b1ly1"]
+[ext_resource type="Texture2D" uid="uid://cuyfegcc6eif3" path="res://Memories/images/SlotMachine.jpg" id="2_al44w"]
 [ext_resource type="Script" uid="uid://dmop3gc8orqqv" path="res://memoryData.gd" id="2_e2ddn"]
+[ext_resource type="PackedScene" uid="uid://cnyf78tngee0i" path="res://Memories/memory2D.tscn" id="4_al44w"]
 
 [sub_resource type="Resource" id="Resource_b1ly1"]
 resource_local_to_scene = true
 script = ExtResource("2_e2ddn")
 display_name = "Helping Hand"
+image = ExtResource("2_al44w")
 description = "+10 handPower"
 buy_price = 4
 showHandM = true
 metadata/_custom_type_script = "uid://dmop3gc8orqqv"
 
-[node name="MhelpingHand" type="Node2D" unique_id=806121372]
+[node name="MhelpingHand" type="Node2D" unique_id=806121372 node_paths=PackedStringArray("mem2d")]
 script = ExtResource("1_b1ly1")
 memoryStats = SubResource("Resource_b1ly1")
+mem2d = NodePath("Memory2d")
+
+[node name="Memory2d" parent="." unique_id=2109284723 instance=ExtResource("4_al44w")]

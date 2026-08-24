@@ -1,11 +1,17 @@
 [gd_scene format=3 uid="uid://cbuawudm5kgfe"]
 
 [ext_resource type="Script" uid="uid://cygxtf3hffrrc" path="res://Memories/memory.gd" id="1_dsgf2"]
-[ext_resource type="Script" uid="uid://bdbs2l6u45ab7" path="res://memory_2d.gd" id="6_fuocr"]
+[ext_resource type="Script" uid="uid://dmop3gc8orqqv" path="res://memoryData.gd" id="2_is34g"]
+[ext_resource type="Script" uid="uid://bdbs2l6u45ab7" path="res://Memories/memory_2d.gd" id="6_fuocr"]
+
+[sub_resource type="Resource" id="Resource_e2ddn"]
+script = ExtResource("2_is34g")
+metadata/_custom_type_script = "uid://dmop3gc8orqqv"
 
 [node name="memory" type="Node2D" unique_id=809999309]
 script = ExtResource("1_dsgf2")
+memoryStats = SubResource("Resource_e2ddn")
 
-[node name="memory2D" type="Node2D" parent="." unique_id=1622464785]
+[node name="Memory2d" type="Node2D" parent="." unique_id=1622464785]
 script = ExtResource("6_fuocr")
 metadata/_custom_type_script = "uid://bdbs2l6u45ab7"

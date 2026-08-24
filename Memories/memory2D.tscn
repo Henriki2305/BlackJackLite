@@ -1,20 +1,11 @@
 [gd_scene format=3 uid="uid://cnyf78tngee0i"]
 
-[ext_resource type="Script" uid="uid://bdbs2l6u45ab7" path="res://memory_2d.gd" id="1_hg017"]
+[ext_resource type="Script" uid="uid://bdbs2l6u45ab7" path="res://Memories/memory_2d.gd" id="1_hg017"]
 [ext_resource type="Texture2D" uid="uid://cuyfegcc6eif3" path="res://Memories/images/SlotMachine.jpg" id="2_w11ap"]
 [ext_resource type="Script" uid="uid://d3xmr2v40ekvh" path="res://Memories/memoryHover.gd" id="3_dhoxd"]
+[ext_resource type="Script" uid="uid://w10k4h2dnliq" path="res://Memories/memorysprite.gd" id="3_w11ap"]
 [ext_resource type="Texture2D" uid="uid://d1it3m2ws05yb" path="res://Card base.png" id="4_jrkeq"]
 [ext_resource type="Texture2D" uid="uid://cqn0gsfru4cqf" path="res://images/purple.png" id="5_7dgmm"]
-
-[sub_resource type="GDScript" id="GDScript_jlu3w"]
-script/source = "extends Sprite2D
-
-func _input(event):
-	if visible:
-		if event.is_action_pressed(\"click\"):
-			if is_pixel_opaque(get_local_mouse_position()):
-				get_parent()._SelectMemory()
-"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cn55h"]
 size = Vector2(1026, 1026)
@@ -28,7 +19,7 @@ script = ExtResource("1_hg017")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=295843212]
 texture = ExtResource("2_w11ap")
-script = SubResource("GDScript_jlu3w")
+script = ExtResource("3_w11ap")
 
 [node name="Area2D" type="Area2D" parent="Sprite2D" unique_id=1333125184]
 collision_layer = 16777215
@@ -58,6 +49,7 @@ scroll_active = false
 horizontal_alignment = 1
 
 [node name="modifierText" type="RichTextLabel" parent="." unique_id=1146390477]
+visible = false
 offset_left = -1693.0
 offset_top = -259.0
 offset_right = -587.0

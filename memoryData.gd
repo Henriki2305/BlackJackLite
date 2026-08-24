@@ -12,3 +12,5 @@ class_name memoryData
 @export var showMult : bool = false
 @export var showMultX : bool = false
 @export var showSpecialValue : bool = false
+@export var var1 = 0
+@export var var2 = 0
