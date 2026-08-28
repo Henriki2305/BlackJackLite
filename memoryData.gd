@@ -14,3 +14,4 @@ class_name memoryData
 @export var showSpecialValue : bool = false
 @export var var1 = 0
 @export var var2 = 0
+@export var var3 = 0

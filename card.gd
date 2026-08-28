@@ -241,6 +241,9 @@ func changeRank(r : String) -> void:
 	xind = locationsx[rank]
 	updateAppearance()
 	
+func _getRank():
+	return rank
+	
 func changeSuit(s : String) -> void:
 	suit = suits[s]
 	yind = locationsy[suit]

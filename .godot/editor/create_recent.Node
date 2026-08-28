@@ -1,7 +1,8 @@
+perCardMemory
+memory2D
 TextureProgressBar
 PointLight2D
 hand
-memory2D
 TextureRect
 Control
 RichTextLabel
@@ -12,4 +13,3 @@ Sprite2D
 CenterContainer
 HBoxContainer
 Container
-BoxContainer

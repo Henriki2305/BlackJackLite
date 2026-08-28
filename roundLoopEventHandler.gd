@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 	pass
 
 func _playRound() -> void:
-	var cardMemories: Array[perCardMemory] = memorybox._getMemories().filter(func(m): return (m is perCardMemory))
+	var cardMemories: Array[perCardMemory] = memorybox._getMemories().filter(func(m): return (m is perCardMemory || m is hybridMemory))
 	var instaMemories: Array[instantMemory] = memorybox._getMemories().filter(func(m): return (m is instantMemory))
 	var mainCards: Array[card] = main._getCards()
 	var sideCards: Array[card] = main._getCards()
