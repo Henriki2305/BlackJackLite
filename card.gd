@@ -87,11 +87,11 @@ var values = {
 	Enums.eight: 8,
 	Enums.nine: 9,
 	Enums.ten: 10,
-	Enums.eleven: 10,
+	Enums.eleven: 11,
 	Enums.Jack: 10,
 	Enums.Queen: 10,
-	Enums.King: 11,
-	Enums.Ace: 1
+	Enums.King: 10,
+	Enums.Ace: 11
 	}
 	
 var locationsx = {

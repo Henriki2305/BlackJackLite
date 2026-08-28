@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://fv4fstgriixi"]
+
+[ext_resource type="Script" uid="uid://ftse7v1yv3pc" path="res://Hands/ExampleHand/example_hand.gd" id="1_l4fxs"]
+[ext_resource type="Script" uid="uid://be1tog4n5vis6" path="res://HandData.gd" id="2_slqs7"]
+[ext_resource type="PackedScene" uid="uid://cu5siaq7lcgpr" path="res://hand_base.tscn" id="3_8vf3a"]
+[ext_resource type="Shader" uid="uid://bo78vhwy3tyv2" path="res://Shaders/handbaseshader.gdshader" id="4_powye"]
+
+[sub_resource type="Resource" id="Resource_l4fxs"]
+script = ExtResource("2_slqs7")
+displayName = "Example"
+metadata/_custom_type_script = "uid://be1tog4n5vis6"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l8cb1"]
+resource_local_to_scene = true
+shader = ExtResource("4_powye")
+shader_parameter/colorness = 0.0
+shader_parameter/rare = false
+
+[node name="ExampleHand" type="Node2D" unique_id=1417134831]
+script = ExtResource("1_l4fxs")
+stats = SubResource("Resource_l4fxs")
+
+[node name="HandBase" parent="." unique_id=351604509 instance=ExtResource("3_8vf3a")]
+material = SubResource("ShaderMaterial_l8cb1")

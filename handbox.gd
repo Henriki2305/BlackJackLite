@@ -1,5 +1,5 @@
 class_name handbox extends Node2D
-var handScene = preload("res://Scenes/hand.tscn")
+var handScene = preload("res://Hands/BigNumberHand/BigNumberHand.tscn")
 var hands : Array = []
 var movedHand
 
@@ -27,6 +27,14 @@ func _ready() -> void:
 	h2._setBox(self)
 	h1.info.connect(_setInfo)
 	h2.info.connect(_setInfo)
+
+func sort_hands(a:hand, b:hand) -> bool:
+	return a._getPosition() < b._getPosition()
+
+func _getHands() -> Array[hand]:
+	hands.sort_custom(sort_hands)
+	return hands
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

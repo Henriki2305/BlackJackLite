@@ -22,9 +22,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*res://Global.gd"
-RoundLoopEventHandler="*uid://djm150p3hs2w1"
-ScoreSystem="*uid://bku05tvwo01ih"
-SoulStorage="*uid://ce6liml3flm1m"
+SceneReferences="*uid://b45a4tsc2rci7"
+EventBus="*uid://4u72wt8akqsu"
 
 [display]
 

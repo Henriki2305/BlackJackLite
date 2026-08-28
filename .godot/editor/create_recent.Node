@@ -1,3 +1,6 @@
+TextureProgressBar
+PointLight2D
+hand
 memory2D
 TextureRect
 Control
@@ -10,5 +13,3 @@ CenterContainer
 HBoxContainer
 Container
 BoxContainer
-VBoxContainer
-Button

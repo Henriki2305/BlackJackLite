@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cu5siaq7lcgpr"]
+
+[ext_resource type="Shader" uid="uid://bo78vhwy3tyv2" path="res://Shaders/handbaseshader.gdshader" id="1_w1wo3"]
+[ext_resource type="Texture2D" uid="uid://d0gi8q8584bf2" path="res://images/blackmössö.png" id="2_cccxg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jrln0"]
+resource_local_to_scene = true
+shader = ExtResource("1_w1wo3")
+shader_parameter/colorness = 0.0
+shader_parameter/rare = false
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vumah"]
+radius = 48.0
+height = 388.0
+
+[node name="HandBase" type="Sprite2D" unique_id=351604509]
+material = SubResource("ShaderMaterial_jrln0")
+texture = ExtResource("2_cccxg")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=479769436]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2086532364]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_vumah")
+
+[node name="NameText" type="RichTextLabel" parent="." unique_id=957429275]
+offset_left = -164.0
+offset_top = -47.0
+offset_right = 161.0
+offset_bottom = 48.0
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+metadata/_edit_use_anchors_ = true

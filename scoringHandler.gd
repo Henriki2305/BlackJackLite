@@ -19,13 +19,13 @@ signal multip
 func _ready() -> void:
 	notationLimit.mantissa=1
 	notationLimit.exponent=9
-	hand.connect(_increaseHandPower)
-	handx.connect(_multiplyHandPower)
-	soul.connect(_increaseSoulPower)
-	soulx.connect(_multiplySoulPower)
-	multi.connect(_increasemultiplier)
-	multix.connect(_multiplyMultiplier)
-	multip.connect(_multiplyMultiplierbyPercent)
+	EventBus.addHandPower.connect(_increaseHandPower)
+	EventBus.multiplyHandPower.connect(_multiplyHandPower)
+	EventBus.addSoulPower.connect(_increaseSoulPower)
+	EventBus.multiplySoulPower.connect(_multiplySoulPower)
+	EventBus.addMultiplier.connect(_increasemultiplier)
+	EventBus.multiplyMultiplier.connect(_multiplyMultiplier)
+	EventBus.multiplyMultiplierPercent.connect(_multiplyMultiplierbyPercent)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

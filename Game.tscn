@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cbw3rje7ff5n5"]
 
 [ext_resource type="Script" uid="uid://hjm07q0ihj4" path="res://Game.gd" id="1_t88pq"]
-[ext_resource type="PackedScene" uid="uid://cw7kr0gn3r6oq" path="res://Scenes/memory_box.tscn" id="2_r0x5m"]
 [ext_resource type="PackedScene" uid="uid://dsa80bbmp0gad" path="res://Scenes/deck.tscn" id="2_t88pq"]
 [ext_resource type="Script" uid="uid://ctrgu3qcae3u3" path="res://label.gd" id="3_r0x5m"]
 [ext_resource type="Shader" uid="uid://bv50m4ytbyiqf" path="res://Shaders/RippleEffectShader.gdshader" id="6_r0x5m"]
@@ -9,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://cqn0gsfru4cqf" path="res://images/purple.png" id="9_2vekm"]
 [ext_resource type="Texture2D" uid="uid://bv3pwn3aordnh" path="res://images/tablebase.png" id="10_gwjdr"]
 [ext_resource type="Texture2D" uid="uid://dd1y86sjjtca3" path="res://images/machine.png" id="11_lvtmh"]
-[ext_resource type="PackedScene" uid="uid://p1snryoyi1cd" path="res://Scenes/hand_box.tscn" id="11_yhmtn"]
 [ext_resource type="PackedScene" uid="uid://hs1pqbjyk3ht" path="res://Scenes/layer_gate.tscn" id="12_gwjdr"]
 [ext_resource type="Texture2D" uid="uid://c1pimrotwhchj" path="res://images/Dark.png" id="12_yyih5"]
 
@@ -185,10 +183,6 @@ position = Vector2(1012, 233.75)
 scale = Vector2(0.95009243, 0.49235183)
 texture = ExtResource("12_yyih5")
 
-[node name="hand_box" parent="." unique_id=1614417977 instance=ExtResource("11_yhmtn")]
-z_index = 10
-position = Vector2(960, 75)
-
 [node name="Control2" type="Control" parent="." unique_id=1456103767]
 z_index = 16
 layout_mode = 3
@@ -217,6 +211,3 @@ metadata/_edit_use_anchors_ = true
 
 [node name="LayerGate" parent="." unique_id=437813808 instance=ExtResource("12_gwjdr")]
 visible = false
-
-[node name="MemoryBox" parent="." unique_id=302087916 instance=ExtResource("2_r0x5m")]
-position = Vector2(219, 320)
