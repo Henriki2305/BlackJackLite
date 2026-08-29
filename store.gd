@@ -22,6 +22,13 @@ func _hasMem(n: String, a: Array) -> bool:
 
 func _createStore() -> void:
 	global_position = Vector2(0,0)
+	for i in range(3):
+		var m = SceneReferences._getMemory()
+		m.scale = Vector2(0.2,0.2)
+		add_child(m)
+		m.inStore = true
+		m.global_position = Vector2(-625+i*200,-40)
+		memos.append(m)
 	g = get_parent().get_parent()
 	var mems = g._getMemsInGame()
 	var usedMems = g.mb.Memories

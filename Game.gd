@@ -3,18 +3,8 @@ class_name Game extends Node2D
 var souls = 4
 var playerDeck
 var opponentDeck : deck
-var SoulPower : BigNumber = BigNumber.new()
-var HandPower : BigNumber = BigNumber.new()
-var Multiplier : BigNumber = BigNumber.new()
-var SoulPowerNew : Scoring = Scoring.new()
-var HandPowerNew : Scoring = Scoring.new()
-var MultiplierNew : Scoring = Scoring.new()
-var TotalPowerNew : Scoring = Scoring.new()
-var OpponentScoring : Scoring = Scoring.new()
+
 var notationLimit : BigNumber = BigNumber.new()
-#var SoulPower = 0
-#var HandPower = 0
-#var Multiplier = 1
 var MemoriesMax = 5
 var MaxSouls = 1
 var MajorSouls = 0
@@ -25,10 +15,7 @@ var dealerBust = 21
 var playPhase = true
 var mb: memory_box
 var hb: handbox
-var AllHands = ["pair", "BlackJack","normal","lovelyFaces","neutrality","27","none",]
-var AvailableHands = ["pair","BlackJack","normal","none"]
 var choices = ["hit","stand","discard","doubleDown","surrender","burn","clone"]
-var CurrentHand = "none"
 var MemoriesInGame : Array[String] = ["HelpingHand","SlotMachine","Humility","Skepticism","Credulity","x"]
 var roundsPassed = 0
 var level = 1
@@ -67,7 +54,7 @@ var soulRules : Dictionary = {
 	"Spiritual" : false, #All soulpower effects are 20% more efficient
 	"Content" : false, #machines do not trigger their card pair effects
 	"Resourceful" : false, #cost of pressing buttons is halved
-	"Experienced" : false, #triggering a hand 10 types levels up one of its traits
+	"Experienced" : false, #triggering a hand 10 times levels up one of its traits
 }
 
 var handReqTexts : Dictionary = {
@@ -76,21 +63,11 @@ var handReqTexts : Dictionary = {
 	"testhand3" : "testReq3"
 }
 
-var handRewardTexts : Dictionary = {
-	"testhand1" : "testRew1",
-	"testhand2" : "testRew2",
-	"testhand3" : "testRew3"
-}
-
 var DeckStrings : Dictionary = {
 #	"normalDeck" : "nohsh7.cuhco7.cuhsh7.nohco7.nodra7.nocco7.nodco7.nohcoa.nohco7.nosco7.nohco7",
 	"normalDeck" : "nohsh7.nohgo7.nohsh7.nohgo7.nodra7.nocco7.nodco7.nohcoa.nohco7.nosco7.nohco7",
 	"opposingDeck" : "nohcoa.nohco2.nohco3.nohco4.nohco5.nohco6.nohco7.nohco8.nohco9.nohco10.nohcoj.nohcoq.nohcok"
 }
-
-func _endOfRound() -> void:
-	if soulRules["thieving"] :
-		currentSouls[0]._setValue(1)
 
 func _recruitSoul(s : soul) -> void:
 	currentSouls.append(s)
@@ -130,16 +107,6 @@ func _discardCard() -> void:
 	playerDeck._discardCard()
 	$CardValueTotal.text = str(playerDeck._cardValuesSum())
 	_updateHand()
-
-func _updateSoulShards() -> void:
-	$SoulsCounter.text = str(souls)
-	var tween = get_tree().create_tween()
-	var tween2 = get_tree().create_tween()
-	tween.tween_property($SoulTrackerPurple,"scale:y", souls*0.1,0.4)
-	tween2.tween_property($SoulTrackerPurple,"global_position", Vector2(1850,1045-(souls*2.5)),0.4)
-
-func _getMemsInGame() -> Array:
-	return MemoriesInGame
 
 func _drawDealerHand() -> void:
 	playPhase = false
@@ -341,11 +308,6 @@ func _nextLayer() -> void:
 func _ready() -> void:
 	notationLimit.mantissa=1
 	notationLimit.exponent=9
-	HandPowerNew.Vals = [0.0,0]
-	SoulPowerNew.Vals = [0.0,0]
-	MultiplierNew.Vals = [1.0,0]
-	TotalPowerNew.Vals = [0.0,0]
-	OpponentScoring.Vals = [0.0,0]
 	layers.shuffle()
 	layers.append(layers[0])
 	layers[0] = "start"
@@ -403,7 +365,6 @@ func _ready() -> void:
 	$TotalPowerText.text = "Total power: 0"
 	$ColorRect.material.set_shader_parameter("width",0.0)
 	$ColorRect.material.set_shader_parameter("spot",0.0)
-	_updateSoulShards()
 	
 func _input(_event):
 	if Input.is_key_pressed(KEY_ESCAPE):
@@ -420,9 +381,6 @@ func _process(_delta: float) -> void:
 		else:
 			$ColorRect.material.set_shader_parameter("spot", s+_delta*0.5)
 
-func _addToSouls(i : int) -> void:
-	souls += i
-	_updateSoulShards()
 
 func _updateHand() -> void:
 	var cards : Array[card] = playerDeck._getCardsInHand()
@@ -433,56 +391,7 @@ func _updateHand() -> void:
 			h._setTrigger(false)
 	
 
-func _increaseHandPower(amount) -> void:
-	HandPower = HandPower.plus(amount)
-	HandPowerNew._AddNum(amount)
-	_updatePower()
-	
-func _increaseSoulPower(amount) -> void:
-	SoulPowerNew._AddNum(amount)
-	_updatePower()
-	
-func _increasemultiplier(amount) -> void:
-	MultiplierNew._AddNum(amount)
-	_updatePower()
-	
-func _multiplyHandPower(amount) -> void:
-	_updateHandPower(HandPowerNew.Vals[0]*amount,HandPowerNew.Vals[1])
-	
-func _multiplySoulPower(amount) -> void:
-	_updateSoulPower(SoulPowerNew.Vals[0]*amount,SoulPowerNew.Vals[1])
-	
-func _multiplyMultiplier(amount) -> void:
-	_updatemultiplier(MultiplierNew.Vals[0]*amount,MultiplierNew.Vals[1])
-	
-func _multiplyMultiplierbyPercent(amount) -> void:
-	MultiplierNew.Vals = MultiplierNew._ValMult(MultiplierNew._MultipliedByNum(amount).vals,MultiplierNew.Vals)
-	
-func _updateHandPower(amount,b) -> void:
-	HandPowerNew._setVal(amount,b)
-	$HandPowerText.text = str("Handpower: ",HandPowerNew._IntoText())
-	_updatePower()
 
-func _updateSoulPower(amount,b) -> void:
-	SoulPowerNew._setVal(amount,b)
-	$SoulPowerText.text = str("Soulpower: ", SoulPowerNew._IntoText())
-	_updatePower()
-
-func _updatemultiplier(amount,b) -> void:
-	MultiplierNew._setVal(amount,b)
-	$HandPowerText.text = str("Handpower: ",HandPowerNew._IntoText())
-	_updatePower()
-	
-func _updatePower() -> void:
-	if HandPower.is_greater_than(notationLimit) && !Emode:
-		$HandPowerText.text = str("Handpower: ",HandPower.to_metric_name())
-	else:
-		$HandPowerText.text = str("Handpower: ",HandPower.to_scientific())
-	$SoulPowerText.text = str("Soulpower: ", SoulPowerNew._IntoText())
-	$MultiplierText.text = str("Multiplier: ",MultiplierNew._IntoText())
-	TotalPowerNew.Vals = TotalPowerNew._ValMult(SoulPowerNew.Vals,TotalPowerNew._ValMult(HandPowerNew.Vals,MultiplierNew.Vals))
-	TotalPowerNew._updateValue()
-	$TotalPowerText.text = str("Total power: ", TotalPowerNew._IntoText())
 #	if TotalPowerNew._GreaterThan(OpponentScoring._MultipliedByNum(3)):
 #		$ColorRect.material.set_shader_parameter("width",0.0125)
 #		$ColorRect.material.set_shader_parameter("spot",0.03)

@@ -1,5 +1,5 @@
 78098b89c88a74ebe8c20117b8754620
-::res://::1787920065
+::res://::1787991764
 BetweenRound.tscn::PackedScene::7253293213029241428::1783204293::0::1::::<><><>0<>0<><>::uid://d0y8w5beygrtg::::res://between_round.gd<>uid://b36017ciivept::::res://images/StoreButton.png<>uid://cr7ahpden7np5::::res://images/AdvanceButton.png<>uid://etat0nmmp45r::::res://images/DemonButton.png<>uid://rt1emdi8x63c::::res://images/GuardianButton.png<>uid://ftcii43j5han::::res://images/MagicianButton.png<>uid://by3uvrbno7m8s::::res://images/SmithButton.png<>uid://cb7tfloapuiyn::::res://images/CollectorButton.png
 between_round.gd::GDScript::8965572733814127040::1783204293::0::1::::betweenRound<>Node2D<><>0<>0<><>::
 BoosterMouseHandler.gd::GDScript::2656275878547548110::1766230548::0::1::::<>Sprite2D<><>0<>0<><>::
@@ -16,7 +16,7 @@ deck_sprite.gd::GDScript::6968277103832729497::1783204293::0::1::::<>Sprite2D<><
 demon_of_hands.gd::GDScript::1702935809393975781::1783204293::0::1::::<>Node2D<><>0<>0<><>::
 ee.png::CompressedTexture2D::1599501396111751129::1764604955::1764670993::1::::<><><>0<>0<>763ff9853489db2973090ea47e8ec7d9<>res://.godot/imported/ee.png-1d3590b689316c267a8bd06c48788893.ctex::
 Enums.gd::GDScript::931357664109958027::1783204293::0::1::::Enums<>Node<><>0<>0<><>::
-eventBus.gd::GDScript::2078756367152861928::1787918955::0::1::::<>Node<><>0<>0<><>::
+eventBus.gd::GDScript::2078756367152861928::1787990093::0::1::::<>Node<><>0<>0<><>::
 export_presets.cfg::TextFile::-1::1783204293::0::1::::<><><>0<>0<><>::
 Game.gd::GDScript::15019890018368315::1787918955::0::1::::Game<>Node2D<><>0<>0<><>::
 Game.tscn::PackedScene::4890177436257609672::1787918955::0::1::::<><><>0<>0<><>::uid://hjm07q0ihj4::::res://Game.gd<>uid://dsa80bbmp0gad::::res://Scenes/deck.tscn<>uid://ctrgu3qcae3u3::::res://label.gd<>uid://bv50m4ytbyiqf::::res://Shaders/RippleEffectShader.gdshader<>uid://8x4mrmdu76pf::::res://images/check.jpg<>uid://cqn0gsfru4cqf::::res://images/purple.png<>uid://bv3pwn3aordnh::::res://images/tablebase.png<>uid://dd1y86sjjtca3::::res://images/machine.png<>uid://hs1pqbjyk3ht::::res://Scenes/layer_gate.tscn<>uid://c1pimrotwhchj::::res://images/Dark.png
@@ -41,7 +41,7 @@ memory_box.gd::GDScript::4531968793521701778::1787918955::0::1::::memory_box<>No
 new_script.gd::GDScript::2780385662767568009::1787918955::0::1::::<>Resource<><>0<>0<><>::
 passiveMemory.gd::GDScript::9129604088703200760::1787918955::0::1::::passiveMemory<>memory<><>1<>0<><>::
 perCardMemory.gd::GDScript::3798396716244599503::1787918955::0::1::::perCardMemory<>memory<><>1<>0<><>::
-roundLoopEventHandler.gd::GDScript::7817367730037492402::1787918955::0::1::::<>Node<><>0<>0<><>::
+roundLoopEventHandler.gd::GDScript::7817367730037492402::1787921825::0::1::::<>Node<><>0<>0<><>::
 round_loop_event_handler.tscn::PackedScene::3157390609961893331::1787918955::0::1::::<><><>0<>0<><>::uid://djm150p3hs2w1::::res://roundLoopEventHandler.gd<>uid://dw1qgamf4if5c::::res://main_hand.tscn<>uid://tt6xclinds16::::res://SideHand.tscn<>uid://cw7kr0gn3r6oq::::res://Scenes/memory_box.tscn<>uid://p1snryoyi1cd::::res://Scenes/hand_box.tscn
 SceneReferences.gd::GDScript::4483881295718830384::1787918955::0::1::::<>Node<><>0<>0<><>::
 ScoreStruct.gd::GDScript::892405906503705262::1768485071::0::1::::Scoring<>Resource<><>0<>0<><>::
@@ -54,7 +54,7 @@ SoulStorage.tscn::PackedScene::1539121687959728655::1787919082::0::1::::<><><>0<
 soul_mouse_area.gd::GDScript::5253431366623112352::1783204294::0::1::::<>Area2D<><>0<>0<><>::
 soul_smith.gd::GDScript::4261162149791231870::1783204294::0::1::::Smith<>Node2D<><>0<>0<><>::
 soul_storage.gd::GDScript::5118275274138225944::1787918955::0::1::::<>Node2D<><>0<>0<><>::
-store.gd::GDScript::6921715833288725225::1783204294::0::1::::store<>Node2D<><>0<>0<><>::
+store.gd::GDScript::6921715833288725225::1787989956::0::1::::store<>Node2D<><>0<>0<><>::
 Testcards.png::CompressedTexture2D::2698877741566571180::1764604955::1764671011::1::::<><><>0<>0<>982cecd443f457a3343e7638d4519e24<>res://.godot/imported/Testcards.png-7b57367233dac58e71f538301bb1ac27.ctex::
 ::res://big_number/::1787918988
 big_number.gdextension::GDExtension::4954917293543199058::1787918955::0::1::::<><><>0<>0<><>::
@@ -73,7 +73,7 @@ big_number.svg::CompressedTexture2D::6719428263232170984::1787918955::1787918988
 ::res://big_number/bin/macos/libbig_number.macos.template_debug.single.framework/::1787918955
 ::res://big_number/bin/macos/libbig_number.macos.template_release.single.framework/::1787918955
 ::res://big_number/bin/web/::1787918955
-::res://big_number/bin/windows/::1787918964
+::res://big_number/bin/windows/::1787991744
 ::res://Hands/::1787918955
 ::res://Hands/BigNumberHand/::1787918955
 BigNumberHand.tscn::PackedScene::6643836606438425132::1787918955::0::1::::<><><>0<>0<><>::uid://bx8mb83w7ydmp::::res://Hands/BigNumberHand/big_number_hand.gd<>uid://cu5siaq7lcgpr::::res://hand_base.tscn<>uid://be1tog4n5vis6::::res://HandData.gd<>uid://bo78vhwy3tyv2::::res://Shaders/handbaseshader.gdshader
@@ -119,10 +119,10 @@ memory.tscn::PackedScene::4884358109258469174::1787918955::0::1::::<><><>0<>0<><
 memoryHover.gd::GDScript::9172790775619717385::1787918955::0::1::::<>Area2D<><>0<>0<><>::
 memorysprite.gd::GDScript::1599365699622551684::1787918955::0::1::::<>Sprite2D<><>0<>0<><>::
 memory_2d.gd::GDScript::2600193341260916418::1787918955::0::1::::memory2D<>Node2D<><>0<>0<><>::
-::res://Memories/HybridMemories/::1787920065
-::res://Memories/HybridMemories/SlotMachineMemory/::1787920048
-MslotMachine.tscn::PackedScene::2981221298914912630::1787920073::0::1::::<><><>0<>0<><>::uid://bfptdyxtbod45::::res://Memories/HybridMemories/mslot_machine.gd<>uid://bdbs2l6u45ab7::::res://Memories/memory_2d.gd
-mslot_machine.gd::GDScript::2769490845394506276::1787919946::0::1::::<>perCardMemory<><>0<>0<><>::
+::res://Memories/HybridMemories/::1787920073
+::res://Memories/HybridMemories/SlotMachineMemory/::1787990092
+MslotMachine.tscn::PackedScene::2981221298914912630::1787990092::0::1::::<><><>0<>0<><>::uid://bfptdyxtbod45::::res://Memories/HybridMemories/SlotMachineMemory/mslot_machine.gd<>uid://dmop3gc8orqqv::::res://memoryData.gd<>uid://bdbs2l6u45ab7::::res://Memories/memory_2d.gd
+mslot_machine.gd::GDScript::2769490845394506276::1787920339::0::1::::<>hybridMemory<><>0<>0<><>::
 ::res://Memories/images/::1787918986
 humility.jpg::CompressedTexture2D::2570000440978714875::1766230548::1787918986::1::::<><><>0<>0<>ff05b6fb687eef226873f1dba85f73cc<>res://.godot/imported/humility.jpg-326356255fbfe4c345d07f0c78c31d46.ctex::
 SlotMachine.jpg::CompressedTexture2D::6226474352745909942::1766230548::1766230592::1::::<><><>0<>0<>6dfefcb1738716c5bf3f8d5de184fd42<>res://.godot/imported/SlotMachine.jpg-49e14cbca4a47dc2cea6c192471d561c.ctex::
@@ -146,7 +146,7 @@ hand_box.tscn::PackedScene::1107623528007370927::1783204293::0::1::::<><><>0<>0<
 hand_holder.tscn::PackedScene::4651425620297225627::1783204293::0::1::::<><><>0<>0<><>::uid://byob3aiify3kb::::res://hand_holder.gd<>uid://d0gi8q8584bf2::::res://images/blackmössö.png<>uid://chr0c25ncpmr7::::res://Scenes/HandHolderHover.gd
 layer_gate.tscn::PackedScene::530086976119627425::1783204293::0::1::::<><><>0<>0<><>::uid://mho0kl6sco23::::res://layer_gate.gd<>uid://bvdwtb0u0yvhb::::res://images/Boon.jpg<>uid://chbepjnhp8h25::::res://images/Aura.jpg<>uid://tuy1thnjlk02::::res://images/Curse.jpg
 magician.tscn::PackedScene::8385687048509691657::1783204293::0::1::::<><><>0<>0<><>::uid://hbk4hhue84fd::::res://magician.gd
-memory_box.tscn::PackedScene::6383694866958237776::1787920012::0::1::::<><><>0<>0<><>::uid://b5tk4mw0f3rpa::::res://memory_box.gd<>uid://gini1ybi2x7o::::res://Memories/HybridMemories/helpingHandMemory/MhelpingHand.tscn<>uid://cuyfegcc6eif3::::res://Memories/images/SlotMachine.jpg<>uid://dmop3gc8orqqv::::res://memoryData.gd
+memory_box.tscn::PackedScene::6383694866958237776::1787920012::0::1::::<><><>0<>0<><>::uid://b5tk4mw0f3rpa::::res://memory_box.gd<>uid://gini1ybi2x7o::::res://Memories/InstantMemories/helpingHandMemory/MhelpingHand.tscn<>uid://cuyfegcc6eif3::::res://Memories/images/SlotMachine.jpg<>uid://dmop3gc8orqqv::::res://memoryData.gd
 soul.tscn::PackedScene::8510779096320918880::1783204293::0::1::::<><><>0<>0<><>::uid://dh4k885g7qfkk::::res://soul.gd<>uid://tjbrsxok1eha::::res://Shaders/soul.gdshader<>uid://cqn0gsfru4cqf::::res://images/purple.png<>uid://4vamsdgymrev::::res://images/Soull.png<>uid://cd17odnl72vjk::::res://sould_sprite.gd
 soul_smith.tscn::PackedScene::9089861376309043280::1783204293::0::1::::<><><>0<>0<><>::uid://b1yeyob8l774u::::res://soul_smith.gd<>uid://cqn0gsfru4cqf::::res://images/purple.png
 Store.tscn::PackedScene::1531025962864358946::1783204293::0::1::::<><><>0<>0<><>::uid://c5u6wbwupwto8::::res://store.gd<>uid://yf61cm0i1qxu::::res://images/Store.png<>uid://cqn0gsfru4cqf::::res://images/purple.png

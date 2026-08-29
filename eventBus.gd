@@ -25,3 +25,9 @@ signal consumeSouls
 signal winSouls
 
 signal createSouls
+
+signal buyMemory
+
+signal startRound
+
+signal endRound
