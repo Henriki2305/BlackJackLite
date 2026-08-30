@@ -11,12 +11,7 @@ var MajorSouls = 0
 var TotalPower = 0
 var LikeliHoodModifier = 1
 var playerBust = 21
-var dealerBust = 21
 var playPhase = true
-var mb: memory_box
-var hb: handbox
-var choices = ["hit","stand","discard","doubleDown","surrender","burn","clone"]
-var MemoriesInGame : Array[String] = ["HelpingHand","SlotMachine","Humility","Skepticism","Credulity","x"]
 var roundsPassed = 0
 var level = 1
 var unlockedCardRanks : Array[String] = ["2","3","4","5","6","7","8","9","10","j","q","k","a"]
@@ -125,26 +120,6 @@ func _drawDealerHand() -> void:
 	playPhase = true
 	_showPlayButtons()
 
-func _showBetButtons() -> void:
-	$increase.show()
-	$decrease.show()
-	$placebet.show()
-	
-func _hideBetButtons() -> void:
-	$increase.hide()
-	$decrease.hide()
-	$placebet.hide()
-	
-func _showPlayButtons() -> void:
-	$hitButton.show()
-	$standButton.show()
-	$discardButton.show()
-	
-func _hidePlayButtons() -> void:
-	$hitButton.hide()
-	$standButton.hide()
-	$discardButton.hide()
-
 func _playHand() -> void:
 	playPhase = false
 	_hidePlayButtons()
@@ -236,11 +211,6 @@ func _playHand() -> void:
 		_betweenRounds()
 	
 func _betweenRounds() -> void:
-	_hideBetButtons()
-	$SoulPowerText.hide()
-	$HandPowerText.hide()
-	$MultiplierText.hide()
-	$TotalPowerText.hide()
 	if level == 3:
 		var burneri = BurnerScene.instantiate()
 		burneri.set_name("burner")
@@ -317,52 +287,9 @@ func _ready() -> void:
 	$LayerGate.curse.connect(_curse)
 	playerDeck = $Deck
 	opponentDeck = $OpponentsDeck
-	mb = $MemoryBox
-	hb = $hand_box
 	$LayerNameText.text=layer
 	playerDeck._setSide(false)
 	opponentDeck._setSide(true)
-	var Increasebutton = Button.new()
-	var Decreasebutton = Button.new()
-	var PlaceBetButton = Button.new()
-	var HitButton = Button.new()
-	var StandButton = Button.new()
-	var DiscardButton = Button.new()
-	HitButton.text = "hit"
-	StandButton.text = "Stand"
-	DiscardButton.text = "Discard"
-	add_child(HitButton)
-	add_child(StandButton)
-	add_child(DiscardButton)
-	HitButton.position = Vector2(900,1000)
-	HitButton.pressed.connect(_drawcard)
-	HitButton.name = "hitButton"
-	StandButton.position = Vector2(950,1000)
-	StandButton.pressed.connect(_playHand)
-	StandButton.name = "standButton"
-	DiscardButton.position = Vector2(1000,1000)
-	DiscardButton.pressed.connect(_discardCard)
-	DiscardButton.name = "discardButton"
-	_hidePlayButtons()
-	Increasebutton.name = "increase"
-	Decreasebutton.name = "decrease"
-	PlaceBetButton.name = "placebet"
-	Increasebutton.text = "increase"
-	Decreasebutton.text = "decrease"
-	PlaceBetButton.text = "place bet"
-	Increasebutton.pressed.connect(_increase)
-	Decreasebutton.pressed.connect(_decrease)
-	PlaceBetButton.pressed.connect(_placeBet)
-	add_child(Increasebutton)
-	add_child(Decreasebutton)
-	add_child(PlaceBetButton)
-	Increasebutton.position = Vector2(700,1000)
-	Decreasebutton.position = Vector2(800,1000)
-	PlaceBetButton.position = Vector2(900,1000)
-	$SoulPowerText.text = "Soulpower: 0"
-	$HandPowerText.text = "HandPower: 0"
-	$MultiplierText.text = "Multiplier: 1"
-	$TotalPowerText.text = "Total power: 0"
 	$ColorRect.material.set_shader_parameter("width",0.0)
 	$ColorRect.material.set_shader_parameter("spot",0.0)
 	
@@ -380,22 +307,7 @@ func _process(_delta: float) -> void:
 			ripple = false
 		else:
 			$ColorRect.material.set_shader_parameter("spot", s+_delta*0.5)
-
-
-func _updateHand() -> void:
-	var cards : Array[card] = playerDeck._getCardsInHand()
-	for h in hb.hands:
-		if h._checkReq(cards):
-			h._setTrigger(true)
-		else:
-			h._setTrigger(false)
 	
-
-
-#	if TotalPowerNew._GreaterThan(OpponentScoring._MultipliedByNum(3)):
-#		$ColorRect.material.set_shader_parameter("width",0.0125)
-#		$ColorRect.material.set_shader_parameter("spot",0.03)
-#		ripple = true
 
 func _createList() -> void:
 	if clist == null:
@@ -408,11 +320,3 @@ func _destroyList() -> void:
 		clist.queue_free()
 		clist = null
 		
-func _addLikelihood(a) -> void:
-	LikeliHoodModifier +=a
-	
-func _multiplyLikelihood(a) -> void:
-	LikeliHoodModifier *= a
-		
-func _destroyMemory(m) -> void:
-	pass

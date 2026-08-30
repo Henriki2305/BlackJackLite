@@ -42,4 +42,17 @@ signal hitCard
 
 signal stand
 
+signal surrender
+
+signal doubleDown
+
+signal split
+
+signal discard
+
+signal burnAction
+
+signal forge
+
+
 signal bustLimitChanged

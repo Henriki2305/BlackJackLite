@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://664bijxsk8w6"]
+
+[ext_resource type="Script" uid="uid://ctdbb0kirkx72" path="res://round_button_controller.gd" id="1_wc1fe"]
+
+[node name="RoundButtonController" type="Node2D" unique_id=1824756493]
+script = ExtResource("1_wc1fe")
+
+[node name="HitButton" type="Button" parent="." unique_id=1800540750]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="StandButton" type="Button" parent="." unique_id=1167512601]
+offset_left = 11.0
+offset_right = 19.0
+offset_bottom = 8.0

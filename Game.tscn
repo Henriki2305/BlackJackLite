@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://ctrgu3qcae3u3" path="res://label.gd" id="3_r0x5m"]
 [ext_resource type="Shader" uid="uid://bv50m4ytbyiqf" path="res://Shaders/RippleEffectShader.gdshader" id="6_r0x5m"]
 [ext_resource type="Texture2D" uid="uid://8x4mrmdu76pf" path="res://images/check.jpg" id="7_3mrqo"]
-[ext_resource type="Texture2D" uid="uid://cqn0gsfru4cqf" path="res://images/purple.png" id="9_2vekm"]
 [ext_resource type="Texture2D" uid="uid://bv3pwn3aordnh" path="res://images/tablebase.png" id="10_gwjdr"]
+[ext_resource type="PackedScene" uid="uid://664bijxsk8w6" path="res://round_button_controller.tscn" id="10_yx171"]
 [ext_resource type="Texture2D" uid="uid://dd1y86sjjtca3" path="res://images/machine.png" id="11_lvtmh"]
 [ext_resource type="PackedScene" uid="uid://hs1pqbjyk3ht" path="res://Scenes/layer_gate.tscn" id="12_gwjdr"]
 [ext_resource type="Texture2D" uid="uid://c1pimrotwhchj" path="res://images/Dark.png" id="12_yyih5"]
@@ -135,18 +135,6 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 metadata/_edit_use_anchors_ = true
 
-[node name="SoulTrackerPurple" type="Sprite2D" parent="." unique_id=2141639459]
-position = Vector2(1850, 1025)
-texture = ExtResource("9_2vekm")
-
-[node name="SoulsText" type="RichTextLabel" parent="." unique_id=1455046268]
-offset_left = 1774.0
-offset_top = 1001.0
-offset_right = 1819.0
-offset_bottom = 1029.0
-text = "Souls"
-metadata/_edit_use_anchors_ = true
-
 [node name="LayerNameText" type="RichTextLabel" parent="." unique_id=1763784259]
 offset_left = 1433.0
 offset_top = 414.0
@@ -155,14 +143,6 @@ offset_bottom = 511.0
 theme_override_font_sizes/normal_font_size = 64
 text = "a
 "
-metadata/_edit_use_anchors_ = true
-
-[node name="SoulsCounter" type="RichTextLabel" parent="." unique_id=1969364181]
-offset_left = 1828.0
-offset_top = 1001.0
-offset_right = 1873.0
-offset_bottom = 1029.0
-text = "Souls"
 metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1778156430]
@@ -211,3 +191,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="LayerGate" parent="." unique_id=437813808 instance=ExtResource("12_gwjdr")]
 visible = false
+
+[node name="RoundButtonController" parent="." unique_id=1824756493 instance=ExtResource("10_yx171")]
+position = Vector2(1165, 995)
