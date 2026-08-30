@@ -10,13 +10,18 @@ func _getCards() -> Array[card]:
 	return []
 
 func _checkBust() -> bool:
+	return _calculateBustAmount() > 21
+
+func _calculateBustAmount() -> int:
 	var cards : Array[card] = get_children().filter(func(c): return ( c is card ))
 	var cardValues : Array[int] = cards.map(func(c): c._getBustValue())
-	return cards.reduce(sum, 0) > 21
-
+	return cards.reduce(sum, 0)
 
 func _ready() -> void:
-	pass # Replace with function body.
+	EventBus.requestBustLimit.connect(_sendBustAmount)
+
+func _sendBustAmount(m : memory) -> void:
+	m._bustLimitReceived(_calculateBustAmount())
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

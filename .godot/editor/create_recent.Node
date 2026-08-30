@@ -1,5 +1,6 @@
-perCardMemory
 memory2D
+instantMemory
+perCardMemory
 TextureProgressBar
 PointLight2D
 hand
@@ -11,5 +12,3 @@ CollisionShape2D
 Area2D
 Sprite2D
 CenterContainer
-HBoxContainer
-Container

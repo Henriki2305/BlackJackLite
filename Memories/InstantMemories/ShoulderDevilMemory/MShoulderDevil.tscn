@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://iv3mkr5job83"]
+
+[ext_resource type="Script" uid="uid://cuxn2txvnyj7k" path="res://Memories/InstantMemories/ShoulderDevilMemory/m_shoulder_devil.gd" id="1_s54v0"]
+[ext_resource type="Script" uid="uid://dmop3gc8orqqv" path="res://memoryData.gd" id="2_3fgav"]
+[ext_resource type="Script" uid="uid://bdbs2l6u45ab7" path="res://Memories/memory_2d.gd" id="3_055c3"]
+
+[sub_resource type="Resource" id="Resource_30odb"]
+script = ExtResource("2_3fgav")
+metadata/_custom_type_script = "uid://dmop3gc8orqqv"
+
+[node name="MShoulderDevil" type="Node2D" unique_id=1284391325]
+script = ExtResource("1_s54v0")
+memoryStats = SubResource("Resource_30odb")
+
+[node name="memory2D" type="Node2D" parent="." unique_id=108500953]
+script = ExtResource("3_055c3")
+metadata/_custom_type_script = "uid://bdbs2l6u45ab7"

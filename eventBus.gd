@@ -31,3 +31,15 @@ signal buyMemory
 signal startRound
 
 signal endRound
+
+signal drawOpponentCard
+
+signal nextRound
+
+signal buySoul
+
+signal hitCard
+
+signal stand
+
+signal bustLimitChanged
