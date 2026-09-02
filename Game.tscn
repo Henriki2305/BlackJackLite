@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bv3pwn3aordnh" path="res://images/tablebase.png" id="10_gwjdr"]
 [ext_resource type="PackedScene" uid="uid://664bijxsk8w6" path="res://round_button_controller.tscn" id="10_yx171"]
 [ext_resource type="Texture2D" uid="uid://dd1y86sjjtca3" path="res://images/machine.png" id="11_lvtmh"]
+[ext_resource type="PackedScene" uid="uid://brrlkl6bdubby" path="res://BetInterface.tscn" id="11_yhmtn"]
 [ext_resource type="PackedScene" uid="uid://hs1pqbjyk3ht" path="res://Scenes/layer_gate.tscn" id="12_gwjdr"]
 [ext_resource type="Texture2D" uid="uid://c1pimrotwhchj" path="res://images/Dark.png" id="12_yyih5"]
 
@@ -24,18 +25,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 "
-
-[sub_resource type="LabelSettings" id="LabelSettings_0hol4"]
-font_size = 32
-
-[sub_resource type="LabelSettings" id="LabelSettings_q6r6c"]
-font_size = 32
-
-[sub_resource type="LabelSettings" id="LabelSettings_kdubu"]
-font_size = 32
-
-[sub_resource type="LabelSettings" id="LabelSettings_d21ai"]
-font_size = 64
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3mrqo"]
 shader = ExtResource("6_r0x5m")
@@ -74,42 +63,6 @@ offset_top = 343.0
 offset_right = 251.0
 offset_bottom = 366.0
 script = SubResource("GDScript_3mrqo")
-metadata/_edit_use_anchors_ = true
-
-[node name="SoulPowerText" type="Label" parent="." unique_id=133551637]
-offset_left = 1496.0
-offset_top = 681.0
-offset_right = 1538.0
-offset_bottom = 726.0
-text = "AA"
-label_settings = SubResource("LabelSettings_0hol4")
-metadata/_edit_use_anchors_ = true
-
-[node name="HandPowerText" type="Label" parent="." unique_id=458913609]
-offset_left = 1495.0
-offset_top = 628.0
-offset_right = 1537.0
-offset_bottom = 673.0
-text = "AA"
-label_settings = SubResource("LabelSettings_q6r6c")
-metadata/_edit_use_anchors_ = true
-
-[node name="MultiplierText" type="Label" parent="." unique_id=1448019431]
-offset_left = 1493.0
-offset_top = 576.0
-offset_right = 1535.0
-offset_bottom = 621.0
-text = "AA"
-label_settings = SubResource("LabelSettings_kdubu")
-metadata/_edit_use_anchors_ = true
-
-[node name="TotalPowerText" type="Label" parent="." unique_id=658830593]
-offset_left = 1052.0
-offset_top = 609.0
-offset_right = 1137.0
-offset_bottom = 697.0
-text = "AA"
-label_settings = SubResource("LabelSettings_d21ai")
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=688784017]
@@ -194,3 +147,9 @@ visible = false
 
 [node name="RoundButtonController" parent="." unique_id=1824756493 instance=ExtResource("10_yx171")]
 position = Vector2(1165, 995)
+
+[node name="BetInterface" parent="." unique_id=849495233 instance=ExtResource("11_yhmtn")]
+offset_left = 763.0
+offset_top = 1004.0
+offset_right = 814.0
+offset_bottom = 1022.0

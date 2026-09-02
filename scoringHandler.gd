@@ -32,6 +32,15 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
+func _resetPower() -> void:
+	HandPower.exponent = 0.0
+	HandPower.mantissa = 0.0
+	SoulPower.exponent = 0.0
+	SoulPower.mantissa = 0.0
+	Multiplier.exponent = 0.0
+	Multiplier.mantissa = 1.0
+	_updatePower()
+	
 
 func _increaseHandPower(amount) -> void:
 	HandPower = HandPower.plus(amount)
@@ -62,16 +71,11 @@ func _multiplyMultiplierbyPercent(amount) -> void:
 
 
 func _updatePower() -> void:
-	pass
-#	if HandPower.is_greater_than(notationLimit) && !Emode:
-#		$HandPowerText.text = str("Handpower: ",HandPower.to_metric_name())
-#	else:
-#		$HandPowerText.text = str("Handpower: ",HandPower.to_scientific())
-#	$SoulPowerText.text = str("Soulpower: ", SoulPowerNew._IntoText())
-#	$MultiplierText.text = str("Multiplier: ",MultiplierNew._IntoText())
-#	TotalPowerNew.Vals = TotalPowerNew._ValMult(SoulPowerNew.Vals,TotalPowerNew._ValMult(HandPowerNew.Vals,MultiplierNew.Vals))
-#	TotalPowerNew._updateValue()
-#	$TotalPowerText.text = str("Total power: ", TotalPowerNew._IntoText())
+	totalPower = (HandPower.multiply(SoulPower)).multiply(Multiplier)
+	EventBus.handPowerChanged.emit(HandPower)
+	EventBus.soulPowerChanged.emit(SoulPower)
+	EventBus.multiplierChanged.emit(Multiplier)
+	EventBus.totalChanged.emit(totalPower)
 #	if TotalPowerNew._GreaterThan(OpponentScoring._MultipliedByNum(3)):
 #		$ColorRect.material.set_shader_parameter("width",0.0125)
 #		$ColorRect.material.set_shader_parameter("spot",0.03)

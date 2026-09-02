@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://brrlkl6bdubby"]
+
+[ext_resource type="Script" uid="uid://coo1t526dbgep" path="res://bet_interface.gd" id="1_d87ar"]
+[ext_resource type="Theme" uid="uid://cvrwg1hs48gdy" path="res://PlayButtonTheme.tres" id="1_wp3xa"]
+
+[node name="BetInterface" type="Control" unique_id=849495233]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 494.0
+offset_bottom = 221.0
+theme = ExtResource("1_wp3xa")
+script = ExtResource("1_d87ar")
+
+[node name="IncreaseBet" type="Button" parent="." unique_id=521627583]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+
+[node name="DecreaseBet" type="Button" parent="." unique_id=127578653]
+layout_mode = 0
+offset_left = 291.0
+offset_right = 391.0
+offset_bottom = 100.0
+
+[node name="PlayRound" type="Button" parent="." unique_id=79829569]
+layout_mode = 0
+offset_left = 142.0
+offset_top = -1.0
+offset_right = 242.0
+offset_bottom = 99.0
+
+[node name="BetAmount" type="RichTextLabel" parent="." unique_id=1555377610]
+layout_mode = 0
+offset_left = 71.0
+offset_top = 115.0
+offset_right = 319.0
+offset_bottom = 191.0
+theme_override_font_sizes/normal_font_size = 64
+text = "0"
+
+[connection signal="pressed" from="IncreaseBet" to="." method="_increaseBet"]
+[connection signal="pressed" from="DecreaseBet" to="." method="_decreaseBet"]
+[connection signal="pressed" from="PlayRound" to="." method="_playBet"]

@@ -54,5 +54,32 @@ signal burnAction
 
 signal forge
 
-
 signal bustLimitChanged
+
+signal handPowerChanged
+
+signal soulPowerChanged
+
+signal multiplierChanged
+
+signal totalChanged
+
+signal scoreLimitChanged
+
+signal betIncreased
+
+signal betDecreased
+
+signal cardSentToMainHand
+
+signal cardSentToSideHand
+
+signal cardSentToDeck
+
+signal cardDiscarded
+
+signal cardAdded
+
+signal cardDrawn
+
+signal cardDrawnSideHand

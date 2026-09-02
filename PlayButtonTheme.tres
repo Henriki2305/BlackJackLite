@@ -1,0 +1,14 @@
+[gd_resource type="Theme" format=3 uid="uid://cvrwg1hs48gdy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kv7hg"]
+content_margin_left = 9.0
+bg_color = Color(0.92941177, 0.050980393, 0.40392157, 1)
+corner_radius_top_left = 450
+corner_radius_top_right = 450
+corner_radius_bottom_right = 450
+corner_radius_bottom_left = 450
+
+[resource]
+Button/colors/font_color = Color(0.78673637, 0.85988986, 0.403876, 1)
+Button/colors/icon_normal_color = Color(0.5657966, 2.4065375e-07, 0.27709875, 1)
+Button/styles/normal = SubResource("StyleBoxFlat_kv7hg")

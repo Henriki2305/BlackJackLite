@@ -1,6 +1,4 @@
 class_name card extends Node2D
-var location
-var g: Game
 var suits = {
 	"h": Enums.hearts,
 	"d": Enums.diamonds,
@@ -183,11 +181,7 @@ func _setUsed() -> void:
 	$"card base".material.set_shader_parameter("used",true)
 
 func _ready() -> void:
-	if name != "test":
-		if location == ddeck:
-			g = get_parent().g
-		else:
-			g = get_parent().get_parent().get_parent().get_parent()
+	pass
 
 func _getName() -> String:
 	return str(rank, " of ", suitNames[suit])
@@ -216,10 +210,6 @@ func setValues(cValues : String, b : bool) -> void:
 	yind = locationsy[suit]
 	texture.texture.set_region(Rect2(Vector2(xind*(w-20),yind*h),Vector2(w,h)))
 	visible = false
-	if b:
-		location = ddeck
-	else:
-		location = pack
 	match enchantment:
 		Enums.cursed:
 			$"card base".material.set_shader_parameter("cursed", true)
@@ -252,14 +242,6 @@ func changeSuit(s : String) -> void:
 func updateAppearance() -> void:
 	$TextureRect.texture.set_region(Rect2(Vector2(xind*(w-20),yind*h),Vector2(w,h)))
 			
-			
-func _drawCard() -> void:
-	triggers = 1
-	location = hand
-	visible = true
-
-func _discardCard() -> void:
-	location = discard
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -267,20 +249,6 @@ func _process(_delta: float) -> void:
 
 func _getBustvalue() -> int:
 	return bustValues[rank]
-	
-
-func _returnToDeck() -> void:
-	location = ddeck
-	triggers = 1
-
-func _inDeck() -> bool:
-	return location == ddeck
-	
-func _inHand() -> bool:
-	return location == hand
-	
-func _inStore() -> bool:
-	return location == pack
 	
 func _worth() -> int:
 	return values[rank]
@@ -299,51 +267,51 @@ func _isFaceCard() -> bool:
 func _hasRarityEffect() -> bool:
 	return rarity == Enums.uncommon || rarity == Enums.rare || rarity == Enums.soulRare || Enums.ultraRare
 
-func _rarityEffect() -> void:
-	match rarity:
-		Enums.uncommon :
-			g._increaseHandPower(_worth())
-			if rank == Enums.Ace:
-				g._increaseHandPower(10)
-		Enums.rare :
-			if randi_range(1,100) < 21*g.LikeliHoodModifier:
-				g._multiplyMultiplier(2.5)
-		Enums.ultraRare:
-			g._multiplyHandPower(1.25)
-			g._multiplySoulPower(1.25)
-			g._multiplyMultiplier(1.25)
-		Enums.soulRare :
-			g._addToSouls(2)
-		Enums.recursiveRare :
-			g._multiplyMultiplierbyPercent(1.01)
+#func _rarityEffect() -> void:
+#	match rarity:
+#		Enums.uncommon :
+#			g._increaseHandPower(_worth())
+#			if rank == Enums.Ace:
+#				g._increaseHandPower(10)
+#		Enums.rare :
+#			if randi_range(1,100) < 21*g.LikeliHoodModifier:
+#				g._multiplyMultiplier(2.5)
+#		Enums.ultraRare:
+#			g._multiplyHandPower(1.25)
+#			g._multiplySoulPower(1.25)
+#			g._multiplyMultiplier(1.25)
+#		Enums.soulRare :
+#			g._addToSouls(2)
+#		Enums.recursiveRare :
+#			g._multiplyMultiplierbyPercent(1.01)
 
-func _enchantmentEffect() -> void:
-	match enchantment:
-		Enums.enchanted : g._increaseHandPower(5)
-		Enums.magical : g._increaseHandPower(20)
-		Enums.mythical : g._multiplyHandPower(2)
-		Enums.blessed : g._increasemultiplier(0.35)
-		Enums.holy : g._increaseSoulPower(1)
-		Enums.divine : g._multiplySoulPower(2.5)
-		Enums.cursed :
-			g._addToSouls(-1)
-			g._increaseSoulPower(10)
-		Enums.unholy :
-			g._addToSouls(-2)
-			g._multiplySoulPower(2)
-		Enums.devilish:
-			g._addToSouls(-5)
-			g._increaseSoulPower(25)
-			g._multiplySoulPower(5)
+#func _enchantmentEffect() -> void:
+#	match enchantment:
+#		Enums.enchanted : g._increaseHandPower(5)
+#		Enums.magical : g._increaseHandPower(20)
+#		Enums.mythical : g._multiplyHandPower(2)
+#		Enums.blessed : g._increasemultiplier(0.35)
+#		Enums.holy : g._increaseSoulPower(1)
+#		Enums.divine : g._multiplySoulPower(2.5)
+#		Enums.cursed :
+#			g._addToSouls(-1)
+#			g._increaseSoulPower(10)
+#		Enums.unholy :
+#			g._addToSouls(-2)
+#			g._multiplySoulPower(2)
+#		Enums.devilish:
+#			g._addToSouls(-5)
+#			g._increaseSoulPower(25)
+#			g._multiplySoulPower(5)
 			
 			
 func _mouse_enter() -> void:
-	if location == pack:
+	if get_parent() is boosterPack:
 		var sTween = get_tree().create_tween()
 		sTween.tween_property(self,"scale",Vector2(1.2,1.2),0.2)
 	
 func _mouse_exit() -> void:
-	if location == pack:
+	if get_parent() is boosterPack:
 		var sTween = get_tree().create_tween()
 		sTween.tween_property(self,"scale",Vector2(1,1),0.1)
 
@@ -368,7 +336,6 @@ func _burnCard() -> void:
 	queue_free()
 
 func _takeCard() -> void:
-	location = ddeck
 	$TakeButton.visible = false
 	$BurnButton.visible = false
 	var tween = get_tree().create_tween()

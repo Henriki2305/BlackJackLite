@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://bom5hhpjgtqer"]
+
+[ext_resource type="FontFile" uid="uid://br8aji8gj6sso" path="res://DigitalNumbers-Regular.ttf" id="1_jeshg"]
+[ext_resource type="Script" uid="uid://btttod35jf0i4" path="res://scoreboard.gd" id="1_vug2y"]
+
+[node name="Scoreboard" type="Node2D" unique_id=412082070]
+script = ExtResource("1_vug2y")
+
+[node name="SoulPower" type="RichTextLabel" parent="." unique_id=1588950081]
+offset_left = -1.0
+offset_top = 67.0
+offset_right = 592.0
+offset_bottom = 162.0
+theme_override_fonts/normal_font = ExtResource("1_jeshg")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "ASADFASFFAS"
+
+[node name="Handpower" type="RichTextLabel" parent="." unique_id=1858145411]
+offset_left = 1.0
+offset_top = 18.0
+offset_right = 594.0
+offset_bottom = 113.0
+theme_override_fonts/normal_font = ExtResource("1_jeshg")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "ASADFASFFAS"
+
+[node name="Multiplier" type="RichTextLabel" parent="." unique_id=1457293919]
+offset_top = 125.0
+offset_right = 593.0
+offset_bottom = 220.0
+theme_override_fonts/normal_font = ExtResource("1_jeshg")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "ASADFASFFAS"
+
+[node name="Total" type="RichTextLabel" parent="." unique_id=1862848380]
+offset_left = 330.0
+offset_top = 70.0
+offset_right = 923.0
+offset_bottom = 165.0
+theme_override_fonts/normal_font = ExtResource("1_jeshg")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "ASADFASFFAS"
+
+[node name="Points required" type="RichTextLabel" parent="." unique_id=1203185227]
+offset_left = 291.0
+offset_top = 183.0
+offset_right = 884.0
+offset_bottom = 278.0
+theme_override_fonts/normal_font = ExtResource("1_jeshg")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "ASADFASFFAS"

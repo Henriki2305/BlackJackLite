@@ -1,15 +1,28 @@
 [gd_scene format=3 uid="uid://664bijxsk8w6"]
 
 [ext_resource type="Script" uid="uid://ctdbb0kirkx72" path="res://round_button_controller.gd" id="1_wc1fe"]
+[ext_resource type="Theme" uid="uid://cvrwg1hs48gdy" path="res://PlayButtonTheme.tres" id="2_vxiqn"]
 
 [node name="RoundButtonController" type="Node2D" unique_id=1824756493]
 script = ExtResource("1_wc1fe")
 
-[node name="HitButton" type="Button" parent="." unique_id=1800540750]
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="Control" type="Control" parent="." unique_id=2140210217]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("2_vxiqn")
 
-[node name="StandButton" type="Button" parent="." unique_id=1167512601]
-offset_left = 11.0
-offset_right = 19.0
-offset_bottom = 8.0
+[node name="HitButton" type="Button" parent="Control" unique_id=1800540750]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+text = "Hit"
+
+[node name="StandButton" type="Button" parent="Control" unique_id=1167512601]
+layout_mode = 0
+offset_left = 147.0
+offset_top = -1.0
+offset_right = 247.0
+offset_bottom = 99.0
+text = "Stand"

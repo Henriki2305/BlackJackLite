@@ -71,144 +71,129 @@ func _recruitSoul(s : soul) -> void:
 	s.g = self
 	s.global_position = Vector2(400,880)
 	
-func _hasSoul(s : String) -> bool:
-	return soulRules[s]
-
-func _getPlayerDeck() -> deck:
-	return playerDeck
-
-func _getRandomCard() -> String:
-	return str(unlockedEnchantments.pick_random(),unlockedSuits.pick_random(),"co",unlockedCardRanks.pick_random())
-
-func _determineDeck(GivenDeck) -> String:
-	if GivenDeck == $Deck:
-		return DeckStrings["normalDeck"]
-	if GivenDeck == $OpponentsDeck:
-		return DeckStrings["opposingDeck"]
-	return ""
-
-func _drawcard() -> void:
-	playerDeck._drawCard()
-	$CardValueTotal.text = str(playerDeck._cardValuesSum())
-	_updateHand()
-
-func _getUnlockedRanks() -> Array[String]:
-	return unlockedCardRanks
-	
-func _unlockRank(r : String) -> void:
-	unlockedCardRanks.append(r)
-
-func _discardCard() -> void:
-	playerDeck._discardCard()
-	$CardValueTotal.text = str(playerDeck._cardValuesSum())
-	_updateHand()
-
-func _drawDealerHand() -> void:
-	playPhase = false
-	_hidePlayButtons()
-	while opponentDeck._cardValuesSum() < 17:
-		await get_tree().create_timer(1.5).timeout
-		opponentDeck._drawCard()
-		OpponentScoring._setVal((LayerScores[layerLevel]+LayerMults[layerLevel]*opponentDeck._cardValuesSum())*(1+(beatLevels*0.1)),0)
-		$CardValueTotal2.text = str(opponentDeck._cardValuesSum())
-		$OpponentScore.text = str("Score to beat: [color=#0000FF]",OpponentScoring._IntoText(),"[/color]")
-		if len(opponentDeck.cardsInHand) > 1 && opponentDeck._cardValuesSum() == 0:
-			break
-	OpponentScoring._AddNum(pow(layerLevel,3)*(4+level))
-	$OpponentScore.text = str("Score to beat: [color=#0000FF]",OpponentScoring._IntoText(),"[/color]")
-	await get_tree().create_timer(0.35).timeout
-	playPhase = true
-	_showPlayButtons()
-
-func _playHand() -> void:
-	playPhase = false
-	_hidePlayButtons()
-	for h in hb.hands:
-		if h._checkReq(playerDeck._getCardsInHand()):
-			var tween = get_tree().create_tween()
-			var mTween = get_tree().create_tween()
-			var cs = h.transform.get_scale()
-			tween.tween_property(h,"rotation_degrees", 15,0.02)
-			tween.tween_property(h,"rotation_degrees", -15,0.04)
-			tween.tween_property(h,"rotation_degrees", 0,0.02)
-			mTween.tween_property(h,"scale",cs*1.2,0.02)
-			mTween.tween_property(h,"scale",cs,0.03)
-			h._effect()
-			await get_tree().create_timer(2).timeout
-	_updateSoulShards()
-	if !playerDeck.bust:
-		for c in playerDeck.cardsInHand:
-			if c.rarity == Enums.shadowRare:
-				c._increaseTriggers(2)
-			for i in range(c._getTriggers()):
-				_increaseHandPower(c._worth())
-				var ttween = get_tree().create_tween()
-				if c.enchantment != Enums.normal:
-					c._enchantmentEffect()
-					ttween.tween_property(c,"rotation_degrees", 15,0.02)
-					ttween.tween_property(c,"rotation_degrees", -15,0.04)
-					ttween.tween_property(c,"rotation_degrees", 0,0.02)
-					await get_tree().create_timer(0.2).timeout
-				ttween.tween_property(c,"rotation_degrees", 15,0.02)
-				ttween.tween_property(c,"rotation_degrees", -15,0.04)
-				ttween.tween_property(c,"rotation_degrees", 0,0.02)
-				await get_tree().create_timer(0.2).timeout
-				for m in mb._getMemories():
-					if(m._getType() == "card" || m._getType() == "hybrid"):
-						if m._memoryTriggerCard(c):
-							var tween = get_tree().create_tween()
-							var mTween = get_tree().create_tween()
-							var cs = m.transform.get_scale()
-							tween.tween_property(c,"rotation_degrees", 15,0.02)
-							tween.tween_property(c,"rotation_degrees", -15,0.04)
-							tween.tween_property(c,"rotation_degrees", 0,0.02)
-							mTween.tween_property(m,"scale",cs*1.2,0.02)
-							mTween.tween_property(m,"scale",cs,0.03)
-							m._memoryEffectCard(c)
-							await get_tree().create_timer(2).timeout
-				await get_tree().create_timer(1).timeout
-	for m in mb.Memories:
-		if(m._getType() == "normal" || m._getType() == "hybrid"):
-			if m._memoryTrigger():
-				m._memoryEffect()
-				var cs = m.transform.get_scale()
-				var mTween = get_tree().create_tween()
-				mTween.tween_property(m,"scale",cs*1.2,0.02)
-				mTween.tween_property(m,"scale",cs,0.03)
-				await get_tree().create_timer(1).timeout
-	if(OpponentScoring._GreaterThan(TotalPowerNew)):
-		print("you lost!")
-		_addToSouls(Global.bet)
-	else:
-		print("you won!")
-		roundsPassed += 1
-		reward+=1
-		opponentDeckMultiplier*=1.1
-		playPhase = true
-		if TotalPowerNew._GreaterThan(OpponentScoring._MultipliedByNum(2)):
-			reward+=1
-		if TotalPowerNew._GreaterThan(OpponentScoring._MultipliedByNum(10)):
-			reward+=1
-		if TotalPowerNew._GreaterThan(OpponentScoring._MultipliedByNum(50)):
-			reward+=1
-		if TotalPowerNew._GreaterThan(OpponentScoring._MultipliedByNum(1000)):
-			reward+=3
-	await get_tree().create_timer(2.5).timeout
-	Global.bet = 0
-	playerDeck._clearHand()
-	opponentDeck._clearHand()
-	_updateHand()
-	_updateSoulPower(0,0)
-	_updateHandPower(0,0)
-	_updatemultiplier(1,0)
-	_showBetButtons()
-	opponentPower = 0
-	$OpponentScore.text = str("Score to beat: [color=#0000FF]0[/color]")
-	if roundsPassed == 3:
-		roundsPassed = 0
-		_addToSouls(reward)
-		reward=3
-		_betweenRounds()
+#func _hasSoul(s : String) -> bool:
+#	return soulRules[s]
+#
+#func _getPlayerDeck() -> deck:
+#	return playerDeck
+#
+#func _getRandomCard() -> String:
+#	return str(unlockedEnchantments.pick_random(),unlockedSuits.pick_random(),"co",unlockedCardRanks.pick_random())
+#
+#func _determineDeck(GivenDeck) -> String:
+#	if GivenDeck == $Deck:
+#		return DeckStrings["normalDeck"]
+#	if GivenDeck == $OpponentsDeck:
+#		return DeckStrings["opposingDeck"]
+#	return ""
+#
+#func _getUnlockedRanks() -> Array[String]:
+#	return unlockedCardRanks
+#	
+#func _unlockRank(r : String) -> void:
+#	unlockedCardRanks.append(r)
+#
+##func _drawDealerHand() -> void:
+##	playPhase = false
+##	_hidePlayButtons()
+##	while opponentDeck._cardValuesSum() < 17:
+##		await get_tree().create_timer(1.5).timeout
+##		opponentDeck._drawCard()
+##		OpponentScoring._setVal((LayerScores[layerLevel]+LayerMults[layerLevel]*opponentDeck._cardValuesSum())*(1+(beatLevels*0.1)),0)
+##		$CardValueTotal2.text = str(opponentDeck._cardValuesSum())
+##		$OpponentScore.text = str("Score to beat: [color=#0000FF]",OpponentScoring._IntoText(),"[/color]")
+##		if len(opponentDeck.cardsInHand) > 1 && opponentDeck._cardValuesSum() == 0:
+##			break
+##	OpponentScoring._AddNum(pow(layerLevel,3)*(4+level))
+##	$OpponentScore.text = str("Score to beat: [color=#0000FF]",OpponentScoring._IntoText(),"[/color]")
+##	await get_tree().create_timer(0.35).timeout
+##	playPhase = true
+##	_showPlayButtons()
+#
+#func _playHand() -> void:
+#	playPhase = false
+#	_hidePlayButtons()
+#	for h in hb.hands:
+#		if h._checkReq(playerDeck._getCardsInHand()):
+#			var tween = get_tree().create_tween()
+#			var mTween = get_tree().create_tween()
+#			var cs = h.transform.get_scale()
+#			tween.tween_property(h,"rotation_degrees", 15,0.02)
+#			tween.tween_property(h,"rotation_degrees", -15,0.04)
+#			tween.tween_property(h,"rotation_degrees", 0,0.02)
+#			mTween.tween_property(h,"scale",cs*1.2,0.02)
+#			mTween.tween_property(h,"scale",cs,0.03)
+#			h._effect()
+#			await get_tree().create_timer(2).timeout
+#	_updateSoulShards()
+#	if !playerDeck.bust:
+#		for c in playerDeck.cardsInHand:
+#			if c.rarity == Enums.shadowRare:
+#				c._increaseTriggers(2)
+#			for i in range(c._getTriggers()):
+#				_increaseHandPower(c._worth())
+#				var ttween = get_tree().create_tween()
+#				if c.enchantment != Enums.normal:
+#					c._enchantmentEffect()
+#					ttween.tween_property(c,"rotation_degrees", 15,0.02)
+#					ttween.tween_property(c,"rotation_degrees", -15,0.04)
+#					ttween.tween_property(c,"rotation_degrees", 0,0.02)
+#					await get_tree().create_timer(0.2).timeout
+#				ttween.tween_property(c,"rotation_degrees", 15,0.02)
+#				ttween.tween_property(c,"rotation_degrees", -15,0.04)
+#				ttween.tween_property(c,"rotation_degrees", 0,0.02)
+#				await get_tree().create_timer(0.2).timeout
+#				for m in mb._getMemories():
+#					if(m._getType() == "card" || m._getType() == "hybrid"):
+#						if m._memoryTriggerCard(c):
+#							var tween = get_tree().create_tween()
+#							var mTween = get_tree().create_tween()
+#							var cs = m.transform.get_scale()
+#							tween.tween_property(c,"rotation_degrees", 15,0.02)
+#							tween.tween_property(c,"rotation_degrees", -15,0.04)
+#							tween.tween_property(c,"rotation_degrees", 0,0.02)
+#							mTween.tween_property(m,"scale",cs*1.2,0.02)
+#							mTween.tween_property(m,"scale",cs,0.03)
+#							m._memoryEffectCard(c)
+#							await get_tree().create_timer(2).timeout
+#				await get_tree().create_timer(1).timeout
+#	for m in mb.Memories:
+#		if(m._getType() == "normal" || m._getType() == "hybrid"):
+#			if m._memoryTrigger():
+#				m._memoryEffect()
+#				var cs = m.transform.get_scale()
+#				var mTween = get_tree().create_tween()
+#				mTween.tween_property(m,"scale",cs*1.2,0.02)
+#				mTween.tween_property(m,"scale",cs,0.03)
+#				await get_tree().create_timer(1).timeout
+#	if(OpponentScoring._GreaterThan(TotalPowerNew)):
+#		print("you lost!")
+#		_addToSouls(Global.bet)
+#	else:
+#		print("you won!")
+#		roundsPassed += 1
+#		reward+=1
+#		opponentDeckMultiplier*=1.1
+#		playPhase = true
+#		if TotalPowerNew._GreaterThan(OpponentScoring._MultipliedByNum(2)):
+#			reward+=1
+#		if TotalPowerNew._GreaterThan(OpponentScoring._MultipliedByNum(10)):
+#			reward+=1
+#		if TotalPowerNew._GreaterThan(OpponentScoring._MultipliedByNum(50)):
+#			reward+=1
+#		if TotalPowerNew._GreaterThan(OpponentScoring._MultipliedByNum(1000)):
+#			reward+=3
+#	await get_tree().create_timer(2.5).timeout
+#	Global.bet = 0
+#	playerDeck._clearHand()
+#	opponentDeck._clearHand()
+#	opponentPower = 0
+#	$OpponentScore.text = str("Score to beat: [color=#0000FF]0[/color]")
+#	if roundsPassed == 3:
+#		roundsPassed = 0
+#		_addToSouls(reward)
+#		reward=3
+#		_betweenRounds()
 	
 func _betweenRounds() -> void:
 	if level == 3:
@@ -228,7 +213,6 @@ func _betweenRounds() -> void:
 	
 func _advance() -> void:
 	level+=1
-	_showBetButtons()
 	$SoulPowerText.visible = true
 	$HandPowerText.visible = true
 	$MultiplierText.visible = true
@@ -243,12 +227,6 @@ func _increase() -> void:
 func _decrease() -> void:
 	if Global.bet > Global.minii:
 		Global.bet -=1
-
-
-func _placeBet() -> void:
-	_updateSoulPower(Global.bet,0)
-	_hideBetButtons()
-	_drawDealerHand()
 	
 func _curse() -> void:
 	boonLevel = 1
@@ -257,14 +235,14 @@ func _curse() -> void:
 func _aura() -> void:
 	var price = 5 + 10*layerLevel
 	if(souls >= price):
-		_addToSouls(-price)
+#		_addToSouls(-price)
 		boonLevel = 2
 	_nextLayer()
 	
 func _boon() -> void:
 	var price = 10 + 20*layerLevel
 	if(souls >= price):
-		_addToSouls(-price)
+#		_addToSouls(-price)
 		boonLevel = 3
 	_nextLayer()
 	
