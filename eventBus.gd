@@ -54,7 +54,7 @@ signal burnAction
 
 signal forge
 
-signal bustLimitChanged
+signal bustValueChanged
 
 signal handPowerChanged
 
@@ -83,3 +83,9 @@ signal cardAdded
 signal cardDrawn
 
 signal cardDrawnSideHand
+
+signal betPlaced
+
+signal betButtonsHidden
+
+signal betButtonsRevealed

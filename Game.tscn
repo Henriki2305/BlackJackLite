@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dd1y86sjjtca3" path="res://images/machine.png" id="11_lvtmh"]
 [ext_resource type="PackedScene" uid="uid://brrlkl6bdubby" path="res://BetInterface.tscn" id="11_yhmtn"]
 [ext_resource type="PackedScene" uid="uid://hs1pqbjyk3ht" path="res://Scenes/layer_gate.tscn" id="12_gwjdr"]
+[ext_resource type="PackedScene" uid="uid://bk8p056o42vct" path="res://round_loop_event_handler.tscn" id="12_lvtmh"]
 [ext_resource type="Texture2D" uid="uid://c1pimrotwhchj" path="res://images/Dark.png" id="12_yyih5"]
 
 [sub_resource type="GDScript" id="GDScript_3mrqo"]
@@ -35,11 +36,7 @@ shader_parameter/spot = 0.2
 script = ExtResource("1_t88pq")
 
 [node name="Deck" parent="." unique_id=605882964 instance=ExtResource("2_t88pq")]
-position = Vector2(960, 900)
-
-[node name="OpponentsDeck" parent="." unique_id=1404937589 instance=ExtResource("2_t88pq")]
-position = Vector2(991, -155)
-metadata/PlayerDeck = true
+position = Vector2(956, 819)
 
 [node name="BetAmount" type="Label" parent="." unique_id=99727605]
 offset_left = 869.0
@@ -100,7 +97,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1778156430]
 z_index = -5
-position = Vector2(1015, 717)
+position = Vector2(1015, 721.99994)
 scale = Vector2(0.6641667, 0.39694446)
 texture = ExtResource("10_gwjdr")
 
@@ -117,6 +114,7 @@ scale = Vector2(0.95009243, 0.49235183)
 texture = ExtResource("12_yyih5")
 
 [node name="Control2" type="Control" parent="." unique_id=1456103767]
+visible = false
 z_index = 16
 layout_mode = 3
 anchors_preset = 0
@@ -146,10 +144,14 @@ metadata/_edit_use_anchors_ = true
 visible = false
 
 [node name="RoundButtonController" parent="." unique_id=1824756493 instance=ExtResource("10_yx171")]
-position = Vector2(1165, 995)
+visible = false
+position = Vector2(812, 1000)
 
 [node name="BetInterface" parent="." unique_id=849495233 instance=ExtResource("11_yhmtn")]
 offset_left = 763.0
 offset_top = 1004.0
 offset_right = 814.0
 offset_bottom = 1022.0
+
+[node name="RoundLoopEventHandler" parent="." unique_id=1953017771 instance=ExtResource("12_lvtmh")]
+position = Vector2(954, 599)

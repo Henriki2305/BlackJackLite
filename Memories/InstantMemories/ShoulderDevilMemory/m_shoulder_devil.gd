@@ -5,7 +5,7 @@ extends instantMemory
 func _ready() -> void:
 	EventBus.hitCard.connect(_checkCondition)
 	EventBus.endRound.connect(_deActivate)
-	EventBus.bustLimitChanged.connect(_updateLimit)	
+	EventBus.bustValueChanged.connect(_updateLimit)	
 	
 func _updateLimit(b:int) -> void:
 	memoryStats.var2 = b

@@ -9,19 +9,27 @@ func sum(accum, number):
 func _getCards() -> Array[card]:
 	return []
 
+func _addCardToHand(c : card) -> void:
+	c.reparent(self)
+	print(c._getName())
+	EventBus.bustValueChanged.emit(_calculateBustAmount())
+	c.show()
+	
+
 func _checkBust() -> bool:
 	return _calculateBustAmount() > 21
 
+func _test() -> void:
+	print("AAA")
+
 func _calculateBustAmount() -> int:
-	var cards : Array[card] = get_children().filter(func(c): return ( c is card ))
-	var cardValues : Array[int] = cards.map(func(c): c._getBustValue())
-	return cards.reduce(sum, 0)
+	var cards : Array[card]
+	cards.assign(find_children("*","card",true, false))
+	var cardValues : Array = cards.map(func(c): return c._getBustvalue())
+	return cardValues.reduce(sum, 0)
 
 func _ready() -> void:
-	EventBus.requestBustLimit.connect(_sendBustAmount)
-
-func _sendBustAmount(m : memory) -> void:
-	m._bustLimitReceived(_calculateBustAmount())
+	EventBus.cardDrawn.connect(_addCardToHand)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

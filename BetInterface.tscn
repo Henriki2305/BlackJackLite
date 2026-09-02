@@ -31,10 +31,10 @@ offset_bottom = 99.0
 
 [node name="BetAmount" type="RichTextLabel" parent="." unique_id=1555377610]
 layout_mode = 0
-offset_left = 71.0
-offset_top = 115.0
-offset_right = 319.0
-offset_bottom = 191.0
+offset_left = 67.0
+offset_top = -101.0
+offset_right = 315.0
+offset_bottom = -25.0
 theme_override_font_sizes/normal_font_size = 64
 text = "0"
 

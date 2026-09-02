@@ -2,6 +2,7 @@ class_name handbox extends Node2D
 var handScene = preload("res://Hands/BigNumberHand/BigNumberHand.tscn")
 var hands : Array = []
 var movedHand
+var playPhase : bool = true
 
 func _swapHandPos(i: int, j: int) -> void:
 	var tempHand = hands[i]
@@ -50,7 +51,7 @@ func _process(_delta: float) -> void:
 					tween.tween_property(h,"position", Vector2(0,-309.5+(h._getPosition()*152)),0.1)
 
 func _input(event):
-	if get_parent().playPhase:
+	if playPhase:
 		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
 				var h = raycast_check_mem()

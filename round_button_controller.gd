@@ -3,9 +3,11 @@ extends Node2D
 var actions : Array[Button] = []
 
 func _ready() -> void:
-	for a in get_children().filter(func(b) : b is Button) :
+	for a in $Control.get_children().filter(func(b) : return b is Button) :
 		actions.append(a)
 		_connectButton(a)
+	EventBus.betPlaced.connect(show)
+	EventBus.endRound.connect(hide)
 
 func _connectButton(b : Button) -> void:
 	if actions.size() < 4:

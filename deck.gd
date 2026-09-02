@@ -54,29 +54,29 @@ var ranks = {
 func _setSide(s : bool) -> void:
 	opponent = s
 
-#func _createDeck(cardstring) -> void:
-#	cardsInDeck = []
-#	var cards = cardstring.split(".")
-#	for curCard in cards:
-#		var card_instance : card = cardScene.instantiate()
-#		card_instance.setValues(curCard, true)
-#		card_instance.set_name(str("card",i))
-#		i = i + 1
-#		add_child(card_instance)
-#		card_instance.position = Vector2(0,0)
-#		cardsInDeck.append(card_instance)
-#	drawableCards = cardsInDeck.duplicate()
+func _createDeck(cardstring) -> void:
+	var cards = cardstring.split(".")
+	for curCard in cards:
+		var card_instance : card = cardScene.instantiate()
+		card_instance.setValues(curCard, true)
+		card_instance.set_name(str("card",i))
+		i = i + 1
+		add_child(card_instance)
+		card_instance.position = Vector2(0,0)
+		cardsInDeck.append(card_instance)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	EventBus.hitCard.connect(_drawCard)
+	var DeckString = "nohsh7.nohgo7.nohsh7.nohgo7.nodra7.nocco7.nodco7.nohcoa.nohco7.nosco7.nohco7"
 #	var DeckString = g._determineDeck(self)
-#	_createDeck(DeckString)
+	_createDeck(DeckString)
+	var cards = get_children().filter(func(c): return c is card)
 
 
 
 func _drawCard() -> void:
-	var cards = get_children().filter(func(c): c is card)
+	var cards = get_children().filter(func(c): return c is card)
 	if(!cards.is_empty()):
 		var c = cards.pick_random()
 		EventBus.cardDrawn.emit(c)
@@ -84,7 +84,7 @@ func _drawCard() -> void:
 		$DeckSprite.hide()
 		
 func _drawSideHand() -> void:
-	var cards = get_children().filter(func(c): c is card)
+	var cards = get_children().filter(func(c): return c is card)
 	if(!cards.is_empty()):
 		var c = cards.pick_random()
 		EventBus.cardDrawnSideHand.emit(c)

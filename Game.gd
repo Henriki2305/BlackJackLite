@@ -264,10 +264,8 @@ func _ready() -> void:
 	$LayerGate.boon.connect(_boon)
 	$LayerGate.curse.connect(_curse)
 	playerDeck = $Deck
-	opponentDeck = $OpponentsDeck
 	$LayerNameText.text=layer
 	playerDeck._setSide(false)
-	opponentDeck._setSide(true)
 	$ColorRect.material.set_shader_parameter("width",0.0)
 	$ColorRect.material.set_shader_parameter("spot",0.0)
 	

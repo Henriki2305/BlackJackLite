@@ -2,6 +2,7 @@ class_name memory_box extends Node2D
 
 var Memories = []
 var movedMemory : memory
+var playPhase : bool = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	global_position = Vector2(0,0)
@@ -45,7 +46,7 @@ func _process(delta: float) -> void:
 				
 
 func _input(event):
-	if get_parent().playPhase:
+	if playPhase:
 		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
 				var m = raycast_check_mem()
