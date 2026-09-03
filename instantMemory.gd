@@ -2,7 +2,7 @@
 extends memory
 class_name instantMemory
 
-func _hasInstantEffect() -> bool:
+func _CheckTrigger() -> bool:
 	return true
 	
 @abstract

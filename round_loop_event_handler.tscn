@@ -13,9 +13,13 @@ main = NodePath("MainHand")
 side = NodePath("SideHand")
 
 [node name="MainHand" parent="." unique_id=489138791 instance=ExtResource("2_h1kev")]
+position = Vector2(462, 655)
 
 [node name="SideHand" parent="." unique_id=62003421 instance=ExtResource("3_5byuu")]
+position = Vector2(1272, 647)
 
 [node name="MemoryBox" parent="." unique_id=302087916 instance=ExtResource("4_eapcb")]
+position = Vector2(112, 383)
 
 [node name="Hand_box" parent="." unique_id=1833229199 instance=ExtResource("5_5byuu")]
+position = Vector2(960, 77)

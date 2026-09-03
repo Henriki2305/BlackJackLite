@@ -89,3 +89,7 @@ signal betPlaced
 signal betButtonsHidden
 
 signal betButtonsRevealed
+
+signal cardListCreated
+
+signal cardListDestroyed

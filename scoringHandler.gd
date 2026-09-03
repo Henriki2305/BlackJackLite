@@ -43,6 +43,7 @@ func _resetPower() -> void:
 	
 
 func _increaseHandPower(amount) -> void:
+	print(amount)
 	HandPower = HandPower.plus(amount)
 	_updatePower()
 	

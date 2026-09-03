@@ -12,7 +12,7 @@ reqLevel = 1
 rewLevel = 1
 metadata/_custom_type_script = "uid://be1tog4n5vis6"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_47bxb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0jpkb"]
 resource_local_to_scene = true
 shader = ExtResource("3_vjjog")
 shader_parameter/colorness = 0.0
@@ -23,4 +23,4 @@ script = ExtResource("1_47bxb")
 stats = SubResource("Resource_ji205")
 
 [node name="HandBase" parent="." unique_id=351604509 instance=ExtResource("2_ji205")]
-material = SubResource("ShaderMaterial_47bxb")
+material = SubResource("ShaderMaterial_0jpkb")

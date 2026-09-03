@@ -1,23 +1,21 @@
 [gd_scene format=3 uid="uid://biqejq151btjq"]
 
 [ext_resource type="Script" uid="uid://bfptdyxtbod45" path="res://Memories/HybridMemories/SlotMachineMemory/mslot_machine.gd" id="1_p0a7i"]
+[ext_resource type="Texture2D" uid="uid://cuyfegcc6eif3" path="res://Memories/images/SlotMachine.jpg" id="2_mqypm"]
 [ext_resource type="Script" uid="uid://dmop3gc8orqqv" path="res://memoryData.gd" id="2_ptp2g"]
-[ext_resource type="Script" uid="uid://bdbs2l6u45ab7" path="res://Memories/memory_2d.gd" id="2_x6chg"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_x6chg"]
+[ext_resource type="PackedScene" uid="uid://cnyf78tngee0i" path="res://Memories/memory2D.tscn" id="4_ptp2g"]
 
 [sub_resource type="Resource" id="Resource_p0a7i"]
 script = ExtResource("2_ptp2g")
 display_name = "slot machine"
-image = SubResource("PlaceholderTexture2D_x6chg")
+image = ExtResource("2_mqypm")
 buy_price = 4
 showHandM = true
 metadata/_custom_type_script = "uid://dmop3gc8orqqv"
 
-[node name="MslotMachine" type="Node2D" unique_id=1380782715]
+[node name="MslotMachine" type="Node2D" unique_id=1380782715 node_paths=PackedStringArray("mem2d")]
 script = ExtResource("1_p0a7i")
 memoryStats = SubResource("Resource_p0a7i")
+mem2d = NodePath("")
 
-[node name="memory2D" type="Node2D" parent="." unique_id=1584661716]
-script = ExtResource("2_x6chg")
-metadata/_custom_type_script = "uid://bdbs2l6u45ab7"
+[node name="Memory2d" parent="." unique_id=2109284723 instance=ExtResource("4_ptp2g")]

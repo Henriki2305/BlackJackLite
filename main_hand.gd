@@ -7,20 +7,21 @@ func sum(accum, number):
 	return accum + number
 
 func _getCards() -> Array[card]:
-	return []
+	var c : Array[card]
+	c.assign(find_children("*","card",true, false))
+	return c
 
 func _addCardToHand(c : card) -> void:
 	c.reparent(self)
 	print(c._getName())
 	EventBus.bustValueChanged.emit(_calculateBustAmount())
 	c.show()
+	var tween = get_tree().create_tween()
+	tween.tween_property(c,"position", Vector2(get_children().size()*80,0) ,0.2)
 	
 
 func _checkBust() -> bool:
 	return _calculateBustAmount() > 21
-
-func _test() -> void:
-	print("AAA")
 
 func _calculateBustAmount() -> int:
 	var cards : Array[card]

@@ -24,6 +24,7 @@ config/icon="res://icon.svg"
 Global="*res://Global.gd"
 SceneReferences="*uid://b45a4tsc2rci7"
 EventBus="*uid://4u72wt8akqsu"
+ScoringHandler="*uid://bku05tvwo01ih"
 
 [display]
 
@@ -49,3 +50,4 @@ rightclick={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+viewport/hdr_2d=true

@@ -2,13 +2,11 @@ class_name cardlist extends Node2D
 
 var g : Game
 var cards : Array[card]
-var d : deck
 # Called when the node enters the scene tree for the first time.
 
 func fillCont(c : card, cont : TextureRect) -> void:
 	c.show()
-	d.remove_child(c)
-	cont.add_child(c)
+	c.reparent(cont)
 		
 func _sortSuit(s: Array[card]) -> Array[card]:
 	var ranks = [Enums.zero,Enums.one,Enums.two,Enums.three,Enums.four,Enums.five,Enums.six,Enums.seven,Enums.eight,Enums.nine,Enums.ten,Enums.eleven,Enums.Jack,Enums.Queen,Enums.King,Enums.Ace]
@@ -33,10 +31,12 @@ func _confirmSelection() -> void:
 	rou._setSelectedCards(ref)
 		
 func _ready() -> void:
+	EventBus.cardListCreated.connect(_createDeck)
+	EventBus.cardListDestroyed.connect(queue_free)
+	
+func _createDeck(d : Array[card]) -> void:
 	$Control.size = get_parent().size
-	g = get_parent().get_parent().get_parent()
-	d = g._getPlayerDeck()
-	cards = d._getDeckCopy()
+	cards = d
 	var hearts : Array[card] = []
 	var diamonds : Array[card] = []
 	var spades : Array[card] = []

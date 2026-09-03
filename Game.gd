@@ -283,16 +283,3 @@ func _process(_delta: float) -> void:
 			ripple = false
 		else:
 			$ColorRect.material.set_shader_parameter("spot", s+_delta*0.5)
-	
-
-func _createList() -> void:
-	if clist == null:
-		clist = CardListScene.instantiate()
-		$Control2/Control.add_child(clist)
-	
-func _destroyList() -> void:
-	if clist:
-		$Control2/Control.remove_child(clist)
-		clist.queue_free()
-		clist = null
-		

@@ -73,7 +73,11 @@ func _ready() -> void:
 	_createDeck(DeckString)
 	var cards = get_children().filter(func(c): return c is card)
 
-
+func _createCardList() -> void:
+	EventBus.cardListCreated.emit(cardsInDeck)
+	
+func _deleteCardList() -> void:
+	EventBus.cardListDestroyed.emit()
 
 func _drawCard() -> void:
 	var cards = get_children().filter(func(c): return c is card)

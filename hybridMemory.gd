@@ -2,7 +2,7 @@
 extends perCardMemory
 class_name hybridMemory
 
-func _hasInstantEffect() -> bool:
+func _CheckTrigger() -> bool:
 	return true
 	
 @abstract

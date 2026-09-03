@@ -5,14 +5,16 @@ var movedMemory : memory
 var playPhase : bool = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	global_position = Vector2(0,0)
 	$memory._setBox(self)
 	$memory2._setBox(self)
 	Memories.append($memory)
 	Memories.append($memory2)
+	$MslotMachine._setBox(self)
+	Memories.append($MslotMachine)
 	for i in len(Memories):
 		Memories[i]._setPosition(i)
-		Memories[i].global_position = Vector2(600,500+(i*120))
+		Memories[i].position = Vector2(0,i*120)
+		Memories[i].scale = Vector2(0.1,0.1)
 
 func sort_memory(a:memory, b:memory):
 	return a._getPosition() < b._getPosition()
@@ -28,20 +30,20 @@ func _addMemory(m : memory) -> void:
 	m._setBox(self)
 	m._setPosition(len(Memories))
 	Memories.append(m)
-	m.global_position = Vector2(600,500+((len(Memories)-1)*120))
+	m.position = Vector2(0,(len(Memories)-1)*120)
 	add_child(m)
 
 func _process(delta: float) -> void:
 	if movedMemory:
 		var mPos = get_global_mouse_position()
-		movedMemory.position = lerp(movedMemory.position,mPos,10*delta )
+		movedMemory.global_position = lerp(movedMemory.global_position,mPos,10*delta )
 		for i in len(Memories):
 			if Memories[i] != movedMemory:
 				var m : memory = Memories[i]
-				if (m._getPosition() > movedMemory._getPosition() && m.global_position[1] < movedMemory.global_position[1] )|| (m._getPosition() < movedMemory._getPosition() && m.global_position[1] > movedMemory.global_position[1]):
+				if (m._getPosition() > movedMemory._getPosition() && m.position[1] < movedMemory.position[1] )|| (m._getPosition() < movedMemory._getPosition() && m.position[1] > movedMemory.position[1]):
 					_swapMemPos(i,movedMemory._getPosition())
 					var tween = get_tree().create_tween()
-					tween.tween_property(m,"global_position", Vector2(600,500+(m._getPosition()*120)),0.1)
+					tween.tween_property(m,"position", Vector2(0,m._getPosition()*120),0.1)
 					
 				
 
@@ -58,7 +60,7 @@ func _input(event):
 			else:
 				if movedMemory:
 					var tween = get_tree().create_tween()
-					tween.tween_property(movedMemory,"global_position", Vector2(600,500+(movedMemory._getPosition()*120)),0.1)
+					tween.tween_property(movedMemory,"position", Vector2(0,movedMemory._getPosition()*120),0.1)
 					var m = movedMemory
 					movedMemory = null
 					m._createInfo()

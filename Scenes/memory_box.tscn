@@ -4,8 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://gini1ybi2x7o" path="res://Memories/InstantMemories/helpingHandMemory/MhelpingHand.tscn" id="2_ou3qg"]
 [ext_resource type="Texture2D" uid="uid://cuyfegcc6eif3" path="res://Memories/images/SlotMachine.jpg" id="3_p4vnp"]
 [ext_resource type="Script" uid="uid://dmop3gc8orqqv" path="res://memoryData.gd" id="4_n8ysd"]
+[ext_resource type="PackedScene" uid="uid://biqejq151btjq" path="res://Memories/HybridMemories/SlotMachineMemory/MslotMachine.tscn" id="5_p4vnp"]
 
-[sub_resource type="Resource" id="Resource_ou3qg"]
+[sub_resource type="Resource" id="Resource_p4vnp"]
 resource_local_to_scene = true
 script = ExtResource("4_n8ysd")
 display_name = "Helping Hand"
@@ -15,7 +16,7 @@ buy_price = 4
 showHandM = true
 metadata/_custom_type_script = "uid://dmop3gc8orqqv"
 
-[sub_resource type="Resource" id="Resource_p4vnp"]
+[sub_resource type="Resource" id="Resource_n8ysd"]
 resource_local_to_scene = true
 script = ExtResource("4_n8ysd")
 display_name = "Helping Hand"
@@ -31,8 +32,11 @@ script = ExtResource("1_85pcq")
 
 [node name="memory" parent="." unique_id=806121372 instance=ExtResource("2_ou3qg")]
 scale = Vector2(0.1, 0.1)
-memoryStats = SubResource("Resource_ou3qg")
+memoryStats = SubResource("Resource_p4vnp")
 
 [node name="memory2" parent="." unique_id=1916908504 instance=ExtResource("2_ou3qg")]
 scale = Vector2(0.1, 0.1)
-memoryStats = SubResource("Resource_p4vnp")
+memoryStats = SubResource("Resource_n8ysd")
+
+[node name="MslotMachine" parent="." unique_id=1380782715 instance=ExtResource("5_p4vnp")]
+scale = Vector2(0.1, 0.1)
