@@ -9,7 +9,22 @@ func _ready() -> void:
 	EventBus.consumeSouls.connect(_decreaseSouls)
 	EventBus.winSouls.connect(_increaseSouls)
 	EventBus.createSouls.connect(_increaseSouls)	
+	EventBus.roundWon.connect(_winSouls)
 
+func _winSouls(a:BigNumber) -> void:
+	var ratio = a.to_float()
+	var amount = 3
+	if ratio > 2:
+		amount+=1
+	if ratio > 10:
+		amount+=1
+	if ratio > 50:
+		amount+=1
+	if ratio > 1000:
+		amount+=3
+	EventBus.winSouls.emit(amount)
+	
+	
 func _setAmount(a : int) -> void:
 	var tween = get_tree().create_tween()
 	souls = a
