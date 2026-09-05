@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dkwrt455dhbj6"]
+
+[ext_resource type="Script" uid="uid://cf3376y85cuyp" path="res://opponent.gd" id="1_amo4f"]
+
+[node name="Opponent" type="Node2D" unique_id=78069949]
+script = ExtResource("1_amo4f")

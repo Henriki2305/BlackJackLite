@@ -7,8 +7,3 @@ func _ready() -> void:
 
 func _getCards() -> Array[card]:
 	return []
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

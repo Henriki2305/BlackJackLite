@@ -93,3 +93,17 @@ signal betButtonsRevealed
 signal cardListCreated
 
 signal cardListDestroyed
+
+signal LayerChanged
+
+signal roundChanged
+
+signal roundWon
+
+signal roundLost
+
+signal opponentScoreCalculated
+
+signal handPlayed
+
+signal cardReturned

@@ -10,6 +10,7 @@ func _ready() -> void:
 	EventBus.multiplierChanged.connect(_updateMultiplier)
 	EventBus.totalChanged.connect(_updateTotalPower)
 	EventBus.scoreLimitChanged.connect(_updateOpponentScore)
+	EventBus.opponentScoreCalculated.connect(_updateOpponentScore)
 	var options = BigNumber.get_options()
 	options["scientific_decimals"] = 5
 

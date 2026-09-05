@@ -14,11 +14,6 @@ func _ready() -> void:
 	EventBus.playRound.connect(_playRound)
 	EventBus.stand.connect(_playRound)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func _playRound() -> void:
 	var cardMemories: Array = memorybox._getMemories().filter(func(m): return (m is perCardMemory || m is hybridMemory))
 	var instaMemories: Array = memorybox._getMemories().filter(func(m): return (m is instantMemory || m is hybridMemory))
@@ -57,6 +52,7 @@ func _playRound() -> void:
 			mTween.tween_property(m,"scale",ms*1.2,0.02)
 			mTween.tween_property(m,"scale",ms,0.03)
 			await get_tree().create_timer(0.35).timeout
+	EventBus.handPlayed.emit()
 
 func _updatePlayState() -> void:
 	var hands : Array[hand] = hBox._getHands()

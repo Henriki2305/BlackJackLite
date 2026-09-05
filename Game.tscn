@@ -13,6 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://bk8p056o42vct" path="res://round_loop_event_handler.tscn" id="12_lvtmh"]
 [ext_resource type="Texture2D" uid="uid://c1pimrotwhchj" path="res://images/Dark.png" id="12_yyih5"]
 [ext_resource type="PackedScene" uid="uid://bom5hhpjgtqer" path="res://scoreboard.tscn" id="13_lvtmh"]
+[ext_resource type="PackedScene" uid="uid://v6tdyngtbm6j" path="res://SoulStorage.tscn" id="14_yyih5"]
+[ext_resource type="PackedScene" uid="uid://dblsxdrbh3un1" path="res://BetweenRound.tscn" id="15_qjyg3"]
+[ext_resource type="PackedScene" uid="uid://dkwrt455dhbj6" path="res://opponent.tscn" id="16_elkpi"]
 
 [sub_resource type="GDScript" id="GDScript_3mrqo"]
 script/source = "extends Label
@@ -160,3 +163,12 @@ position = Vector2(0, -2)
 
 [node name="Scoreboard" parent="." unique_id=412082070 instance=ExtResource("13_lvtmh")]
 position = Vector2(1162, 537)
+
+[node name="SoulStorage" parent="." unique_id=1463965639 instance=ExtResource("14_yyih5")]
+position = Vector2(1677, 849)
+
+[node name="BetweenRound" parent="." unique_id=1339568277 instance=ExtResource("15_qjyg3")]
+visible = false
+
+[node name="Opponent" parent="." unique_id=78069949 instance=ExtResource("16_elkpi")]
+position = Vector2(934, 422)

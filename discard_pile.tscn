@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cs1nc4xrtv63d"]
+
+[ext_resource type="Script" uid="uid://b7pvkdus2yeye" path="res://discard_pile.gd" id="1_afmow"]
+
+[node name="DiscardPile" type="Node2D" unique_id=996470158]
+script = ExtResource("1_afmow")

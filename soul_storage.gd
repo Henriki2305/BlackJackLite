@@ -8,14 +8,7 @@ func _ready() -> void:
 	EventBus.spendSouls.connect(_decreaseSouls)
 	EventBus.consumeSouls.connect(_decreaseSouls)
 	EventBus.winSouls.connect(_increaseSouls)
-	EventBus.createSouls.connect(_increaseSouls)
-	while true:
-		await get_tree().create_timer(1.75).timeout
-		_increaseSouls(5)
-	
-
-func _process(delta: float) -> void:
-	pass
+	EventBus.createSouls.connect(_increaseSouls)	
 
 func _setAmount(a : int) -> void:
 	var tween = get_tree().create_tween()

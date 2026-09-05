@@ -68,10 +68,12 @@ func _createDeck(cardstring) -> void:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	EventBus.hitCard.connect(_drawCard)
+	EventBus.cardReturned.connect(_moveCardToDeck)
 	var DeckString = "nohsh7.nohgo7.nohsh7.nohgo7.nodra7.nocco7.nodco7.nohcoa.nohco7.nosco7.nohco7"
 #	var DeckString = g._determineDeck(self)
 	_createDeck(DeckString)
 	var cards = get_children().filter(func(c): return c is card)
+	
 
 func _createCardList() -> void:
 	EventBus.cardListCreated.emit(cardsInDeck)
@@ -95,6 +97,8 @@ func _drawSideHand() -> void:
 	if(cards.is_empty()):
 		$DeckSprite.hide()
 				
+func _moveCardToDeck(c : card) -> void:
+	c.reparent(self)
 		
 func _getDeckCopy() -> Array[card]:
 	var d: Array[card] = []

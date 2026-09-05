@@ -9,6 +9,6 @@ var hands : Dictionary = {
 }
 
 func _getMemory() -> memory:
-	return (memories[memories.keys()[randi() % memories.size]]).instantiate()
+	return (memories[memories.keys()[randi() % memories.size()]]).instantiate()
 
 #var buttons : 

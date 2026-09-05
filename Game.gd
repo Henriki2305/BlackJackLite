@@ -195,19 +195,14 @@ func _recruitSoul(s : soul) -> void:
 #		reward=3
 #		_betweenRounds()
 	
-func _betweenRounds() -> void:
+func _betweenRounds(_n : BigNumber) -> void:
 	if level == 3:
 		var burneri = BurnerScene.instantiate()
 		burneri.set_name("burner")
 		add_child(burneri)
 		burneri.global_position = Vector2(0,0)
 	else:
-		var betweenRounds = BetweenRoundsScene.instantiate()
-		betweenRounds.set_name("betweenRounds")
-		add_child(betweenRounds)
-		betweenRounds.global_position = Vector2(0,0)
-	playerDeck._restoreDeck()
-	opponentDeck._restoreDeck()
+		$BetweenRound.show()
 	$Sprite2D2.hide()
 	$Sprite2D3.hide()
 	
@@ -268,6 +263,7 @@ func _ready() -> void:
 	playerDeck._setSide(false)
 	$ColorRect.material.set_shader_parameter("width",0.0)
 	$ColorRect.material.set_shader_parameter("spot",0.0)
+	EventBus.roundWon.connect(_betweenRounds)
 	
 func _input(_event):
 	if Input.is_key_pressed(KEY_ESCAPE):

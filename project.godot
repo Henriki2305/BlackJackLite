@@ -26,6 +26,10 @@ SceneReferences="*uid://b45a4tsc2rci7"
 EventBus="*uid://4u72wt8akqsu"
 ScoringHandler="*uid://bku05tvwo01ih"
 
+[debug]
+
+gdscript/warnings/unused_signal=0
+
 [display]
 
 window/size/viewport_width=1920

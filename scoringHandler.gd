@@ -26,13 +26,17 @@ func _ready() -> void:
 	EventBus.addMultiplier.connect(_increasemultiplier)
 	EventBus.multiplyMultiplier.connect(_multiplyMultiplier)
 	EventBus.multiplyMultiplierPercent.connect(_multiplyMultiplierbyPercent)
+	EventBus.opponentScoreCalculated.connect(_updateOpponentScore)
+	EventBus.handPlayed.connect(_checkScore)
+	EventBus.roundLost.connect(_resetPower)
+	EventBus.roundWon.connect(_resetPower)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 	
-func _resetPower() -> void:
+func _resetPower(_n = 0) -> void:
 	HandPower.exponent = 0.0
 	HandPower.mantissa = 0.0
 	SoulPower.exponent = 0.0
@@ -41,6 +45,17 @@ func _resetPower() -> void:
 	Multiplier.mantissa = 1.0
 	_updatePower()
 	
+	
+func _checkScore() -> void:
+	if(totalPower.is_greater_than(opponentScore)):
+		EventBus.roundWon.emit(totalPower.divide(opponentScore))
+	else:
+		EventBus.roundLost.emit()
+
+func _updateOpponentScore(o) -> void:
+	opponentScore.mantissa = 1.0
+	opponentScore.exponent = 0
+	opponentScore.multiply(o)
 
 func _increaseHandPower(amount) -> void:
 	print(amount)

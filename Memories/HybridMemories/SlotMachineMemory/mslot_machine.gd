@@ -5,11 +5,6 @@ extends hybridMemory
 func _ready() -> void:
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func _checkCardTrigger(c:card, likelihoodMultiplier) -> bool:
 	if(c._getRank() == Enums.seven):
 		if(randi_range(1,1000)<= 500.0*likelihoodMultiplier):

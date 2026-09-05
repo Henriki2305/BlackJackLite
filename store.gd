@@ -30,19 +30,13 @@ func _createStore() -> void:
 		m.global_position = Vector2(-625+i*200,-40)
 		memos.append(m)
 	g = get_parent().get_parent()
-	var mems = g._getMemsInGame()
-	var usedMems = g.mb.Memories
-	var usableMems = mems.filter(func(a): return !_hasMem(a,usedMems))
-	for i in range(min(3,len(usableMems))):
-		var n: String = usableMems.pick_random()
-		var m : memory = memScene.instantiate()
-		m._setName(n)
+	for i in range(0,3):
+		var m : memory = SceneReferences._getMemory()
 		m.scale = Vector2(0.2,0.2)
 		add_child(m)
 		m.inStore = true
 		m.global_position = Vector2(-625+i*200,-40)
 		memos.append(m)
-		print(n)
 	for i in range(2):
 		var bp : boosterPack = BoosterScene.instantiate()
 		add_child(bp)

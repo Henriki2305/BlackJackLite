@@ -1,6 +1,7 @@
 extends Node2D
 class_name mainHand
 
+var busted: bool = false
 # Called when the node enters the scene tree for the first time.
 
 func sum(accum, number):
@@ -18,6 +19,11 @@ func _addCardToHand(c : card) -> void:
 	c.show()
 	var tween = get_tree().create_tween()
 	tween.tween_property(c,"position", Vector2(get_children().size()*80,0) ,0.2)
+
+func _sendCardsToDeck(_n) -> void:
+	for c in _getCards():
+		c.hide()
+		EventBus.cardReturned.emit(c)
 	
 
 func _checkBust() -> bool:
@@ -31,8 +37,4 @@ func _calculateBustAmount() -> int:
 
 func _ready() -> void:
 	EventBus.cardDrawn.connect(_addCardToHand)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	EventBus.roundWon.connect(_sendCardsToDeck)
