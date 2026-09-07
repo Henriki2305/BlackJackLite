@@ -107,3 +107,5 @@ signal opponentScoreCalculated
 signal handPlayed
 
 signal cardReturned
+
+signal cardAffected

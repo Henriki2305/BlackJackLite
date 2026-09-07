@@ -27,6 +27,7 @@ func _playRound() -> void:
 			tween.tween_property(c,"rotation_degrees", -15,0.04)
 			tween.tween_property(c,"rotation_degrees", 0,0.02)
 			EventBus.addHandPower.emit(c._worth())
+			EventBus.cardAffected.emit(c)
 			await get_tree().create_timer(0.35).timeout
 			for m in cardMemories:
 				if m._checkCardTrigger(c,1):

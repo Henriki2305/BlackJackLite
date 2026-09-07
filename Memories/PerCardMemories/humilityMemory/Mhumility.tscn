@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dh1e4cap463qe"]
+
+[ext_resource type="Script" uid="uid://cqrgn8wdb1slp" path="res://Memories/PerCardMemories/humilityMemory/mhumility.gd" id="1_0fek2"]
+[ext_resource type="PackedScene" uid="uid://cnyf78tngee0i" path="res://Memories/memory2D.tscn" id="4_bev4f"]
+
+[node name="Mhumility" type="Node2D" unique_id=1380782715]
+script = ExtResource("1_0fek2")
+
+[node name="Memory2d" parent="." unique_id=2109284723 instance=ExtResource("4_bev4f")]
