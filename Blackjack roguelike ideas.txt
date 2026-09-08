@@ -184,6 +184,37 @@ JESTER
 
 
 
+Procrastination - When you discard the first card you drew, add 2 copies of it to your deck
+
+Karelian pie - if the rightmost card in your hand is of rank 4 or lower, change its rank to pi and add the difference to multiplier
+
+pie eating contest - +0.25 multiplier for every pi-ranked card
+
+Christmas Church - every holy card gives 25 hand power
+
+Addiction - most played hand gives +4 multiplier. Changes by -0.1 every time you play it and +0.3 when yo play some other hand and playing 3 other hands consecutively destroys this memory
+
+Dante Alighieri - +2 multiplier for every cleared layer
+
+slot machine - +0 hand power. Every 7 has 50% chance to increase it by 3
+
+Dia de los muertes - gains +2 soul power for every destroyed face card
+
+admiration - +50% of random power granting memory's power
+
+Wedding ring - first diamond card multiplies hand power by 2
+
+Leadership - first face card has its impact doubled
+
+ant farm - each 2 grants 2 handpower for all 2s in hand
+
+3- legged stool - You can't bust if the most common rank in your hand is 3
+
+Perfect student - all played hands that contain an Ace add 0.5 to multiplier. Resets with other hands.
+
+4x4 - 4x handpower if hand has 4 4s
+
+
 
 
 
