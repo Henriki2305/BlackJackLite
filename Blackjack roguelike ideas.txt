@@ -1,0 +1,191 @@
+Jesus face in a bread - normal 2s count as holy face cards
+
+humility - cards with ranks under 5 grant twice their value in soul power
+
+crusader - playing holy cards turn them into unholy cards of 1 rank higher
+
+Ugly child - cards under rank of 5 are cast out. Grows up after playing 7 hands
+
+Insecure teenager - cards under rank of 5 give -2 hand power. Grows up after playing 5 hands
+
+Aspiring adult - face cards give +2 hand power and +2 soul power. Grows up after playing 7 hands
+
+Happy grown-up - all cards give +10 hand power, +10 soul power and +0.1 multiplier
+
+cabinet whisky - 1 in 5 chance to replay a move. gives 0-50 hand power
+
+color television - +0.2multiplier for every suit in hand
+
+calculus class - 1 in 3 chance to add an e of random suit to your deck when playing a hand. multiplier's power is raised by 0.025 for every e rank card
+
+Clover - each 4 increases likelihoods by 0.5 of their base amount
+
+Suicide king - If you would lose the game while your hand has a king of hearts, destroy it and gain thrice the bet amount. One time use.
+
+86'd - Winning hand with 8 and 6 skips the rest of the round and gives you double the soul shards 
+
+Five card Charlie - If your hand contains 5 cards, draw 5 cards to the side hand
+
+Nature - If you hit at most 2 times, double your hand power, soul power and multiplier
+
+Soft serve - Aces with value of 11 retrigger their effects
+
+pension - Half of all sourshards are instead added to this memory, multiplied by 2
+
+Ace up the sleeve - Aces in the side hand are retriggered once
+
+Ace in the hole - Aces in the played hand are retriggered once
+
+garlic bread - cards do not trigger any suit-related effects. Aces give 2x soul power (Picture of x eating garlic bread with Black and white ace rings)
+
+printer
+
+training bench - +1 permanent hand power after playing 1 card. This requirement increases by 1 everytime it is triggered.
+
+shopping cart - +1 permanent soul power after buying 6 items
+
+promotion - all played face cards have 1 in 5 chance to increase their rank by 1
+
+#Because viper has scales kek
+Viper - Any time a memory would permanently increase its value, this gains x0.25 permanent multiplier instead
+
+slow code - All permanent value memories trigger their value increases twice
+
+octave - +8 permanent hand power when a permanent value is added to a memory 8 times
+https://en.wikipedia.org/wiki/Scale_(music)
+
+crazy 8s - played 8s change their suit to all
+
+reminder - copies the effect of the last memory
+
+brain fog - at the start of a round, gain permanent +0.2 multiplier and disable a random memory until the end of the round.
+syndra
+10 out of 10. After playing a hand, add a copy of all played 10s to your deck.
+
+#Your strong suit
+Expertise - every card that has your most common suit gives x1.5 soul power
+
+:33333333333333333333333333 - if you have exactly 3 memories, all 3s give x3 mult 3 times
+
+Each card gives +1 handpower for every card in hand
+
+When you sell a memory, instead of gaining soul shards permanently increase soul power by its sell value
+
+Increase soul power by x0.1 when you visit a new magician
+
+all played face cards increase their rank by 1
+
+love - all hearts give + 2 hand power
+
+wealth - all diamonds give + 2 hand power
+
+power - all clubs give + 2 hand power
+
+diligence - all spades give + 2 hand power
+
+adventure - all stars give + 5 hand power
+
+increase multiplier by x1.25. 1 in 10 chance to permanently make this memory trigger an additional time.
+
+
+
+LUST
+Hearts are triggered twice
+random card in played hand changes its suit to hearts
+If the played hand does not contain the hearts suit, it busts
+
+GLUTTONY
+
+
+
+PRIDE
+Cards of star suit give +5 soul power. Star suit is more common in booster packs
+Star suit is more common in booster packs
+Every time a card triggers a memory effect, lose a soul shard
+
+GREED
+Player receives 10% of their bet soul shards on winning a hand.
+Clearing rounds gives twice the soul shard amount. Items in store cost twice as much.
+Player must bet at least half of their current sould shard amount
+
+SLOTH
+using less than 5 actions on a hand earns an extra 5 soul shards
+player cannot buy anything from the store, but gets 3 soul shards after each round
+Player cannot press action buttons more than thrice
+
+WRATH
+You get an extra round of card burner
+The right-most card in your played hands are destroyed
+Any card taken from booster packs has 1 in 5 chance to be destroyed
+
+ENVY
+
+
+Only 1 hand effect can be triggered
+
+handpower = 1
+soulpower = 5
+multiplier = 20
+
+
+
+
+
+CAPLATA/(BOKOR) - The Gede
+Baron Samedi - 
+Brav Gede - 
+Baron Criminel - 
+
+HRJHB
+Ra
+
+
+
+SHAMAN
+Ukko
+Tapio
+Ahti
+
+WIZARD
+
+
+
+
+FORTUNETELLER
+
+
+
+
+BRUJA
+
+
+
+
+KITSUNEMOCHI
+
+
+
+
+
+MIME
+
+
+
+
+JESTER
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
