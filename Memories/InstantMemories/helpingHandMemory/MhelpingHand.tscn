@@ -8,7 +8,7 @@
 [sub_resource type="Resource" id="Resource_b1ly1"]
 resource_local_to_scene = true
 script = ExtResource("3_iq5bl")
-display_name = "Helping Hand"
+display_name = "helpingHand"
 image = ExtResource("2_sp54p")
 description = "+10 handPower"
 buy_price = 4

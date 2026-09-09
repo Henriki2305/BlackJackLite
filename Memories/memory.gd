@@ -87,6 +87,8 @@ func _startMoving() -> void:
 func _stopMoving() -> void:
 	mem2d._setMoved(false)
 	
+func _getName() -> String:
+	return memoryStats.display_name
 	
 #func _setInfo() -> void:
 #	memInfo = ""

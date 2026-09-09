@@ -6,6 +6,8 @@
 
 [sub_resource type="Resource" id="Resource_30odb"]
 script = ExtResource("2_3fgav")
+display_name = "shoulderDevil"
+description = "On hit while over 15: x2.5 soul power"
 metadata/_custom_type_script = "uid://dmop3gc8orqqv"
 
 [node name="MShoulderDevil" type="Node2D" unique_id=1284391325]

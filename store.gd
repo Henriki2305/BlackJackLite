@@ -24,19 +24,13 @@ func _createStore() -> void:
 	global_position = Vector2(0,0)
 	for i in range(3):
 		var m = SceneReferences._getMemory()
+		EventBus.memoryRolledToStore.emit(m)
 		m.scale = Vector2(0.2,0.2)
 		add_child(m)
 		m.inStore = true
 		m.global_position = Vector2(-625+i*200,-40)
 		memos.append(m)
-	g = get_parent().get_parent()
-	for i in range(0,3):
-		var m : memory = SceneReferences._getMemory()
-		m.scale = Vector2(0.2,0.2)
-		add_child(m)
-		m.inStore = true
-		m.global_position = Vector2(-625+i*200,-40)
-		memos.append(m)
+		print(m.memoryStats.display_name)
 	for i in range(2):
 		var bp : boosterPack = BoosterScene.instantiate()
 		add_child(bp)

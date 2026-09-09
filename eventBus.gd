@@ -109,3 +109,13 @@ signal handPlayed
 signal cardReturned
 
 signal cardAffected
+
+signal memorySold
+
+signal memoryBought
+
+signal memorySoldUnique
+
+signal memoryRolledToStore
+
+signal memoryRolledFromStore
