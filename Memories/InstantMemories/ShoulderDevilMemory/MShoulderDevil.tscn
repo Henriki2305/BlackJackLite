@@ -10,8 +10,9 @@ display_name = "shoulderDevil"
 description = "On hit while over 15: x2.5 soul power"
 metadata/_custom_type_script = "uid://dmop3gc8orqqv"
 
-[node name="MShoulderDevil" type="Node2D" unique_id=1284391325]
+[node name="MShoulderDevil" type="Node2D" unique_id=1284391325 node_paths=PackedStringArray("mem2d")]
 script = ExtResource("1_s54v0")
 memoryStats = SubResource("Resource_30odb")
+mem2d = NodePath("Memory2d")
 
 [node name="Memory2d" parent="." unique_id=2109284723 instance=ExtResource("3_3fgav")]

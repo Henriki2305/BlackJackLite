@@ -12,8 +12,9 @@ image = ExtResource("2_j6ui4")
 description = "cards worth less than 6 add twice their value to soul power"
 metadata/_custom_type_script = "uid://dmop3gc8orqqv"
 
-[node name="Mhumility" type="Node2D" unique_id=1380782715]
+[node name="Mhumility" type="Node2D" unique_id=1380782715 node_paths=PackedStringArray("mem2d")]
 script = ExtResource("1_0fek2")
 memoryStats = SubResource("Resource_elkpi")
+mem2d = NodePath("Memory2d")
 
 [node name="Memory2d" parent="." unique_id=2109284723 instance=ExtResource("4_bev4f")]

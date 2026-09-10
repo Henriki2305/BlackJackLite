@@ -13,8 +13,9 @@ buy_price = 4
 showHandM = true
 metadata/_custom_type_script = "uid://dmop3gc8orqqv"
 
-[node name="MslotMachine" type="Node2D" unique_id=1380782715]
+[node name="MslotMachine" type="Node2D" unique_id=1380782715 node_paths=PackedStringArray("mem2d")]
 script = ExtResource("1_p0a7i")
 memoryStats = SubResource("Resource_p0a7i")
+mem2d = NodePath("Memory2d")
 
 [node name="Memory2d" parent="." unique_id=2109284723 instance=ExtResource("4_ptp2g")]

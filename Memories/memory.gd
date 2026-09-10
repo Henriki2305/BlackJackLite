@@ -82,7 +82,9 @@ func _hideInfo() -> void:
 	
 func _startMoving() -> void:
 	mem2d._setMoved(true)
-	
+
+func _hideBuyButton() -> void:
+	mem2d._hideBuyButton()
 	
 func _stopMoving() -> void:
 	mem2d._setMoved(false)
@@ -168,10 +170,6 @@ func _getName() -> String:
 #	upModText()
 
 func _ready() -> void:
-#	if get_parent() is memory_box:
-#		g = get_parent().get_parent()
-#	else:
-#		g = get_parent().get_parent().get_parent()
 	$Memory2d.HovSignal.connect(_createInfo)
 	$Memory2d._setImage(memoryStats.image)
 	

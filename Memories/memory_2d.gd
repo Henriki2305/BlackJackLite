@@ -66,6 +66,7 @@ func _hideBuyButton() -> void:
 	$BuyButton.hide()
 
 func _SelectMemory() -> void:
-	if get_parent() is store:
-		get_parent()._deSelectMems()
+	var mem : memory = get_parent()
+	if mem.inStore:
+		mem.get_parent()._deSelectMems()
 		$BuyButton.show()
