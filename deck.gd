@@ -99,6 +99,7 @@ func _drawSideHand() -> void:
 				
 func _moveCardToDeck(c : card) -> void:
 	c.reparent(self)
+	c.position=Vector2(0,0)
 		
 func _getDeckCopy() -> Array[card]:
 	var d: Array[card] = []

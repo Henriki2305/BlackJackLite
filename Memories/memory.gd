@@ -42,9 +42,13 @@ func _setBox(b:memory_box) -> void:
 	box = b
 
 func _upModText(text : String) -> void:
-	$memory2D._upModText(text)
+	$Memory2d._upModText(text)
 
-#func _buyMemory() -> void:
+func _buyMemory() -> void:
+	EventBus.memoryBought.emit(self)
+	inStore = false
+	$Memory2d._hideBuyButton()
+	_buyEffect()
 #	if g._hasSoul("thieving") && g.currentSouls[0]._getValue() == 1:
 #		g.currentSouls[0]._setValue(0)
 #		$BuyButton.hide()
@@ -69,9 +73,6 @@ func _sellMemory() -> void:
 	
 func _sellEffect() -> void:
 	pass
-
-func _createInfo() -> void:
-	_setInfo("[b]"+memoryStats.display_name+"[/b]/n" + memoryStats.description)
 	
 	
 func _setInfo(text : String) -> void:
@@ -170,9 +171,16 @@ func _getName() -> String:
 #	upModText()
 
 func _ready() -> void:
-	$Memory2d.HovSignal.connect(_createInfo)
-	$Memory2d._setImage(memoryStats.image)
-	
+	mem2d.HovSignal.connect(_createInfo)
+	mem2d._setImage(memoryStats.image)
+	_memoryCreated()
+
+func _createInfo() -> void:
+	_setInfo("[b]"+memoryStats.display_name+"[/b]\n" + memoryStats.description)
+
+
+func _memoryCreated() -> void:
+	pass
 
 func _getType() -> String:
 	return triggerType
@@ -286,6 +294,6 @@ func _memoryEffectRoundEnd(likelihoodmultiplier = 1) -> void:
 	pass
 	
 func _SelectMemory() -> void:
-	if get_parent() is store:
+	if inStore:
 		get_parent()._deSelectMems()
 		$BuyButton.show()

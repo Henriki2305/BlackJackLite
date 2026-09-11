@@ -13,10 +13,7 @@ func _upModText(tex: String) -> void:
 	$modifierText.text = tex
 
 func _buyMemory() -> void:
-#	if SoulStorage._getSouls() >= price:
-		$BuyButton.hide()
-#		g.mb._addMemory(self)
-		get_parent()._buyMemory()
+	EventBus.buyMemory.emit(get_parent())
 
 
 func _setImage(image : Texture2D) -> void:

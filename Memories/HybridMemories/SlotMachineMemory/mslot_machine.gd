@@ -1,10 +1,6 @@
 extends hybridMemory
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
 func _checkCardTrigger(c:card, likelihoodMultiplier) -> bool:
 	if(c._getRank() == Enums.seven):
 		if(randi_range(1,1000)<= 500.0*likelihoodMultiplier):

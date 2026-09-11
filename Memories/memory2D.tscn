@@ -66,3 +66,5 @@ offset_right = 504.0
 offset_bottom = 734.0
 texture_normal = ExtResource("5_7dgmm")
 stretch_mode = 0
+
+[connection signal="pressed" from="BuyButton" to="." method="_buyMemory"]

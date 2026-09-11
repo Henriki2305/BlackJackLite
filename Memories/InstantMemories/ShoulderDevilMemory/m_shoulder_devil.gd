@@ -2,7 +2,7 @@ extends instantMemory
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func _memoryCreated() -> void:
 	EventBus.hitCard.connect(_checkCondition)
 	EventBus.endRound.connect(_deActivate)
 	EventBus.bustValueChanged.connect(_updateLimit)	

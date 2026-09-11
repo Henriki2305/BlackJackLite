@@ -8,8 +8,9 @@
 script = ExtResource("2_is34g")
 metadata/_custom_type_script = "uid://dmop3gc8orqqv"
 
-[node name="memory" type="Node2D" unique_id=809999309]
+[node name="memory" type="Node2D" unique_id=809999309 node_paths=PackedStringArray("mem2d")]
 script = ExtResource("1_dsgf2")
 memoryStats = SubResource("Resource_e2ddn")
+mem2d = NodePath("Memory2d")
 
 [node name="Memory2d" parent="." unique_id=2109284723 instance=ExtResource("3_is34g")]

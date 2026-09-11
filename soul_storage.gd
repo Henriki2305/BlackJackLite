@@ -1,6 +1,6 @@
 extends Node2D
 
-var souls : int = 0
+var souls : int = 5
 var counter : float = 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,6 +10,7 @@ func _ready() -> void:
 	EventBus.winSouls.connect(_increaseSouls)
 	EventBus.createSouls.connect(_increaseSouls)	
 	EventBus.roundWon.connect(_winSouls)
+	EventBus.buyMemory.connect(_buyMemory)
 
 func _winSouls(a:BigNumber) -> void:
 	var ratio = a.to_float()
@@ -39,6 +40,12 @@ func _decreaseSouls(a : int) -> void:
 	var tween = get_tree().create_tween()
 	souls-=a
 	tween.tween_property($soulProgressBar,"value",(1-(1/(1+souls/25.0)))*100,1.5)
+		
+func _buyMemory(m : memory) -> void:
+	var price = m.memoryStats.buy_price
+	if souls > price:
+		EventBus.spendSouls.emit(price)
+		m._buyMemory()
 		
 func _getSouls() -> int:
 	return souls

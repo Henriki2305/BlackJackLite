@@ -5,6 +5,7 @@ var movedMemory : memory
 var playPhase : bool = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	EventBus.memoryBought.connect(_addMemory)
 	$memory._setBox(self)
 	$memory2._setBox(self)
 	Memories.append($memory)
@@ -15,6 +16,7 @@ func _ready() -> void:
 		Memories[i]._setPosition(i)
 		Memories[i].position = Vector2(0,i*120)
 		Memories[i].scale = Vector2(0.1,0.1)
+		Memories[i]._setBox(self)
 
 func sort_memory(a:memory, b:memory):
 	return a._getPosition() < b._getPosition()
@@ -31,7 +33,8 @@ func _addMemory(m : memory) -> void:
 	m._setPosition(len(Memories))
 	Memories.append(m)
 	m.position = Vector2(0,(len(Memories)-1)*120)
-	add_child(m)
+	m.reparent(self)
+	m.scale = Vector2(0.1,0.1)
 
 func _process(delta: float) -> void:
 	if movedMemory:

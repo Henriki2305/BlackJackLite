@@ -2,7 +2,7 @@ extends perCardMemory
 
 var ca : card
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func _memoryCreated() -> void:
 	EventBus.cardAffected.connect(_setCard)
 
 func _setCard(c : card) -> void:
