@@ -16,11 +16,14 @@ func _swapHandPos(i: int, j: int) -> void:
 func _ready() -> void:
 	var h1 : hand = bigNumberHandScene.instantiate()
 	add_child(h1)
+	h1._setPosition(0)
 	h1.position = Vector2(0,0)
+	h1.scale=Vector2(0.5,0.5)
 	var h2 : hand = exampleHandScene.instantiate()
 	add_child(h2)
 	h2._setPosition(1)
 	h2.position = Vector2(200,0)
+	h2.scale=Vector2(0.5,0.5)
 	hands.append(h1)
 	hands.append(h2)
 	h1._setBox(self)
@@ -44,7 +47,7 @@ func _process(_delta: float) -> void:
 		for i in len(hands):
 			if hands[i] != movedHand:
 				var h : hand = hands[i]
-				if (h._getPosition() > movedHand._getPosition() && h.global_position[0] < movedHand.global_position[0] )|| (h._getPosition() < movedHand._getPosition() && h.global_position[1] > movedHand.global_position[1]):
+				if (h._getPosition() > movedHand._getPosition() && h.global_position[0] < movedHand.global_position[0] )|| (h._getPosition() < movedHand._getPosition() && h.global_position[0] > movedHand.global_position[0]):
 					_swapHandPos(i,movedHand._getPosition())
 					var tween = get_tree().create_tween()
 					tween.tween_property(h,"position", Vector2(h._getPosition()*200,0),0.1)

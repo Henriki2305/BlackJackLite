@@ -345,8 +345,5 @@ func _takeCard() -> void:
 	await get_tree().create_timer(0.71).timeout
 	visible = false
 	var b : boosterPack = get_parent()
-	var sto: store = b.get_parent()
-	var d: deck =  sto.g._getPlayerDeck()
 	b._createCard()
-	b.remove_child(self)
-	d._addToDeck(self)
+	EventBus.cardAdded.emit(self)

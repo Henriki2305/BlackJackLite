@@ -8,11 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://ftcii43j5han" path="res://images/MagicianButton.png" id="6_mqf55"]
 [ext_resource type="Texture2D" uid="uid://by3uvrbno7m8s" path="res://images/SmithButton.png" id="7_m2wrb"]
 [ext_resource type="Texture2D" uid="uid://cb7tfloapuiyn" path="res://images/CollectorButton.png" id="8_ohvdi"]
+[ext_resource type="PackedScene" uid="uid://v2v1kwi0i7co" path="res://Scenes/Store.tscn" id="9_8b78r"]
 
 [node name="BetweenRound" type="Node2D" unique_id=1339568277]
 script = ExtResource("1_go6qk")
 
 [node name="StoreButton" type="TextureButton" parent="." unique_id=121351787]
+z_index = 3
 offset_left = 66.0
 offset_top = 84.0
 offset_right = 666.0
@@ -20,6 +22,7 @@ offset_bottom = 484.0
 texture_normal = ExtResource("2_ohi75")
 
 [node name="AdvanceButton" type="TextureButton" parent="." unique_id=537674325]
+z_index = 3
 offset_left = 53.0
 offset_top = 706.0
 offset_right = 653.0
@@ -28,6 +31,7 @@ scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("3_8b78r")
 
 [node name="DemonButton" type="TextureButton" parent="." unique_id=1438203764]
+z_index = 3
 offset_left = 546.0
 offset_top = 700.0
 offset_right = 1146.0
@@ -36,6 +40,7 @@ scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("4_r35mt")
 
 [node name="GuardianButton" type="TextureButton" parent="." unique_id=2055911482]
+z_index = 3
 offset_left = 1016.00006
 offset_top = 692.0
 offset_right = 1616.0
@@ -44,6 +49,7 @@ scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("5_yp314")
 
 [node name="MagicianButton" type="TextureButton" parent="." unique_id=1953878271]
+z_index = 3
 offset_left = 1475.0
 offset_top = 696.0
 offset_right = 2075.0
@@ -52,6 +58,7 @@ scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("6_mqf55")
 
 [node name="SoulSmithButton" type="TextureButton" parent="." unique_id=2029886405]
+z_index = 3
 offset_left = 715.0
 offset_top = 84.0
 offset_right = 1315.0
@@ -59,11 +66,14 @@ offset_bottom = 484.0
 texture_normal = ExtResource("7_m2wrb")
 
 [node name="CollectorButton" type="TextureButton" parent="." unique_id=1048783292]
+z_index = 3
 offset_left = 1328.0
 offset_top = 86.0
 offset_right = 1928.0
 offset_bottom = 486.0
 texture_normal = ExtResource("8_ohvdi")
+
+[node name="Store" parent="." unique_id=1737560907 instance=ExtResource("9_8b78r")]
 
 [connection signal="pressed" from="StoreButton" to="." method="_EnterStore"]
 [connection signal="pressed" from="AdvanceButton" to="." method="_Advance"]

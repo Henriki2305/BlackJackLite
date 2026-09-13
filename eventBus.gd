@@ -119,3 +119,7 @@ signal memorySoldUnique
 signal memoryRolledToStore
 
 signal memoryRolledFromStore
+
+signal addMemorySlot
+
+signal removeMemorySlot

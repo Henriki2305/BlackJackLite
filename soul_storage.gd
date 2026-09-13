@@ -1,6 +1,5 @@
 extends Node2D
 
-var souls : int = 5
 var counter : float = 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,24 +27,21 @@ func _winSouls(a:BigNumber) -> void:
 	
 func _setAmount(a : int) -> void:
 	var tween = get_tree().create_tween()
-	souls = a
-	tween.tween_property($soulProgressBar,"value",(1-(1/(1+souls/25.0)))*100,1.5)
+	Global.soulShardsAmount = a
+	tween.tween_property($soulProgressBar,"value",(1-(1/(1+Global.soulShardsAmount/25.0)))*100,1.5)
 	
 func _increaseSouls(a : int) -> void:
 	var tween = get_tree().create_tween()
-	souls+=a
-	tween.tween_property($soulProgressBar,"value",(1-(1/(1+souls/25.0)))*100,1.5)
+	Global.soulShardsAmount+=a
+	tween.tween_property($soulProgressBar,"value",(1-(1/(1+Global.soulShardsAmount/25.0)))*100,1.5)
 	
 func _decreaseSouls(a : int) -> void:
 	var tween = get_tree().create_tween()
-	souls-=a
-	tween.tween_property($soulProgressBar,"value",(1-(1/(1+souls/25.0)))*100,1.5)
+	Global.soulShardsAmount-=a
+	tween.tween_property($soulProgressBar,"value",(1-(1/(1+Global.soulShardsAmount/25.0)))*100,1.5)
 		
 func _buyMemory(m : memory) -> void:
 	var price = m.memoryStats.buy_price
-	if souls > price:
+	if Global.soulShardsAmount > price:
 		EventBus.spendSouls.emit(price)
 		m._buyMemory()
-		
-func _getSouls() -> int:
-	return souls

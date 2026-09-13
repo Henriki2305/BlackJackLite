@@ -99,17 +99,12 @@ func _betweenRounds(_n : BigNumber) -> void:
 		burneri.global_position = Vector2(0,0)
 	else:
 		$BetweenRound.show()
+		$BetweenRound._newBetweenRound()
 	$Sprite2D2.hide()
 	$Sprite2D3.hide()
 	
 func _advance() -> void:
 	level+=1
-	$SoulPowerText.visible = true
-	$HandPowerText.visible = true
-	$MultiplierText.visible = true
-	$TotalPowerText.visible = true
-	$Sprite2D2.show()
-	$Sprite2D3.show()
 
 func _increase() -> void:
 	if Global.bet < souls:

@@ -21,20 +21,20 @@ func _hasMem(n: String, a: Array) -> bool:
 	return false
 
 func _createStore() -> void:
-	global_position = Vector2(0,0)
 	for i in range(3):
 		var m = SceneReferences._getMemory()
 		EventBus.memoryRolledToStore.emit(m)
 		m.scale = Vector2(0.2,0.2)
 		add_child(m)
 		m.inStore = true
-		m.global_position = Vector2(-625+i*200,-40)
+		m.global_position = Vector2(335+i*200,500)
 		memos.append(m)
 		print(m.memoryStats.display_name)
 	for i in range(2):
 		var bp : boosterPack = BoosterScene.instantiate()
 		add_child(bp)
-		bp.global_position = Vector2(-625+i*200,160)
+		bp.global_position = Vector2(335+i*200,700)
+
 
 func _createCards() -> void:
 	g = get_parent().get_parent()
@@ -53,8 +53,12 @@ func _createCards() -> void:
 			tween.tween_property(card_instance,"scale", Vector2(1,1),0.65)
 			cards.append(card_instance)
 
+func _rerollStore() -> void:
+	_emptyStore()
+	_createStore()
+
 func _leaveStore() -> void:
-	visible = false
+	hide()
 	emit_signal("leave")
 
 func _resetPos(c:card) -> void:
@@ -65,6 +69,9 @@ func _deSelectMems() -> void:
 		m._hideBuyButton()
 
 func _emptyStore() -> void:
+	for m in memos:
+		EventBus.memoryRolledFromStore.emit(m)
+		m.queue_free()
 	for c in cards:
 		if c._inStore():
 			c.queue_free()

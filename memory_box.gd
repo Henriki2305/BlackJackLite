@@ -3,9 +3,12 @@ class_name memory_box extends Node2D
 var Memories = []
 var movedMemory : memory
 var playPhase : bool = true
+var maxMemories = 4
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	EventBus.memoryBought.connect(_addMemory)
+	EventBus.addMemorySlot.connect(_increaseMaxMemories)
+	EventBus.removeMemorySlot.connect(_decreaseMaxMemories)
 	$memory._setBox(self)
 	$memory2._setBox(self)
 	Memories.append($memory)
@@ -17,6 +20,12 @@ func _ready() -> void:
 		Memories[i].position = Vector2(0,i*120)
 		Memories[i].scale = Vector2(0.1,0.1)
 		Memories[i]._setBox(self)
+
+func _increaseMaxMemories() -> void:
+	maxMemories+=1
+	
+func _decreaseMaxMemories() -> void:
+	maxMemories-=1
 
 func sort_memory(a:memory, b:memory):
 	return a._getPosition() < b._getPosition()
@@ -32,8 +41,8 @@ func _addMemory(m : memory) -> void:
 	m._setBox(self)
 	m._setPosition(len(Memories))
 	Memories.append(m)
-	m.position = Vector2(0,(len(Memories)-1)*120)
 	m.reparent(self)
+	m.position = Vector2(0,(len(Memories)-1)*120)
 	m.scale = Vector2(0.1,0.1)
 
 func _process(delta: float) -> void:

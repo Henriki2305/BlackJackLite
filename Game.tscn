@@ -152,10 +152,10 @@ visible = false
 position = Vector2(812, 1000)
 
 [node name="BetInterface" parent="." unique_id=849495233 instance=ExtResource("11_yhmtn")]
-offset_left = 763.0
-offset_top = 1004.0
-offset_right = 814.0
-offset_bottom = 1022.0
+offset_left = 778.0
+offset_top = 965.0
+offset_right = 829.0
+offset_bottom = 983.0
 
 [node name="RoundLoopEventHandler" parent="." unique_id=1953017771 instance=ExtResource("12_lvtmh")]
 z_index = 15
@@ -165,6 +165,7 @@ position = Vector2(0, -2)
 position = Vector2(1162, 537)
 
 [node name="SoulStorage" parent="." unique_id=1463965639 instance=ExtResource("14_yyih5")]
+z_index = 50
 position = Vector2(1677, 849)
 
 [node name="BetweenRound" parent="." unique_id=1339568277 instance=ExtResource("15_qjyg3")]

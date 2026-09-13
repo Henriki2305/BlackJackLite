@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bhmnot27ncsjg" path="res://card_base.gd" id="4_e6po8"]
 [ext_resource type="Script" uid="uid://ddq24i8jhwo01" path="res://cardAreaHover.gd" id="5_bnspj"]
 [ext_resource type="Shader" uid="uid://bfd61dbt44b5j" path="res://Shaders/cardTextShader.gdshader" id="6_xnv4g"]
+[ext_resource type="Texture2D" uid="uid://cqn0gsfru4cqf" path="res://images/purple.png" id="8_mm04k"]
 [ext_resource type="Shader" uid="uid://dd5pi67km5jnh" path="res://Shaders/polychromeshader.gdshader" id="8_u5wvb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eumee"]
@@ -69,12 +70,18 @@ texture = SubResource("AtlasTexture_brehn")
 expand_mode = 1
 
 [node name="BurnButton" type="TextureButton" parent="." unique_id=227794178]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 10.0
+offset_top = 89.0
+offset_right = 60.0
+offset_bottom = 139.0
+texture_normal = ExtResource("8_mm04k")
 
 [node name="TakeButton" type="TextureButton" parent="." unique_id=1656365861]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -60.0
+offset_top = 89.0
+offset_right = -20.0
+offset_bottom = 129.0
+texture_normal = ExtResource("8_mm04k")
 
 [node name="TextureRect2" type="TextureRect" parent="." unique_id=1192620415]
 visible = false

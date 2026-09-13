@@ -14,7 +14,7 @@ var hands : Dictionary = {
 }
 
 func _ready() -> void:
-	availableMemories = memories
+	availableMemories = memories.duplicate()
 	EventBus.memoryBought.connect(_removeMemory)
 	EventBus.memorySoldUnique.connect(_addMemory)
 	EventBus.memoryRolledToStore.connect(_removeMemory)

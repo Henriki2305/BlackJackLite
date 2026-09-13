@@ -87,7 +87,19 @@ adventure - all stars give + 5 hand power
 
 increase multiplier by x1.25. 1 in 10 chance to permanently make this memory trigger an additional time.
 
+despair - gains 0.2 multiplier for every bet soulshard lost. Loses 0.5 multiplier at the end of round.
 
+
+narcissism
+
+
+machiavellianism
+
+
+psychopathy
+
+
+dark triad
 
 LUST
 Hearts are triggered twice
