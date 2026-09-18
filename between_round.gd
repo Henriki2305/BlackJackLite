@@ -54,6 +54,7 @@ func _Advance() -> void:
 	
 	var g : Game = get_parent()
 	currentStore._emptyStore()
+	EventBus.advanceRound.emit()
 	g._advance()
 	hide()
 

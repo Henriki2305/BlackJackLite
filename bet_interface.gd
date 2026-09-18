@@ -5,6 +5,7 @@ var bet = 0
 func _ready() -> void:
 	EventBus.betButtonsHidden.connect(hide)
 	EventBus.betButtonsRevealed.connect(show)
+	EventBus.advanceRound.connect(show)
 
 func _increaseBet() -> void:
 	bet +=1

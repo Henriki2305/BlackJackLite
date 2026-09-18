@@ -8,6 +8,7 @@ func _ready() -> void:
 		_connectButton(a)
 	EventBus.betPlaced.connect(show)
 	EventBus.endRound.connect(hide)
+	
 
 func _connectButton(b : Button) -> void:
 	if actions.size() < 4:

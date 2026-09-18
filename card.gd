@@ -1,124 +1,125 @@
 class_name card extends Node2D
 var suits = {
-	"h": Enums.hearts,
-	"d": Enums.diamonds,
-	"s": Enums.spades,
-	"c": Enums.clubs,	
-	"t": Enums.stars,
-	"a": Enums.all,
-	"n": Enums.none
+	"h": Enums.Suit.HEARTS,
+	"d": Enums.Suit.DIAMONDS,
+	"s": Enums.Suit.SPADES,
+	"c": Enums.Suit.CLUBS,	
+	"t": Enums.Suit.STARS,
+	"a": Enums.Suit.ALL,
+	"n": Enums.Suit.NONE
 }
 var enchantments = {
-	"no": Enums.normal,
-	"en": Enums.enchanted,
-	"ma": Enums.magical,
-	"my": Enums.mythical,
-	"bl": Enums.blessed,
-	"ho": Enums.holy,
-	"di": Enums.divine,
-	"cu": Enums.cursed,
-	"un": Enums.unholy,
-	"de": Enums.devilish
+	"no": Enums.Edition.NORMAL,
+	"en": Enums.Edition.ENCHANTED,
+	"ma": Enums.Edition.MAGICAL,
+	"my": Enums.Edition.MYTHICAL,
+	"bl": Enums.Edition.BLESSED,
+	"ho": Enums.Edition.HOLY,
+	"di": Enums.Edition.DIVINE,
+	"cu": Enums.Edition.CURSED,
+	"un": Enums.Edition.UNHOLY,
+	"de": Enums.Edition.DEVILISH
 }
 
+
 var ranks = {
-	"0": Enums.zero,
-	"1": Enums.one,
-	"2": Enums.two,
-	"3": Enums.three,
-	"4": Enums.four,
-	"5": Enums.five,
-	"6": Enums.six,
-	"7": Enums.seven,
-	"8": Enums.eight,
-	"9": Enums.nine,
-	"10": Enums.ten,
-	"11": Enums.eleven,
-	"j": Enums.Jack,
-	"q": Enums.Queen,
-	"k": Enums.King,
-	"a": Enums.Ace
+	"0": Enums.Rank.ZERO,
+	"1": Enums.Rank.ONE,
+	"2": Enums.Rank.TWO,
+	"3": Enums.Rank.THREE,
+	"4": Enums.Rank.FOUR,
+	"5": Enums.Rank.FIVE,
+	"6": Enums.Rank.SIX,
+	"7": Enums.Rank.SEVEN,
+	"8": Enums.Rank.EIGHT,
+	"9": Enums.Rank.NINE,
+	"10": Enums.Rank.TEN,
+	"11": Enums.Rank.ELEVEN,
+	"j": Enums.Rank.JACK,
+	"q": Enums.Rank.QUEEN,
+	"k": Enums.Rank.KING,
+	"a": Enums.Rank.ACE
 	}
 	
 var rarities = {
-	"co": Enums.common,
-	"un": Enums.uncommon,
-	"ra": Enums.rare,
-	"ul": Enums.ultraRare,
-	"go": Enums.goldenRare,
-	"gh": Enums.ghostRare,
-	"ne": Enums.negative,
-	"sh": Enums.shadowRare,
-	"so": Enums.soulRare,
-	"re": Enums.recursiveRare,
-	"mi": Enums.midNightRare
+	"co": Enums.Rarity.COMMON,
+	"un": Enums.Rarity.UNCOMMON,
+	"ra": Enums.Rarity.RARE,
+	"ul": Enums.Rarity.ULTRARARE,
+	"go": Enums.Rarity.GOLDENRARE,
+	"gh": Enums.Rarity.GHOSTRARE,
+	"ne": Enums.Rarity.NEGATIVE,
+	"sh": Enums.Rarity.SHADOWRARE,
+	"so": Enums.Rarity.SOULRARE,
+	"re": Enums.Rarity.RECURSIVERARE,
+	"mi": Enums.Rarity.MIDNIGHTRARE
 }
 	
 var bustValues = {
-	Enums.zero: 0,
-	Enums.one: 1,
-	Enums.two: 2,
-	Enums.three: 3,
-	Enums.four: 4,
-	Enums.five: 5,
-	Enums.six: 6,
-	Enums.seven: 7,
-	Enums.eight: 8,
-	Enums.nine: 9,
-	Enums.ten: 10,
-	Enums.eleven: 11,
-	Enums.Jack: 10,
-	Enums.Queen: 10,
-	Enums.King: 10,
-	Enums.Ace: 1
+	Enums.Rank.ZERO: 0,
+	Enums.Rank.ONE: 1,
+	Enums.Rank.TWO: 2,
+	Enums.Rank.THREE: 3,
+	Enums.Rank.FOUR: 4,
+	Enums.Rank.FIVE: 5,
+	Enums.Rank.SIX: 6,
+	Enums.Rank.SEVEN: 7,
+	Enums.Rank.EIGHT: 8,
+	Enums.Rank.NINE: 9,
+	Enums.Rank.TEN: 10,
+	Enums.Rank.ELEVEN: 11,
+	Enums.Rank.JACK: 10,
+	Enums.Rank.QUEEN: 10,
+	Enums.Rank.KING: 10,
+	Enums.Rank.ACE: 1
 }
 	
 var values = {
-	Enums.zero: 0,
-	Enums.one: 1,
-	Enums.two: 2,
-	Enums.three: 3,
-	Enums.four: 4,
-	Enums.five: 5,
-	Enums.six: 6,
-	Enums.seven: 7,
-	Enums.eight: 8,
-	Enums.nine: 9,
-	Enums.ten: 10,
-	Enums.eleven: 11,
-	Enums.Jack: 10,
-	Enums.Queen: 10,
-	Enums.King: 10,
-	Enums.Ace: 11
+	Enums.Rank.ZERO: 0,
+	Enums.Rank.ONE: 1,
+	Enums.Rank.TWO: 2,
+	Enums.Rank.THREE: 3,
+	Enums.Rank.FOUR: 4,
+	Enums.Rank.FIVE: 5,
+	Enums.Rank.SIX: 6,
+	Enums.Rank.SEVEN: 7,
+	Enums.Rank.EIGHT: 8,
+	Enums.Rank.NINE: 9,
+	Enums.Rank.TEN: 10,
+	Enums.Rank.ELEVEN: 11,
+	Enums.Rank.JACK: 10,
+	Enums.Rank.QUEEN: 10,
+	Enums.Rank.KING: 10,
+	Enums.Rank.ACE: 11
 	}
 	
 var locationsx = {
-	Enums.zero: 0,
-	Enums.one: 1,
-	Enums.two: 2,
-	Enums.three: 3,
-	Enums.four: 4,
-	Enums.five: 5,
-	Enums.six: 6,
-	Enums.seven: 7,
-	Enums.eight: 8,
-	Enums.nine: 9,
-	Enums.ten: 10,
-	Enums.eleven: 11,
-	Enums.Jack: 12,
-	Enums.Queen: 13,
-	Enums.King: 14,
-	Enums.Ace: 15
+	Enums.Rank.ZERO: 0,
+	Enums.Rank.ONE: 1,
+	Enums.Rank.TWO: 2,
+	Enums.Rank.THREE: 3,
+	Enums.Rank.FOUR: 4,
+	Enums.Rank.FIVE: 5,
+	Enums.Rank.SIX: 6,
+	Enums.Rank.SEVEN: 7,
+	Enums.Rank.EIGHT: 8,
+	Enums.Rank.NINE: 9,
+	Enums.Rank.TEN: 10,
+	Enums.Rank.ELEVEN: 11,
+	Enums.Rank.JACK: 12,
+	Enums.Rank.QUEEN: 13,
+	Enums.Rank.KING: 14,
+	Enums.Rank.ACE: 15
 }
 
 var locationsy = {
-	Enums.hearts : 0,
-	Enums.spades: 1,
-	Enums.clubs: 2,
-	Enums.diamonds: 3,
-	Enums.stars: 4,
-	Enums.all: 5,
-	Enums.none: 6
+	Enums.Suit.HEARTS : 0,
+	Enums.Suit.SPADES: 1,
+	Enums.Suit.CLUBS: 2,
+	Enums.Suit.DIAMONDS: 3,
+	Enums.Suit.STARS: 4,
+	Enums.Suit.ALL: 5,
+	Enums.Suit.NONE: 6
 }
 
 enum {
@@ -131,17 +132,17 @@ enum {
 }
 
 var suitNames = {
-	Enums.hearts : "hearts",
-	Enums.spades : "spades",
-	Enums.diamonds : "diamonds",
-	Enums.clubs : "clubs"
+	Enums.Suit.HEARTS : "hearts",
+	Enums.Suit.SPADES : "spades",
+	Enums.Suit.DIAMONDS : "diamonds",
+	Enums.Suit.CLUBS : "clubs"
 }
 
 var triggers = 1
-var rank = Enums.zero
-var suit = Enums.none
-var enchantment = Enums.normal
-var rarity = Enums.common
+var rank = Enums.Rank.ZERO
+var suit = Enums.Suit.NONE
+var enchantment = Enums.Edition.NORMAL
+var rarity = Enums.Rarity.COMMON
 var originalCard : card
 var selected : bool = false
 var listed : bool = false
@@ -211,20 +212,22 @@ func setValues(cValues : String, b : bool) -> void:
 	texture.texture.set_region(Rect2(Vector2(xind*(w-20),yind*h),Vector2(w,h)))
 	visible = false
 	match enchantment:
-		Enums.cursed:
+		Enums.Edition.CURSED:
 			$"card base".material.set_shader_parameter("cursed", true)
-		Enums.normal:
+		Enums.Edition.NORMAL:
 			pass
 	match rarity:
-		Enums.rare:
+		Enums.Rarity.RARE:
 			$TextureRect.material.set_shader_parameter("rare",true)
 			$"card base".material.set_shader_parameter("rare",true)
-		Enums.shadowRare:
+		Enums.Rarity.SHADOWRARE:
 			$"card base".material.set_shader_parameter("shadow", true)
-		Enums.goldenRare:
+		Enums.Rarity.GOLDENRARE:
 			$"card base".material.set_shader_parameter("gold", true)
-		Enums.common:
+		Enums.Rarity.COMMON:
 			pass
+	$Card_graphics.cardReference = self
+	$Card_graphics._updateSymbols(rank, suit)
 			
 func changeRank(r : String) -> void:
 	rank = ranks[r]
@@ -254,18 +257,18 @@ func _worth() -> int:
 	return values[rank]
 	
 func _maxValue() -> int:
-	if rank == Enums.Ace:
+	if rank == Enums.Rank.ACE:
 		return 11
 	return _worth()
 
 func _isAce() -> bool:
-	return rank == Enums.Ace
+	return rank == Enums.Rank.ACE
 
 func _isFaceCard() -> bool:
-	return rank == Enums.Jack || rank == Enums.Queen || rank == Enums.King
+	return rank == Enums.Rank.JACK || rank == Enums.Rank.QUEEN || rank == Enums.Rank.KING
 
 func _hasRarityEffect() -> bool:
-	return rarity == Enums.uncommon || rarity == Enums.rare || rarity == Enums.soulRare || Enums.ultraRare
+	return rarity == Enums.Rarity.UNCOMMON || rarity == Enums.Rarity.RARE || rarity == Enums.Rarity.SOULRARE || Enums.Rarity.ULTRARARE
 
 #func _rarityEffect() -> void:
 #	match rarity:

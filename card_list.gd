@@ -9,7 +9,7 @@ func fillCont(c : card, cont : TextureRect) -> void:
 	c.reparent(cont)
 		
 func _sortSuit(s: Array[card]) -> Array[card]:
-	var ranks = [Enums.zero,Enums.one,Enums.two,Enums.three,Enums.four,Enums.five,Enums.six,Enums.seven,Enums.eight,Enums.nine,Enums.ten,Enums.eleven,Enums.Jack,Enums.Queen,Enums.King,Enums.Ace]
+	var ranks = [Enums.Rank.ZERO,Enums.Rank.ONE,Enums.Rank.TWO,Enums.Rank.THREE,Enums.Rank.FOUR,Enums.Rank.FIVE,Enums.Rank.SIX,Enums.Rank.SEVEN,Enums.Rank.EIGHT,Enums.Rank.NINE,Enums.Rank.TEN,Enums.Rank.ELEVEN,Enums.Rank.JACK,Enums.Rank.QUEEN,Enums.Rank.KING,Enums.Rank.ACE]
 	var temp : Array[card] = []
 	for r in ranks:
 		for c in s:
@@ -47,19 +47,19 @@ func _createDeck(d : Array[card]) -> void:
 	for c in cards:
 		c.position = Vector2(0,0)
 		match c.suit:
-			Enums.hearts:
+			Enums.Suit.HEARTS:
 				hearts.append(c)
-			Enums.diamonds:
+			Enums.Suit.DIAMONDS:
 				diamonds.append(c)
-			Enums.spades:
+			Enums.Suit.SPADES:
 				spades.append(c)
-			Enums.clubs:
+			Enums.Suit.CLUBS:
 				clubs.append(c)
-			Enums.stars:
+			Enums.Suit.STARS:
 				stars.append(c)
-			Enums.all:
+			Enums.Suit.ALL:
 				all.append(c)
-			Enums.none:
+			Enums.Suit.NONE:
 				none.append(c)
 	var suits : int = 0
 	if len(hearts) > 0:

@@ -51,6 +51,7 @@ func _checkScore() -> void:
 		EventBus.roundWon.emit(totalPower.divide(opponentScore))
 	else:
 		EventBus.roundLost.emit()
+	EventBus.endRound.emit()
 
 func _updateOpponentScore(o) -> void:
 	opponentScore.mantissa = 1.0

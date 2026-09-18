@@ -2,7 +2,7 @@ extends hybridMemory
 
 
 func _checkCardTrigger(c:card, likelihoodMultiplier) -> bool:
-	if(c._getRank() == Enums.seven):
+	if(c._getRank() == Enums.Rank.SEVEN):
 		if(randi_range(1,1000)<= 500.0*likelihoodMultiplier):
 			print("jackpot!")
 			return true

@@ -7,49 +7,49 @@ var cardsInDeck: Array[card]
 var opponent : bool
 var bust = false
 
-var suits = {
-	"h": Enums.hearts,
-	"d": Enums.diamonds,
-	"s": Enums.spades,
-	"c": Enums.clubs,	
-	"t": Enums.stars,
-	"a": Enums.all,
-	"n": Enums.none
-}
-var enchantments = {
-	"no": Enums.normal,
-	"en": Enums.enchanted,
-	"ma": Enums.magical,
-	"my": Enums.mythical,
-	"bl": Enums.mythical,
-	"ho": Enums.holy,
-	"di": Enums.divine,
-	"cu": Enums.cursed,
-	"un": Enums.unholy,
-	"de": Enums.devilish
-}
-
-var ranks = {
-	"0": Enums.zero,
-	"1": Enums.one,
-	"2": Enums.two,
-	"3": Enums.three,
-	"4": Enums.four,
-	"5": Enums.five,
-	"6": Enums.six,
-	"7": Enums.seven,
-	"8": Enums.eight,
-	"9": Enums.nine,
-	"10": Enums.ten,
-	"11": Enums.eleven,
-	"j": Enums.Jack,
-	"q": Enums.Queen,
-	"k": Enums.King,
-	"a": Enums.Ace,
-	"pi": Enums.pi,
-	"e": Enums.e,
-	"12": Enums.twelwe
-	}
+#var suits = {
+#	"h": Enums.hearts,
+#	"d": Enums.diamonds,
+#	"s": Enums.spades,
+#	"c": Enums.clubs,	
+#	"t": Enums.stars,
+#	"a": Enums.all,
+#	"n": Enums.none
+#}
+#var enchantments = {
+#	"no": Enums.normal,
+#	"en": Enums.enchanted,
+#	"ma": Enums.magical,
+#	"my": Enums.mythical,
+#	"bl": Enums.mythical,
+#	"ho": Enums.holy,
+#	"di": Enums.divine,
+#	"cu": Enums.cursed,
+#	"un": Enums.unholy,
+#	"de": Enums.devilish
+#}
+#
+#var ranks = {
+#	"0": Enums.zero,
+#	"1": Enums.one,
+#	"2": Enums.two,
+#	"3": Enums.three,
+#	"4": Enums.four,
+#	"5": Enums.five,
+#	"6": Enums.six,
+#	"7": Enums.seven,
+#	"8": Enums.eight,
+#	"9": Enums.nine,
+#	"10": Enums.ten,
+#	"11": Enums.eleven,
+#	"j": Enums.Jack,
+#	"q": Enums.Queen,
+#	"k": Enums.King,
+#	"a": Enums.Ace,
+#	"pi": Enums.pi,
+#	"e": Enums.e,
+#	"12": Enums.twelwe
+#	}
 
 func _setSide(s : bool) -> void:
 	opponent = s
@@ -83,11 +83,11 @@ func _deleteCardList() -> void:
 
 func _drawCard() -> void:
 	var cards = get_children().filter(func(c): return c is card)
+	if(cards.size() == 1):
+		$DeckSprite.hide()
 	if(!cards.is_empty()):
 		var c = cards.pick_random()
 		EventBus.cardDrawn.emit(c)
-	if(cards.is_empty()):
-		$DeckSprite.hide()
 		
 func _drawSideHand() -> void:
 	var cards = get_children().filter(func(c): return c is card)
@@ -116,49 +116,49 @@ func _getDeckCopy() -> Array[card]:
 			print("rööki")
 	return d
 	
-func _burnCards(s : String) -> void:
-	match s:
-		"hearts":
-			for c in cardsInDeck:
-				if c.suit == Enums.hearts:
-					cardsInDeck.erase(c)
-					c._burnCardFromDeck()
-		"clubs":
-			for c in cardsInDeck:
-				if c.suit == Enums.clubs:
-					cardsInDeck.erase(c)
-					c._burnCardFromDeck()
-		"diamonds":
-			for c in cardsInDeck:
-				if c.suit == Enums.diamonds:
-					cardsInDeck.erase(c)
-					c._burnCardFromDeck()
-		"spades":
-			for c in cardsInDeck:
-				if c.suit == Enums.spades:
-					cardsInDeck.erase(c)
-					c._burnCardFromDeck()
-		"stars":
-			for c in cardsInDeck:
-				if c.suit == Enums.stars:
-					cardsInDeck.erase(c)
-					c._burnCardFromDeck()
-		"faces":
-			for c in cardsInDeck:
-				if c._isFaceCard():
-					cardsInDeck.erase(c)
-					c._burnCardFromDeck()
-		"big":
-			for c in cardsInDeck:
-				if c._worth() > 5 && !c._isFaceCard():
-					cardsInDeck.erase(c)
-					c._burnCardFromDeck()
-		"small":
-			for c in cardsInDeck:
-				if c._worth() <= 5 || c._isAce():
-					cardsInDeck.erase(c)
-					c._burnCardFromDeck()
-
+#func _burnCards(s : String) -> void:
+#	match s:
+#		"hearts":
+#			for c in cardsInDeck:
+#				if c.suit == Enums.hearts:
+#					cardsInDeck.erase(c)
+#					c._burnCardFromDeck()
+#		"clubs":
+#			for c in cardsInDeck:
+#				if c.suit == Enums.clubs:
+#					cardsInDeck.erase(c)
+#					c._burnCardFromDeck()
+#		"diamonds":
+#			for c in cardsInDeck:
+#				if c.suit == Enums.diamonds:
+#					cardsInDeck.erase(c)
+#					c._burnCardFromDeck()
+#		"spades":
+#			for c in cardsInDeck:
+#				if c.suit == Enums.spades:
+#					cardsInDeck.erase(c)
+#					c._burnCardFromDeck()
+#		"stars":
+#			for c in cardsInDeck:
+#				if c.suit == Enums.stars:
+#					cardsInDeck.erase(c)
+#					c._burnCardFromDeck()
+#		"faces":
+#			for c in cardsInDeck:
+#				if c._isFaceCard():
+#					cardsInDeck.erase(c)
+#					c._burnCardFromDeck()
+#		"big":
+#			for c in cardsInDeck:
+#				if c._worth() > 5 && !c._isFaceCard():
+#					cardsInDeck.erase(c)
+#					c._burnCardFromDeck()
+#		"small":
+#			for c in cardsInDeck:
+#				if c._worth() <= 5 || c._isAce():
+#					cardsInDeck.erase(c)
+#					c._burnCardFromDeck()
+#
 func _addToDeck(c: card) -> void :
 	cardsInDeck.append(c)
 	print(cardsInDeck)

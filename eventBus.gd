@@ -123,3 +123,5 @@ signal memoryRolledFromStore
 signal addMemorySlot
 
 signal removeMemorySlot
+
+signal advanceRound

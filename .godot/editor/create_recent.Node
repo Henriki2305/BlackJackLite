@@ -1,5 +1,6 @@
-Control
+TextureRect
 RichTextLabel
+Control
 Button
 memory2D
 instantMemory
@@ -7,7 +8,6 @@ perCardMemory
 TextureProgressBar
 PointLight2D
 hand
-TextureRect
 TextureButton
 CollisionShape2D
 Area2D

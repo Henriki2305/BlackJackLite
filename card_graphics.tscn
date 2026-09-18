@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://c8o7unnj7b1vb"]
+
+[ext_resource type="Texture2D" uid="uid://d1it3m2ws05yb" path="res://Card base.png" id="1_6exnw"]
+[ext_resource type="Script" uid="uid://dxjpk7ygum5r3" path="res://card_graphics.gd" id="2_5dmyi"]
+[ext_resource type="Texture2D" uid="uid://cqn0gsfru4cqf" path="res://images/purple.png" id="3_fx05l"]
+[ext_resource type="Texture2D" uid="uid://jria8qt8t4n" path="res://images/HeartSuit.png" id="4_5dmyi"]
+[ext_resource type="Texture2D" uid="uid://yk4vxiqq6avn" path="res://images/DiamondSuit.png" id="4_qlygt"]
+[ext_resource type="Texture2D" uid="uid://bc3jxvnfo4p2e" path="res://images/ClubSuit.png" id="5_m6h6l"]
+[ext_resource type="Texture2D" uid="uid://wacmgsvvra3w" path="res://images/SpadeSuit.png" id="6_rkm77"]
+[ext_resource type="Texture2D" uid="uid://boxdwcayrwx7q" path="res://images/StarSuit.png" id="7_x6j2i"]
+
+[node name="Card_graphics" type="TextureRect" unique_id=935145355]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_6exnw")
+script = ExtResource("2_5dmyi")
+heartSymbol = ExtResource("4_5dmyi")
+diamondSymbol = ExtResource("4_qlygt")
+clubSymbol = ExtResource("5_m6h6l")
+spadeSymbol = ExtResource("6_rkm77")
+starSymbol = ExtResource("7_x6j2i")
+
+[node name="RankTextUp" type="RichTextLabel" parent="." unique_id=1088272901]
+layout_mode = 1
+offset_right = 80.0
+offset_bottom = 89.99997
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RankTextDown" type="RichTextLabel" parent="." unique_id=1770466032]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -90.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(-1, -1)
+pivot_offset = Vector2(40, 45)
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BurnButton" type="TextureButton" parent="." unique_id=68804625]
+layout_mode = 0
+offset_left = 331.0
+offset_top = 890.0
+offset_right = 603.0
+offset_bottom = 1019.0
+texture_normal = ExtResource("3_fx05l")
+stretch_mode = 0
+
+[node name="TakeButton" type="TextureButton" parent="." unique_id=1436721649]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 890.0
+offset_right = 325.0
+offset_bottom = 1019.0
+texture_normal = ExtResource("3_fx05l")
+stretch_mode = 0
+
+[node name="SuitIconUp" type="TextureRect" parent="." unique_id=247591153]
+layout_mode = 1
+offset_right = 300.0
+offset_bottom = 400.0
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(0, 100)
+texture = ExtResource("4_5dmyi")
+
+[node name="SuitIconDown" type="TextureRect" parent="." unique_id=1195425983]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -400.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(300, 300)
+texture = ExtResource("4_5dmyi")
+flip_v = true

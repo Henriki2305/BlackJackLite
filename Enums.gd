@@ -1,6 +1,59 @@
-extends Node
+extends Resource
 class_name Enums
-enum {zero, one, two, three, four, five, six, seven,eight, nine, ten, eleven, Jack, Queen, King, Ace, twelwe, thirteen, pi, e}
-enum {hearts, diamonds, spades, clubs, stars, all, none}
-enum {normal, enchanted, magical, mythical, blessed, holy, divine, cursed, unholy, devilish}
-enum {common, uncommon, rare, ultraRare, goldenRare, ghostRare, negative, shadowRare, soulRare, recursiveRare, midNightRare}
+enum Rank {
+	ZERO,
+	ONE,
+	TWO,
+	THREE,
+	FOUR,
+	FIVE,
+	SIX,
+	SEVEN,
+	EIGHT,
+	NINE,
+	TEN,
+	ELEVEN,
+	TWELVE,
+	THIRTEEN,
+	JACK,
+	QUEEN,
+	KING,
+	ACE,
+	PIE,
+	E
+}
+enum Suit {
+	HEARTS,
+	DIAMONDS,
+	SPADES,
+	CLUBS,
+	STARS,
+	ALL,
+	NONE
+}
+enum Edition {
+	NORMAL,
+	ENCHANTED,
+	MAGICAL,
+	MYTHICAL,
+	BLESSED,
+	HOLY,
+	DIVINE,
+	CURSED,
+	UNHOLY,
+	DEVILISH
+}
+
+enum Rarity {
+	COMMON,
+	UNCOMMON,
+	RARE,
+	ULTRARARE,
+	GOLDENRARE,
+	GHOSTRARE,
+	NEGATIVE,
+	SHADOWRARE,
+	SOULRARE,
+	RECURSIVERARE,
+	MIDNIGHTRARE
+}

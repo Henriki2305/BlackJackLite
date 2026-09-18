@@ -68,21 +68,8 @@ func _recruitSoul(s : soul) -> void:
 	s.g = self
 	s.global_position = Vector2(400,880)
 	
-#func _hasSoul(s : String) -> bool:
-#	return soulRules[s]
-#
-#func _getPlayerDeck() -> deck:
-#	return playerDeck
-#
 #func _getRandomCard() -> String:
 #	return str(unlockedEnchantments.pick_random(),unlockedSuits.pick_random(),"co",unlockedCardRanks.pick_random())
-#
-#func _determineDeck(GivenDeck) -> String:
-#	if GivenDeck == $Deck:
-#		return DeckStrings["normalDeck"]
-#	if GivenDeck == $OpponentsDeck:
-#		return DeckStrings["opposingDeck"]
-#	return ""
 #
 #func _getUnlockedRanks() -> Array[String]:
 #	return unlockedCardRanks

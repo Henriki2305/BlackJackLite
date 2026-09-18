@@ -70,8 +70,11 @@ func _deSelectMems() -> void:
 
 func _emptyStore() -> void:
 	for m in memos:
-		EventBus.memoryRolledFromStore.emit(m)
-		m.queue_free()
+		if(get_children().has(m)):
+			EventBus.memoryRolledFromStore.emit(m)
+			m.queue_free()
 	for c in cards:
 		if c._inStore():
 			c.queue_free()
+	memos = []
+	cards = []
