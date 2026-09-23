@@ -125,3 +125,7 @@ signal addMemorySlot
 signal removeMemorySlot
 
 signal advanceRound
+
+signal cardListShown
+
+signal cardListHidden

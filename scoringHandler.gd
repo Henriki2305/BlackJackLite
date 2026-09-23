@@ -47,16 +47,19 @@ func _resetPower(_n = 0) -> void:
 	
 	
 func _checkScore() -> void:
-	if(totalPower.is_greater_than(opponentScore)):
+	print(totalPower)
+	print(opponentScore)
+	if(totalPower.is_greater_than_or_equal_to(opponentScore)):
 		EventBus.roundWon.emit(totalPower.divide(opponentScore))
 	else:
 		EventBus.roundLost.emit()
+		EventBus.betButtonsRevealed.emit()
 	EventBus.endRound.emit()
 
 func _updateOpponentScore(o) -> void:
 	opponentScore.mantissa = 1.0
 	opponentScore.exponent = 0
-	opponentScore.multiply(o)
+	opponentScore = opponentScore.multiply(o)
 
 func _increaseHandPower(amount) -> void:
 	print(amount)

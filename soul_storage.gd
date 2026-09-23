@@ -10,6 +10,10 @@ func _ready() -> void:
 	EventBus.createSouls.connect(_increaseSouls)	
 	EventBus.roundWon.connect(_winSouls)
 	EventBus.buyMemory.connect(_buyMemory)
+	EventBus.roundLost.connect(_loseRound)
+
+func _loseRound() -> void:
+	EventBus.loseSouls.emit(Global.bet)
 
 func _winSouls(a:BigNumber) -> void:
 	var ratio = a.to_float()
@@ -24,11 +28,15 @@ func _winSouls(a:BigNumber) -> void:
 		amount+=3
 	EventBus.winSouls.emit(amount)
 	
+func _loseSouls() -> void:
+	Global.soulShardsAmount -= Global.bet
+	var tween = get_tree().create_tween()
+	tween.tween_property($soulProgressBar,"value",(1-(1/(1+Global.soulShardsAmount/25.0)))*100,1.5)
+	EventBus.loseSouls.emit(Global.bet)
 	
 func _setAmount(a : int) -> void:
 	var tween = get_tree().create_tween()
 	Global.soulShardsAmount = a
-	tween.tween_property($soulProgressBar,"value",(1-(1/(1+Global.soulShardsAmount/25.0)))*100,1.5)
 	
 func _increaseSouls(a : int) -> void:
 	var tween = get_tree().create_tween()

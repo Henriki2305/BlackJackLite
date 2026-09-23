@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bydbkgw8d0gil"]
+
+[ext_resource type="Script" uid="uid://b3cjov13le0t" path="res://Memories/InstantMemories/despairMemory/mdespair.gd" id="1_cypum"]
+[ext_resource type="Script" uid="uid://dmop3gc8orqqv" path="res://memoryData.gd" id="2_6b5j6"]
+[ext_resource type="PackedScene" uid="uid://cnyf78tngee0i" path="res://Memories/memory2D.tscn" id="2_vr8ue"]
+
+[sub_resource type="Resource" id="Resource_cypum"]
+script = ExtResource("2_6b5j6")
+display_name = "despair"
+description = "DESPAIRRRRR"
+buy_price = 3
+showMult = true
+metadata/_custom_type_script = "uid://dmop3gc8orqqv"
+
+[node name="MhelpingHand" type="Node2D" unique_id=806121372 node_paths=PackedStringArray("mem2d")]
+script = ExtResource("1_cypum")
+memoryStats = SubResource("Resource_cypum")
+mem2d = NodePath("Memory2d")
+
+[node name="Memory2d" parent="." unique_id=2109284723 instance=ExtResource("2_vr8ue")]

@@ -4,7 +4,6 @@ var cardScene = preload("res://Scenes/card.tscn")
 var cardsdrawn = 0
 var i = 0
 var cardsInDeck: Array[card]
-var opponent : bool
 var bust = false
 
 #var suits = {
@@ -51,9 +50,6 @@ var bust = false
 #	"12": Enums.twelwe
 #	}
 
-func _setSide(s : bool) -> void:
-	opponent = s
-
 func _createDeck(cardstring) -> void:
 	var cards = cardstring.split(".")
 	for curCard in cards:
@@ -76,7 +72,10 @@ func _ready() -> void:
 	
 
 func _createCardList() -> void:
-	EventBus.cardListCreated.emit(cardsInDeck)
+	var graphs : Array[CardGraphics] = []
+	for c in cardsInDeck:
+		graphs.append(c._getGraphics())
+	EventBus.cardListShown.emit(graphs)
 	
 func _deleteCardList() -> void:
 	EventBus.cardListDestroyed.emit()
@@ -101,20 +100,6 @@ func _moveCardToDeck(c : card) -> void:
 	c.reparent(self)
 	c.position=Vector2(0,0)
 		
-func _getDeckCopy() -> Array[card]:
-	var d: Array[card] = []
-	for c in cardsInDeck:
-		var s = c._getString()
-		var cc = cardScene.instantiate()
-		cc.setValues(s,true)
-		cc._setOriginal(c)
-		cc._setListed(true)
-		add_child(cc)
-		d.append(cc)
-		if(!c._inDeck()):
-			cc._setUsed()
-			print("rööki")
-	return d
 	
 #func _burnCards(s : String) -> void:
 #	match s:

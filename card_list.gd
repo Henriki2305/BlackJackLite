@@ -1,21 +1,15 @@
-class_name cardlist extends Node2D
+class_name cardlist extends Control
 
 var g : Game
 var cards : Array[card]
 # Called when the node enters the scene tree for the first time.
 
-func fillCont(c : card, cont : TextureRect) -> void:
-	c.show()
-	c.reparent(cont)
-		
-func _sortSuit(s: Array[card]) -> Array[card]:
-	var ranks = [Enums.Rank.ZERO,Enums.Rank.ONE,Enums.Rank.TWO,Enums.Rank.THREE,Enums.Rank.FOUR,Enums.Rank.FIVE,Enums.Rank.SIX,Enums.Rank.SEVEN,Enums.Rank.EIGHT,Enums.Rank.NINE,Enums.Rank.TEN,Enums.Rank.ELEVEN,Enums.Rank.JACK,Enums.Rank.QUEEN,Enums.Rank.KING,Enums.Rank.ACE]
-	var temp : Array[card] = []
-	for r in ranks:
-		for c in s:
-			if c.rank == r:
-				temp.append(c)
-	return temp
+func _sortSuit(s: Array[CardGraphics]) -> Array[CardGraphics]:
+	var result = s.duplicate()
+	result.sort_custom( func(x,y):
+		return x.cardReference._getRank() < y.cardReference._getRank()
+	)
+	return result
 		
 func _cancel() -> void:
 	g = get_parent().get_parent()
@@ -31,22 +25,18 @@ func _confirmSelection() -> void:
 	rou._setSelectedCards(ref)
 		
 func _ready() -> void:
-	EventBus.cardListCreated.connect(_createDeck)
-	EventBus.cardListDestroyed.connect(queue_free)
+	EventBus.cardListShown.connect(_createDeck)
 	
-func _createDeck(d : Array[card]) -> void:
-	$Control.size = get_parent().size
-	cards = d
-	var hearts : Array[card] = []
-	var diamonds : Array[card] = []
-	var spades : Array[card] = []
-	var clubs : Array[card] = []
-	var stars : Array[card] = []
-	var all : Array[card] = []
-	var none : Array[card] = []
-	for c in cards:
-		c.position = Vector2(0,0)
-		match c.suit:
+func _createDeck(d : Array[CardGraphics]) -> void:
+	var hearts : Array[CardGraphics] = []
+	var diamonds : Array[CardGraphics] = []
+	var spades : Array[CardGraphics] = []
+	var clubs : Array[CardGraphics] = []
+	var stars : Array[CardGraphics] = []
+	var all : Array[CardGraphics] = []
+	var none : Array[CardGraphics] = []
+	for c in d:
+		match c.cardReference.suit:
 			Enums.Suit.HEARTS:
 				hearts.append(c)
 			Enums.Suit.DIAMONDS:
@@ -61,120 +51,28 @@ func _createDeck(d : Array[card]) -> void:
 				all.append(c)
 			Enums.Suit.NONE:
 				none.append(c)
-	var suits : int = 0
-	if len(hearts) > 0:
-		hearts = _sortSuit(hearts)
-		var Cont = TextureRect.new()
-		Cont.set_name("hearts")
-		$Control/SuitContainers.add_child(Cont)
-		Cont.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		Cont.size_flags_vertical = Control.SIZE_EXPAND
-		for c in hearts:
-			fillCont(c,Cont)
-		suits += 1
-		var wid = $Control.size.x * min(1.0,0.15 + 0.1*len(hearts))
-		var dis = wid/len(hearts)
-		var i = 0
-		for c in hearts:
-			c.position = Vector2(dis*i,0)
-			i+=1
-	if len(diamonds) > 0:
-		diamonds = _sortSuit(diamonds)
-		var Cont = TextureRect.new()
-		Cont.set_name("diamonds")
-		$Control/SuitContainers.add_child(Cont)
-		Cont.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		Cont.size_flags_vertical = Control.SIZE_EXPAND
-		for c in diamonds:
-			fillCont(c,Cont)
-		suits += 1
-		var wid = $Control.size.x * min(1.0,0.15 + 0.1*len(diamonds))
-		var dis = wid/len(diamonds)
-		var i = 0
-		for c in diamonds:
-			c.position = Vector2(dis*i,0)
-			i+=1
-	if len(spades) > 0:
-		spades = _sortSuit(spades)
-		var Cont = TextureRect.new()
-		Cont.set_name("spades")
-		$Control/SuitContainers.add_child(Cont)
-		Cont.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		Cont.size_flags_vertical = Control.SIZE_EXPAND
-		for c in spades:
-			fillCont(c,Cont)
-		suits += 1
-		var wid = $Control.size.x * min(1.0,0.15 + 0.1*len(spades))
-		var dis = wid/len(spades)
-		var i = 0
-		for c in spades:
-			c.position = Vector2(dis*i,0)
-			i+=1
-	if len(clubs) > 0:
-		clubs = _sortSuit(clubs)
-		var Cont = TextureRect.new()
-		Cont.set_name("clubs")
-		$Control/SuitContainers.add_child(Cont)
-		Cont.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		Cont.size_flags_vertical = Control.SIZE_EXPAND
-		for c in clubs:
-			fillCont(c,Cont)
-		suits += 1
-		var wid = $Control.size.x * min(1.0,0.15 + 0.1*len(clubs))
-		var dis = wid/len(clubs)
-		var i = 0
-		for c in clubs:
-			c.position = Vector2(dis*i,0)
-			i+=1
-	if len(stars) > 0:
-		stars = _sortSuit(stars)
-		var Cont = TextureRect.new()
-		Cont.set_name("stars")
-		$Control/SuitContainers.add_child(Cont)
-		Cont.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		Cont.size_flags_vertical = Control.SIZE_EXPAND
-		for c in stars:
-			fillCont(c,Cont)
-		suits += 1
-		var wid = $Control.size.x * min(1.0,0.15 + 0.1*len(stars))
-		var dis = wid/len(stars)
-		var i = 0
-		for c in stars:
-			c.position = Vector2(dis*i,0)
-			i+=1
-	if len(all) > 0:
-		all = _sortSuit(all)
-		var Cont = TextureRect.new()
-		Cont.set_name("all")
-		$Control/SuitContainers.add_child(Cont)
-		Cont.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		Cont.size_flags_vertical = Control.SIZE_EXPAND
-		for c in all:
-			fillCont(c,Cont)
-		suits += 1
-		var wid = $Control.size.x * min(1.0,0.15 + 0.1*len(all))
-		var dis = wid/len(all)
-		var i = 0
-		for c in all:
-			c.position = Vector2(dis*i,0)
-			i+=1
-	if len(none) > 0:
-		none = _sortSuit(none)
-		var Cont = TextureRect.new()
-		Cont.set_name("none")
-		$Control/SuitContainers.add_child(Cont)
-		Cont.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		Cont.size_flags_vertical = Control.SIZE_EXPAND
-		for c in none:
-			fillCont(c,Cont)
-		suits += 1
-		var wid = $Control.size.x * min(1.0,0.15 + 0.1*len(none))
-		var dis = wid/len(none)
-		var i = 0
-		for c in none:
-			c.position = Vector2(dis*i,0)
-			i+=1
-	
+	hearts = _sortSuit(hearts)
+	diamonds = _sortSuit(diamonds)
+	spades = _sortSuit(spades)
+	clubs = _sortSuit(clubs)
+	stars = _sortSuit(stars)
+	all = _sortSuit(all)
+	none = _sortSuit(none)
+	for c in hearts:
+		$TextureRect/SuitContainers/Hearts.add_child(c.duplicate())
+	for c in diamonds:
+		$TextureRect/SuitContainers/Diamonds.add_child(c.duplicate())
+	for c in spades:
+		$TextureRect/SuitContainers/Spades.add_child(c.duplicate())
+	for c in clubs:
+		$TextureRect/SuitContainers/Clubs.add_child(c.duplicate())
+	for c in stars:
+		$TextureRect/SuitContainers/Stars.add_child(c.duplicate())
+	for c in all:
+		$TextureRect/SuitContainers/All.add_child(c.duplicate())
+	for c in none:
+		$TextureRect/SuitContainers/None.add_child(c.duplicate())
+	show()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

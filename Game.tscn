@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://664bijxsk8w6" path="res://round_button_controller.tscn" id="10_yx171"]
 [ext_resource type="Texture2D" uid="uid://dd1y86sjjtca3" path="res://images/machine.png" id="11_lvtmh"]
 [ext_resource type="PackedScene" uid="uid://brrlkl6bdubby" path="res://BetInterface.tscn" id="11_yhmtn"]
+[ext_resource type="PackedScene" uid="uid://duigimficalft" path="res://Scenes/card_list.tscn" id="12_0yprl"]
 [ext_resource type="PackedScene" uid="uid://hs1pqbjyk3ht" path="res://Scenes/layer_gate.tscn" id="12_gwjdr"]
 [ext_resource type="PackedScene" uid="uid://bk8p056o42vct" path="res://round_loop_event_handler.tscn" id="12_lvtmh"]
 [ext_resource type="Texture2D" uid="uid://c1pimrotwhchj" path="res://images/Dark.png" id="12_yyih5"]
@@ -156,6 +157,15 @@ offset_left = 778.0
 offset_top = 965.0
 offset_right = 829.0
 offset_bottom = 983.0
+
+[node name="cardlist" parent="BetInterface" unique_id=1521196519 instance=ExtResource("12_0yprl")]
+visible = false
+z_index = 105
+layout_mode = 0
+offset_left = -776.0
+offset_top = -960.0
+offset_right = 1144.0
+offset_bottom = 120.0
 
 [node name="RoundLoopEventHandler" parent="." unique_id=1953017771 instance=ExtResource("12_lvtmh")]
 z_index = 15

@@ -118,7 +118,6 @@ offset_left = -63.5
 offset_top = -88.9
 offset_right = 571.5
 offset_bottom = 800.1
-scale = Vector2(0.2, 0.2)
 
 [connection signal="pressed" from="BurnButton" to="." method="_burnCard"]
 [connection signal="pressed" from="TakeButton" to="." method="_takeCard"]

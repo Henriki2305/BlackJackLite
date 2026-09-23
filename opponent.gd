@@ -55,7 +55,7 @@ func _calculateScore() -> void:
 		baseS*=100.0
 	else:
 		baseS*=roundMults[roundN]
-	baseS = baseS * (1 + 0.1*roundsWon)
+	baseS = baseS * (1 + 1.5*roundsWon)
 	baseS*=1.0
 	var b = _createBig(baseS)	
 	EventBus.opponentScoreCalculated.emit(b)

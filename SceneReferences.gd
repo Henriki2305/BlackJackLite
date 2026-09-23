@@ -4,7 +4,8 @@ var memories : Dictionary = {
 	"helpingHand": preload("res://Memories/InstantMemories/helpingHandMemory/MhelpingHand.tscn"),
 	"shoulderDevil": preload("res://Memories/InstantMemories/ShoulderDevilMemory/MShoulderDevil.tscn"),
 	"slotMachine": preload("res://Memories/HybridMemories/SlotMachineMemory/MslotMachine.tscn"),
-	"humility": preload("res://Memories/PerCardMemories/humilityMemory/Mhumility.tscn")
+	"humility": preload("res://Memories/PerCardMemories/humilityMemory/Mhumility.tscn"),
+	"despair": preload("res://Memories/InstantMemories/despairMemory/Mdespair.tscn")
 }
 
 var availableMemories : Dictionary

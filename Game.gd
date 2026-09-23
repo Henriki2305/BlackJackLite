@@ -79,7 +79,7 @@ func _recruitSoul(s : soul) -> void:
 #
 	
 func _betweenRounds(_n : BigNumber) -> void:
-	if level == 3:
+	if level == 30:
 		var burneri = BurnerScene.instantiate()
 		burneri.set_name("burner")
 		add_child(burneri)
@@ -136,7 +136,6 @@ func _ready() -> void:
 	$LayerGate.curse.connect(_curse)
 	playerDeck = $Deck
 	$LayerNameText.text=layer
-	playerDeck._setSide(false)
 	$ColorRect.material.set_shader_parameter("width",0.0)
 	$ColorRect.material.set_shader_parameter("spot",0.0)
 	EventBus.roundWon.connect(_betweenRounds)

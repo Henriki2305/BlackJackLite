@@ -229,6 +229,9 @@ func setValues(cValues : String, b : bool) -> void:
 	$Card_graphics.cardReference = self
 	$Card_graphics._updateSymbols(rank, suit)
 			
+func _getGraphics() -> CardGraphics:
+	return $Card_graphics
+			
 func changeRank(r : String) -> void:
 	rank = ranks[r]
 	xind = locationsx[rank]

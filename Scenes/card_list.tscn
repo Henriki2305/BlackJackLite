@@ -7,38 +7,63 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v0c4e"]
 shader = ExtResource("2_uhr1p")
 
-[node name="Card list" type="Node2D" unique_id=2020890033]
-z_index = 25
+[node name="cardlist" type="Control" unique_id=1521196519]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
 script = ExtResource("1_h87do")
+metadata/_custom_type_script = "uid://deilwqait6sl3"
 
 [node name="Control" type="Control" parent="." unique_id=39261658]
-layout_mode = 3
 anchors_preset = 0
 offset_left = 125.0
 offset_top = 125.0
 offset_right = 1595.0
 offset_bottom = 755.0
 
-[node name="SuitContainers" type="BoxContainer" parent="Control" unique_id=1555529353]
-z_index = 25
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-vertical = true
-
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1550051075]
 material = SubResource("ShaderMaterial_v0c4e")
-offset_right = 1720.0
-offset_bottom = 880.0
+layout_mode = 0
+offset_left = 83.0
+offset_top = 104.0
+offset_right = 1803.0
+offset_bottom = 984.0
 texture = ExtResource("2_hcnqd")
 
+[node name="SuitContainers" type="VBoxContainer" parent="TextureRect" unique_id=719628350]
+layout_mode = 0
+offset_right = 1721.0
+offset_bottom = 882.0
+alignment = 1
+
+[node name="Hearts" type="HBoxContainer" parent="TextureRect/SuitContainers" unique_id=482887850]
+layout_mode = 2
+
+[node name="Spades" type="HBoxContainer" parent="TextureRect/SuitContainers" unique_id=866594147]
+layout_mode = 2
+
+[node name="Diamonds" type="HBoxContainer" parent="TextureRect/SuitContainers" unique_id=1568566638]
+layout_mode = 2
+
+[node name="Clubs" type="HBoxContainer" parent="TextureRect/SuitContainers" unique_id=621170986]
+layout_mode = 2
+
+[node name="Stars" type="HBoxContainer" parent="TextureRect/SuitContainers" unique_id=1753664509]
+layout_mode = 2
+
+[node name="All" type="HBoxContainer" parent="TextureRect/SuitContainers" unique_id=1372265335]
+layout_mode = 2
+
+[node name="None" type="HBoxContainer" parent="TextureRect/SuitContainers" unique_id=1306465470]
+layout_mode = 2
+
 [node name="ConfirmButton" type="TextureButton" parent="." unique_id=444125916]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="CancelButton" type="TextureButton" parent="." unique_id=305552486]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
