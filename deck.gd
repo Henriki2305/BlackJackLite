@@ -65,7 +65,7 @@ func _createDeck(cardstring) -> void:
 func _ready() -> void:
 	EventBus.hitCard.connect(_drawCard)
 	EventBus.cardReturned.connect(_moveCardToDeck)
-	var DeckString = "nohsh7.nohgo7.nohsh7.nohgo7.nodra7.nocco7.nodco7.nohcoa.nohco7.nosco7.nohco7"
+	var DeckString = "nohsh7.nohsh7.nohsh7.nohgo7.nohsh7.nohgo7.nodra7.nocco7.nodco7.nohcoa.nohco7.nosco7.nohco7"
 #	var DeckString = g._determineDeck(self)
 	_createDeck(DeckString)
 	var cards = get_children().filter(func(c): return c is card)

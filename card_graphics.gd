@@ -1,4 +1,4 @@
-class_name CardGraphics extends TextureRect
+class_name CardGraphics extends Control
 
 var texts = {
 	Enums.Rank.ZERO : "0",

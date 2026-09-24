@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://deilwqait6sl3" path="res://card_list.gd" id="1_h87do"]
 [ext_resource type="Texture2D" uid="uid://c1pimrotwhchj" path="res://images/Dark.png" id="2_hcnqd"]
 [ext_resource type="Shader" uid="uid://vgpvh3hunria" path="res://Shaders/list.gdshader" id="2_uhr1p"]
+[ext_resource type="Texture2D" uid="uid://dfqr2eu01xya7" path="res://graytest.jpg" id="4_v0c4e"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v0c4e"]
 shader = ExtResource("2_uhr1p")
@@ -33,9 +34,10 @@ texture = ExtResource("2_hcnqd")
 
 [node name="SuitContainers" type="VBoxContainer" parent="TextureRect" unique_id=719628350]
 layout_mode = 0
-offset_right = 1721.0
-offset_bottom = 882.0
-alignment = 1
+offset_left = 94.0
+offset_top = 77.0
+offset_right = 1632.0
+offset_bottom = 807.0
 
 [node name="Hearts" type="HBoxContainer" parent="TextureRect/SuitContainers" unique_id=482887850]
 layout_mode = 2
@@ -60,10 +62,20 @@ layout_mode = 2
 
 [node name="ConfirmButton" type="TextureButton" parent="." unique_id=444125916]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 1733.0
+offset_top = 105.0
+offset_right = 1804.0
+offset_bottom = 175.0
+texture_normal = ExtResource("4_v0c4e")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="CancelButton" type="TextureButton" parent="." unique_id=305552486]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 83.0
+offset_top = 106.0
+offset_right = 166.0
+offset_bottom = 179.0
+texture_normal = ExtResource("4_v0c4e")
+ignore_texture_size = true
+stretch_mode = 0

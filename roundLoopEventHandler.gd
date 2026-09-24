@@ -13,6 +13,7 @@ var bustLimit = 21
 func _ready() -> void:
 	EventBus.playRound.connect(_playRound)
 	EventBus.stand.connect(_playRound)
+	EventBus.cardDrawn.connect(_updatePlayState)
 
 func _playRound() -> void:
 	var cardMemories: Array = memorybox._getMemories().filter(func(m): return (m is perCardMemory || m is hybridMemory))
@@ -55,7 +56,7 @@ func _playRound() -> void:
 			await get_tree().create_timer(0.35).timeout
 	EventBus.handPlayed.emit()
 
-func _updatePlayState() -> void:
-	var hands : Array[hand] = hBox._getHands()
-	for h in hands:
+func _updatePlayState(_n) -> void:
+	var hands : Array = hBox._getHands()
+	for h:hand in hands:
 		h._updateHand(main._getCards())

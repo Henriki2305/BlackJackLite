@@ -26,6 +26,7 @@ func _confirmSelection() -> void:
 		
 func _ready() -> void:
 	EventBus.cardListShown.connect(_createDeck)
+	$CancelButton.pressed.connect(hide)
 	
 func _createDeck(d : Array[CardGraphics]) -> void:
 	var hearts : Array[CardGraphics] = []
@@ -58,6 +59,20 @@ func _createDeck(d : Array[CardGraphics]) -> void:
 	stars = _sortSuit(stars)
 	all = _sortSuit(all)
 	none = _sortSuit(none)
+	for c in $TextureRect/SuitContainers/Hearts.get_children():
+		c.queue_free()
+	for c in $TextureRect/SuitContainers/Diamonds.get_children():
+		c.queue_free()
+	for c in $TextureRect/SuitContainers/Spades.get_children():
+		c.queue_free()
+	for c in $TextureRect/SuitContainers/Clubs.get_children():
+		c.queue_free()
+	for c in $TextureRect/SuitContainers/Stars.get_children():
+		c.queue_free()
+	for c in $TextureRect/SuitContainers/All.get_children():
+		c.queue_free()
+	for c in $TextureRect/SuitContainers/None.get_children():
+		c.queue_free()
 	for c in hearts:
 		$TextureRect/SuitContainers/Hearts.add_child(c.duplicate())
 	for c in diamonds:

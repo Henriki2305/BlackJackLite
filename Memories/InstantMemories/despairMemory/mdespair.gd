@@ -1,6 +1,6 @@
 extends instantMemory
 
-func _ready() -> void:
+func _memoryCreated() -> void:
 	memoryStats.var1 = 0
 	EventBus.loseSouls.connect(_lostSouls)
 	EventBus.roundWon.connect(_winRound)

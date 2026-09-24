@@ -1,9 +1,11 @@
+CardGraphics
+Control
+TextureButton
 HBoxContainer
 VBoxContainer
 cardlist
 TextureRect
 RichTextLabel
-Control
 Button
 memory2D
 instantMemory
@@ -11,5 +13,3 @@ perCardMemory
 TextureProgressBar
 PointLight2D
 hand
-TextureButton
-CollisionShape2D

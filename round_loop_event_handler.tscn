@@ -6,11 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://cw7kr0gn3r6oq" path="res://Scenes/memory_box.tscn" id="4_eapcb"]
 [ext_resource type="PackedScene" uid="uid://p1snryoyi1cd" path="res://Scenes/hand_box.tscn" id="5_5byuu"]
 
-[node name="RoundLoopEventHandler" type="Node2D" unique_id=1953017771 node_paths=PackedStringArray("memorybox", "main", "side")]
+[node name="RoundLoopEventHandler" type="Node2D" unique_id=1953017771 node_paths=PackedStringArray("memorybox", "main", "side", "hBox")]
 script = ExtResource("1_6sbva")
 memorybox = NodePath("MemoryBox")
 main = NodePath("MainHand")
 side = NodePath("SideHand")
+hBox = NodePath("Hand_box")
 
 [node name="MainHand" parent="." unique_id=489138791 instance=ExtResource("2_h1kev")]
 position = Vector2(462, 655)

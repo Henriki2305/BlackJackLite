@@ -119,7 +119,6 @@ scale = Vector2(0.95009243, 0.49235183)
 texture = ExtResource("12_yyih5")
 
 [node name="Control2" type="Control" parent="." unique_id=1456103767]
-visible = false
 z_index = 16
 layout_mode = 3
 anchors_preset = 0
@@ -158,15 +157,6 @@ offset_top = 965.0
 offset_right = 829.0
 offset_bottom = 983.0
 
-[node name="cardlist" parent="BetInterface" unique_id=1521196519 instance=ExtResource("12_0yprl")]
-visible = false
-z_index = 105
-layout_mode = 0
-offset_left = -776.0
-offset_top = -960.0
-offset_right = 1144.0
-offset_bottom = 120.0
-
 [node name="RoundLoopEventHandler" parent="." unique_id=1953017771 instance=ExtResource("12_lvtmh")]
 z_index = 15
 position = Vector2(0, -2)
@@ -183,3 +173,11 @@ visible = false
 
 [node name="Opponent" parent="." unique_id=78069949 instance=ExtResource("16_elkpi")]
 position = Vector2(934, 422)
+
+[node name="cardlist" parent="." unique_id=1521196519 instance=ExtResource("12_0yprl")]
+visible = false
+z_index = 105
+offset_left = 2.0
+offset_top = 5.0
+offset_right = 1922.0
+offset_bottom = 1085.0
