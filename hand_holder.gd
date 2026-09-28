@@ -7,12 +7,11 @@ var bonus : String
 func _ready() -> void:
 	$"Hand Requirement".visible = false
 	$HandReward.visible = false
-	_setVals("heh","hah","höh")
 	
-func _setVals(a : String, b : String, c : String) -> void:
-	handName = a
-	requirement = b
-	bonus = c
+func _setVals(h : hand) -> void:
+	handName = h.handName
+	requirement = h._getReqText()
+	bonus = h._getRewText()
 	$Handname.text = str("[color=#0000FF]",handName,"[/color]")
 	$"Hand Requirement".text = str("[color=#00FF00]",requirement,"[/color]")
 	$HandReward.text = str("[color=#FF0000]",bonus,"[/color]")

@@ -12,13 +12,15 @@ func _leaveDemon() -> void:
 
 
 
-func _setHands(h : Array) -> void:
+func _setHands() -> void:
 	var g : Game = get_parent().get_parent()
 	var x = 0
-	for i in h:
+	for i in range(4):
 		var hain : handHolder = hhScene.instantiate()
+		var h : hand = SceneReferences._getHand()
+		EventBus.handGivenToDemon.emit(h)
 		add_child(hain)
-		hain._setVals(i,g.handReqTexts[i],g.handRewardTexts[i])
+		hain._setVals(h)
 		OfferedHands.append(hain)
 		var pos : Vector2 = Vector2(500+300*(x%2),400+400*((x)/2))
 		hain.global_position = pos

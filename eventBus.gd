@@ -129,3 +129,9 @@ signal advanceRound
 signal cardListShown
 
 signal cardListHidden
+
+signal magicianEntered
+
+signal handGivenToDemon
+
+signal handTakenFromDemon

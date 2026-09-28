@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://chspqd6458b3"]
+
+[ext_resource type="Script" uid="uid://dhp2kvkb3xq6t" path="res://doors_of_options.gd" id="1_bwg5g"]
+[ext_resource type="Texture2D" uid="uid://dj1ioyn4sb55y" path="res://images/door.png" id="2_bwvsr"]
+
+[node name="DoorsOfOptions" type="Node2D" unique_id=1798955960]
+position = Vector2(2, 0)
+script = ExtResource("1_bwg5g")
+
+[node name="Door1" type="TextureButton" parent="." unique_id=267405863]
+offset_left = 435.0
+offset_top = 393.0
+offset_right = 635.0
+offset_bottom = 693.0
+texture_normal = ExtResource("2_bwvsr")
+
+[node name="OptionName" type="RichTextLabel" parent="Door1" unique_id=226711422]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 107.0
+offset_right = 141.0
+offset_bottom = 190.0
+bbcode_enabled = true
+
+[node name="Door2" type="TextureButton" parent="." unique_id=609654870]
+offset_left = 826.0
+offset_top = 398.0
+offset_right = 1026.0
+offset_bottom = 698.0
+texture_normal = ExtResource("2_bwvsr")
+
+[node name="OptionName" type="RichTextLabel" parent="Door2" unique_id=192592854]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 107.0
+offset_right = 141.0
+offset_bottom = 190.0
+bbcode_enabled = true
+
+[node name="Door3" type="TextureButton" parent="." unique_id=983023489]
+offset_left = 1228.0
+offset_top = 405.0
+offset_right = 1428.0
+offset_bottom = 705.0
+texture_normal = ExtResource("2_bwvsr")
+
+[node name="OptionName" type="RichTextLabel" parent="Door3" unique_id=1609456945]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 107.0
+offset_right = 141.0
+offset_bottom = 190.0
+bbcode_enabled = true

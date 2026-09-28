@@ -1,6 +1,38 @@
 [gd_scene format=3 uid="uid://drqdbm31w6ljt"]
 
 [ext_resource type="Script" uid="uid://hbk4hhue84fd" path="res://magician.gd" id="1_1he70"]
+[ext_resource type="Texture2D" uid="uid://bc3jxvnfo4p2e" path="res://images/ClubSuit.png" id="2_rnjn7"]
+[ext_resource type="Texture2D" uid="uid://boxdwcayrwx7q" path="res://images/StarSuit.png" id="3_w7tej"]
+[ext_resource type="Texture2D" uid="uid://jria8qt8t4n" path="res://images/HeartSuit.png" id="4_t33pb"]
 
 [node name="Magician" type="Node2D" unique_id=844730753]
 script = ExtResource("1_1he70")
+
+[node name="Option1" type="TextureButton" parent="." unique_id=2109387051]
+z_index = 2
+offset_left = 477.0
+offset_top = 442.0
+offset_right = 616.0
+offset_bottom = 566.0
+texture_normal = ExtResource("2_rnjn7")
+
+[node name="Option2" type="TextureButton" parent="." unique_id=1772373610]
+z_index = 2
+offset_left = 851.0
+offset_top = 430.0
+offset_right = 990.0
+offset_bottom = 554.0
+texture_normal = ExtResource("3_w7tej")
+
+[node name="Option3" type="TextureButton" parent="." unique_id=2123683381]
+z_index = 2
+offset_left = 1263.0
+offset_top = 432.0
+offset_right = 1402.0
+offset_bottom = 556.0
+texture_normal = ExtResource("4_t33pb")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1649301945]
+z_index = -3
+offset_right = 1920.0
+offset_bottom = 1080.0

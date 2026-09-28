@@ -240,6 +240,15 @@ func changeRank(r : String) -> void:
 func _getRank():
 	return rank
 	
+func _getSuit():
+	return suit
+	
+func _isSuit(s : Enums.Suit) -> bool:
+	if s == Enums.Suit.NONE:
+		return suit == Enums.Suit.NONE
+	else:
+		return suit == s || suit == Enums.Suit.ALL
+	
 func changeSuit(s : String) -> void:
 	suit = suits[s]
 	yind = locationsy[suit]

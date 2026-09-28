@@ -40,16 +40,18 @@ func ColoredScarf() -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	pass
+
+func _generateMagician() -> void:
 	magicianType = types.values().pick_random()
 	match magicianType:
 		types.bokor:
-			$ButtonA.pressed.connect(BaronSamedi)
-			$ButtonB.pressed.connect(BravGede)
+			$Option1.pressed.connect(BaronSamedi)
+			$Option2.pressed.connect(BravGede)
 		types.shaman:
-			$ButtonA.pressed.connect(Ukko)
-			$ButtonB.pressed.connect(Tapio)
-			$ButtonC.pressed.connect(Ahti)
-
+			$Option3.pressed.connect(Ukko)
+			$Option4.pressed.connect(Tapio)
+			$Option5.pressed.connect(Ahti)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

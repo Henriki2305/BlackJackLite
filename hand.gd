@@ -44,6 +44,12 @@ func _setPosition(p : int) -> void:
 	HandPos = p
 
 @abstract
+func _getReqText() -> String
+	
+@abstract
+func _getRewText() -> String
+
+@abstract
 func _checkReq(cards: Array) -> bool
 #	match handName:
 #		"BlackJack":
@@ -79,9 +85,8 @@ func _checkReq(cards: Array) -> bool
 func _effect() -> void:
 	pass
 
-@abstract
-func _setInfo() -> void
-#	info.emit(reqTexts[handName][reqLevel-1],rewTexts[handName][rewLevel-1])
+func _setInfo() -> void:
+	info.emit(_getReqText(),_getRewText())
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

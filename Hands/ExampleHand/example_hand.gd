@@ -10,7 +10,10 @@ func _checkReq(cards: Array) -> bool:
 		2: return a > 3
 		3: return a > 2
 	return false
+
+func _getReqText() -> String:
+	return "testReq"
 	
-func _setInfo() -> void:
-	info.emit("testReq","testRew")
 	
+func _getRewText() -> String:
+	return "testRew"

@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://dblsxdrbh3un1"]
+
+[ext_resource type="Script" uid="uid://d0y8w5beygrtg" path="res://between_round.gd" id="1_go6qk"]
+[ext_resource type="Texture2D" uid="uid://b36017ciivept" path="res://images/StoreButton.png" id="2_ohi75"]
+[ext_resource type="Texture2D" uid="uid://cr7ahpden7np5" path="res://images/AdvanceButton.png" id="3_8b78r"]
+[ext_resource type="Texture2D" uid="uid://etat0nmmp45r" path="res://images/DemonButton.png" id="4_r35mt"]
+[ext_resource type="Texture2D" uid="uid://rt1emdi8x63c" path="res://images/GuardianButton.png" id="5_yp314"]
+[ext_resource type="Texture2D" uid="uid://ftcii43j5han" path="res://images/MagicianButton.png" id="6_mqf55"]
+[ext_resource type="Texture2D" uid="uid://by3uvrbno7m8s" path="res://images/SmithButton.png" id="7_m2wrb"]
+[ext_resource type="Texture2D" uid="uid://cb7tfloapuiyn" path="res://images/CollectorButton.png" id="8_ohvdi"]
+[ext_resource type="PackedScene" uid="uid://v2v1kwi0i7co" path="res://Scenes/Store.tscn" id="9_8b78r"]
+[ext_resource type="PackedScene" uid="uid://drqdbm31w6ljt" path="res://Scenes/magician.tscn" id="10_3xukd"]
+[ext_resource type="PackedScene" uid="uid://ss5pp0ppdh1h" path="res://Scenes/demon_of_hands.tscn" id="11_v4icw"]
+[ext_resource type="PackedScene" uid="uid://d2rgxojqhy2wi" path="res://Scenes/soul_smith.tscn" id="12_gu270"]
+
+[node name="BetweenRound" type="Node2D" unique_id=1339568277]
+script = ExtResource("1_go6qk")
+
+[node name="StoreButton" type="TextureButton" parent="." unique_id=121351787]
+z_index = 3
+offset_left = 66.0
+offset_top = 84.0
+offset_right = 666.0
+offset_bottom = 484.0
+texture_normal = ExtResource("2_ohi75")
+
+[node name="AdvanceButton" type="TextureButton" parent="." unique_id=537674325]
+z_index = 3
+offset_left = 53.0
+offset_top = 706.0
+offset_right = 653.0
+offset_bottom = 1106.0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("3_8b78r")
+
+[node name="DemonButton" type="TextureButton" parent="." unique_id=1438203764]
+z_index = 3
+offset_left = 546.0
+offset_top = 700.0
+offset_right = 1146.0
+offset_bottom = 1100.0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("4_r35mt")
+
+[node name="GuardianButton" type="TextureButton" parent="." unique_id=2055911482]
+z_index = 3
+offset_left = 1016.00006
+offset_top = 692.0
+offset_right = 1616.0
+offset_bottom = 1092.0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("5_yp314")
+
+[node name="MagicianButton" type="TextureButton" parent="." unique_id=1953878271]
+z_index = 3
+offset_left = 1475.0
+offset_top = 696.0
+offset_right = 2075.0
+offset_bottom = 1096.0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("6_mqf55")
+
+[node name="SoulSmithButton" type="TextureButton" parent="." unique_id=2029886405]
+z_index = 3
+offset_left = 715.0
+offset_top = 84.0
+offset_right = 1315.0
+offset_bottom = 484.0
+texture_normal = ExtResource("7_m2wrb")
+
+[node name="CollectorButton" type="TextureButton" parent="." unique_id=1048783292]
+z_index = 3
+offset_left = 1328.0
+offset_top = 86.0
+offset_right = 1928.0
+offset_bottom = 486.0
+texture_normal = ExtResource("8_ohvdi")
+
+[node name="Store" parent="." unique_id=1737560907 instance=ExtResource("9_8b78r")]
+visible = false
+
+[node name="Magician" parent="." unique_id=844730753 instance=ExtResource("10_3xukd")]
+visible = false
+
+[node name="DemonOfHands" parent="." unique_id=1821906543 instance=ExtResource("11_v4icw")]
+visible = false
+
+[node name="SoulSmith" parent="." unique_id=1270705611 instance=ExtResource("12_gu270")]
+visible = false
+
+[connection signal="pressed" from="StoreButton" to="." method="_EnterStore"]
+[connection signal="pressed" from="AdvanceButton" to="." method="_Advance"]
+[connection signal="pressed" from="DemonButton" to="." method="_EnterHandDemon"]
+[connection signal="pressed" from="GuardianButton" to="." method="_ChallengeGuardian"]
+[connection signal="pressed" from="MagicianButton" to="." method="_EnterMagician"]
+[connection signal="pressed" from="SoulSmithButton" to="." method="_EnterSoulSmith"]
+[connection signal="pressed" from="CollectorButton" to="." method="_EnterCollector"]

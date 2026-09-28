@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://by3uvrbno7m8s" path="res://images/SmithButton.png" id="7_m2wrb"]
 [ext_resource type="Texture2D" uid="uid://cb7tfloapuiyn" path="res://images/CollectorButton.png" id="8_ohvdi"]
 [ext_resource type="PackedScene" uid="uid://v2v1kwi0i7co" path="res://Scenes/Store.tscn" id="9_8b78r"]
+[ext_resource type="PackedScene" uid="uid://drqdbm31w6ljt" path="res://Scenes/magician.tscn" id="10_3xukd"]
+[ext_resource type="PackedScene" uid="uid://ss5pp0ppdh1h" path="res://Scenes/demon_of_hands.tscn" id="11_v4icw"]
+[ext_resource type="PackedScene" uid="uid://d2rgxojqhy2wi" path="res://Scenes/soul_smith.tscn" id="12_gu270"]
 
 [node name="BetweenRound" type="Node2D" unique_id=1339568277]
 script = ExtResource("1_go6qk")
@@ -74,6 +77,16 @@ offset_bottom = 486.0
 texture_normal = ExtResource("8_ohvdi")
 
 [node name="Store" parent="." unique_id=1737560907 instance=ExtResource("9_8b78r")]
+visible = false
+
+[node name="Magician" parent="." unique_id=844730753 instance=ExtResource("10_3xukd")]
+visible = false
+
+[node name="DemonOfHands" parent="." unique_id=1821906543 instance=ExtResource("11_v4icw")]
+visible = false
+
+[node name="SoulSmith" parent="." unique_id=1270705611 instance=ExtResource("12_gu270")]
+visible = false
 
 [connection signal="pressed" from="StoreButton" to="." method="_EnterStore"]
 [connection signal="pressed" from="AdvanceButton" to="." method="_Advance"]

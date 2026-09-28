@@ -14,7 +14,7 @@ var level = 1
 var unlockedCardRanks : Array[String] = ["2","3","4","5","6","7","8","9","10","j","q","k","a"]
 var unlockedSuits : Array[String] = ["h","s","d","c"]
 var unlockedEnchantments : Array[String] = ["no","cu"]
-var BetweenRoundsScene = preload("res://BetweenRound.tscn")
+var BetweenRoundsScene = preload("res://Scenes/BetweenRound.tscn")
 var BurnerScene = preload("res://Scenes/burner.tscn")
 var CardListScene = preload("res://Scenes/card_list.tscn")
 var chosenCards : Array[card]
@@ -47,12 +47,6 @@ var soulRules : Dictionary = {
 	"Content" : false, #machines do not trigger their card pair effects
 	"Resourceful" : false, #cost of pressing buttons is halved
 	"Experienced" : false, #triggering a hand 10 times levels up one of its traits
-}
-
-var handReqTexts : Dictionary = {
-	"testhand1" : "testReq1",
-	"testhand2" : "testReq2",
-	"testhand3" : "testReq3"
 }
 
 var DeckStrings : Dictionary = {

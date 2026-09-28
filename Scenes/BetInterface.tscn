@@ -37,6 +37,7 @@ offset_right = 315.0
 offset_bottom = -25.0
 theme_override_font_sizes/normal_font_size = 64
 text = "0"
+scroll_active = false
 
 [connection signal="pressed" from="IncreaseBet" to="." method="_increaseBet"]
 [connection signal="pressed" from="DecreaseBet" to="." method="_decreaseBet"]
