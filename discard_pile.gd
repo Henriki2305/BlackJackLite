@@ -8,10 +8,11 @@ func _getCards() -> Array[card]:
 	return c
 
 func _discardCard(c : card) -> void:
+	print("e")
 	c.reparent(self)
 	c.hide()
 
-func _sendCardsToDeck() -> void:
+func _sendCardsToDeck(_n) -> void:
 	for c in _getCards():
 		EventBus.cardReturned.emit(c)
 	

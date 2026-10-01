@@ -135,3 +135,9 @@ signal magicianEntered
 signal handGivenToDemon
 
 signal handTakenFromDemon
+
+signal optionShown
+
+signal optionRemoved
+
+signal optionTaken

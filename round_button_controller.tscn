@@ -21,8 +21,7 @@ text = "Hit"
 
 [node name="StandButton" type="Button" parent="Control" unique_id=1167512601]
 layout_mode = 0
-offset_left = 147.0
-offset_top = -1.0
-offset_right = 247.0
-offset_bottom = 99.0
+offset_left = 150.0
+offset_right = 250.0
+offset_bottom = 100.0
 text = "Stand"

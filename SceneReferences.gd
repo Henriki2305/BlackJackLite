@@ -11,8 +11,19 @@ var memories : Dictionary = {
 
 var availableMemories : Dictionary
 
-var options : Array[String] = ["Stand","Hit","Discard","Surrender","DoubleDown","Split","Burn"]
+var options : Array[String] = ["Stand","Hit","Discard","Surrender","DoubleDown","Split","Burn","Aid", "Shuffle"]
 var availableOptions : Array
+var optionDescriptions : Dictionary = {
+	"Stand" : "play the current hand",
+	"Hit" : "draw a card to the main hand",
+	"Discard" : "send the rightmost card in the main hand to the discard pile and lose 1 soul shard",
+	"Surrender" : "lose the current round but keep half the bet soul shards",
+	"DoubleDown" : "double the bet amount, draw a card and stand. +2 to round reward",
+	"Split" : "send right half of the main hand to the side hand. usable once per round and only if the player has not busted",
+	"Burn" : "destroy the last drawn card",
+	"Aid" : "draw 3 cards to the side hand. Bust if their bust value is higher than the main hand's",
+	"Shuffle" : "shuffle all cards in main hand into the deck once per round"
+}
 var hands : Dictionary = {
 	"BigNumber": preload("res://Hands/BigNumberHand/BigNumberHand.tscn"),
 	"Example": preload("res://Hands/ExampleHand/ExampleHand.tscn"),
@@ -29,6 +40,11 @@ func _ready() -> void:
 	EventBus.memorySoldUnique.connect(_addMemory)
 	EventBus.memoryRolledToStore.connect(_removeMemory)
 	EventBus.memoryRolledFromStore.connect(_addMemory)
+	EventBus.handGivenToDemon.connect(_removeHand)
+	EventBus.handTakenFromDemon.connect(_addHand)
+	EventBus.optionShown.connect(_removeOption)
+	EventBus.optionRemoved.connect(_addOption)
+	
 	
 func _removeMemory(m : memory) -> void:
 	var n = m._getName()
@@ -51,5 +67,15 @@ func _getMemory() -> memory:
 	
 func _getHand() -> hand:
 	return (availableHands[availableHands.keys()[randi() % availableHands.size()]]).instantiate()
+	
+func _getOption() -> String:
+	return (availableOptions.pick_random())
 
-#var buttons : 
+func _removeOption(s : String) -> void:
+	availableOptions.erase(s)
+
+func _addOption(s : String) -> void:
+	availableOptions.append(s)
+	
+func _getDescription(s : String) -> String:
+	return optionDescriptions[s]

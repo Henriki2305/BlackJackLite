@@ -8,10 +8,16 @@ func _ready() -> void:
 		_connectButton(a)
 	EventBus.betPlaced.connect(show)
 	EventBus.endRound.connect(hide)
+	EventBus.optionTaken.connect(_addButton)
 	
 func _addButton(b : Button) -> void:
-	b.reparent(self)
+	$Control.add_child(b)
+	b.position = Vector2(300,0)
+	print(b.name)
+	b.show()
+	b.text=b.name
 	_connectButton(b)
+	actions.append(b)
 
 func _connectButton(b : Button) -> void:
 	if actions.size() < 4:
@@ -32,10 +38,14 @@ func _stand() -> void:
 	EventBus.stand.emit()
 
 func _discard() -> void:
-	EventBus.discard.emit()
+	if(Global.soulShardsAmount > 1):
+		EventBus.spendSouls.emit(1)
+		EventBus.discard.emit()
+	print("discard")
 	
 func _surrender() -> void:
 	EventBus.surrender.emit()
+	print("surrender")
 	
 func _doubleDown() -> void:
 	EventBus.doubleDown.emit()

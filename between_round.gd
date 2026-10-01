@@ -19,6 +19,7 @@ func _hideButtons() -> void:
 	$MagicianButton.hide()
 	$SoulSmithButton.hide()
 	$CollectorButton.hide()
+	$DoorButton.hide()
 	
 func _showButtons() -> void:
 	$StoreButton.show()
@@ -28,10 +29,12 @@ func _showButtons() -> void:
 	$MagicianButton.show()
 	$SoulSmithButton.show()
 	$CollectorButton.show()
+	$DoorButton.show()
 
 func _ready() -> void:
 	$SoulSmith.leave.connect(_showButtons)
 	$Store.leave.connect(_showButtons)
+	$DoorsOfOptions.leave.connect(_showButtons)
 #	$LayerGate.aura.connect(_aura)
 #	$LayerGate.boon.connect(_boon)
 #	$LayerGate.curse.connect(_curse)
@@ -72,6 +75,11 @@ func _EnterSoulSmith() -> void:
 	var a : Array[String] = ["test1","test2","test3"]
 	$SoulSmith._setPossibleSouls(a)
 	$SoulSmith.show()
+	_hideButtons()
+
+func _EnterDoors() -> void:
+	$DoorsOfOptions.show()
+	$DoorsOfOptions._setOptions()
 	_hideButtons()
 
 func _ChallengeGuardian() -> void:
