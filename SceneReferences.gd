@@ -6,7 +6,9 @@ var memories : Dictionary = {
 	"slotMachine": preload("res://Memories/HybridMemories/SlotMachineMemory/MslotMachine.tscn"),
 	"humility": preload("res://Memories/PerCardMemories/humilityMemory/Mhumility.tscn"),
 	"despair": preload("res://Memories/InstantMemories/despairMemory/Mdespair.tscn"),
-	"weddingRing": preload("res://Memories/PerCardMemories/weddingRingMemory/MweddingRing.tscn")
+	"weddingRing": preload("res://Memories/PerCardMemories/weddingRingMemory/MweddingRing.tscn"),
+	"recursion": preload("res://Memories/TriggerMemories/Mrecursion.tscn"),
+	"love": preload("res://Memories/PerCardMemories/loveMemory/Mlove.tscn")
 }
 
 var availableMemories : Dictionary

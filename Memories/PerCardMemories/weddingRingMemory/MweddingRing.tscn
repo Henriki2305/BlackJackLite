@@ -1,20 +1,20 @@
-[gd_scene format=3 uid="uid://cbrgxy0i6j2yt"]
+[gd_scene format=3 uid="uid://d0jx8evymomv7"]
 
-[ext_resource type="Script" uid="uid://box3h5swvav2b" path="res://Memories/PerCardMemories/weddingRingMemory/mwedding_ring.gd" id="1_6paw3"]
-[ext_resource type="Texture2D" uid="uid://cuyfegcc6eif3" path="res://Memories/images/SlotMachine.jpg" id="2_xmkd8"]
-[ext_resource type="Script" uid="uid://dmop3gc8orqqv" path="res://memoryData.gd" id="3_1eoet"]
-[ext_resource type="PackedScene" uid="uid://cnyf78tngee0i" path="res://Memories/memory2D.tscn" id="4_y2v13"]
+[ext_resource type="Script" uid="uid://box3h5swvav2b" path="res://Memories/PerCardMemories/weddingRingMemory/mwedding_ring.gd" id="1_dipts"]
+[ext_resource type="Texture2D" uid="uid://cuyfegcc6eif3" path="res://Memories/images/SlotMachine.jpg" id="2_wsp1m"]
+[ext_resource type="Script" uid="uid://dmop3gc8orqqv" path="res://memoryData.gd" id="3_4figu"]
+[ext_resource type="PackedScene" uid="uid://cnyf78tngee0i" path="res://Memories/memory2D.tscn" id="4_oan3d"]
 
 [sub_resource type="Resource" id="Resource_6paw3"]
-script = ExtResource("3_1eoet")
+script = ExtResource("3_4figu")
 display_name = "weddingRing"
-image = ExtResource("2_xmkd8")
+image = ExtResource("2_wsp1m")
 description = "first diamond card gives 2x soul power"
 metadata/_custom_type_script = "uid://dmop3gc8orqqv"
 
 [node name="MweddingRing" type="Node2D" unique_id=1380782715 node_paths=PackedStringArray("mem2d")]
-script = ExtResource("1_6paw3")
+script = ExtResource("1_dipts")
 memoryStats = SubResource("Resource_6paw3")
 mem2d = NodePath("Memory2d")
 
-[node name="Memory2d" parent="." unique_id=2109284723 instance=ExtResource("4_y2v13")]
+[node name="Memory2d" parent="." unique_id=2109284723 instance=ExtResource("4_oan3d")]

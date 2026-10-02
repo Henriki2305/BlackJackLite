@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cbrgxy0i6j2yt"]
+
+[ext_resource type="Script" uid="uid://bfgxoy16tglqm" path="res://Memories/TriggerMemories/mrecursion.gd" id="1_kd6n0"]
+[ext_resource type="Texture2D" uid="uid://bcu6sc0ekj50j" path="res://Memories/images/humility.jpg" id="2_2e0fo"]
+[ext_resource type="Script" uid="uid://dmop3gc8orqqv" path="res://memoryData.gd" id="3_ooxep"]
+[ext_resource type="PackedScene" uid="uid://cnyf78tngee0i" path="res://Memories/memory2D.tscn" id="4_ctchx"]
+
+[sub_resource type="Resource" id="Resource_peor6"]
+script = ExtResource("3_ooxep")
+display_name = "recursion"
+image = ExtResource("2_2e0fo")
+description = "every card has 1 in 8 chance to be replayed onc"
+buy_price = 8
+metadata/_custom_type_script = "uid://dmop3gc8orqqv"
+
+[node name="Mrecursion" type="Node2D" unique_id=1380782715 node_paths=PackedStringArray("mem2d")]
+script = ExtResource("1_kd6n0")
+memoryStats = SubResource("Resource_peor6")
+mem2d = NodePath("Memory2d")
+
+[node name="Memory2d" parent="." unique_id=2109284723 instance=ExtResource("4_ctchx")]

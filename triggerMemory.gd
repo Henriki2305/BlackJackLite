@@ -6,4 +6,4 @@ class_name triggerMemory
 func _checkCardTrigger(c:card, likelihoodMultiplier) -> bool
 
 @abstract
-func _perCardTrigger() -> void
+func _perCardTrigger(c:card) -> void

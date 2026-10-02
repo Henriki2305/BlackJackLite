@@ -75,15 +75,15 @@ Increase soul power by x0.1 when you visit a new magician
 
 all played face cards increase their rank by 1
 
-love - all hearts give + 2 hand power
+love - all hearts give + 5 hand power
 
-wealth - all diamonds give + 2 hand power
+wealth - all diamonds give + 5 hand power
 
-power - all clubs give + 2 hand power
+power - all clubs give + 5 hand power
 
-diligence - all spades give + 2 hand power
+diligence - all spades give + 5 hand power
 
-adventure - all stars give + 5 hand power
+adventure - all stars give + 15 hand power
 
 increase multiplier by x1.25. 1 in 10 chance to permanently make this memory trigger an additional time.
 
@@ -227,8 +227,7 @@ Perfect student - all played hands that contain an Ace add 0.5 to multiplier. Re
 4x4 - 4x handpower if hand has 4 4s
 
 
-
-
+recursion - cards have 1 in 8 chance to be replayed
 
 
 

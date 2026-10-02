@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bcu6sc0ekj50j"
-path="res://.godot/imported/Humility.jpg-c3dcf7fcb76040057c8f169d22eef2ae.ctex"
+path="res://.godot/imported/humility.jpg-326356255fbfe4c345d07f0c78c31d46.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Memories/images/Humility.jpg"
-dest_files=["res://.godot/imported/Humility.jpg-c3dcf7fcb76040057c8f169d22eef2ae.ctex"]
+source_file="res://Memories/images/humility.jpg"
+dest_files=["res://.godot/imported/humility.jpg-326356255fbfe4c345d07f0c78c31d46.ctex"]
 
 [params]
 

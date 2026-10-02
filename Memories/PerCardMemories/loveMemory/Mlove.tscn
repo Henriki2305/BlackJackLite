@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cjb5gub3g0srx"]
+
+[ext_resource type="Script" uid="uid://kryb1qn6lkh2" path="res://Memories/PerCardMemories/loveMemory/mlove.gd" id="1_50ola"]
+[ext_resource type="Texture2D" uid="uid://bcu6sc0ekj50j" path="res://Memories/images/humility.jpg" id="2_g0j8h"]
+[ext_resource type="Script" uid="uid://dmop3gc8orqqv" path="res://memoryData.gd" id="3_fgk6x"]
+[ext_resource type="PackedScene" uid="uid://cnyf78tngee0i" path="res://Memories/memory2D.tscn" id="4_2nckh"]
+
+[sub_resource type="Resource" id="Resource_kd6n0"]
+script = ExtResource("3_fgk6x")
+display_name = "love"
+image = ExtResource("2_g0j8h")
+description = "hearts give +5 hand power"
+metadata/_custom_type_script = "uid://dmop3gc8orqqv"
+
+[node name="Mhumility" type="Node2D" unique_id=1380782715 node_paths=PackedStringArray("mem2d")]
+script = ExtResource("1_50ola")
+memoryStats = SubResource("Resource_kd6n0")
+mem2d = NodePath("Memory2d")
+
+[node name="Memory2d" parent="." unique_id=2109284723 instance=ExtResource("4_2nckh")]

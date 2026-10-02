@@ -25,7 +25,7 @@ func _playRound() -> void:
 		for c in mainCards:
 			for m:triggerMemory in triggerMemories:
 				if m._checkCardTrigger(c,1):
-					m._perCardTrigger()
+					m._perCardTrigger(c)
 		for c in mainCards:
 			for i in range(c._getTriggers()):
 				var tween = get_tree().create_tween()
