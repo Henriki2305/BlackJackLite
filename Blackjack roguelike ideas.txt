@@ -12,8 +12,6 @@ Aspiring adult - face cards give +2 hand power and +2 soul power. Grows up after
 
 Happy grown-up - all cards give +10 hand power, +10 soul power and +0.1 multiplier
 
-cabinet whisky - 1 in 5 chance to replay a move. gives 0-50 hand power
-
 color television - +0.2multiplier for every suit in hand
 
 calculus class - 1 in 3 chance to add an e of random suit to your deck when playing a hand. multiplier's power is raised by 0.025 for every e rank card
@@ -194,7 +192,7 @@ JESTER
 
 
 
-
+XXXXX - x3.5 hand power. has x0.75 less hand power for each suit in either hand
 
 Procrastination - When you discard the first card you drew, add 2 copies of it to your deck
 
