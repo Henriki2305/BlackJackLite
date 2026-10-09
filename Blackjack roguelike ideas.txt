@@ -228,4 +228,10 @@ Perfect student - all played hands that contain an Ace add 0.5 to multiplier. Re
 recursion - cards have 1 in 8 chance to be replayed
 
 
+rat race - 9s and 5s give 1 soul shard
 
+
+??? - triggering a hand increases round win reward by 1 soul shard
+
+
+deep pockets - +1.25 multiplier for each empty hand
