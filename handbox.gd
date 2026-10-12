@@ -30,6 +30,7 @@ func _ready() -> void:
 	h2._setBox(self)
 	h1.info.connect(_setInfo)
 	h2.info.connect(_setInfo)
+	EventBus.handTaken.connect(_addHand)
 
 func sort_hands(a:hand, b:hand) -> bool:
 	return a._getPosition() < b._getPosition()
@@ -86,4 +87,9 @@ func raycast_check_mem():
 		return res[0].collider.get_parent().get_parent()
 
 func _addHand(h : hand) -> void:
+	add_child(h)
+	h._setPosition(hands.size())
+	h.scale = Vector2(0.5,0.5)
+	h.position = Vector2(hands.size()*200,0)
 	hands.append(h)
+	h.info.connect(_setInfo)

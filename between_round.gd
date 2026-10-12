@@ -35,6 +35,7 @@ func _ready() -> void:
 	$SoulSmith.leave.connect(_showButtons)
 	$Store.leave.connect(_showButtons)
 	$DoorsOfOptions.leave.connect(_showButtons)
+	EventBus.leftDemon.connect(_showButtons)
 #	$LayerGate.aura.connect(_aura)
 #	$LayerGate.boon.connect(_boon)
 #	$LayerGate.curse.connect(_curse)

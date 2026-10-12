@@ -29,7 +29,8 @@ var optionDescriptions : Dictionary = {
 var hands : Dictionary = {
 	"BigNumber": preload("res://Hands/BigNumberHand/BigNumberHand.tscn"),
 	"Example": preload("res://Hands/ExampleHand/ExampleHand.tscn"),
-	"Sleeve": preload("res://Hands/sleeveHand/sleeveHand.tscn")
+	"Example2": preload("res://Hands/ExampleHand2/ExampleHand2.tscn"),
+	"BlackJack": preload("res://Hands/BlackJackHand/BlackJackHand.tscn")
 }
 
 var availableHands : Dictionary
@@ -57,8 +58,9 @@ func _addMemory(m : memory) -> void:
 	availableMemories[n] = memories[n]
 
 func _removeHand(h : hand) -> void:
-	var n = h.handName
+	var n = h.stats.displayName
 	availableHands.erase(n)
+	print(availableHands)
 	
 func _addHand(h : hand) -> void:
 	var n = h.handName

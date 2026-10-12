@@ -6,9 +6,10 @@ var OfferedHands : Array
 
 func _ready() -> void:
 	$ExitButton.pressed.connect(_leaveDemon)
+	
 func _leaveDemon() -> void:
 	visible = false
-
+	EventBus.leftDemon.emit()
 
 
 

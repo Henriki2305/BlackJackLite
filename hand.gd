@@ -44,6 +44,9 @@ func _setPosition(p : int) -> void:
 	HandPos = p
 
 @abstract
+func _getStrings() -> Array[Array]
+
+@abstract
 func _getReqText() -> String
 	
 @abstract

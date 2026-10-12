@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bei2bw8pwsmjg"]
+
+[ext_resource type="Script" uid="uid://o4xs1xtl1c6r" path="res://Hands/BlackJackHand/black_jack_hand.gd" id="1_oe6rn"]
+[ext_resource type="Script" uid="uid://be1tog4n5vis6" path="res://HandData.gd" id="2_0o731"]
+[ext_resource type="PackedScene" uid="uid://cu5siaq7lcgpr" path="res://hand_base.tscn" id="3_u8bed"]
+[ext_resource type="Shader" uid="uid://bo78vhwy3tyv2" path="res://Shaders/handbaseshader.gdshader" id="4_syks5"]
+
+[sub_resource type="Resource" id="Resource_oe6rn"]
+resource_local_to_scene = true
+script = ExtResource("2_0o731")
+displayName = "BlackJack"
+reqLevel = 1
+rewLevel = 1
+metadata/_custom_type_script = "uid://be1tog4n5vis6"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0sakx"]
+resource_local_to_scene = true
+shader = ExtResource("4_syks5")
+shader_parameter/colorness = 0.0
+shader_parameter/rare = false
+
+[node name="BlackJackHand" type="Node2D" unique_id=968076684]
+script = ExtResource("1_oe6rn")
+stats = SubResource("Resource_oe6rn")
+
+[node name="HandBase" parent="." unique_id=351604509 instance=ExtResource("3_u8bed")]
+material = SubResource("ShaderMaterial_0sakx")

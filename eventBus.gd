@@ -141,3 +141,7 @@ signal optionShown
 signal optionRemoved
 
 signal optionTaken
+
+signal leftDemon
+
+signal handTaken

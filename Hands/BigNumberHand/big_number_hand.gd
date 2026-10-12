@@ -1,31 +1,21 @@
 extends hand
 
+var reqs = ["Sum of card values is at least 19","Sum of card values is at least 17","Sum of card values is at least 14"]
+var rews = ["+4 soul power", "+12 soul power", "+40 soul power"]
+
 func _setInfo() -> void:
-	var req = ""
-	match stats.reqLevel:
-		1: req = "Sum of card values is at least 19"
-		2: req = "Sum of card values is at least 17"
-		3: req = "Sum of card values is at least 14"
-	var rew = ""
-	match stats.rewLevel:
-		1: rew = "+4 soul power"
-		2: rew = "+12 soul power"
-		3: rew = "40"
+	var req = _getReqText()
+	var rew = _getRewText()
 	info.emit(req,rew)
 	
+func _getStrings() -> Array[Array]:
+	return [reqs,rews]
+	
 func _getReqText() -> String:
-	match stats.reqLevel:
-		1: return "Sum of card values is at least 19"
-		2: return "Sum of card values is at least 17"
-		3: return "Sum of card values is at least 14"
-	return ""
+	return reqs[stats.reqLevel + 1]
 	
 func _getRewText() -> String:
-	match stats.rewLevel:
-		1: return "+4 soul power"
-		2: return "+12 soul power"
-		3: return "40"
-	return ""
+	return rews[stats.rewLevel + 1]
 	
 func _checkReq(cards: Array[card]) -> bool:
 	var tot = 0

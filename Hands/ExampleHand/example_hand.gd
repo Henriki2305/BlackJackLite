@@ -11,6 +11,9 @@ func _checkReq(cards: Array) -> bool:
 		3: return a > 2
 	return false
 
+func _getStrings() -> Array[Array]:
+	return [["testReq"],["testRew"]]
+
 func _getReqText() -> String:
 	return "testReq"
 	
