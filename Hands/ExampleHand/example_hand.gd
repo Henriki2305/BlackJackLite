@@ -20,3 +20,6 @@ func _getReqText() -> String:
 	
 func _getRewText() -> String:
 	return "testRew"
+
+func _effect() -> void:
+	EventBus.addHandPower.emit(1)

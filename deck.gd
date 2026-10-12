@@ -50,16 +50,17 @@ var bust = false
 #	"12": Enums.twelwe
 #	}
 
-func _createDeck(cardstring) -> void:
+func _createDeck(cardstring) -> Array[card]:
 	var cards = cardstring.split(".")
+	var newcards : Array[card] = []
 	for curCard in cards:
 		var card_instance : card = cardScene.instantiate()
-		card_instance.setValues(curCard, true)
+		card_instance.setValues(curCard)
 		card_instance.set_name(str("card",i))
 		i = i + 1
-		add_child(card_instance)
 		card_instance.position = Vector2(0,0)
-		cardsInDeck.append(card_instance)
+		newcards.append(card_instance)
+	return newcards
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -67,7 +68,9 @@ func _ready() -> void:
 	EventBus.cardReturned.connect(_moveCardToDeck)
 	var DeckString = "nohsh7.nohsh7.nohsh7.nohgo7.nohsh7.nohgo7.nodra7.nocco7.nodco7.nohcoa.nohco7.nosco7.nohco7"
 #	var DeckString = g._determineDeck(self)
-	_createDeck(DeckString)
+	cardsInDeck = _createDeck(DeckString)
+	for c in cardsInDeck:
+		add_child(c)
 	var cards = get_children().filter(func(c): return c is card)
 	
 

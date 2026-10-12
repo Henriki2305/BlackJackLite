@@ -33,3 +33,6 @@ offset_top = 686.0
 offset_right = 552.0
 offset_bottom = 736.0
 texture_normal = ExtResource("3_07la5")
+
+[connection signal="pressed" from="ReqButton" to="." method="_updateReq"]
+[connection signal="pressed" from="RewButton" to="." method="_updateRew"]

@@ -21,7 +21,12 @@ func _playRound() -> void:
 	var triggerMemories: Array = memorybox._getMemories().filter(func(m): return (m is triggerMemory))
 	var mainCards: Array[card] = main._getCards()
 	var sideCards: Array[card] = main._getCards()
+	var hands: Array[hand] = hBox._getHands()
 	if (!main._checkBust()):
+		for h in hands:
+			if h._checkReq(mainCards):
+				h._effect()
+				await get_tree().create_timer(0.5).timeout
 		for c in mainCards:
 			for m:triggerMemory in triggerMemories:
 				if m._checkCardTrigger(c,1):

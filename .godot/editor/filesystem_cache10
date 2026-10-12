@@ -1,5 +1,5 @@
 78098b89c88a74ebe8c20117b8754620
-::res://::1791763983
+::res://::1791806741
 between_round.gd::GDScript::8965572733814127040::1791762790::0::1::::betweenRound<>Node2D<><>0<>0<><>::
 bet_interface.gd::GDScript::5786000657594390535::1791582580::0::1::::<>Control<><>0<>0<><>::
 Blackjack roguelike ideas.txt::TextFile::-1::1791582580::0::1::::<><><>0<>0<><>::
@@ -29,8 +29,8 @@ Game.gd::GDScript::15019890018368315::1791582580::0::1::::Game<>Node2D<><>0<>0<>
 Game.tscn::PackedScene::4890177436257609672::1791763078::0::1::::<><><>0<>0<><>::uid://hjm07q0ihj4::::res://Game.gd<>uid://dsa80bbmp0gad::::res://Scenes/deck.tscn<>uid://ctrgu3qcae3u3::::res://label.gd<>uid://bv50m4ytbyiqf::::res://Shaders/RippleEffectShader.gdshader<>uid://8x4mrmdu76pf::::res://images/check.jpg<>uid://bv3pwn3aordnh::::res://images/tablebase.png<>uid://664bijxsk8w6::::res://round_button_controller.tscn<>uid://dd1y86sjjtca3::::res://images/machine.png<>uid://brrlkl6bdubby::::res://Scenes/BetInterface.tscn<>uid://duigimficalft::::res://Scenes/card_list.tscn<>uid://hs1pqbjyk3ht::::res://Scenes/layer_gate.tscn<>uid://bk8p056o42vct::::res://round_loop_event_handler.tscn<>uid://c1pimrotwhchj::::res://images/Dark.png<>uid://bom5hhpjgtqer::::res://scoreboard.tscn<>uid://v6tdyngtbm6j::::res://SoulStorage.tscn<>uid://dblsxdrbh3un1::::res://Scenes/BetweenRound.tscn<>uid://dkwrt455dhbj6::::res://opponent.tscn
 Global.gd::GDScript::4179804236373241661::1791582580::0::1::::<>Node<><>0<>0<><>::
 graytest.jpg::CompressedTexture2D::7544316960807934584::1782853461::1791582600::1::::<><><>0<>0<>c59d467b4508eb7886641e8ab584b60f<>res://.godot/imported/graytest.jpg-68ebbb97d50fd97c9334a81802fe9557.ctex::
-hand.gd::GDScript::7188319435059972169::1791665486::0::1::::hand<>Node2D<><>1<>0<><>::
-handbox.gd::GDScript::7681029193354374679::1791763679::0::1::::handbox<>Node2D<><>0<>0<><>::
+hand.gd::GDScript::7188319435059972169::1791764238::0::1::::hand<>Node2D<><>1<>0<><>::
+handbox.gd::GDScript::7681029193354374679::1791764405::0::1::::handbox<>Node2D<><>0<>0<><>::
 HandData.gd::GDScript::2722028864399030923::1791582580::0::1::::handData<>Resource<><>0<>0<><>::
 handtype.gd::GDScript::6514464524946414375::1782853461::0::1::::handType<>Node2D<><>0<>0<><>::
 hand_base.tscn::PackedScene::6239656791175268583::1791582581::0::1::::<><><>0<>0<><>::uid://bo78vhwy3tyv2::::res://Shaders/handbaseshader.gdshader<>uid://d0gi8q8584bf2::::res://images/blackmössö.png
@@ -55,7 +55,7 @@ roundLoopEventHandler.gd::GDScript::7817367730037492402::1791582581::0::1::::<>N
 round_button_controller.gd::GDScript::6112686361476087703::1791582581::0::1::::<>Node2D<><>0<>0<><>::
 round_button_controller.tscn::PackedScene::2241612876898530975::1791582581::0::1::::<><><>0<>0<><>::uid://ctdbb0kirkx72::::res://round_button_controller.gd<>uid://cvrwg1hs48gdy::::res://PlayButtonTheme.tres
 round_loop_event_handler.tscn::PackedScene::3157390609961893331::1791582581::0::1::::<><><>0<>0<><>::uid://djm150p3hs2w1::::res://roundLoopEventHandler.gd<>uid://dw1qgamf4if5c::::res://main_hand.tscn<>uid://tt6xclinds16::::res://SideHand.tscn<>uid://cw7kr0gn3r6oq::::res://Scenes/memory_box.tscn<>uid://p1snryoyi1cd::::res://Scenes/hand_box.tscn<>uid://cs1nc4xrtv63d::::res://discard_pile.tscn
-SceneReferences.gd::GDScript::4483881295718830384::1791763991::0::1::::<>Node<><>0<>0<><>::
+SceneReferences.gd::GDScript::4483881295718830384::1791764021::0::1::::<>Node<><>0<>0<><>::
 scoreboard.gd::GDScript::3760410716319973001::1791582581::0::1::::<>Node2D<><>0<>0<><>::
 scoreboard.tscn::PackedScene::3395671429267819441::1791582581::0::1::::<><><>0<>0<><>::uid://br8aji8gj6sso::::res://DigitalNumbers-Regular.ttf<>uid://btttod35jf0i4::::res://scoreboard.gd
 ScoreStruct.gd::GDScript::892405906503705262::1782853461::0::1::::Scoring<>Resource<><>0<>0<><>::
@@ -90,19 +90,19 @@ big_number.svg::CompressedTexture2D::6719428263232170984::1791582581::1791582600
 ::res://big_number/bin/macos/libbig_number.macos.template_debug.single.framework/::1791582581
 ::res://big_number/bin/macos/libbig_number.macos.template_release.single.framework/::1791582581
 ::res://big_number/bin/web/::1791582581
-::res://big_number/bin/windows/::1791645447
+::res://big_number/bin/windows/::1791806735
 ::res://Hands/::1791763929
 ::res://Hands/BigNumberHand/::1791763905
 BigNumberHand.tscn::PackedScene::6643836606438425132::1791763905::0::1::::<><><>0<>0<><>::uid://bx8mb83w7ydmp::::res://Hands/BigNumberHand/big_number_hand.gd<>uid://cu5siaq7lcgpr::::res://hand_base.tscn<>uid://be1tog4n5vis6::::res://HandData.gd<>uid://bo78vhwy3tyv2::::res://Shaders/handbaseshader.gdshader
 big_number_hand.gd::GDScript::4069620720527288627::1791666024::0::1::::<>hand<><>0<>0<><>::
-::res://Hands/BlackJackHand/::1791763873
-BlackJackHand.tscn::PackedScene::2685333432080209528::1791763873::0::1::::<><><>0<>0<><>::uid://o4xs1xtl1c6r::::res://Hands/BlackJackHand/black_jack_hand.gd<>uid://be1tog4n5vis6::::res://HandData.gd<>uid://cu5siaq7lcgpr::::res://hand_base.tscn<>uid://bo78vhwy3tyv2::::res://Shaders/handbaseshader.gdshader
+::res://Hands/BlackJackHand/::1791764306
+BlackJackHand.tscn::PackedScene::2685333432080209528::1791764306::0::1::::<><><>0<>0<><>::uid://o4xs1xtl1c6r::::res://Hands/BlackJackHand/black_jack_hand.gd<>uid://be1tog4n5vis6::::res://HandData.gd<>uid://cu5siaq7lcgpr::::res://hand_base.tscn<>uid://bo78vhwy3tyv2::::res://Shaders/handbaseshader.gdshader
 black_jack_hand.gd::GDScript::1043940802940707031::1791733970::0::1::::<>hand<><>0<>0<><>::
-::res://Hands/ExampleHand/::1791763939
-example_hand.gd::GDScript::391269158965062296::1791666064::0::1::::<>hand<><>0<>0<><>::
+::res://Hands/ExampleHand/::1791764003
 ExampleHand.tscn::PackedScene::4980334790251772953::1791763936::0::1::::<><><>0<>0<><>::uid://ftse7v1yv3pc::::res://Hands/ExampleHand/example_hand.gd<>uid://be1tog4n5vis6::::res://HandData.gd<>uid://cu5siaq7lcgpr::::res://hand_base.tscn<>uid://bo78vhwy3tyv2::::res://Shaders/handbaseshader.gdshader
-::res://Hands/ExampleHand2/::1791763983
-ExampleHand2.tscn::PackedScene::396066847852410374::1791763991::0::1::::<><><>0<>0<><>::uid://ftse7v1yv3pc::::res://Hands/ExampleHand/example_hand.gd<>uid://be1tog4n5vis6::::res://HandData.gd<>uid://cu5siaq7lcgpr::::res://hand_base.tscn<>uid://bo78vhwy3tyv2::::res://Shaders/handbaseshader.gdshader
+example_hand.gd::GDScript::391269158965062296::1791666064::0::1::::<>hand<><>0<>0<><>::
+::res://Hands/ExampleHand2/::1791764431
+ExampleHand2.tscn::PackedScene::396066847852410374::1791764431::0::1::::<><><>0<>0<><>::uid://ftse7v1yv3pc::::res://Hands/ExampleHand/example_hand.gd<>uid://be1tog4n5vis6::::res://HandData.gd<>uid://cu5siaq7lcgpr::::res://hand_base.tscn<>uid://bo78vhwy3tyv2::::res://Shaders/handbaseshader.gdshader
 ::res://images/::1791582601
 AdvanceButton.png::CompressedTexture2D::6032125090605052512::1782853461::1791582600::1::::<><><>0<>0<>dd88c960a5063268ab5bde22f6c4658d<>res://.godot/imported/AdvanceButton.png-af128e47a470a581619970f1b93f70a6.ctex::
 Aura.jpg::CompressedTexture2D::5266497798618135656::1782853461::1791582600::1::::<><><>0<>0<>0dbf29c0d332bb4ef7d4439a7775dc41<>res://.godot/imported/Aura.jpg-d1022a2c7f4056d67f0335b71338a45c.ctex::

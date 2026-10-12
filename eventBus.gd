@@ -34,6 +34,8 @@ signal endRound
 
 signal drawOpponentCard
 
+signal revealOpponentCard
+
 signal nextRound
 
 signal buySoul
@@ -145,3 +147,7 @@ signal optionTaken
 signal leftDemon
 
 signal handTaken
+
+signal randomReqUpgraded
+
+signal randomRewUpgraded

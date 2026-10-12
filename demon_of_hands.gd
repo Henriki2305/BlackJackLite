@@ -11,8 +11,12 @@ func _leaveDemon() -> void:
 	visible = false
 	EventBus.leftDemon.emit()
 
-
-
+func _updateReq() -> void:
+	EventBus.randomReqUpgraded.emit()
+	
+func _updateRew() -> void:
+	EventBus.randomRewUpgraded.emit()
+	
 func _setHands() -> void:
 	var g : Game = get_parent().get_parent()
 	var x = 0

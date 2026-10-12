@@ -12,10 +12,10 @@ func _getStrings() -> Array[Array]:
 	return [reqs,rews]
 	
 func _getReqText() -> String:
-	return reqs[stats.reqLevel + 1]
+	return reqs[stats.reqLevel - 1]
 	
 func _getRewText() -> String:
-	return rews[stats.rewLevel + 1]
+	return rews[stats.rewLevel - 1]
 	
 func _checkReq(cards: Array[card]) -> bool:
 	var tot = 0
@@ -34,3 +34,9 @@ func _checkReq(cards: Array[card]) -> bool:
 		2: return tot >= 17
 		3: return tot >= 14
 	return false
+	
+func _effect() -> void:
+	match stats.rewLevel:
+		1: EventBus.addSoulPower.emit(5)
+		2: EventBus.addSoulPower.emit(12)
+		3: EventBus.addSoulPower.emit(40)

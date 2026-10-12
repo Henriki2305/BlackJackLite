@@ -8,8 +8,6 @@
 [sub_resource type="Resource" id="Resource_ji205"]
 script = ExtResource("2_vjjog")
 displayName = "BigNumber"
-reqLevel = 1
-rewLevel = 1
 metadata/_custom_type_script = "uid://be1tog4n5vis6"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0jpkb"]

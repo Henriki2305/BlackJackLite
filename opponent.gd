@@ -41,7 +41,28 @@ var roundMults : Dictionary = {
 func _ready() -> void:
 	EventBus.roundWon.connect(_IncreaseRoundsWon)
 	EventBus.LayerChanged.connect(_changeLayer)
+	EventBus.startRound.connect(_drawCards)
+	EventBus.betPlaced.connect(_revealSecondCard)
 	EventBus.betPlaced.connect(_calculateScore)
+	
+	
+func _setCards(c : Array[card]) -> void:
+	availableCards = c
+	
+func _drawCards() -> void:
+	card1 = availableCards.pick_random()
+	print(card1._getName())
+	availableCards.erase(card1)
+	card1.show()
+	add_child(card1)
+	$Sprite2D.show()
+	
+func _revealSecondCard() -> void:
+	card2 = availableCards.pick_random()
+	add_child(card2)
+	card2.position=Vector2(200,00)
+	$Sprite2D.hide()
+	card2.show()
 	
 func _changeLayer(l : int) -> void:
 	layer = l

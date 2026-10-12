@@ -1,7 +1,7 @@
 class_name handbox extends Node2D
 var bigNumberHandScene = preload("res://Hands/BigNumberHand/BigNumberHand.tscn")
 var exampleHandScene = preload("res://Hands/ExampleHand/ExampleHand.tscn")
-var hands : Array = []
+var hands : Array[hand] = []
 var movedHand
 var playPhase : bool = true
 
@@ -31,6 +31,8 @@ func _ready() -> void:
 	h1.info.connect(_setInfo)
 	h2.info.connect(_setInfo)
 	EventBus.handTaken.connect(_addHand)
+	EventBus.randomReqUpgraded.connect(_upgradeRandomReq)
+	EventBus.randomRewUpgraded.connect(_upgradeRandomRew)
 
 func sort_hands(a:hand, b:hand) -> bool:
 	return a._getPosition() < b._getPosition()
@@ -93,3 +95,11 @@ func _addHand(h : hand) -> void:
 	h.position = Vector2(hands.size()*200,0)
 	hands.append(h)
 	h.info.connect(_setInfo)
+	
+func _upgradeRandomRew() -> void:
+	hands.filter(func(h:hand): return h._getRewLevel() < 3).pick_random()._upgradeReward()
+	
+func _upgradeRandomReq() -> void:
+	var availableHands : Array[hand] = hands.filter(func(h:hand): return h._getReqLevel() < 3)
+	if availableHands.size() > 0:
+		availableHands.pick_random()._upgradeRequirement()

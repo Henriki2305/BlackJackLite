@@ -35,6 +35,7 @@ var bossRound : bool = false
 var Emode : bool = true
 
 
+
 var soulRules : Dictionary = {
 	"Demented" : false, #memories in store are free but only last 6 rounds
 	"Forgiving" : false, #You cannot bust if you fulfill the requirements of at least 1 hand,
@@ -86,6 +87,8 @@ func _betweenRounds(_n : BigNumber) -> void:
 	
 func _advance() -> void:
 	level+=1
+	$Opponent._setCards(playerDeck._createDeck("nohcoa.nosco6.nohco5.nodcok"))
+	EventBus.startRound.emit()
 
 func _increase() -> void:
 	if Global.bet < souls:
@@ -133,6 +136,8 @@ func _ready() -> void:
 	$ColorRect.material.set_shader_parameter("width",0.0)
 	$ColorRect.material.set_shader_parameter("spot",0.0)
 	EventBus.roundWon.connect(_betweenRounds)
+	$Opponent._setCards(playerDeck._createDeck("nohcoa.nodco7.nosco6.nohco5.nodcok"))
+	EventBus.startRound.emit()
 	
 func _input(_event):
 	if Input.is_key_pressed(KEY_ESCAPE):

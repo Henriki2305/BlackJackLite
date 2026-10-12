@@ -84,9 +84,20 @@ func _checkReq(cards: Array) -> bool
 #		"none":
 #			return true
 #	return false
+@abstract
+func _effect() -> void
 
-func _effect() -> void:
-	pass
+func _getRewLevel() -> int:
+	return stats.rewLevel
+	
+func _getReqLevel() -> int:
+	return stats.reqLevel
+
+func _upgradeReward() -> void:
+	stats.rewLevel += 1
+	
+func _upgradeRequirement() -> void:
+	stats.reqLevel += 1
 
 func _setInfo() -> void:
 	info.emit(_getReqText(),_getRewText())

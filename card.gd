@@ -199,7 +199,7 @@ func _getString() -> String:
 	s = s + enchantments.find_key(enchantment) + suits.find_key(suit) + rarities.find_key(rarity) + ranks.find_key(rank)	
 	return s
 	
-func setValues(cValues : String, b : bool) -> void:
+func setValues(cValues : String) -> void:
 	$TakeButton.visible = false
 	$BurnButton.visible = false
 	var texture: TextureRect = $TextureRect
@@ -255,6 +255,7 @@ func changeSuit(s : String) -> void:
 	updateAppearance()
 	
 func updateAppearance() -> void:
+	$Card_graphics._updateSymbols(rank,suit)
 	$TextureRect.texture.set_region(Rect2(Vector2(xind*(w-20),yind*h),Vector2(w,h)))
 			
 
