@@ -82,3 +82,7 @@ enum Boons {
 	ENVYBOON,
 	ENVYCURSE
 }
+
+enum Rules {
+	
+}

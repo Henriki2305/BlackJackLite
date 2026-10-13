@@ -283,6 +283,16 @@ func _isFaceCard() -> bool:
 func _hasRarityEffect() -> bool:
 	return rarity == Enums.Rarity.UNCOMMON || rarity == Enums.Rarity.RARE || rarity == Enums.Rarity.SOULRARE || Enums.Rarity.ULTRARARE
 
+func _rankUp() -> void:
+	if !_isAce() && !_isFaceCard():
+		rank = rank + 10
+	if _isFaceCard():
+		rank = rank + 10
+		
+func _rankDown() -> void:
+	if !_isAce():
+		rank = rank - 10
+
 #func _rarityEffect() -> void:
 #	match rarity:
 #		Enums.uncommon :

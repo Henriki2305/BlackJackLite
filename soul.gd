@@ -10,11 +10,6 @@ var soulDesc : Dictionary = {
 	"test3" : "test",
 	"a" : "b"
 }
-var soulColors : Dictionary = {
-	"test1" : [Vector3(1.0,0.0,0.0),Vector3(0.8,0.1,0.1)],
-	"test2" : [Vector3(0.0,0.0,1.0),Vector3(0.0,0.75,0.0)],
-	"test3" : [Vector3(0.5,0.0,0.5),Vector3(0.3,0.05,0.2)]
-}
 var inInventory : bool
 var g : Game
 var value : int
@@ -31,8 +26,10 @@ func _ready() -> void:
 
 func _setName(nam : String) -> void:
 	soulName = nam
-	$SoulSprite.material.set_shader_parameter("col1",soulColors[nam][0])
-	$SoulSprite.material.set_shader_parameter("col2",soulColors[nam][1])
+
+func _setColors(colors : Array[Vector3]) -> void:
+	$SoulSprite.material.set_shader_parameter("col1",colors[0])
+	$SoulSprite.material.set_shader_parameter("col2",colors[1])
 
 func _getSoulRule() -> String:
 	return soulName

@@ -1,5 +1,7 @@
 extends Node
 
+var soulScene = preload("res://Scenes/soul.tscn")
+
 var memories : Dictionary = {
 	"helpingHand": preload("res://Memories/InstantMemories/helpingHandMemory/MhelpingHand.tscn"),
 	"shoulderDevil": preload("res://Memories/InstantMemories/ShoulderDevilMemory/MShoulderDevil.tscn"),
@@ -35,10 +37,21 @@ var hands : Dictionary = {
 
 var availableHands : Dictionary
 
+var souls : Array[String] = ["test1", "test2", "test3"]
+
+var availableSouls : Array[String]
+
+var soulColors : Dictionary = {
+	"test1" : [Vector3(1.0,0.0,0.0),Vector3(0.8,0.1,0.1)],
+	"test2" : [Vector3(0.0,0.0,1.0),Vector3(0.0,0.75,0.0)],
+	"test3" : [Vector3(0.5,0.0,0.5),Vector3(0.3,0.05,0.2)]
+}
+
 func _ready() -> void:
 	availableMemories = memories.duplicate()
 	availableOptions = options.duplicate()
 	availableHands = hands.duplicate()
+	availableSouls = souls.duplicate()
 	EventBus.memoryBought.connect(_removeMemory)
 	EventBus.memorySoldUnique.connect(_addMemory)
 	EventBus.memoryRolledToStore.connect(_removeMemory)
@@ -74,6 +87,15 @@ func _getHand() -> hand:
 	
 func _getOption() -> String:
 	return (availableOptions.pick_random())
+	
+func _getSoul() -> soul:
+	var newSoul : soul = soulScene.instantiate()
+	var soulName = availableSouls.pick_random()
+	var color : Array[Vector3]
+	color.assign(soulColors[soulName])
+	newSoul._setName(soulName)
+	newSoul._setColors(color)
+	return newSoul
 
 func _removeOption(s : String) -> void:
 	availableOptions.erase(s)

@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cf3376y85cuyp" path="res://opponent.gd" id="1_amo4f"]
 [ext_resource type="Texture2D" uid="uid://d1it3m2ws05yb" path="res://Card base.png" id="2_cafab"]
-[ext_resource type="Script" uid="uid://bhmnot27ncsjg" path="res://card_base.gd" id="3_hwpof"]
 
 [node name="Opponent" type="Node2D" unique_id=78069949]
 script = ExtResource("1_amo4f")
@@ -12,4 +11,3 @@ visible = false
 position = Vector2(200, 0)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_cafab")
-script = ExtResource("3_hwpof")

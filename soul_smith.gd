@@ -8,14 +8,14 @@ var soulScene = preload("res://Scenes/soul.tscn")
 signal leave
 
 func _NewSoul() -> void:
-	if g.souls > price:
+	if Global.soulShardsAmount > price:
 		if currentSoul != null:
 			currentSoul.queue_free()
-		g._addToSouls(-price)
-		currentSoul = soulScene.instantiate()
-		currentSoul._setName(possibleSouls.pick_random())
+		EventBus.spendSouls.emit(price)
+		currentSoul = SceneReferences._getSoul()
+		print(currentSoul.soulName)
 		add_child(currentSoul)
-		currentSoul.global_position=Vector2(1000,500)
+		currentSoul.position=Vector2(1000,500)
 		price += 5
 		$BuyButton.show()
 

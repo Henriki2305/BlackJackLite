@@ -151,3 +151,7 @@ signal handTaken
 signal randomReqUpgraded
 
 signal randomRewUpgraded
+
+signal soulBought
+
+signal soulSacrificed

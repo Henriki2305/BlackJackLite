@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b83bco2dnvj0a"]
+
+[ext_resource type="Script" uid="uid://i3lstg2um6xr" path="res://Scenes/soul_box.gd" id="1_ocfmk"]
+
+[node name="SoulBox" type="Node2D" unique_id=1262598664]
+script = ExtResource("1_ocfmk")
